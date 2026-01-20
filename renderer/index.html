@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineGraph-AI - 电影台词检索与编辑</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a2a6c, #2c3e50);
+      color: #333;
+      min-height: 100vh;
+    }
+    .video-container {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+    }
+    .canvas-container {
+      background: #1e293b;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    }
+    .result-card {
+      transition: all 0.3s ease;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .result-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    .timeline {
+      height: 4px;
+      background: #4b5563;
+      border-radius: 2px;
+      margin-top: 12px;
+      position: relative;
+    }
+    .timeline-progress {
+      height: 100%;
+      background: linear-gradient(to right, #3b82f6, #8b5cf6);
+      border-radius: 2px;
+      width: 0%;
+    }
+    .highlight {
+      position: absolute;
+      width: 8px;
+      height: 100%;
+      background: #ff006e;
+      border-radius: 4px;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-gray-800 text-gray-200">
+  <div class="container mx-auto px-4 py-6 max-w-7xl">
+    <!-- 顶部导航 -->
+    <header class="mb-8">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center">
+          <div class="bg-indigo-600 rounded-xl p-3 mr-4 shadow-lg">
+            <i class="fas fa-film text-3xl text-white"></i>
+          </div>
+          <div>
+            <h1 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-500">
+              CineGraph-AI
+            </h1>
+            <p class="text-gray-400 mt-1">电影台词智能检索与编辑系统</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition flex items-center">
+            <i class="fas fa-plus mr-2"></i>
+            添加影片库
+          </button>
+          <button class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg transition">
+            <i class="fas fa-cog"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 主内容区域 -->
+    <main class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- 搜索区域 (左侧) -->
+      <div class="lg:col-span-1">
+        <div class="bg-gray-800 rounded-xl p-6 shadow-xl border border-gray-700">
+          <div class="mb-6">
+            <h2 class="text-xl font-bold text-indigo-400 mb-3 flex items-center">
+              <i class="fas fa-search mr-2"></i>台词检索
+            </h2>
+            <div class="relative">
+              <input type="text" id="search-input" 
+                     class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 pl-10 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-gray-400"
+                     placeholder="输入台词关键词... (例: '你这个混蛋')">
+              <i class="fas fa-microphone absolute left-3 top-3 text-gray-500"></i>
+            </div>
+            <div class="mt-4 flex space-x-2">
+              <button id="search-btn" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg transition flex items-center justify-center">
+                <i class="fas fa-search mr-2"></i>开始搜索
+              </button>
+              <button id="clear-btn" class="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-lg transition flex items-center justify-center">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <h2 class="text-xl font-bold text-indigo-400 mb-3 flex items-center">
+              <i class="fas fa-sliders-h mr-2"></i>搜索设置
+            </h2>
+            <div class="space-y-3">
+              <div>
+                <label class="block text-gray-300 mb-1">模型选择</label>
+                <select id="model-select" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                  <option>Qwen-7B (本地)</option>
+                  <option>OpenAI GPT-4 (云端)</option>
+                  <option>LLaMA-2-7B (本地)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-gray-300 mb-1">搜索模式</label>
+                <div class="flex space-x-2">
+                  <button class="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-1 rounded-lg transition">精确匹配</button>
+                  <button class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-1 rounded-lg transition">模糊匹配</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-700 pt-6">
+            <h2 class="text-xl font-bold text-indigo-400 mb-3 flex items-center">
+              <i class="fas fa-history mr-2"></i>最近搜索
+            </h2>
+            <div class="space-y-2">
+              <div class="flex items-center p-3 bg-gray-700 rounded-lg cursor-pointer hover:bg-gray-600 transition">
+                <i class="fas fa-quote-left text-indigo-400 mr-3"></i>
+                <span class="truncate">"你这个混蛋，你永远都不会明白！"</span>
+              </div>
+              <div class="flex items-center p-3 bg-gray-700 rounded-lg cursor-pointer hover:bg-gray-600 transition">
+                <i class="fas fa-quote-left text-indigo-400 mr-3"></i>
+                <span class="truncate">"我一直在等你，你终于来了。"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 视频预览和编辑区域 (中间) -->
+      <div class="lg:col-span-2">
+        <div class="bg-gray-800 rounded-xl p-6 shadow-xl border border-gray-700">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-bold text-indigo-400 flex items-center">
+              <i class="fas fa-video mr-2"></i>视频预览与编辑
+            </h2>
+            <div class="flex items-center space-x-3">
+              <button class="bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-lg transition">
+                <i class="fas fa-expand"></i>
+              </button>
+              <button class="bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-lg transition">
+                <i class="fas fa-undo"></i>
+              </button>
+              <button class="bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-lg transition">
+                <i class="fas fa-redo"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="video-container mb-6">
+            <div class="relative">
+              <video id="video-player" class="w-full h-[400px] object-cover" controls>
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                您的浏览器不支持视频播放。
+              </video>
+              <div id="timeline-container" class="timeline" style="height: 4px;">
+                <div id="timeline-progress" class="timeline-progress"></div>
+                <div id="timeline-highlight" class="highlight" style="left: 25%; width: 8px;"></div>
+              </div>
+              <div class="absolute bottom-2 left-0 right-0 text-center text-gray-300 text-sm">
+                00:00:00 / 01:23:45
+              </div>
+            </div>
+          </div>
+
+          <div class="canvas-container mb-6">
+            <div class="p-4">
+              <div class="flex justify-between items-center mb-3">
+                <h3 class="text-lg font-bold text-indigo-400 flex items-center">
+                  <i class="fas fa-crop mr-2"></i>裁剪区域
+                </h3>
+                <div class="text-sm text-gray-400">
+                  <span id="crop-start">00:00:00</span> - 
+                  <span id="crop-end">00:00:10</span>
+                </div>
+              </div>
+              
+              <div class="relative w-full h-32 bg-gray-700 rounded-lg overflow-hidden border border-gray-600">
+                <div id="crop-area" class="absolute bg-indigo-500 bg-opacity-30 border-2 border-indigo-400 rounded-lg" style="width: 40%; height: 100%; left: 30%;">
+                  <div class="absolute top-0 left-0 w-full h-full border-2 border-dashed border-indigo-400"></div>
+                </div>
+                <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center text-gray-400 text-sm">
+                  拖动裁剪框调整区域
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+              <button id="play-btn" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition flex items-center">
+                <i class="fas fa-play mr-2"></i>播放
+              </button>
+              <button id="pause-btn" class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg transition flex items-center">
+                <i class="fas fa-pause mr-2"></i>暂停
+              </button>
+            </div>
+            <button id="save-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg transition flex items-center">
+              <i class="fas fa-download mr-2"></i>保存片段
+            </button>
+          </div>
+        </div>
+
+        <!-- 检索结果列表 (下方) -->
+        <div class="mt-6 bg-gray-800 rounded-xl p-6 shadow-xl border border-gray-700">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold text-indigo-400 flex items-center">
+              <i class="fas fa-list mr-2"></i>检索结果
+            </h2>
+            <div class="flex items-center space-x-2">
+              <span class="text-gray-400">共 12 个结果</span>
+              <div class="flex border border-gray-600 rounded-lg overflow-hidden">
+                <button class="px-3 py-1 bg-gray-700 text-white">列表</button>
+                <button class="px-3 py-1 bg-gray-700 text-white">画布</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <!-- 检索结果卡片 -->
+            <div class="result-card bg-gray-700 rounded-lg overflow-hidden shadow-md">
+              <div class="flex">
+                <div class="w-40 bg-gray-600">
+                  <img src="https://i.imgur.com/3Z3zR3l.jpg" alt="电影片段" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-1 p-4">
+                  <div class="flex justify-between items-start">
+                    <h3 class="text-lg font-bold text-white">《肖申克的救赎》</h3>
+                    <span class="bg-indigo-600 text-white px-2 py-1 rounded text-sm">00:15:23</span>
+                  </div>
+                  <p class="text-gray-300 mt-2 mb-3">"希望是美好的，也许是人间至善，而美好的事物永不消逝。"</p>
+                  <div class="flex justify-between items-center">
+                    <div class="flex items-center text-gray-400">
+                      <i class="fas fa-clock mr-1"></i>
+                      <span>00:15:23 - 00:15:45</span>
+                    </div>
+                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded text-sm transition">
+                      <i class="fas fa-play mr-1"></i>预览
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 重复结果卡片 -->
+            <div class="result-card bg-gray-700 rounded-lg overflow-hidden shadow-md">
+              <div class="flex">
+                <div class="w-40 bg-gray-600">
+                  <img src="https://i.imgur.com/3Z3zR3l.jpg" alt="电影片段" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-1 p-4">
+                  <div class="flex justify-between items-start">
+                    <h3 class="text-lg font-bold text-white">《教父》</h3>
+                    <span class="bg-indigo-600 text-white px-2 py-1 rounded text-sm">00:42:17</span>
+                  </div>
+                  <p class="text-gray-300 mt-2 mb-3">"我会给他一个无法拒绝的条件。"</p>
+                  <div class="flex justify-between items-center">
+                    <div class="flex items-center text-gray-400">
+                      <i class="fas fa-clock mr-1"></i>
+                      <span>00:42:17 - 00:42:30</span>
+                    </div>
+                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded text-sm transition">
+                      <i class="fas fa-play mr-1"></i>预览
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 更多结果... -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="mt-12 text-center text-gray-500 text-sm">
+      <p>CineGraph-AI &copy; 2023 电影台词智能检索系统 | 本地化处理，无需网络连接</p>
+      <p class="mt-1">版本: 1.0.0 | 开发环境: npm + Electron</p>
+    </footer>
+  </div>
+
+  <script>
+    // 简单的UI交互模拟
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchBtn = document.getElementById('search-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const playBtn = document.getElementById('play-btn');
+      const pauseBtn = document.getElementById('pause-btn');
+      const saveBtn = document.getElementById('save-btn');
+      const cropArea = document.getElementById('crop-area');
+      
+      // 搜索按钮交互
+      searchBtn.addEventListener('click', function() {
+        const query = document.getElementById('search-input').value;
+        if (query.trim() === '') {
+          alert('请输入台词关键词');
+          return;
+        }
+        
+        // 模拟搜索过程
+        this.classList.add('opacity-50', 'cursor-not-allowed');
+        this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>搜索中...';
+        
+        setTimeout(() => {
+          this.classList.remove('opacity-50', 'cursor-not-allowed');
+          this.innerHTML = '<i class="fas fa-search mr-2"></i>开始搜索';
+          alert(`已为您搜索 "${query}" 的相关台词`);
+        }, 1500);
+      });
+      
+      // 清除按钮
+      clearBtn.addEventListener('click', function() {
+        document.getElementById('search-input').value = '';
+      });
+      
+      // 播放/暂停按钮
+      playBtn.addEventListener('click', function() {
+        const video = document.getElementById('video-player');
+        if (video.paused) {
+          video.play();
+          playBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+          playBtn.classList.add('bg-gray-700', 'hover:bg-gray-600');
+          playBtn.innerHTML = '<i class="fas fa-play mr-2"></i>播放';
+          pauseBtn.classList.remove('bg-yellow-600', 'hover:bg-yellow-700');
+          pauseBtn.classList.add('bg-gray-700', 'hover:bg-gray-600');
+          pauseBtn.innerHTML = '<i class="fas fa-pause mr-2"></i>暂停';
+        }
+      });
+      
+      pauseBtn.addEventListener('click', function() {
+        const video = document.getElementById('video-player');
+        if (!video.paused) {
+          video.pause();
+          pauseBtn.classList.remove('bg-yellow-600', 'hover:bg-yellow-700');
+          pauseBtn.classList.add('bg-gray-700', 'hover:bg-gray-600');
+          pauseBtn.innerHTML = '<i class="fas fa-pause mr-2"></i>暂停';
+          playBtn.classList.remove('bg-gray-700', 'hover:bg-gray-600');
+          playBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+          playBtn.innerHTML = '<i class="fas fa-play mr-2"></i>播放';
+        }
+      });
+      
+      // 保存按钮
+      saveBtn.addEventListener('click', function() {
+        alert('片段已保存到 "clips/" 目录');
+      });
+      
+      // 裁剪区域交互 (简单模拟)
+      let isDragging = false;
+      let startX, startWidth;
+      
+      cropArea.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        startX = e.clientX;
+        startWidth = cropArea.offsetWidth;
+        document.body.style.cursor = 'ew-resize';
+      });
+      
+      document.addEventListener('mousemove', function(e) {
+        if (!isDragging) return;
+        
+        const deltaX = e.clientX - startX;
+        const newWidth = Math.max(10, startWidth + deltaX);
+        cropArea.style.width = newWidth + 'px';
+        
+        // 更新裁剪时间显示
+        const totalWidth = document.getElementById('crop-area').offsetParent.offsetWidth;
+        const timePosition = (newWidth / totalWidth) * 100;
+        document.getElementById('crop-end').textContent = formatTime(10 + timePosition * 0.1);
+      });
+      
+      document.addEventListener('mouseup', function() {
+        isDragging = false;
+        document.body.style.cursor = 'default';
+      });
+      
+      // 辅助函数
+      function formatTime(seconds) {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+/* 添加一些额外的样式增强 */
+body {
+  background: linear-gradient(135deg, #1a2a6c, #2c3e50);
+  background-attachment: fixed;
+}
+
+.video-container {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.canvas-container {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.result-card {
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.result-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.timeline {
+  height: 4px;
+  background: #4b5563;
+  border-radius: 2px;
+  margin-top: 12px;
+  position: relative;
+}
+
+.timeline-progress {
+  height: 100%;
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  border-radius: 2px;
+  width: 0%;
+}
+
+.highlight {
+  position: absolute;
+  width: 8px;
+  height: 100%;
+  background: #ff006e;
+  border-radius: 4px;
+  top: 0;
+  left: 0;
+}
+
+/* 为视频时间轴添加动画效果 */
+@keyframes timelineFill {
+  from { width: 0%; }
+  to { width: 50%; }
+}
+
+/* 为裁剪区域添加拖拽效果 */
+#crop-area {
+  transition: all 0.2s ease;
+}
