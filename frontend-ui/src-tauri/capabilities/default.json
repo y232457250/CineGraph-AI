@@ -1,0 +1,30 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "CineGraph-AI 基础权限配置",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "opener:default",
+    "dialog:default",
+    "fs:default",
+    {
+      "identifier": "fs:allow-exists",
+      "config": {
+        "path": "D:/AI/CineGraph-AI/data/**/*"
+      }
+    },
+    {
+      "identifier": "fs:allow-read-dir",
+      "config": {
+        "path": "D:/AI/CineGraph-AI/data/**/*"
+      }
+    },
+    {
+      "identifier": "fs:allow-read-file",
+      "config": {
+        "path": "D:/AI/CineGraph-AI/data/**/*"
+      }
+    }
+  ]
+}

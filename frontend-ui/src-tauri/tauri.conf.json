@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "CineGraph-AI",
+  "version": "0.1.0",
+  "identifier": "com.cinegraph.ai",
+  "bundle": {
+      "active": true,
+      "targets": "all"
+  },
+  "app": {
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' asset: https://*; video-src 'self' asset: https://*; connect-src 'self' http://localhost:8000 http://127.0.0.1:8000"
+    },
+    "windows": [
+      {
+        "title": "CineGraph-AI 语义搜片",
+        "width": 1280,
+        "height": 800,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ]
+  },
+  "plugins": {
+    "opener": {}
+  },
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  }
+}

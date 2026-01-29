@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+/* 可以在这里直接定义你的全局样式 */
+:root {
+  background-color: #0a0a0a;
+  color: white;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
