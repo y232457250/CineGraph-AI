@@ -1,0 +1,382 @@
+[
+  {
+    "id": "line_0",
+    "text": "不可能没有的 依我的经验应该在这儿 是不是?",
+    "start": 196.15,
+    "end": 199.35,
+    "emotion": "中性",
+    "theme": "语言荒诞",
+    "subtext": "看出来了，实则在暗示对方可能在撒谎或隐瞒真相",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_1",
+    "text": "我说你们在这儿啦",
+    "start": 201.69,
+    "end": 203.92,
+    "emotion": "中性",
+    "theme": "身份错位",
+    "subtext": "实则设局碰瓷",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_2",
+    "text": "整合完召集特警行动组全体集合",
+    "start": 295.55,
+    "end": 297.75,
+    "emotion": "中性",
+    "theme": "语言荒诞",
+    "subtext": "看出来了是自导自演",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_3",
+    "text": "阴沟里翻船了!",
+    "start": 302.19,
+    "end": 303.52,
+    "emotion": "负面",
+    "theme": "生存反转",
+    "subtext": "看出来了，表面是意外，实则暗藏玄机",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_4",
+    "text": "立正!",
+    "start": 316.21,
+    "end": 317.5,
+    "emotion": "中性",
+    "theme": "其他",
+    "subtext": "看出来了",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_5",
+    "text": "这次破解行动组的演习非常的成功",
+    "start": 318.48,
+    "end": 321.38,
+    "emotion": "中性",
+    "theme": "生存反转",
+    "subtext": "看出来了，表面成功实则暗藏玄机",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_6",
+    "text": "它可以证明一件事",
+    "start": 321.61,
+    "end": 324.05,
+    "emotion": "中性",
+    "theme": "其他",
+    "subtext": "看出来了，表面是证明，实则质疑真实性",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_7",
+    "text": "就是我们全体特警组的人 个个都是饭桶",
+    "start": 324.38,
+    "end": 327.41,
+    "emotion": "中性",
+    "theme": "身份错位",
+    "subtext": "实则暗讽特警组人员能力不足",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_8",
+    "text": "这次除了扮演 恐怖分子的鹰头小组之外",
+    "start": 329.99,
+    "end": 333.86,
+    "emotion": "中性",
+    "theme": "身份错位",
+    "subtext": "实则暗指自己是鹰头小组成员",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_9",
+    "text": "其他队员禁出两个礼拜 停止休假",
+    "start": 334.12,
+    "end": 337.56,
+    "emotion": "中性",
+    "theme": "其他",
+    "subtext": "看出来了是威胁",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_10",
+    "text": "加强训练",
+    "start": 337.8,
+    "end": 338.85,
+    "emotion": "中性",
+    "theme": "语言荒诞",
+    "subtext": "看出来了是敷衍搪塞",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_11",
+    "text": "立正!",
+    "start": 339.2,
+    "end": 340.19,
+    "emotion": "中性",
+    "theme": "其他",
+    "subtext": "看出来了",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_12",
+    "text": "完毕",
+    "start": 341.17,
+    "end": 341.89,
+    "emotion": "中性",
+    "theme": "其他",
+    "subtext": "无明显反转",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_13",
+    "text": "表姑妈和三表姐老是劝我",
+    "start": 350.91,
+    "end": 355.0,
+    "emotion": "中性",
+    "theme": "身份错位",
+    "subtext": "实则暗讽亲戚关系复杂",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_14",
+    "text": "要好好地找个男朋友 千万不要找个当差的",
+    "start": 355.48,
+    "end": 357.34,
+    "emotion": "中性",
+    "theme": "文化玩梗",
+    "subtext": "看出来了是讽刺当差的当官的",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_15",
+    "text": "你说说看 我认识你这么久 有没有劝过你改行?",
+    "start": 358.08,
+    "end": 360.55,
+    "emotion": "中性",
+    "theme": "身份错位",
+    "subtext": "看出来了，表面是劝人改行，实则在暗示对方不值得信任",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_16",
+    "text": "没有",
+    "start": 360.92,
+    "end": 361.61,
+    "emotion": "中性",
+    "theme": "其他",
+    "subtext": "看出来了，实则是想表达'有'的反义词",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_17",
+    "text": "那就是咯 你爱怎么样就怎么样",
+    "start": 362.42,
+    "end": 365.08,
+    "emotion": "中性",
+    "theme": "语言荒诞",
+    "subtext": "看出来了，表面随意实则暗含威胁",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_18",
+    "text": "你说一 我从来不说二",
+    "start": 365.39,
+    "end": 367.58,
+    "emotion": "中性",
+    "theme": "语言荒诞",
+    "subtext": "看出来了，表面是对话，实则暗含对沟通无效的讽刺",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_19",
+    "text": "你说转右 我从来不说转左",
+    "start": 367.99,
+    "end": 370.52,
+    "emotion": "中性",
+    "theme": "语言荒诞",
+    "subtext": "看出来了，故意反向操作制造矛盾",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_20",
+    "text": "你说不喜欢我在酒吧工作 我就转到餐厅来工作",
+    "start": 371.4,
+    "end": 374.92,
+    "emotion": "中性",
+    "theme": "身份错位",
+    "subtext": "实则暗讽对方设局碰瓷",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_21",
+    "text": "一个对你千依百顺的小姐 你有没有打算跟她一起生活?",
+    "start": 375.4,
+    "end": 379.2,
+    "emotion": "中性",
+    "theme": "身份错位",
+    "subtext": "实则暗讽对方虚情假意",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_22",
+    "text": "没有 哈哈 不是 有 有",
+    "start": 379.34,
+    "end": 382.43,
+    "emotion": "中性",
+    "theme": "语言荒诞",
+    "subtext": "看出来了，实则在重复'没有'和'有'的矛盾",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_23",
+    "text": "既然有 那你打算什么时候向她求婚?",
+    "start": 382.67,
+    "end": 385.51,
+    "emotion": "中性",
+    "theme": "其他",
+    "subtext": "看出来了，这是在试探对方的底线",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_24",
+    "text": "不知道",
+    "start": 387.98,
+    "end": 389.17,
+    "emotion": "中性",
+    "theme": "其他",
+    "subtext": "无明显反转",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_25",
+    "text": "你究竟想怎么样?",
+    "start": 390.18,
+    "end": 391.58,
+    "emotion": "中性",
+    "theme": "其他",
+    "subtext": "看出来了，表面质问实则试探对方意图",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_26",
+    "text": "你是不是想始乱终弃?",
+    "start": 391.68,
+    "end": 392.84,
+    "emotion": "中性",
+    "theme": "其他",
+    "subtext": "看出来了，实则暗示对方在关系中缺乏责任感",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_27",
+    "text": "你不要乱说啊 我碰都没碰过你",
+    "start": 393.75,
+    "end": 396.24,
+    "emotion": "中性",
+    "theme": "文化玩梗",
+    "subtext": "看出来了是碰瓷",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_28",
+    "text": "又怎么会对你始乱终弃呢?",
+    "start": 396.39,
+    "end": 398.79,
+    "emotion": "中性",
+    "theme": "其他",
+    "subtext": "看出来了，这是在暗示对方别误会",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_29",
+    "text": "是你自己不要碰我嘛",
+    "start": 399.76,
+    "end": 400.92,
+    "emotion": "中性",
+    "theme": "身份错位",
+    "subtext": "看出来了是反向示好",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_30",
+    "text": "小心开车",
+    "start": 403.63,
+    "end": 405.53,
+    "emotion": "中性",
+    "theme": "其他",
+    "subtext": "看出来了表面平静下暗藏玄机",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_31",
+    "text": "别这样",
+    "start": 415.84,
+    "end": 416.81,
+    "emotion": "中性",
+    "theme": "其他",
+    "subtext": "看出来了表面平静下暗藏玄机",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_32",
+    "text": "欢迎你加入",
+    "start": 428.65,
+    "end": 429.85,
+    "emotion": "中性",
+    "theme": "其他",
+    "subtext": "无明显反转",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_33",
+    "text": "从今天起你就属于重案组 请坐",
+    "start": 430.62,
+    "end": 434.82,
+    "emotion": "中性",
+    "theme": "身份错位",
+    "subtext": "实则设局碰瓷",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_34",
+    "text": "谢谢 长官",
+    "start": 436.03,
+    "end": 436.99,
+    "emotion": "中性",
+    "theme": "文化玩梗",
+    "subtext": "看出来了是感谢",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_35",
+    "text": "我不管你以前在特警组 是怎么英明神武",
+    "start": 437.23,
+    "end": 441.72,
+    "emotion": "中性",
+    "theme": "身份错位",
+    "subtext": "实则暗指特警组身份被质疑",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_36",
+    "text": "可是你调到我们这儿来 就要从头开始",
+    "start": 442.0,
+    "end": 444.13,
+    "emotion": "中性",
+    "theme": "身份错位",
+    "subtext": "实则暗示被调岗后的身份适应困境",
+    "theme_version": "2"
+  },
+  {
+    "id": "line_37",
+    "text": "是 长官",
+    "start": 444.74,
+    "end": 445.7,
+    "emotion": "中性",
+    "theme": "语言荒诞",
+    "subtext": "看出来了是'是长官'的谐音梗",
+    "theme_version": "2"
+  }
+]

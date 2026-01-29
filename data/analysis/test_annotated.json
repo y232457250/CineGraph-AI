@@ -1,0 +1,572 @@
+[
+  {
+    "id": "line_0",
+    "text": "不可能没有的 依我的经验应该在这儿 是不是?",
+    "start": 196.15,
+    "end": 199.35,
+    "emotion": "冷静",
+    "theme": "确认身份",
+    "subtext": "[确认身份] 说话者用冷静的语气确认对方身份，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "紧张",
+      "context_theme": "身份确认",
+      "context_subtext": "[身份确认] 对方在紧张的氛围中回应确认，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_1",
+    "text": "我说你们在这儿啦",
+    "start": 201.69,
+    "end": 203.92000000000002,
+    "emotion": "情绪爆发",
+    "theme": "身份确认",
+    "subtext": "[确认身份] 说话者明确指出'你们在这儿啦'，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "情绪爆发",
+      "context_theme": "身份确认",
+      "context_subtext": "[确认身份] 说话者明确指出'你们在这儿啦'，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_2",
+    "text": "整合完召集特警行动组全体集合",
+    "start": 295.55,
+    "end": 297.75,
+    "emotion": "冷静",
+    "theme": "行动部署",
+    "subtext": "[发出威胁] 说话人命令特警行动组整合完毕后立即集合，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "紧张",
+      "context_theme": "危机应对",
+      "context_subtext": "[确认身份] 说话人通过召集特警行动组确认自身身份，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_3",
+    "text": "阴沟里翻船了!",
+    "start": 302.19,
+    "end": 303.52,
+    "emotion": "愤怒",
+    "theme": "意外事件",
+    "subtext": "[气场压制] 说话者在整合完特警行动组后，用'阴沟里翻船了!'这句话表达对计划失败的愤怒，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "紧张",
+      "context_theme": "团队协作",
+      "context_subtext": "[发出威胁] 在特警行动组集合的紧张氛围中，'阴沟里翻船了!'暗示计划可能失败，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_4",
+    "text": "立正!",
+    "start": 316.21,
+    "end": 317.5,
+    "emotion": "严肃",
+    "theme": "命令",
+    "subtext": "[气场压制] 人物发出'立正!'的命令，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "紧张",
+      "context_theme": "危机",
+      "context_subtext": "[发出威胁] 在'阴沟里翻船了!'的语境下，人物下达'立正!'的命令，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_5",
+    "text": "这次破解行动组的演习非常的成功",
+    "start": 318.48,
+    "end": 321.38,
+    "emotion": "冷静客观",
+    "theme": "行动成果",
+    "subtext": "[确认身份] 这次破解行动组的演习非常的成功，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "严肃认真",
+      "context_theme": "任务验证",
+      "context_subtext": "[确认身份] 立正！这次破解行动组的演习非常的成功，它可以证明一件事，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_6",
+    "text": "它可以证明一件事",
+    "start": 321.61,
+    "end": 324.05,
+    "emotion": "冷静",
+    "theme": "逻辑推理",
+    "subtext": "[发出威胁] 他指着那箱金子说它可以证明一件事，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "讽刺",
+      "context_theme": "团队质疑",
+      "context_subtext": "[道德绑架] 他用金子证明自己，却在最后揭露全体特警都是饭桶，[身份确认]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_7",
+    "text": "就是我们全体特警组的人 个个都是饭桶",
+    "start": 324.38,
+    "end": 327.41,
+    "emotion": "嘲讽",
+    "theme": "团队质疑",
+    "subtext": "[阴阳怪气] 说话者用带有讽刺意味的语气指出特警组成员都是无能之辈，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "质疑",
+      "context_theme": "团队能力",
+      "context_subtext": "[强行缝合] 在前文提到的证据基础上，质疑特警组整体能力，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_8",
+    "text": "这次除了扮演 恐怖分子的鹰头小组之外",
+    "start": 329.99,
+    "end": 333.86,
+    "emotion": "嘲讽",
+    "theme": "团队能力质疑",
+    "subtext": "[阴阳怪气] 说话人用带有讽刺意味的语气提到鹰头小组的特殊任务，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "讽刺",
+      "context_theme": "团队能力质疑",
+      "context_subtext": "[强行缝合] 说话人将鹰头小组的任务与全体特警组的无能形成对比，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_9",
+    "text": "其他队员禁出两个礼拜 停止休假",
+    "start": 334.12,
+    "end": 337.56,
+    "emotion": "严肃",
+    "theme": "纪律执行",
+    "subtext": "[气场压制] 其他队员禁出两个礼拜 停止休假，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "紧张",
+      "context_theme": "团队纪律",
+      "context_subtext": "[确认身份] 这次除了扮演 恐怖分子的鹰头小组之外，其他队员禁出两个礼拜 停止休假，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_10",
+    "text": "加强训练",
+    "start": 337.8,
+    "end": 338.85,
+    "emotion": "严肃",
+    "theme": "训练纪律",
+    "subtext": "[发出威胁] 队长用严厉的语气说'加强训练'，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "紧张",
+      "context_theme": "纪律执行",
+      "context_subtext": "[气场压制] 其他队员听到'加强训练'后被迫停止休假，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_11",
+    "text": "立正!",
+    "start": 339.2,
+    "end": 340.19,
+    "emotion": "严肃",
+    "theme": "训练纪律",
+    "subtext": "[气场压制] 说话者用简短有力的'立正!'命令直接要求对方执行军事化动作，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "严厉",
+      "context_theme": "纪律执行",
+      "context_subtext": "[发出威胁] 上下文中的'加强训练'和'立正!'形成命令与执行的直接关联，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_12",
+    "text": "完毕",
+    "start": 341.17,
+    "end": 341.89,
+    "emotion": "冷静",
+    "theme": "服从",
+    "subtext": "[发出威胁] '完毕' 这句话带着不容置疑的威严，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "焦虑",
+      "context_theme": "压力",
+      "context_subtext": "[强行缝合] 在'立正!'和'表姑妈和三表姐老是劝我'之间，'完毕'像是一把利剑，[情绪爆发]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_13",
+    "text": "表姑妈和三表姐老是劝我",
+    "start": 350.90999999999997,
+    "end": 355.0,
+    "emotion": "矛盾",
+    "theme": "家庭关系",
+    "subtext": "[借机发难] 表姑妈和三表姐老是劝我，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "无奈",
+      "context_theme": "家庭压力",
+      "context_subtext": "[道德绑架] 表姑妈和三表姐老是劝我，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_14",
+    "text": "要好好地找个男朋友 千万不要找个当差的",
+    "start": 355.48,
+    "end": 357.34000000000003,
+    "emotion": "略带无奈与困惑",
+    "theme": "婚恋选择与社会压力",
+    "subtext": "[发出威胁] 表姑妈和三表姐老是劝我，要好好地找个男朋友 千万不要找个当差的，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "略带讽刺与无奈",
+      "context_theme": "传统观念与现代价值观冲突",
+      "context_subtext": "[道德绑架] 你说说看 我认识你这么久 有没有劝过你改行?，[身份确认]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_15",
+    "text": "你说说看 我认识你这么久 有没有劝过你改行?",
+    "start": 358.08,
+    "end": 360.55,
+    "emotion": "疑问",
+    "theme": "关系维护",
+    "subtext": "[发出威胁] 说话人用质问的语气质疑对方长期不改变职业选择，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "担忧",
+      "context_theme": "职业选择",
+      "context_subtext": "[道德绑架] 说话人通过强调长期关系来施压对方改变职业，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_16",
+    "text": "没有",
+    "start": 360.92,
+    "end": 361.61,
+    "emotion": "冷漠",
+    "theme": "拒绝",
+    "subtext": "[发出威胁] 人物直接以'没有'回应对方的质问，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "愤怒",
+      "context_theme": "冲突",
+      "context_subtext": "[强行缝合] 在对方质问后用简短回应制造矛盾张力，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_17",
+    "text": "那就是咯 你爱怎么样就怎么样",
+    "start": 362.42,
+    "end": 365.08,
+    "emotion": "随意",
+    "theme": "随意",
+    "subtext": "[发出威胁] 那就是咯 你爱怎么样就怎么样[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "随意",
+      "context_theme": "随意",
+      "context_subtext": "[发出威胁] 那就是咯 你爱怎么样就怎么样[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_18",
+    "text": "你说一 我从来不说二",
+    "start": 365.39,
+    "end": 367.58,
+    "emotion": "冷静",
+    "theme": "权力博弈",
+    "subtext": "[发出威胁] 说话者用'你说一 我从来不说二'这句话明确表达对对方话语的拒绝，并且[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "强势",
+      "context_theme": "控制欲",
+      "context_subtext": "[气场压制] 在对话中，说话者通过'你说一 我从来不说二'来展示其强势态度，并且[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_19",
+    "text": "你说转右 我从来不说转左",
+    "start": 367.99,
+    "end": 370.52,
+    "emotion": "矛盾",
+    "theme": "对抗",
+    "subtext": "[气场压制] 人物用'你说转右 我从来不说转左'直接回应对方的指令，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "对抗",
+      "context_theme": "身份确认",
+      "context_subtext": "[确认身份] 人物通过重复'你说... 我从来不说...'的句式，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_20",
+    "text": "你说不喜欢我在酒吧工作 我就转到餐厅来工作",
+    "start": 371.4,
+    "end": 374.92,
+    "emotion": "矛盾",
+    "theme": "工作环境",
+    "subtext": "[发出威胁] 说话者用转移工作地点的方式暗示对方的不满，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "讽刺",
+      "context_theme": "关系处理",
+      "context_subtext": "[强行缝合] 通过工作地点的转换来回应对方的指责，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_21",
+    "text": "一个对你千依百顺的小姐 你有没有打算跟她一起生活?",
+    "start": 375.4,
+    "end": 379.2,
+    "emotion": "矛盾",
+    "theme": "关系",
+    "subtext": "[发出威胁] 说话人用质问的语气质疑对方是否打算与那个千依百顺的小姐共同生活，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "困惑",
+      "context_theme": "关系",
+      "context_subtext": "[强行缝合] 说话人试图将对方的回避态度与之前的酒吧工作场景衔接，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_22",
+    "text": "没有 哈哈 不是 有 有",
+    "start": 379.34,
+    "end": 382.43,
+    "emotion": "困惑",
+    "theme": "关系进展",
+    "subtext": "[借机发难] 说话者在被问及是否打算与千依百顺的小姐共同生活时，用'没有 哈哈 不是 有 有'来回避问题并试图转移话题，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "焦虑",
+      "context_theme": "婚姻筹备",
+      "context_subtext": "[强行缝合] 在被追问求婚时间时，说话者用重复的'有'字回应，暗示对婚姻议题的回避和内心矛盾，[身份确认]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_23",
+    "text": "既然有 那你打算什么时候向她求婚?",
+    "start": 382.67,
+    "end": 385.51,
+    "emotion": "疑问",
+    "theme": "婚姻",
+    "subtext": "[发出提问] 说话者用反问的方式质问对方关于求婚的具体时间安排，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "困惑",
+      "context_theme": "关系进展",
+      "context_subtext": "[确认身份] 通过对话确认双方在婚姻关系上的立场，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_24",
+    "text": "不知道",
+    "start": 387.98,
+    "end": 389.17,
+    "emotion": "中性",
+    "theme": "回避责任",
+    "subtext": "[委婉拒绝] 角色用'不知道'来回避对求婚问题的直接回答，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "困惑",
+      "context_theme": "关系紧张",
+      "context_subtext": "[逻辑断层] 在被连续质问的情况下，角色的回应显得突兀且缺乏逻辑，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_25",
+    "text": "你究竟想怎么样?",
+    "start": 390.18,
+    "end": 391.58,
+    "emotion": "疑问",
+    "theme": "关系紧张",
+    "subtext": "[发出威胁] 人物质问对方意图，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "警惕",
+      "context_theme": "信任危机",
+      "context_subtext": "[确认身份] 通过质问确认对方身份，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_26",
+    "text": "你是不是想始乱终弃?",
+    "start": 391.68,
+    "end": 392.84000000000003,
+    "emotion": "质疑",
+    "theme": "关系信任",
+    "subtext": "[发出威胁] 你是不是想始乱终弃?  [万能转场]",
+    "mashup_tags": {
+      "context_emotion": "防御",
+      "context_theme": "关系信任",
+      "context_subtext": "[确认身份] 你不要乱说啊 我碰都没碰过你  [万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_27",
+    "text": "你不要乱说啊 我碰都没碰过你",
+    "start": 393.75,
+    "end": 396.24,
+    "emotion": "委屈",
+    "theme": "情感纠葛",
+    "subtext": "[借机发难] 说话者试图用'我碰都没碰过你'来转移话题并暗示对方在撒谎，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "怀疑",
+      "context_theme": "信任危机",
+      "context_subtext": "[道德绑架] 对方质疑对方的忠诚度，说话者用'碰都没碰过你'来试图证明自己的清白，[身份确认]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_28",
+    "text": "又怎么会对你始乱终弃呢?",
+    "start": 396.39,
+    "end": 398.79,
+    "emotion": "讽刺",
+    "theme": "关系信任",
+    "subtext": "[阴阳怪气] 说话者用反问句式质疑对方的指控，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "防御",
+      "context_theme": "关系信任",
+      "context_subtext": "[确认身份] 通过反问句式试图确认对方的指控真实性，[情绪爆发]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_29",
+    "text": "是你自己不要碰我嘛",
+    "start": 399.76,
+    "end": 400.92,
+    "emotion": "愤怒",
+    "theme": "情感冲突",
+    "subtext": "[发出威胁] 角色用'是你自己不要碰我嘛'这句话来警告对方不要靠近，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "紧张",
+      "context_theme": "关系紧张",
+      "context_subtext": "[气场压制] 角色在对话中表现出强烈的控制欲，用'又怎么会对你始乱终弃呢?'来强化自己的立场，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_30",
+    "text": "小心开车",
+    "start": 403.63,
+    "end": 405.53,
+    "emotion": "警告",
+    "theme": "安全提示",
+    "subtext": "[发出威胁] 说话者用'小心开车'这句话直接警告对方注意安全，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "紧张",
+      "context_theme": "冲突升级",
+      "context_subtext": "[气场压制] 在'是你自己不要碰我嘛'的语境下，'小心开车'成为冲突升级的转折点，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_31",
+    "text": "别这样",
+    "start": 415.84000000000003,
+    "end": 416.81,
+    "emotion": "平静",
+    "theme": "警告",
+    "subtext": "[发出威胁] 说话者用'别这样'直接警告对方的行为，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "紧张",
+      "context_theme": "冲突",
+      "context_subtext": "[气场压制] 上下文中的'小心开车'和'别这样'形成紧张氛围，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_32",
+    "text": "欢迎你加入",
+    "start": 428.65,
+    "end": 429.85,
+    "emotion": "中性",
+    "theme": "团队接纳",
+    "subtext": "[气场压制] 警察对着新成员说'欢迎你加入'，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "中性",
+      "context_theme": "团队接纳",
+      "context_subtext": "[万能转场] 警察对着新成员说'欢迎你加入'，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_33",
+    "text": "从今天起你就属于重案组 请坐",
+    "start": 430.62,
+    "end": 434.82,
+    "emotion": "严肃",
+    "theme": "身份确认",
+    "subtext": "[确认身份] 角色对着那箱金子露出贪婪的目光并以此威胁对方，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "严肃",
+      "context_theme": "身份确认",
+      "context_subtext": "[确认身份] 角色对着那箱金子露出贪婪的目光并以此威胁对方，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_34",
+    "text": "谢谢 长官",
+    "start": 436.03,
+    "end": 436.99,
+    "emotion": "礼貌",
+    "theme": "服从",
+    "subtext": "[发出威胁] '谢谢 长官' 体现出对权威的顺从与潜在的不信任，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "权威",
+      "context_theme": "权力关系",
+      "context_subtext": "[气场压制] 上下文对话中'谢谢 长官'的礼貌回应与后续的'我不管你以前在特警组'形成权力压制，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_35",
+    "text": "我不管你以前在特警组 是怎么英明神武",
+    "start": 437.23,
+    "end": 441.72,
+    "emotion": "愤怒",
+    "theme": "身份转变",
+    "subtext": "[发出威胁] 说话人用带有怒气的语气质问对方，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "无奈",
+      "context_theme": "身份冲突",
+      "context_subtext": "[逻辑断层] 说话人指出对方身份转变带来的矛盾，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_36",
+    "text": "可是你调到我们这儿来 就要从头开始",
+    "start": 442.0,
+    "end": 444.13,
+    "emotion": "愤怒",
+    "theme": "职场冲突",
+    "subtext": "[发出威胁] 说话者质问对方因调职而必须重新开始，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "无奈",
+      "context_theme": "职场冲突",
+      "context_subtext": "[确认身份] 上下文显示对话发生在职场环境中，[万能转场]"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_37",
+    "text": "是 长官",
+    "start": 444.74,
+    "end": 445.7,
+    "emotion": "服从",
+    "theme": "命令执行",
+    "subtext": "[发出威胁] '是 长官' 体现了角色对上级的绝对服从，[万能转场]",
+    "mashup_tags": {
+      "context_emotion": "无奈",
+      "context_theme": "权力关系",
+      "context_subtext": "[确认身份] 在上下文对话中，角色通过简单回应确认了其身份地位，[万能转场]"
+    },
+    "config_version": "v1.0"
+  }
+]

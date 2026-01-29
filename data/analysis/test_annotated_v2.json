@@ -1,0 +1,913 @@
+[
+  {
+    "id": "line_0",
+    "text": "不可能没有的 依我的经验应该在这儿 是不是?",
+    "start": 196.15,
+    "end": 199.35,
+    "speech_act": "疑问",
+    "emotion": "怀疑",
+    "dramatic_function": "抛出悬念",
+    "interface_features": [
+      "强疑问句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "说话者通过质疑的语气表达对情况的不确定，为后续揭示真相埋下伏笔",
+    "context_annotation": {
+      "speech_act": "确认",
+      "emotion": "紧张",
+      "dramatic_function": "确认身份",
+      "semantic_summary": "通过对话确认人物身份，推动剧情向揭示真相发展"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_1",
+    "text": "我说你们在这儿啦",
+    "start": 201.69,
+    "end": 203.92000000000002,
+    "speech_act": "宣布",
+    "emotion": "坚定",
+    "dramatic_function": "宣布决定",
+    "interface_features": [
+      "强肯定句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "说话者通过坚定的宣布表达了召集行动的决定，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "宣布",
+      "emotion": "坚定",
+      "dramatic_function": "宣布决定",
+      "semantic_summary": "通过坚定的宣布和后续的反转，展现行动召集的决定与意外变化"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_2",
+    "text": "整合完召集特警行动组全体集合",
+    "start": 295.55,
+    "end": 297.75,
+    "speech_act": "宣布",
+    "emotion": "坚定",
+    "dramatic_function": "宣布决定",
+    "interface_features": [
+      "强肯定句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "说话者通过坚定的宣布表达了整合后立即行动的决定，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "宣布",
+      "emotion": "坚定",
+      "dramatic_function": "发起指控",
+      "semantic_summary": "通过坚定的宣布发起行动指令，与后续的意外结果形成戏剧冲突"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_3",
+    "text": "阴沟里翻船了!",
+    "start": 302.19,
+    "end": 303.52,
+    "speech_act": "讽刺",
+    "emotion": "轻蔑",
+    "dramatic_function": "揭示真相",
+    "interface_features": [
+      "强疑问句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "角色通过讽刺的语气揭示了行动的失败，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "反驳",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "通过对话推进冲突升级，展现双方对抗的紧张氛围"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_4",
+    "text": "立正!",
+    "start": 316.21,
+    "end": 317.5,
+    "speech_act": "命令",
+    "emotion": "坚定",
+    "dramatic_function": "宣布决定",
+    "interface_features": [
+      "强肯定句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "说话者通过坚定的命令表达了执行行动的决定，产生明确的行动指引",
+    "context_annotation": {
+      "speech_act": "命令",
+      "emotion": "坚定",
+      "dramatic_function": "宣布决定",
+      "semantic_summary": "通过连续的命令和回应展现行动组的执行过程"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_5",
+    "text": "这次破解行动组的演习非常的成功",
+    "start": 318.48,
+    "end": 321.38,
+    "speech_act": "宣布",
+    "emotion": "坚定",
+    "dramatic_function": "宣布决定",
+    "interface_features": [
+      "强肯定句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "说话者通过坚定的宣布表达了行动成功的决定，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "宣布",
+      "emotion": "坚定",
+      "dramatic_function": "宣布决定",
+      "semantic_summary": "通过坚定的宣布和后续的质疑形成上下级关系的冲突场景"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_6",
+    "text": "它可以证明一件事",
+    "start": 321.61,
+    "end": 324.05,
+    "speech_act": "宣布",
+    "emotion": "坚定",
+    "dramatic_function": "宣布决定",
+    "interface_features": [
+      "强肯定句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "势均力敌"
+    ],
+    "semantic_summary": "说话者通过坚定的宣布表达了做出决定的核心意图，产生了为后续反转做铺垫的戏剧效果",
+    "context_annotation": {
+      "speech_act": "反驳",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "通过反驳对方的质疑，双方情绪逐步升级的冲突场景"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_7",
+    "text": "就是我们全体特警组的人 个个都是饭桶",
+    "start": 324.38,
+    "end": 327.41,
+    "speech_act": "反驳",
+    "emotion": "愤怒",
+    "dramatic_function": "发起指控",
+    "interface_features": [
+      "强否定句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "角色通过愤怒的反驳对对方施加压力，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "反驳",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "通过反驳和敌对关系的对抗，推动冲突升级"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_8",
+    "text": "这次除了扮演 恐怖分子的鹰头小组之外",
+    "start": 329.99,
+    "end": 333.86,
+    "speech_act": "反驳",
+    "emotion": "愤怒",
+    "dramatic_function": "发起指控",
+    "interface_features": [
+      "强疑问句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "说话者通过愤怒的反驳对对方的指责进行回应，为后续反转铺垫",
+    "context_annotation": {
+      "speech_act": "反驳",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "通过连续的反驳和指控，将冲突升级为激烈对抗的场景"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_9",
+    "text": "其他队员禁出两个礼拜 停止休假",
+    "start": 334.12,
+    "end": 337.56,
+    "speech_act": "命令",
+    "emotion": "坚定",
+    "dramatic_function": "宣布决定",
+    "interface_features": [
+      "强肯定句结尾",
+      "适合接解释"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "说话者通过坚定的命令语气宣布了其他队员的休假限制，为后续解释政策提供接口",
+    "context_annotation": {
+      "speech_act": "命令",
+      "emotion": "坚定",
+      "dramatic_function": "宣布决定",
+      "semantic_summary": "通过命令式台词明确休假政策，建立上下级关系的权威性"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_10",
+    "text": "加强训练",
+    "start": 337.8,
+    "end": 338.85,
+    "speech_act": "命令",
+    "emotion": "坚定",
+    "dramatic_function": "宣布决定",
+    "interface_features": [
+      "强肯定句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "说话者通过坚定的命令表达了加强训练的决定，为后续训练场景的展开奠定基调",
+    "context_annotation": {
+      "speech_act": "命令",
+      "emotion": "坚定",
+      "dramatic_function": "宣布决定",
+      "semantic_summary": "通过上下级之间的命令互动，明确训练安排并为后续训练场景的展开奠定基调"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_11",
+    "text": "立正!",
+    "start": 339.2,
+    "end": 340.19,
+    "speech_act": "命令",
+    "emotion": "坚定",
+    "dramatic_function": "宣布决定",
+    "interface_features": [
+      "强肯定句结尾",
+      "适合接解释"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "说话者通过坚定的命令表达了执行训练指令的意图，产生权威性宣言的戏剧效果",
+    "context_annotation": {
+      "speech_act": "命令",
+      "emotion": "坚定",
+      "dramatic_function": "宣布决定",
+      "semantic_summary": "通过连续的命令与回应展现训练场景的权威性与执行力"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_12",
+    "text": "完毕",
+    "start": 341.17,
+    "end": 341.89,
+    "speech_act": "叙述",
+    "emotion": "坚定",
+    "dramatic_function": "宣布决定",
+    "interface_features": [
+      "强肯定句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "角色通过坚定的叙述表达了服从决定，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "叙述",
+      "emotion": "坚定",
+      "dramatic_function": "确认身份",
+      "semantic_summary": "通过上下级间的服从回应确认角色身份，为后续互动奠定基础"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_13",
+    "text": "表姑妈和三表姐老是劝我",
+    "start": 350.90999999999997,
+    "end": 355.0,
+    "speech_act": "质问",
+    "emotion": "愤怒",
+    "dramatic_function": "发起指控",
+    "interface_features": [
+      "强疑问句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "角色通过愤怒质问表达对长辈劝说的不满，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "质问",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "通过质问和反驳逐步升级冲突，展现角色与长辈之间的对抗"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_14",
+    "text": "要好好地找个男朋友 千万不要找个当差的",
+    "start": 355.48,
+    "end": 357.34000000000003,
+    "speech_act": "命令",
+    "emotion": "坚定",
+    "dramatic_function": "宣布决定",
+    "interface_features": [
+      "强肯定句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "角色通过坚定的命令表达了明确的决定，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "反驳",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "对话从试探到激烈对抗，情绪逐步升级的冲突场景"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_15",
+    "text": "你说说看 我认识你这么久 有没有劝过你改行?",
+    "start": 358.08,
+    "end": 360.55,
+    "speech_act": "质问",
+    "emotion": "愤怒",
+    "dramatic_function": "发起指控",
+    "interface_features": [
+      "强疑问句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "说话者通过愤怒质问对对方施加压力，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "质问",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "两人从试探到激烈对抗，情绪逐步升级的冲突场景"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_16",
+    "text": "没有",
+    "start": 360.92,
+    "end": 361.61,
+    "speech_act": "否定",
+    "emotion": "冷静",
+    "dramatic_function": "冷静否认",
+    "interface_features": [
+      "闭合式结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "说话者通过冷静否定表达了对对方质疑的否认，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "否定",
+      "emotion": "冷静",
+      "dramatic_function": "确认身份",
+      "semantic_summary": "通过否定回应确认了角色身份，推动情节向反转发展"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_17",
+    "text": "那就是咯 你爱怎么样就怎么样",
+    "start": 362.42,
+    "end": 365.08,
+    "speech_act": "命令",
+    "emotion": "轻蔑",
+    "dramatic_function": "发出威胁",
+    "interface_features": [
+      "强肯定句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "说话者通过轻蔑的命令语气表达对对方的威胁，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "反驳",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "对话从反驳升级为激烈对抗，情绪逐步升级的冲突场景"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_18",
+    "text": "你说一 我从来不说二",
+    "start": 365.39,
+    "end": 367.58,
+    "speech_act": "反驳",
+    "emotion": "坚定",
+    "dramatic_function": "强势回击",
+    "interface_features": [
+      "强肯定句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "势均力敌"
+    ],
+    "semantic_summary": "角色通过坚定的反驳表达了对对方提议的坚决拒绝，为后续可能的反转做铺垫",
+    "context_annotation": {
+      "speech_act": "反驳",
+      "emotion": "坚定",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "对话从试探性交流逐渐升级为激烈对抗，双方立场明确的冲突场景"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_19",
+    "text": "你说转右 我从来不说转左",
+    "start": 367.99,
+    "end": 370.52,
+    "speech_act": "讽刺",
+    "emotion": "轻蔑",
+    "dramatic_function": "玩梗致敬",
+    "interface_features": [
+      "适合接反转",
+      "适合接打脸"
+    ],
+    "dynamics": [
+      "势均力敌"
+    ],
+    "semantic_summary": "说话者通过讽刺的反话表达轻蔑，为后续反转和打脸埋下伏笔",
+    "context_annotation": {
+      "speech_act": "反驳",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "对话中双方通过互怼升级冲突，形成势均力敌的对抗氛围"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_20",
+    "text": "你说不喜欢我在酒吧工作 我就转到餐厅来工作",
+    "start": 371.4,
+    "end": 374.92,
+    "speech_act": "反驳",
+    "emotion": "愤怒",
+    "dramatic_function": "升级冲突",
+    "interface_features": [
+      "适合接反转",
+      "适合接打脸"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "说话者通过愤怒的反驳表达了对对方偏见的不满，为后续反转和打脸埋下伏笔",
+    "context_annotation": {
+      "speech_act": "反驳",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "对话中双方通过互相反驳推进冲突升级，最终可能引发激烈对抗"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_21",
+    "text": "一个对你千依百顺的小姐 你有没有打算跟她一起生活?",
+    "start": 375.4,
+    "end": 379.2,
+    "speech_act": "质问",
+    "emotion": "愤怒",
+    "dramatic_function": "发起指控",
+    "interface_features": [
+      "强疑问句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "说话者通过愤怒质问对对方施加压力，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "质问",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "两人从试探到激烈对抗，情绪逐步升级的冲突场景"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_22",
+    "text": "没有 哈哈 不是 有 有",
+    "start": 379.34,
+    "end": 382.43,
+    "speech_act": "嘲讽",
+    "emotion": "轻蔑",
+    "dramatic_function": "转移话题",
+    "interface_features": [
+      "强疑问句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "角色通过轻蔑的嘲讽表达对对方的不屑，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "反驳",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "对话从试探转向激烈对抗，情绪逐步升级的冲突场景"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_23",
+    "text": "既然有 那你打算什么时候向她求婚?",
+    "start": 382.67,
+    "end": 385.51,
+    "speech_act": "质问",
+    "emotion": "愤怒",
+    "dramatic_function": "提出质疑",
+    "interface_features": [
+      "强疑问句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "角色通过愤怒的质问对对方施加压力，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "质问",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "通过连续的质问和回避，推动冲突升级至高潮"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_24",
+    "text": "不知道",
+    "start": 387.98,
+    "end": 389.17,
+    "speech_act": "拒绝",
+    "emotion": "回避",
+    "dramatic_function": "转移话题",
+    "interface_features": [
+      "开放性结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "角色通过回避回答转移对话焦点，为后续反转埋下伏笔",
+    "context_annotation": {
+      "speech_act": "拒绝",
+      "emotion": "回避",
+      "dramatic_function": "制造悬念",
+      "semantic_summary": "对话从直接质问转向回避回应，形成紧张对峙氛围"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_25",
+    "text": "你究竟想怎么样?",
+    "start": 390.18,
+    "end": 391.58,
+    "speech_act": "质问",
+    "emotion": "愤怒",
+    "dramatic_function": "发起指控",
+    "interface_features": [
+      "强疑问句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "角色通过愤怒的质问对对方施加压力，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "质问",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "通过连续的质问和质疑，推动冲突升级，制造紧张氛围"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_26",
+    "text": "你是不是想始乱终弃?",
+    "start": 391.68,
+    "end": 392.84000000000003,
+    "speech_act": "质问",
+    "emotion": "愤怒",
+    "dramatic_function": "发起指控",
+    "interface_features": [
+      "强疑问句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "角色通过愤怒质问对对方施加压力，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "质问",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "通过连续质问和反驳，推动冲突升级并制造悬念"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_27",
+    "text": "你不要乱说啊 我碰都没碰过你",
+    "start": 393.75,
+    "end": 396.24,
+    "speech_act": "反驳",
+    "emotion": "愤怒",
+    "dramatic_function": "愤怒反驳",
+    "interface_features": [
+      "强疑问句结尾",
+      "适合接打脸"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "角色通过愤怒的反驳对对方施加压力，为后续打脸做铺垫",
+    "context_annotation": {
+      "speech_act": "反驳",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "两人从试探到激烈对抗，情绪逐步升级的冲突场景"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_28",
+    "text": "又怎么会对你始乱终弃呢?",
+    "start": 396.39,
+    "end": 398.79,
+    "speech_act": "反问",
+    "emotion": "轻蔑",
+    "dramatic_function": "发起指控",
+    "interface_features": [
+      "强疑问句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "说话者通过反问语气表达轻蔑，发起指控，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "反驳",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "对话从试探转向激烈对抗，情绪逐步升级的冲突场景"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_29",
+    "text": "是你自己不要碰我嘛",
+    "start": 399.76,
+    "end": 400.92,
+    "speech_act": "反驳",
+    "emotion": "愤怒",
+    "dramatic_function": "愤怒反驳",
+    "interface_features": [
+      "强疑问句结尾",
+      "适合接打脸"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "角色通过愤怒反驳对对方施加压力，为后续打脸做铺垫",
+    "context_annotation": {
+      "speech_act": "反驳",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "两人从试探到激烈对抗，情绪逐步升级的冲突场景"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_30",
+    "text": "小心开车",
+    "start": 403.63,
+    "end": 405.53,
+    "speech_act": "命令",
+    "emotion": "警告",
+    "dramatic_function": "发出威胁",
+    "interface_features": [
+      "强肯定句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "说话者通过警告的命令表达了对对方行为的不满，为后续可能的冲突或反转做铺垫",
+    "context_annotation": {
+      "speech_act": "命令",
+      "emotion": "警告",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "对话从试探性警告升级为明确威胁，推动情节向更激烈的冲突发展"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_31",
+    "text": "别这样",
+    "start": 415.84000000000003,
+    "end": 416.81,
+    "speech_act": "命令",
+    "emotion": "愤怒",
+    "dramatic_function": "发出威胁",
+    "interface_features": [
+      "强疑问句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "说话者通过愤怒的命令表达了对对方行为的不满，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "命令",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "通过连续的命令和警告，推动冲突升级，制造紧张氛围"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_32",
+    "text": "欢迎你加入",
+    "start": 428.65,
+    "end": 429.85,
+    "speech_act": "宣布",
+    "emotion": "坚定",
+    "dramatic_function": "宣布决定",
+    "interface_features": [
+      "强肯定句结尾",
+      "适合接解释"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "说话者通过坚定的宣布表达了接纳新成员的决定，产生了明确的归属感",
+    "context_annotation": {
+      "speech_act": "宣布",
+      "emotion": "坚定",
+      "dramatic_function": "宣布决定",
+      "semantic_summary": "通过三句对话明确确立了新成员的正式身份"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_33",
+    "text": "从今天起你就属于重案组 请坐",
+    "start": 430.62,
+    "end": 434.82,
+    "speech_act": "命令",
+    "emotion": "坚定",
+    "dramatic_function": "宣布决定",
+    "interface_features": [
+      "强肯定句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "长官通过坚定的命令宣布新身份归属，为后续角色转变埋下伏笔",
+    "context_annotation": {
+      "speech_act": "命令",
+      "emotion": "坚定",
+      "dramatic_function": "宣布决定",
+      "semantic_summary": "通过上下级间的命令互动确立角色地位，为后续剧情发展铺垫"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_34",
+    "text": "谢谢 长官",
+    "start": 436.03,
+    "end": 436.99,
+    "speech_act": "感谢",
+    "emotion": "谦逊",
+    "dramatic_function": "确认身份",
+    "interface_features": [
+      "强肯定句结尾",
+      "适合接解释"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "角色通过谦逊的感谢表达了对上级的认同，为后续身份确认做铺垫",
+    "context_annotation": {
+      "speech_act": "感谢",
+      "emotion": "谦逊",
+      "dramatic_function": "确认身份",
+      "semantic_summary": "通过上下级间的身份确认对话，建立角色隶属关系"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_35",
+    "text": "我不管你以前在特警组 是怎么英明神武",
+    "start": 437.23,
+    "end": 441.72,
+    "speech_act": "反驳",
+    "emotion": "愤怒",
+    "dramatic_function": "愤怒反驳",
+    "interface_features": [
+      "强疑问句结尾",
+      "适合接打脸"
+    ],
+    "dynamics": [
+      "敌对关系"
+    ],
+    "semantic_summary": "说话者通过愤怒的反驳对对方施加压力，为后续打脸做铺垫",
+    "context_annotation": {
+      "speech_act": "反驳",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "两人从试探到激烈对抗，情绪逐步升级的冲突场景"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_36",
+    "text": "可是你调到我们这儿来 就要从头开始",
+    "start": 442.0,
+    "end": 444.13,
+    "speech_act": "反驳",
+    "emotion": "愤怒",
+    "dramatic_function": "发出威胁",
+    "interface_features": [
+      "强疑问句结尾",
+      "适合接反转"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "角色通过愤怒的反驳对对方施加压力，为后续反转做铺垫",
+    "context_annotation": {
+      "speech_act": "反驳",
+      "emotion": "愤怒",
+      "dramatic_function": "升级冲突",
+      "semantic_summary": "上下级之间从试探到激烈对抗，情绪逐步升级的冲突场景"
+    },
+    "config_version": "v1.0"
+  },
+  {
+    "id": "line_37",
+    "text": "是 长官",
+    "start": 444.74,
+    "end": 445.7,
+    "speech_act": "服从",
+    "emotion": "坚定",
+    "dramatic_function": "确认身份",
+    "interface_features": [
+      "强肯定句结尾"
+    ],
+    "dynamics": [
+      "上下级关系"
+    ],
+    "semantic_summary": "角色通过坚定的服从回应确认身份，为确立上下级关系奠定基础",
+    "context_annotation": {
+      "speech_act": "服从",
+      "emotion": "坚定",
+      "dramatic_function": "确认身份",
+      "semantic_summary": "通过服从回应确认身份，确立上下级关系的对话场景"
+    },
+    "config_version": "v1.0"
+  }
+]

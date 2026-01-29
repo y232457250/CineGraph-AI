@@ -1,0 +1,3386 @@
+[
+  {
+    "id": "line_0",
+    "text": "不可能没有的 依我的经验应该在这儿 是不是?",
+    "start": 196.15,
+    "end": 199.35,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "自信发言引发反差",
+        "keywords": [
+          "自信",
+          "反差",
+          "语境错位"
+        ],
+        "humor_style": "通过语境错位制造幽默",
+        "use_case": "适合职场/校园/日常场景混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "职场喜剧+恐怖片",
+          "校园日常+科幻"
+        ],
+        "audio_suggestions": [
+          "金属碰撞音效",
+          "突然静音+突然音效"
+        ],
+        "visual_suggestions": [
+          "人物特写+诡异画面",
+          "日常场景+科幻元素"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "职场反差",
+          "description": "办公室白领自信发言，突然切到恐怖片诡异画面",
+          "key_elements": [
+            "白领",
+            "恐怖片",
+            "金属碰撞音效"
+          ]
+        },
+        {
+          "style": "科幻校园",
+          "description": "学生自信发言，切到科幻场景中奇怪的科技装置",
+          "key_elements": [
+            "学生",
+            "科幻",
+            "突然静音"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用快速剪辑切换场景，保持节奏紧凑",
+        "在关键句后加入金属碰撞音效制造反差",
+        "用突然静音+突然音效制造戏剧性转折"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "自信",
+        "反差",
+        "语境错位"
+      ],
+      "humor_style": "通过语境错位制造幽默",
+      "use_case": "适合职场/校园/日常场景混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "自信",
+      "反差",
+      "语境错位"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501955.5469346,
+    "context": {
+      "previous": "不可能没有的 依我的经验应该在这儿 是不是?",
+      "next": "我说你们在这儿啦"
+    }
+  },
+  {
+    "id": "line_1",
+    "text": "我说你们在这儿啦",
+    "start": 201.69,
+    "end": 203.92000000000002,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "台词在新语境下产生荒诞反差",
+        "keywords": [
+          "身份错位",
+          "语境反转",
+          "荒诞幽默"
+        ],
+        "humor_style": "通过语境错位制造反差笑点",
+        "use_case": "适合表现角色身份突变或剧情反转"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "科幻+日常",
+          "历史+现代"
+        ],
+        "audio_suggestions": [
+          "电子变声",
+          "BGM骤停"
+        ],
+        "visual_suggestions": [
+          "画面神配",
+          "慢放打脸"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "科幻日常",
+          "description": "外星人用该台词指挥机器人打扫卫生",
+          "key_elements": [
+            "外星人",
+            "机器人",
+            "科幻场景"
+          ]
+        },
+        {
+          "style": "历史现代",
+          "description": "古代将军用该台词指挥现代快递员",
+          "key_elements": [
+            "古代战场",
+            "快递员",
+            "现代物流"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用电子变声处理台词，增强荒诞感",
+        "在台词后添加突然的BGM骤停效果",
+        "用慢放镜头展示角色表情变化，强化反差"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "身份错位",
+        "语境反转",
+        "荒诞幽默"
+      ],
+      "humor_style": "通过语境错位制造反差笑点",
+      "use_case": "适合表现角色身份突变或剧情反转"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "身份错位",
+      "语境反转",
+      "荒诞幽默"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501962.3417282,
+    "context": {
+      "previous": "不可能没有的 依我的经验应该在这儿 是不是?",
+      "next": "整合完召集特警行动组全体集合"
+    }
+  },
+  {
+    "id": "line_2",
+    "text": "整合完召集特警行动组全体集合",
+    "start": 295.55,
+    "end": 297.75,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接爆发",
+        "rhythm": "突然打断"
+      },
+      "semantic_summary": {
+        "brief": "命令式口误引发荒诞行动",
+        "keywords": [
+          "口误",
+          "行动组",
+          "荒诞"
+        ],
+        "humor_style": "通过语义错位制造反差笑点",
+        "use_case": "适合职场/校园类混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "科幻+职场",
+          "奇幻+校园"
+        ],
+        "audio_suggestions": [
+          "金属碰撞音效",
+          "警报声叠加"
+        ],
+        "visual_suggestions": [
+          "办公室场景",
+          "魔法学院走廊"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "科幻反差",
+          "description": "《黑客帝国》红蓝药丸+《办公室》会议场景",
+          "key_elements": [
+            "全息投影",
+            "电子表格"
+          ]
+        },
+        {
+          "style": "奇幻荒诞",
+          "description": "《哈利波特》魔杖+《还珠格格》选秀现场",
+          "key_elements": [
+            "魔法阵",
+            "选秀舞台"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用快速切镜展现命令与现实的错位",
+        "在'整合完'处加入电子音效突显荒诞",
+        "用慢放展示'全体集合'时的混乱场面"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接爆发",
+      "keywords": [
+        "口误",
+        "行动组",
+        "荒诞"
+      ],
+      "humor_style": "通过语义错位制造反差笑点",
+      "use_case": "适合职场/校园类混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接爆发",
+      "突然打断",
+      "口误",
+      "行动组",
+      "荒诞"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501955.219064,
+    "context": {
+      "previous": "我说你们在这儿啦",
+      "next": "阴沟里翻船了!"
+    }
+  },
+  {
+    "id": "line_3",
+    "text": "阴沟里翻船了!",
+    "start": 302.19,
+    "end": 303.52,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "谐音梗王",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "阴沟翻船的夸张演绎",
+        "keywords": [
+          "翻船",
+          "阴沟",
+          "夸张"
+        ],
+        "humor_style": "谐音双关+夸张演绎",
+        "use_case": "适合职场搞笑/日常吐槽类混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "职场剧+动画",
+          "历史剧+现代剧"
+        ],
+        "audio_suggestions": [
+          "水滴声叠加",
+          "机械故障音效"
+        ],
+        "visual_suggestions": [
+          "水墨画风格",
+          "像素风特效"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "反差萌",
+          "description": "《甄嬛传》甄嬛踩水坑 vs 《海绵宝宝》海绵踩水坑",
+          "key_elements": [
+            "水坑",
+            "踩踏动作",
+            "不同风格"
+          ]
+        },
+        {
+          "style": "时代错位",
+          "description": "《琅琊榜》梅长苏下棋 vs 《无间道》陈永仁打麻将",
+          "key_elements": [
+            "棋盘",
+            "麻将桌",
+            "中式桌游"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用水滴声+机械音效制造反差",
+        "用慢动作展示踩踏过程增强喜剧效果",
+        "在关键帧添加水墨晕染特效"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "谐音梗王",
+      "connection_tag": "接反转",
+      "keywords": [
+        "翻船",
+        "阴沟",
+        "夸张"
+      ],
+      "humor_style": "谐音双关+夸张演绎",
+      "use_case": "适合职场搞笑/日常吐槽类混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "谐音梗王",
+      "接反转",
+      "快速切梗",
+      "翻船",
+      "阴沟",
+      "夸张"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501962.8092694,
+    "context": {
+      "previous": "整合完召集特警行动组全体集合",
+      "next": "立正!"
+    }
+  },
+  {
+    "id": "line_4",
+    "text": "立正!",
+    "start": 316.21,
+    "end": 317.5,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接爆发",
+        "rhythm": "突然打断"
+      },
+      "semantic_summary": {
+        "brief": "命令式台词引发荒诞场景",
+        "keywords": [
+          "命令",
+          "荒诞",
+          "反差"
+        ],
+        "humor_style": "通过语境错位制造喜剧效果",
+        "use_case": "适合需要强反差的搞笑混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "日漫+国剧",
+          "科幻+喜剧"
+        ],
+        "audio_suggestions": [
+          "电子变声",
+          "BGM骤停"
+        ],
+        "visual_suggestions": [
+          "慢放打脸",
+          "画面神配"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "反差萌",
+          "description": "《海贼王》角色在《甄嬛传》中被迫立正",
+          "key_elements": [
+            "海贼王",
+            "甄嬛传",
+            "强制动作"
+          ]
+        },
+        {
+          "style": "时代错位",
+          "description": "未来机器人在《老友记》中执行立正命令",
+          "key_elements": [
+            "科幻",
+            "美剧",
+            "机械动作"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用慢动作展示僵硬的立正动作",
+        "搭配电子变声效果制造荒诞感",
+        "在命令后突然切换到搞笑场景"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接爆发",
+      "keywords": [
+        "命令",
+        "荒诞",
+        "反差"
+      ],
+      "humor_style": "通过语境错位制造喜剧效果",
+      "use_case": "适合需要强反差的搞笑混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接爆发",
+      "突然打断",
+      "命令",
+      "荒诞",
+      "反差"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501960.7306826,
+    "context": {
+      "previous": "阴沟里翻船了!",
+      "next": "这次破解行动组的演习非常的成功"
+    }
+  },
+  {
+    "id": "line_5",
+    "text": "这次破解行动组的演习非常的成功",
+    "start": 318.48,
+    "end": 321.38,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接爆发",
+        "rhythm": "突然打断"
+      },
+      "semantic_summary": {
+        "brief": "演习成功却暗藏玄机",
+        "keywords": [
+          "演习",
+          "成功",
+          "反差"
+        ],
+        "humor_style": "通过表面成功揭示深层荒诞",
+        "use_case": "适合用于揭露剧情漏洞或反套路剪辑"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "悬疑剧+喜剧",
+          "科幻+日常"
+        ],
+        "audio_suggestions": [
+          "突然静音",
+          "机械音突变",
+          "环境音叠加"
+        ],
+        "visual_suggestions": [
+          "画面突然定格",
+          "镜头快速推拉",
+          "角色表情僵硬"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "悬疑反转",
+          "description": "将演习成功画面与《无间道》台词交叉剪辑",
+          "key_elements": [
+            "黑白画面",
+            "缓慢推镜",
+            "神秘音效"
+          ]
+        },
+        {
+          "style": "科幻日常",
+          "description": "搭配《星际穿越》的太空画面与《生活大爆炸》台词",
+          "key_elements": [
+            "宇宙背景",
+            "实验室场景",
+            "电子音效"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用快速切镜突出反差感",
+        "在关键句后添加突然的环境音突变",
+        "用画外音进行二次解读增强戏剧性"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接爆发",
+      "keywords": [
+        "演习",
+        "成功",
+        "反差"
+      ],
+      "humor_style": "通过表面成功揭示深层荒诞",
+      "use_case": "适合用于揭露剧情漏洞或反套路剪辑"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接爆发",
+      "突然打断",
+      "演习",
+      "成功",
+      "反差"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501955.7528157,
+    "context": {
+      "previous": "立正!",
+      "next": "它可以证明一件事"
+    }
+  },
+  {
+    "id": "line_6",
+    "text": "它可以证明一件事",
+    "start": 321.61,
+    "end": 324.05,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "用证据证明自己是饭桶",
+        "keywords": [
+          "证据",
+          "饭桶",
+          "证明"
+        ],
+        "humor_style": "反讽与自嘲结合",
+        "use_case": "适合职场吐槽/反差萌类混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "动画+现实",
+          "科幻+古装"
+        ],
+        "audio_suggestions": [
+          "电子变声",
+          "环境音突显"
+        ],
+        "visual_suggestions": [
+          "慢动作打脸",
+          "画面神配"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "科幻反差",
+          "description": "《星际穿越》科学家拿着咖啡杯说'它可以证明一件事'",
+          "key_elements": [
+            "咖啡杯",
+            "太空场景",
+            "实验室"
+          ]
+        },
+        {
+          "style": "古装穿越",
+          "description": "《甄嬛传》安陵容在御花园说'它可以证明一件事'",
+          "key_elements": [
+            "花瓶",
+            "宫廷服饰",
+            "御花园"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用变速处理强化'证明'的语气",
+        "在说'证明'时加入回声效果",
+        "用突然打断的节奏制造反差"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "证据",
+        "饭桶",
+        "证明"
+      ],
+      "humor_style": "反讽与自嘲结合",
+      "use_case": "适合职场吐槽/反差萌类混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "证据",
+      "饭桶",
+      "证明"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501967.2664223,
+    "context": {
+      "previous": "这次破解行动组的演习非常的成功",
+      "next": "就是我们全体特警组的人 个个都是饭桶"
+    }
+  },
+  {
+    "id": "line_7",
+    "text": "就是我们全体特警组的人 个个都是饭桶",
+    "start": 324.38,
+    "end": 327.41,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "特警组自曝饭桶引发反差笑点",
+        "keywords": [
+          "特警组",
+          "饭桶",
+          "反差"
+        ],
+        "humor_style": "身份反差+自嘲解构",
+        "use_case": "适合反差萌/傲娇口嫌类混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "日漫+国剧",
+          "恐怖+喜剧"
+        ],
+        "audio_suggestions": [
+          "电子变声",
+          "环境音突显"
+        ],
+        "visual_suggestions": [
+          "慢放打脸",
+          "画面神配"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "反差萌",
+          "description": "《火影忍者》忍者自曝战斗力低下",
+          "key_elements": [
+            "忍者",
+            "查克拉",
+            "打脸"
+          ]
+        },
+        {
+          "style": "傲娇口嫌",
+          "description": "《家有儿女》角色装作不屑实则自恋",
+          "key_elements": [
+            "装逼",
+            "自恋",
+            "反差"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用慢放手法突显特警组动作的滑稽",
+        "加入电子变声制造诡异感",
+        "在关键帧加入突然静音制造反差"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "特警组",
+        "饭桶",
+        "反差"
+      ],
+      "humor_style": "身份反差+自嘲解构",
+      "use_case": "适合反差萌/傲娇口嫌类混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "特警组",
+      "饭桶",
+      "反差"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501969.959622,
+    "context": {
+      "previous": "它可以证明一件事",
+      "next": "这次除了扮演 恐怖分子的鹰头小组之外"
+    }
+  },
+  {
+    "id": "line_8",
+    "text": "这次除了扮演 恐怖分子的鹰头小组之外",
+    "start": 329.99,
+    "end": 333.86,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "突然打断"
+      },
+      "semantic_summary": {
+        "brief": "特警组被曝为恐怖分子",
+        "keywords": [
+          "特警",
+          "恐怖分子",
+          "身份反转"
+        ],
+        "humor_style": "反差萌+身份错位",
+        "use_case": "职场搞笑/反差喜剧"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "职场剧+动作片",
+          "喜剧+悬疑"
+        ],
+        "audio_suggestions": [
+          "突然静音+狗吠音效",
+          "急促鼓点+口哨声"
+        ],
+        "visual_suggestions": [
+          "特警队训练画面",
+          "恐怖分子恐怖片片段"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "职场反差",
+          "description": "特警组穿着西装在恐怖片场景中表演",
+          "key_elements": [
+            "西装特警",
+            "恐怖片场景",
+            "口哨声"
+          ]
+        },
+        {
+          "style": "动作喜剧",
+          "description": "特警组在《复仇者联盟》中扮演恐怖分子",
+          "key_elements": [
+            "漫威角色",
+            "特警队动作",
+            "突然静音"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用快速切镜突出反差",
+        "在关键句后加入狗吠音效制造反差",
+        "用急促鼓点配合特警队动作"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "特警",
+        "恐怖分子",
+        "身份反转"
+      ],
+      "humor_style": "反差萌+身份错位",
+      "use_case": "职场搞笑/反差喜剧"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "突然打断",
+      "特警",
+      "恐怖分子",
+      "身份反转"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501970.503056,
+    "context": {
+      "previous": "就是我们全体特警组的人 个个都是饭桶",
+      "next": "其他队员禁出两个礼拜 停止休假"
+    }
+  },
+  {
+    "id": "line_9",
+    "text": "其他队员禁出两个礼拜 停止休假",
+    "start": 334.12,
+    "end": 337.56,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "强制休假令的荒诞执行",
+        "keywords": [
+          "强制休假",
+          "荒诞执行",
+          "军队管理"
+        ],
+        "humor_style": "通过反差制造荒诞幽默",
+        "use_case": "适合军事题材与日常生活的反差混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "日漫+现代职场",
+          "科幻+军事"
+        ],
+        "audio_suggestions": [
+          "机械声突兀插入",
+          "办公室闹钟音效"
+        ],
+        "visual_suggestions": [
+          "军装与西装的反差画面",
+          "训练场与办公桌的场景切换"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "日漫反差",
+          "description": "《火影忍者》训练场切换《甄嬛传》职场，忍者被强制休假",
+          "key_elements": [
+            "忍者装",
+            "办公室",
+            "强制休假"
+          ]
+        },
+        {
+          "style": "科幻荒诞",
+          "description": "《星际迷航》舰桥切换《动物世界》丛林，船员被强制休假",
+          "key_elements": [
+            "太空船",
+            "丛林",
+            "休假令"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用机械声突兀插入制造反差",
+        "用办公室闹钟音效强化荒诞感",
+        "快速切换场景保持节奏感"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "强制休假",
+        "荒诞执行",
+        "军队管理"
+      ],
+      "humor_style": "通过反差制造荒诞幽默",
+      "use_case": "适合军事题材与日常生活的反差混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "强制休假",
+      "荒诞执行",
+      "军队管理"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501975.1090243,
+    "context": {
+      "previous": "这次除了扮演 恐怖分子的鹰头小组之外",
+      "next": "加强训练"
+    }
+  },
+  {
+    "id": "line_10",
+    "text": "加强训练",
+    "start": 337.8,
+    "end": 338.85,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "训练指令引发荒诞误会",
+        "keywords": [
+          "训练",
+          "误解",
+          "反差"
+        ],
+        "humor_style": "通过语境错位制造笑点",
+        "use_case": "适合职场/校园类反差搞笑混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "职场喜剧+奇幻",
+          "古代言情+现代"
+        ],
+        "audio_suggestions": [
+          "机械齿轮声+口哨声",
+          "古琴曲+电子音效"
+        ],
+        "visual_suggestions": [
+          "办公室场景+魔法阵",
+          "古代庭院+健身房"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "职场奇幻",
+          "description": "办公室白领突然被施法变成忍者，老板的'加强训练'变成忍术修炼",
+          "key_elements": [
+            "西装",
+            "忍者装",
+            "机械办公桌"
+          ]
+        },
+        {
+          "style": "古风现代",
+          "description": "古代公主在现代健身房，教练说'加强训练'时她误以为是宫廷密训",
+          "key_elements": [
+            "绣花鞋",
+            "哑铃",
+            "宫装"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用变速处理老板的'加强训练'，配合齿轮转动音效",
+        "在'加强训练'出现时突然切到魔法阵发光特效",
+        "用突然打断的剪辑节奏制造反差感"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "训练",
+        "误解",
+        "反差"
+      ],
+      "humor_style": "通过语境错位制造笑点",
+      "use_case": "适合职场/校园类反差搞笑混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "训练",
+      "误解",
+      "反差"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501978.4759,
+    "context": {
+      "previous": "其他队员禁出两个礼拜 停止休假",
+      "next": "立正!"
+    }
+  },
+  {
+    "id": "line_11",
+    "text": "立正!",
+    "start": 339.2,
+    "end": 340.19,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "训练指令引发荒诞场景",
+        "keywords": [
+          "立正",
+          "训练",
+          "反差"
+        ],
+        "humor_style": "通过指令与场景的反差制造笑点",
+        "use_case": "适合军事题材与日常生活的碰撞混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "科幻+日常",
+          "历史+现代"
+        ],
+        "audio_suggestions": [
+          "金属撞击声",
+          "电子音效叠加"
+        ],
+        "visual_suggestions": [
+          "机械装甲",
+          "电子屏幕"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "科幻反差",
+          "description": "《星际迷航》舰桥内突然响起军令，舰员们穿着宇航服做体能训练",
+          "key_elements": [
+            "全息投影",
+            "机械臂"
+          ]
+        },
+        {
+          "style": "历史穿越",
+          "description": "《三国演义》战场突然出现现代军训场景，士兵们穿着迷彩服做战术训练",
+          "key_elements": [
+            "青铜器",
+            "现代装备"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用金属质感滤镜强化反差",
+        "在'立正'时叠加电子音效",
+        "用快速切换展现不同场景的错位感"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "立正",
+        "训练",
+        "反差"
+      ],
+      "humor_style": "通过指令与场景的反差制造笑点",
+      "use_case": "适合军事题材与日常生活的碰撞混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "立正",
+      "训练",
+      "反差"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501978.1040041,
+    "context": {
+      "previous": "加强训练",
+      "next": "完毕"
+    }
+  },
+  {
+    "id": "line_12",
+    "text": "完毕",
+    "start": 341.17,
+    "end": 341.89,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "戛然而止"
+      },
+      "semantic_summary": {
+        "brief": "一句标准结束语的荒诞演绎",
+        "keywords": [
+          "标准结束语",
+          "荒诞演绎",
+          "语境错位"
+        ],
+        "humor_style": "通过语境错位制造反差笑点",
+        "use_case": "适合职场/校园/日常场景的无厘头混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "职场喜剧+奇幻",
+          "校园日常+科幻"
+        ],
+        "audio_suggestions": [
+          "机械齿轮声",
+          "电子合成器音效"
+        ],
+        "visual_suggestions": [
+          "全息投影",
+          "数据流特效"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "科技幻想",
+          "description": "在《钢铁侠》电影中插入标准军礼动作",
+          "key_elements": [
+            "全息投影",
+            "机械臂"
+          ]
+        },
+        {
+          "style": "校园日常",
+          "description": "让《哈利波特》学生用标准军礼向教授行礼",
+          "key_elements": [
+            "魔杖",
+            "魔法课本"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用机械齿轮声配合军礼动作",
+        "在行礼瞬间突然切到数据流特效",
+        "用电子合成器音效制造科技感"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "标准结束语",
+        "荒诞演绎",
+        "语境错位"
+      ],
+      "humor_style": "通过语境错位制造反差笑点",
+      "use_case": "适合职场/校园/日常场景的无厘头混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "戛然而止",
+      "标准结束语",
+      "荒诞演绎",
+      "语境错位"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501982.089254,
+    "context": {
+      "previous": "立正!",
+      "next": "表姑妈和三表姐老是劝我"
+    }
+  },
+  {
+    "id": "line_13",
+    "text": "表姑妈和三表姐老是劝我",
+    "start": 350.90999999999997,
+    "end": 355.0,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "突然打断"
+      },
+      "semantic_summary": {
+        "brief": "表亲劝婚语境的荒诞演绎",
+        "keywords": [
+          "表亲",
+          "劝婚",
+          "荒诞"
+        ],
+        "humor_style": "通过身份错位制造反差笑点",
+        "use_case": "适合婚恋类搞笑混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "职场剧+古装剧",
+          "科幻+日常"
+        ],
+        "audio_suggestions": [
+          "金属碰撞音效",
+          "电音突变"
+        ],
+        "visual_suggestions": [
+          "像素风转场",
+          "全息投影"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "赛博朋克风",
+          "description": "将表姑妈设定为赛博女仆，用全息投影展示劝婚场景",
+          "key_elements": [
+            "机械义肢",
+            "数据流特效"
+          ]
+        },
+        {
+          "style": "魔幻现实主义",
+          "description": "让三表姐变成魔法使，用咒语形式劝说主角",
+          "key_elements": [
+            "法阵特效",
+            "魔幻服装"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用像素风转场衔接不同世界观",
+        "在关键句加入金属碰撞音效强化反差",
+        "用电音突变制造节奏感"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "表亲",
+        "劝婚",
+        "荒诞"
+      ],
+      "humor_style": "通过身份错位制造反差笑点",
+      "use_case": "适合婚恋类搞笑混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "突然打断",
+      "表亲",
+      "劝婚",
+      "荒诞"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501985.771278,
+    "context": {
+      "previous": "完毕",
+      "next": "要好好地找个男朋友 千万不要找个当差的"
+    }
+  },
+  {
+    "id": "line_14",
+    "text": "要好好地找个男朋友 千万不要找个当差的",
+    "start": 355.48,
+    "end": 357.34000000000003,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "突然打断"
+      },
+      "semantic_summary": {
+        "brief": "表亲劝婚语的荒诞升级",
+        "keywords": [
+          "表亲",
+          "劝婚",
+          "当差"
+        ],
+        "humor_style": "身份错位的黑色幽默",
+        "use_case": "适合反差萌类混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "古装喜剧+现代职场",
+          "日漫日常+国风剧"
+        ],
+        "audio_suggestions": [
+          "金属碰撞音效",
+          "电音混响"
+        ],
+        "visual_suggestions": [
+          "水墨动画转现代办公室",
+          "和服女仆转职场装"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "古装穿越",
+          "description": "《甄嬛传》小燕子劝《甄嬛传》安陵容婚事",
+          "key_elements": [
+            "御用太监",
+            "宫廷婚宴"
+          ]
+        },
+        {
+          "style": "赛博朋克",
+          "description": "《赛博朋克2077》NPC劝《原神》角色结婚",
+          "key_elements": [
+            "机械义肢",
+            "数据流特效"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用金属碰撞音效突出'当差'的荒诞感",
+        "将'好好找男友'切到机械臂操作画面",
+        "在'不要找当差'处加入数据流爆破特效"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "表亲",
+        "劝婚",
+        "当差"
+      ],
+      "humor_style": "身份错位的黑色幽默",
+      "use_case": "适合反差萌类混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "突然打断",
+      "表亲",
+      "劝婚",
+      "当差"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501986.5271358,
+    "context": {
+      "previous": "表姑妈和三表姐老是劝我",
+      "next": "你说说看 我认识你这么久 有没有劝过你改行?"
+    }
+  },
+  {
+    "id": "line_15",
+    "text": "你说说看 我认识你这么久 有没有劝过你改行?",
+    "start": 358.08,
+    "end": 360.55,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接爆发",
+        "rhythm": "突然打断"
+      },
+      "semantic_summary": {
+        "brief": "质疑关系本质的讽刺台词",
+        "keywords": [
+          "关系质问",
+          "身份错位",
+          "讽刺反差"
+        ],
+        "humor_style": "通过身份错位制造荒诞反差",
+        "use_case": "适合职场/校园/恋爱综艺混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "职场喜剧+古装剧",
+          "校园番+科幻片"
+        ],
+        "audio_suggestions": [
+          "金属碰撞音效",
+          "突然静音+环境音突显"
+        ],
+        "visual_suggestions": [
+          "古装人物现代装扮",
+          "科幻场景日常化"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "反差萌",
+          "description": "古装剧男主在现代职场说出此台词，配合西装革履的造型",
+          "key_elements": [
+            "古代发型",
+            "现代办公场景"
+          ]
+        },
+        {
+          "style": "荒诞喜剧",
+          "description": "科幻片中AI机器人突然用此台词质问人类，配合机械音效",
+          "key_elements": [
+            "机械臂",
+            "数据流特效"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用快速切镜突出身份错位的荒诞感",
+        "在台词后加入突然的环境音突显反差",
+        "用慢放展示角色从古装到现代的造型转变"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接爆发",
+      "keywords": [
+        "关系质问",
+        "身份错位",
+        "讽刺反差"
+      ],
+      "humor_style": "通过身份错位制造荒诞反差",
+      "use_case": "适合职场/校园/恋爱综艺混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接爆发",
+      "突然打断",
+      "关系质问",
+      "身份错位",
+      "讽刺反差"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501989.9630332,
+    "context": {
+      "previous": "要好好地找个男朋友 千万不要找个当差的",
+      "next": "没有"
+    }
+  },
+  {
+    "id": "line_16",
+    "text": "没有",
+    "start": 360.92,
+    "end": 361.61,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "戛然而止"
+      },
+      "semantic_summary": {
+        "brief": "反讽式否定的戏剧张力",
+        "keywords": [
+          "否定",
+          "反讽",
+          "戏剧"
+        ],
+        "humor_style": "通过语义反差制造黑色幽默",
+        "use_case": "适用于职场/校园/网络语境的反差混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "科幻+职场",
+          "恐怖+校园"
+        ],
+        "audio_suggestions": [
+          "金属碰撞音效",
+          "突然静音"
+        ],
+        "visual_suggestions": [
+          "全息投影",
+          "血色夕阳"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "科幻反差",
+          "description": "全息投影中AI机器人说出'没有'，突然被黑客入侵",
+          "key_elements": [
+            "机械臂",
+            "数据流"
+          ]
+        },
+        {
+          "style": "恐怖反转",
+          "description": "血色夕阳下鬼屋中的'没有'被鬼魂重复播放",
+          "key_elements": [
+            "老式电话",
+            "摇晃镜头"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用慢镜头展示'没有'时加入金属摩擦声",
+        "在'没有'后突然插入环境音突显",
+        "用画外音重复'没有'制造诡异氛围"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "否定",
+        "反讽",
+        "戏剧"
+      ],
+      "humor_style": "通过语义反差制造黑色幽默",
+      "use_case": "适用于职场/校园/网络语境的反差混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "戛然而止",
+      "否定",
+      "反讽",
+      "戏剧"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501992.865626,
+    "context": {
+      "previous": "你说说看 我认识你这么久 有没有劝过你改行?",
+      "next": "那就是咯 你爱怎么样就怎么样"
+    }
+  },
+  {
+    "id": "line_17",
+    "text": "那就是咯 你爱怎么样就怎么样",
+    "start": 362.42,
+    "end": 365.08,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接爆发",
+        "rhythm": "突然打断"
+      },
+      "semantic_summary": {
+        "brief": "强势宣言与弱小反差",
+        "keywords": [
+          "强势",
+          "弱小",
+          "反差"
+        ],
+        "humor_style": "反差萌与傲娇口嫌结合",
+        "use_case": "适合反差萌类和傲娇向混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "古装+现代",
+          "科幻+日常"
+        ],
+        "audio_suggestions": [
+          "电子变声",
+          "环境音突显"
+        ],
+        "visual_suggestions": [
+          "慢放打脸",
+          "画面神配"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "古装反差",
+          "description": "《甄嬛传》御前对话+现代办公室",
+          "key_elements": [
+            "凤姐",
+            "社畜"
+          ]
+        },
+        {
+          "style": "科幻荒诞",
+          "description": "《星际穿越》太空场景+《海绵宝宝》日常",
+          "key_elements": [
+            "太空舱",
+            "派大星"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用变速处理强调语气",
+        "加入BGM骤停制造反差",
+        "慢放打脸突出反差萌"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接爆发",
+      "keywords": [
+        "强势",
+        "弱小",
+        "反差"
+      ],
+      "humor_style": "反差萌与傲娇口嫌结合",
+      "use_case": "适合反差萌类和傲娇向混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接爆发",
+      "突然打断",
+      "强势",
+      "弱小",
+      "反差"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501993.2454495,
+    "context": {
+      "previous": "没有",
+      "next": "你说一 我从来不说二"
+    }
+  },
+  {
+    "id": "line_18",
+    "text": "你说一 我从来不说二",
+    "start": 365.39,
+    "end": 367.58,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "无效沟通的傲娇宣言",
+        "keywords": [
+          "无效沟通",
+          "傲娇",
+          "反讽"
+        ],
+        "humor_style": "通过身份反转制造反差笑点",
+        "use_case": "适用于职场吐槽/动漫反差萌混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "职场剧+动漫",
+          "日常对话+游戏解说"
+        ],
+        "audio_suggestions": [
+          "电子变声+环境音突显",
+          "BGM骤停+音效叠加"
+        ],
+        "visual_suggestions": [
+          "慢放打脸+画面神配",
+          "快速切梗+画外音怼"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "职场反差",
+          "description": "办公室白领与《死神》黑崎一护的对话",
+          "key_elements": [
+            "办公桌",
+            "灵压特效",
+            "钢笔"
+          ]
+        },
+        {
+          "style": "游戏解说",
+          "description": "游戏主播与《动物森友会》NPC的对峙",
+          "key_elements": [
+            "手柄",
+            "树屋",
+            "NPC表情"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用慢放镜头突出台词的傲娇感",
+        "在关键句后添加电子变声音效",
+        "用BGM骤停制造突然的反差感"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "无效沟通",
+        "傲娇",
+        "反讽"
+      ],
+      "humor_style": "通过身份反转制造反差笑点",
+      "use_case": "适用于职场吐槽/动漫反差萌混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "无效沟通",
+      "傲娇",
+      "反讽"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501997.1818733,
+    "context": {
+      "previous": "那就是咯 你爱怎么样就怎么样",
+      "next": "你说转右 我从来不说转左"
+    }
+  },
+  {
+    "id": "line_19",
+    "text": "你说转右 我从来不说转左",
+    "start": 367.99,
+    "end": 370.52,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "反逻辑对话引发认知冲突",
+        "keywords": [
+          "逻辑悖论",
+          "语义反转",
+          "无效沟通"
+        ],
+        "humor_style": "通过语义矛盾制造黑色幽默",
+        "use_case": "适合用于脑洞类或反差萌类混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "科幻+日常",
+          "动漫+综艺"
+        ],
+        "audio_suggestions": [
+          "电子变声+环境音突显",
+          "BGM骤停+音效叠加"
+        ],
+        "visual_suggestions": [
+          "画面神配",
+          "快速切镜"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "科幻反差",
+          "description": "《星际穿越》外星人对话《快乐大本营》主持",
+          "key_elements": [
+            "外星语",
+            "综艺镜头"
+          ]
+        },
+        {
+          "style": "动漫嫁接",
+          "description": "《火影忍者》鸣人与《武林外传》郭芙蓉对话",
+          "key_elements": [
+            "忍术招式",
+            "喜剧表演"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用变速处理+回声效果制造语义错位",
+        "用BGM骤停+音效叠加强化反差感",
+        "采用快速切镜+画面神配制造节奏感"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "逻辑悖论",
+        "语义反转",
+        "无效沟通"
+      ],
+      "humor_style": "通过语义矛盾制造黑色幽默",
+      "use_case": "适合用于脑洞类或反差萌类混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "逻辑悖论",
+      "语义反转",
+      "无效沟通"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502000.8139026,
+    "context": {
+      "previous": "你说一 我从来不说二",
+      "next": "你说不喜欢我在酒吧工作 我就转到餐厅来工作"
+    }
+  },
+  {
+    "id": "line_20",
+    "text": "你说不喜欢我在酒吧工作 我就转到餐厅来工作",
+    "start": 371.4,
+    "end": 374.92,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "职场妥协的荒谬逻辑",
+        "keywords": [
+          "职场",
+          "妥协",
+          "荒谬"
+        ],
+        "humor_style": "荒诞职场黑色幽默",
+        "use_case": "职场类搞笑混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "职场剧+奇幻",
+          "日常搞笑+科幻"
+        ],
+        "audio_suggestions": [
+          "机械运转音效",
+          "电子变声"
+        ],
+        "visual_suggestions": [
+          "办公室场景",
+          "未来城市"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "职场奇幻",
+          "description": "将台词植入奇幻办公室场景，搭配机械运转音效",
+          "key_elements": [
+            "魔法办公室",
+            "机械员工"
+          ]
+        },
+        {
+          "style": "科幻日常",
+          "description": "在科幻城市中演绎职场妥协，搭配电子变声",
+          "key_elements": [
+            "全息投影",
+            "未来职场"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用快速切换手法衔接不同场景",
+        "在关键句添加机械运转音效增强荒诞感",
+        "用全息投影画面制造视觉反差"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "职场",
+        "妥协",
+        "荒谬"
+      ],
+      "humor_style": "荒诞职场黑色幽默",
+      "use_case": "职场类搞笑混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "职场",
+      "妥协",
+      "荒谬"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769501999.9948425,
+    "context": {
+      "previous": "你说转右 我从来不说转左",
+      "next": "一个对你千依百顺的小姐 你有没有打算跟她一起生活?"
+    }
+  },
+  {
+    "id": "line_21",
+    "text": "一个对你千依百顺的小姐 你有没有打算跟她一起生活?",
+    "start": 375.4,
+    "end": 379.2,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接爆发",
+        "rhythm": "突然打断"
+      },
+      "semantic_summary": {
+        "brief": "反差萌金句引发爆笑",
+        "keywords": [
+          "千依百顺",
+          "生活打算",
+          "反差萌"
+        ],
+        "humor_style": "通过身份反差制造笑点",
+        "use_case": "适合搞笑向混剪视频"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "日漫+国剧",
+          "恐怖+喜剧"
+        ],
+        "audio_suggestions": [
+          "电子变声",
+          "环境音突显"
+        ],
+        "visual_suggestions": [
+          "慢放打脸",
+          "画面神配"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "日漫+国剧",
+          "description": "《火影忍者》角色说这句话时突然切换成《还珠格格》场景",
+          "key_elements": [
+            "忍者装",
+            "紫禁城"
+          ]
+        },
+        {
+          "style": "恐怖+喜剧",
+          "description": "《咒怨》女鬼说这句话时突然切到《家有儿女》场景",
+          "key_elements": [
+            "鬼屋",
+            "小虎"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用变速处理让台词突然变快",
+        "在关键句后添加突然的环境音效",
+        "用慢放展示角色表情变化"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接爆发",
+      "keywords": [
+        "千依百顺",
+        "生活打算",
+        "反差萌"
+      ],
+      "humor_style": "通过身份反差制造笑点",
+      "use_case": "适合搞笑向混剪视频"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接爆发",
+      "突然打断",
+      "千依百顺",
+      "生活打算",
+      "反差萌"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502004.864251,
+    "context": {
+      "previous": "你说不喜欢我在酒吧工作 我就转到餐厅来工作",
+      "next": "没有 哈哈 不是 有 有"
+    }
+  },
+  {
+    "id": "line_22",
+    "text": "没有 哈哈 不是 有 有",
+    "start": 379.34,
+    "end": 382.43,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "谐音梗王",
+        "connection": "接自嘲",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "矛盾语句引发跨作品笑点",
+        "keywords": [
+          "语义矛盾",
+          "谐音梗",
+          "跨作品"
+        ],
+        "humor_style": "通过语义冲突制造笑点",
+        "use_case": "适合无厘头混剪和搞笑向内容"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "科幻+古装",
+          "恐怖+日常"
+        ],
+        "audio_suggestions": [
+          "电子变声",
+          "环境音突显"
+        ],
+        "visual_suggestions": [
+          "慢动作特写",
+          "画面神配"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "科幻反差",
+          "description": "《星际迷航》角色说'没有 哈哈 不是 有 有'时，画面突然切到《甄嬛传》的御膳房",
+          "key_elements": [
+            "太空舱",
+            "蒸笼"
+          ]
+        },
+        {
+          "style": "恐怖日常",
+          "description": "《咒怨》女鬼说着'没有 哈哈 不是 有 有'，画面切到《家有儿女》的厨房",
+          "key_elements": [
+            "鬼影",
+            "煎蛋"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用变速处理让台词变得扭曲可笑",
+        "在关键句添加回声效果增强荒诞感",
+        "用突然的BGM骤停制造节奏反差"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "谐音梗王",
+      "connection_tag": "接自嘲",
+      "keywords": [
+        "语义矛盾",
+        "谐音梗",
+        "跨作品"
+      ],
+      "humor_style": "通过语义冲突制造笑点",
+      "use_case": "适合无厘头混剪和搞笑向内容"
+    },
+    "search_tags": [
+      "身份反转",
+      "谐音梗王",
+      "接自嘲",
+      "快速切梗",
+      "语义矛盾",
+      "谐音梗",
+      "跨作品"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502008.344335,
+    "context": {
+      "previous": "一个对你千依百顺的小姐 你有没有打算跟她一起生活?",
+      "next": "既然有 那你打算什么时候向她求婚?"
+    }
+  },
+  {
+    "id": "line_23",
+    "text": "既然有 那你打算什么时候向她求婚?",
+    "start": 382.67,
+    "end": 385.51,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接爆发",
+        "rhythm": "突然打断"
+      },
+      "semantic_summary": {
+        "brief": "反差萌的求婚威胁",
+        "keywords": [
+          "求婚",
+          "反差",
+          "威胁"
+        ],
+        "humor_style": "通过反差制造荒诞幽默",
+        "use_case": "适合反差萌类混剪或无厘头搞笑视频"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "动漫+职场",
+          "游戏+综艺"
+        ],
+        "audio_suggestions": [
+          "金属刮擦音",
+          "突然静音"
+        ],
+        "visual_suggestions": [
+          "慢动作求婚",
+          "办公室场景"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "反差萌",
+          "description": "《海绵宝宝》角色在办公室提出求婚",
+          "key_elements": [
+            "海绵宝宝",
+            "会议室"
+          ]
+        },
+        {
+          "style": "无厘头",
+          "description": "《复仇者联盟》角色在游戏直播中求婚",
+          "key_elements": [
+            "漫威英雄",
+            "电竞比赛"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用慢动作+突然静音制造反差",
+        "搭配金属刮擦音强化威胁感",
+        "在求婚动作后插入办公室日常场景"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接爆发",
+      "keywords": [
+        "求婚",
+        "反差",
+        "威胁"
+      ],
+      "humor_style": "通过反差制造荒诞幽默",
+      "use_case": "适合反差萌类混剪或无厘头搞笑视频"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接爆发",
+      "突然打断",
+      "求婚",
+      "反差",
+      "威胁"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502007.6368647,
+    "context": {
+      "previous": "没有 哈哈 不是 有 有",
+      "next": "不知道"
+    }
+  },
+  {
+    "id": "line_24",
+    "text": "不知道",
+    "start": 387.98,
+    "end": 389.17,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "强行解释",
+        "style": "反讽高级黑",
+        "connection": "接冷场",
+        "rhythm": "戛然而止"
+      },
+      "semantic_summary": {
+        "brief": "无意义回答引发喜剧冲突",
+        "keywords": [
+          "无意义",
+          "冷场",
+          "反讽"
+        ],
+        "humor_style": "通过荒谬回答制造戏剧性冲突",
+        "use_case": "适用于喜剧类混剪和反差萌场景"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "恐怖+喜剧",
+          "科幻+日常"
+        ],
+        "audio_suggestions": [
+          "环境音突显",
+          "BGM骤停"
+        ],
+        "visual_suggestions": [
+          "慢放打脸",
+          "画面神配"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "恐怖喜剧",
+          "description": "《咒怨》鬼魂与《家有儿女》爸爸的无意义对话",
+          "key_elements": [
+            "鬼魂",
+            "爸爸",
+            "诡异环境"
+          ]
+        },
+        {
+          "style": "科幻日常",
+          "description": "《流浪地球》工程师与《办公室》同事的荒谬问答",
+          "key_elements": [
+            "工程师",
+            "白领",
+            "未来科技"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用变速处理+环境音突显制造荒诞感",
+        "慢放打脸时添加诡异音效强化反差",
+        "在戛然而止处加入突然的BGM骤停"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "强行解释",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接冷场",
+      "keywords": [
+        "无意义",
+        "冷场",
+        "反讽"
+      ],
+      "humor_style": "通过荒谬回答制造戏剧性冲突",
+      "use_case": "适用于喜剧类混剪和反差萌场景"
+    },
+    "search_tags": [
+      "强行解释",
+      "反讽高级黑",
+      "接冷场",
+      "戛然而止",
+      "无意义",
+      "冷场",
+      "反讽"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502012.3159337,
+    "context": {
+      "previous": "既然有 那你打算什么时候向她求婚?",
+      "next": "你究竟想怎么样?"
+    }
+  },
+  {
+    "id": "line_25",
+    "text": "你究竟想怎么样?",
+    "start": 390.18,
+    "end": 391.58,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接爆发",
+        "rhythm": "突然打断"
+      },
+      "semantic_summary": {
+        "brief": "质问式反差",
+        "keywords": [
+          "质问",
+          "反差",
+          "失控"
+        ],
+        "humor_style": "通过角色身份错位制造笑点",
+        "use_case": "适合用于角色身份错位的搞笑场景"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "赛博朋克+古装",
+          "科幻+都市"
+        ],
+        "audio_suggestions": [
+          "机械音效叠加",
+          "电子变声处理"
+        ],
+        "visual_suggestions": [
+          "赛博朋克霓虹特效",
+          "未来感服装"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "赛博朋克反差",
+          "description": "赛博朋克角色突然穿着汉服质问现代人",
+          "key_elements": [
+            "机械义眼",
+            "汉服"
+          ]
+        },
+        {
+          "style": "科幻都市",
+          "description": "外星人用中文质问地球人",
+          "key_elements": [
+            "外星人",
+            "地球城市"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用快速切镜突出角色身份反差",
+        "在质问时加入机械音效突显科技感",
+        "用慢镜头展示角色震惊表情"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接爆发",
+      "keywords": [
+        "质问",
+        "反差",
+        "失控"
+      ],
+      "humor_style": "通过角色身份错位制造笑点",
+      "use_case": "适合用于角色身份错位的搞笑场景"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接爆发",
+      "突然打断",
+      "质问",
+      "反差",
+      "失控"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502015.0007844,
+    "context": {
+      "previous": "不知道",
+      "next": "你是不是想始乱终弃?"
+    }
+  },
+  {
+    "id": "line_26",
+    "text": "你是不是想始乱终弃?",
+    "start": 391.68,
+    "end": 392.84000000000003,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "突然打断"
+      },
+      "semantic_summary": {
+        "brief": "情话变威胁的语义反转",
+        "keywords": [
+          "威胁",
+          "情话",
+          "反转"
+        ],
+        "humor_style": "语义悖论式幽默",
+        "use_case": "用于角色性格反差展示"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "校园番+职场剧",
+          "科幻+古装"
+        ],
+        "audio_suggestions": [
+          "金属刮擦音效",
+          "突然静音"
+        ],
+        "visual_suggestions": [
+          "角色表情突变",
+          "画面色调反转"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "校园番反差",
+          "description": "《我的英雄学院》主角说情话，突然切换《甄嬛传》宫廷斗争画面",
+          "key_elements": [
+            "英雄学院",
+            "甄嬛传"
+          ]
+        },
+        {
+          "style": "科幻反差",
+          "description": "《流浪地球》角色说情话，突然切换《三体》外星人对话画面",
+          "key_elements": [
+            "流浪地球",
+            "三体"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用快速切镜制造语义落差",
+        "搭配金属刮擦音效强化反差",
+        "在关键帧添加突然静音效果"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "威胁",
+        "情话",
+        "反转"
+      ],
+      "humor_style": "语义悖论式幽默",
+      "use_case": "用于角色性格反差展示"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "突然打断",
+      "威胁",
+      "情话",
+      "反转"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502015.83738,
+    "context": {
+      "previous": "你究竟想怎么样?",
+      "next": "你不要乱说啊 我碰都没碰过你"
+    }
+  },
+  {
+    "id": "line_27",
+    "text": "你不要乱说啊 我碰都没碰过你",
+    "start": 393.75,
+    "end": 396.24,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "戛然而止"
+      },
+      "semantic_summary": {
+        "brief": "否认接触的强势否认",
+        "keywords": [
+          "否认",
+          "强势",
+          "矛盾"
+        ],
+        "humor_style": "反差萌与逻辑错位",
+        "use_case": "适合职场/校园搞笑混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "日漫+国剧",
+          "古装+科幻"
+        ],
+        "audio_suggestions": [
+          "电子变声",
+          "BGM骤停"
+        ],
+        "visual_suggestions": [
+          "慢动作打脸",
+          "画面神配"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "反差萌",
+          "description": "《火影忍者》木叶村与《甄嬛传》后宫场景混剪",
+          "key_elements": [
+            "忍者对决",
+            "后宫争斗"
+          ]
+        },
+        {
+          "style": "逻辑错位",
+          "description": "《海绵宝宝》与《星际穿越》的时空对话",
+          "key_elements": [
+            "海底冒险",
+            "黑洞奇观"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用慢动作突出表情反差",
+        "搭配电子变声制造荒诞感",
+        "在关键句后骤停BGM制造冲击"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "否认",
+        "强势",
+        "矛盾"
+      ],
+      "humor_style": "反差萌与逻辑错位",
+      "use_case": "适合职场/校园搞笑混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "戛然而止",
+      "否认",
+      "强势",
+      "矛盾"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502019.4352345,
+    "context": {
+      "previous": "你是不是想始乱终弃?",
+      "next": "又怎么会对你始乱终弃呢?"
+    }
+  },
+  {
+    "id": "line_28",
+    "text": "又怎么会对你始乱终弃呢?",
+    "start": 396.39,
+    "end": 398.79,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "伪善誓言反噬",
+        "keywords": [
+          "伪善",
+          "誓言",
+          "反噬"
+        ],
+        "humor_style": "伪善反讽",
+        "use_case": "适用于反差萌剧情或角色扮演"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "恐怖+喜剧",
+          "动画+现实"
+        ],
+        "audio_suggestions": [
+          "环境音突显",
+          "电子变声"
+        ],
+        "visual_suggestions": [
+          "慢放打脸",
+          "画面神配"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "恐怖喜剧反差",
+          "description": "《咒怨》女鬼与《家有儿女》小虎的伪善对话",
+          "key_elements": [
+            "鬼魂",
+            "孩童",
+            "诡异环境"
+          ]
+        },
+        {
+          "style": "动画现实嫁接",
+          "description": "《海绵宝宝》与《职场剧》的虚伪承诺场景",
+          "key_elements": [
+            "海绵宝宝",
+            "办公室",
+            "夸张表情"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用慢放打脸+诡异音效制造反差",
+        "电子变声+突然BGM骤停制造意外",
+        "快速切梗+画面神配增强戏剧性"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "伪善",
+        "誓言",
+        "反噬"
+      ],
+      "humor_style": "伪善反讽",
+      "use_case": "适用于反差萌剧情或角色扮演"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "伪善",
+      "誓言",
+      "反噬"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502022.495385,
+    "context": {
+      "previous": "你不要乱说啊 我碰都没碰过你",
+      "next": "是你自己不要碰我嘛"
+    }
+  },
+  {
+    "id": "line_29",
+    "text": "是你自己不要碰我嘛",
+    "start": 399.76,
+    "end": 400.92,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "突然打断"
+      },
+      "semantic_summary": {
+        "brief": "反讽式自我辩解语句",
+        "keywords": [
+          "自我辩解",
+          "反讽",
+          "身份错位"
+        ],
+        "humor_style": "通过身份错位制造荒诞反差",
+        "use_case": "适合职场反差、日常吐槽类混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "职场剧+校园番",
+          "美食节目+恐怖片"
+        ],
+        "audio_suggestions": [
+          "金属刮擦声",
+          "突然静音"
+        ],
+        "visual_suggestions": [
+          "办公室场景",
+          "恐怖片镜头"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "职场反差",
+          "description": "办公室白领突然切换成恐怖片主角，对着镜头说'是你自己不要碰我嘛'",
+          "key_elements": [
+            "西装革履",
+            "恐怖片镜头"
+          ]
+        },
+        {
+          "style": "美食反差",
+          "description": "美食博主在切菜时突然变成《咒怨》主角，对着镜头说'是你自己不要碰我嘛'",
+          "key_elements": [
+            "菜刀",
+            "恐怖片BGM"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用金属刮擦声配合突然静音制造反差",
+        "在说这句话时加入快速切镜手法",
+        "用恐怖片镜头快速切换到职场场景"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "自我辩解",
+        "反讽",
+        "身份错位"
+      ],
+      "humor_style": "通过身份错位制造荒诞反差",
+      "use_case": "适合职场反差、日常吐槽类混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "突然打断",
+      "自我辩解",
+      "反讽",
+      "身份错位"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502023.676406,
+    "context": {
+      "previous": "又怎么会对你始乱终弃呢?",
+      "next": "小心开车"
+    }
+  },
+  {
+    "id": "line_30",
+    "text": "小心开车",
+    "start": 403.63,
+    "end": 405.53,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "警惕性警告的反差表达",
+        "keywords": [
+          "警告",
+          "反差",
+          "语境"
+        ],
+        "humor_style": "通过语境反差制造笑点",
+        "use_case": "适用于反差萌或身份错位场景"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "日漫+国剧",
+          "动画+现实"
+        ],
+        "audio_suggestions": [
+          "电子变声",
+          "环境音突显"
+        ],
+        "visual_suggestions": [
+          "慢动作打脸",
+          "画面神配"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "反差萌",
+          "description": "《海贼王》路飞对《甄嬛传》安陵容说小心开车",
+          "key_elements": [
+            "路飞",
+            "安陵容",
+            "海贼王"
+          ]
+        },
+        {
+          "style": "时代错位",
+          "description": "《海绵宝宝》对《黑镜》说小心开车",
+          "key_elements": [
+            "海绵宝宝",
+            "黑镜",
+            "动画"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用变速处理配合电子变声制造诡异感",
+        "在慢动作中加入画面神配增强反差",
+        "用戛然而止的节奏突出警告的突然性"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "警告",
+        "反差",
+        "语境"
+      ],
+      "humor_style": "通过语境反差制造笑点",
+      "use_case": "适用于反差萌或身份错位场景"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "警告",
+      "反差",
+      "语境"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502027.2587097,
+    "context": {
+      "previous": "是你自己不要碰我嘛",
+      "next": "别这样"
+    }
+  },
+  {
+    "id": "line_31",
+    "text": "别这样",
+    "start": 415.84000000000003,
+    "end": 416.81,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "突然打断"
+      },
+      "semantic_summary": {
+        "brief": "劝阻与反向行为的语义冲突",
+        "keywords": [
+          "劝阻",
+          "反向",
+          "语义冲突"
+        ],
+        "humor_style": "通过反向行为制造意外笑点",
+        "use_case": "适合职场/日常场景的反差喜剧"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "职场剧+动画",
+          "现实+奇幻"
+        ],
+        "audio_suggestions": [
+          "突然静音+重播",
+          "金属刮擦声",
+          "电子变声"
+        ],
+        "visual_suggestions": [
+          "人物表情突然扭曲",
+          "画面突然切换到反向动作"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "职场反差",
+          "description": "办公室白领突然被AI助手用机械音说'别这样'，接着画面切换到AI正在疯狂打字",
+          "key_elements": [
+            "办公场景",
+            "AI助手",
+            "打字动作"
+          ]
+        },
+        {
+          "style": "奇幻穿越",
+          "description": "魔法少女念出'别这样'后，画面突然变成怪兽在狂暴攻击",
+          "key_elements": [
+            "魔法少女",
+            "怪兽",
+            "战斗场面"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用快速切镜突出反差",
+        "在'别这样'后加入2秒静音再重播",
+        "用画面突然扭曲制造视觉冲击"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "劝阻",
+        "反向",
+        "语义冲突"
+      ],
+      "humor_style": "通过反向行为制造意外笑点",
+      "use_case": "适合职场/日常场景的反差喜剧"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "突然打断",
+      "劝阻",
+      "反向",
+      "语义冲突"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502030.602992,
+    "context": {
+      "previous": "小心开车",
+      "next": "欢迎你加入"
+    }
+  },
+  {
+    "id": "line_32",
+    "text": "欢迎你加入",
+    "start": 428.65,
+    "end": 429.85,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "空洞欢迎语的荒诞反差",
+        "keywords": [
+          "欢迎语",
+          "身份反转",
+          "反讽"
+        ],
+        "humor_style": "通过语境错位制造荒诞幽默",
+        "use_case": "适合用于反差萌或黑色幽默混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "恐怖+喜剧",
+          "科幻+日常"
+        ],
+        "audio_suggestions": [
+          "机械音效叠加",
+          "突然静音"
+        ],
+        "visual_suggestions": [
+          "画面突然变暗",
+          "人物表情僵硬"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "恐怖喜剧",
+          "description": "《咒怨》怪物与《家有儿女》主角的空洞欢迎语对撞",
+          "key_elements": [
+            "怪物低语",
+            "小孩惊恐表情"
+          ]
+        },
+        {
+          "style": "科幻日常",
+          "description": "《流浪地球》机械声与《办公室》日常对话的荒诞对接",
+          "key_elements": [
+            "机械运转声",
+            "办公场景"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用机械音效与原台词叠加制造反差",
+        "在台词出现时突然静音并切到夸张表情",
+        "用快速切换保持节奏感，配合突然的音效打断"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "欢迎语",
+        "身份反转",
+        "反讽"
+      ],
+      "humor_style": "通过语境错位制造荒诞幽默",
+      "use_case": "适合用于反差萌或黑色幽默混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "欢迎语",
+      "身份反转",
+      "反讽"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502031.3960116,
+    "context": {
+      "previous": "别这样",
+      "next": "从今天起你就属于重案组 请坐"
+    }
+  },
+  {
+    "id": "line_33",
+    "text": "从今天起你就属于重案组 请坐",
+    "start": 430.62,
+    "end": 434.82,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "重案组入组仪式的荒诞升级",
+        "keywords": [
+          "身份反转",
+          "荒诞升级",
+          "反讽黑",
+          "重案组"
+        ],
+        "humor_style": "通过仪式感与荒诞性的碰撞制造黑色幽默",
+        "use_case": "适合用于反差萌类或无厘头混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "日漫+国剧",
+          "动画+现实"
+        ],
+        "audio_suggestions": [
+          "电子变声",
+          "环境音突显"
+        ],
+        "visual_suggestions": [
+          "慢放打脸",
+          "画面神配"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "反差萌风",
+          "description": "《火影忍者》木叶村会议与《甄嬛传》选秀现场的荒诞对位",
+          "key_elements": [
+            "忍者会议",
+            "选秀舞台"
+          ]
+        },
+        {
+          "style": "无厘头风",
+          "description": "《海绵宝宝》派对与《无间道》审讯室的错位碰撞",
+          "key_elements": [
+            "派对场景",
+            "审讯室"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用电子变声处理原台词制造反差",
+        "在慢放画面中叠加夸张的审讯室镜头",
+        "用环境音突显仪式感与荒诞感的冲突"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "身份反转",
+        "荒诞升级",
+        "反讽黑",
+        "重案组"
+      ],
+      "humor_style": "通过仪式感与荒诞性的碰撞制造黑色幽默",
+      "use_case": "适合用于反差萌类或无厘头混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "身份反转",
+      "荒诞升级",
+      "反讽黑",
+      "重案组"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502034.8605154,
+    "context": {
+      "previous": "欢迎你加入",
+      "next": "谢谢 长官"
+    }
+  },
+  {
+    "id": "line_34",
+    "text": "谢谢 长官",
+    "start": 436.03,
+    "end": 436.99,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "官场套路混剪",
+        "keywords": [
+          "职场",
+          "套路",
+          "反差"
+        ],
+        "humor_style": "职场黑色幽默",
+        "use_case": "适用于职场类混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "职场剧+都市漫",
+          "综艺+日漫"
+        ],
+        "audio_suggestions": [
+          "机械音效",
+          "办公室环境音"
+        ],
+        "visual_suggestions": [
+          "办公室场景",
+          "动漫角色特写"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "职场反差",
+          "description": "《人民的名义》与《进击的巨人》混剪",
+          "key_elements": [
+            "办公室",
+            "巨人"
+          ]
+        },
+        {
+          "style": "综艺梗",
+          "description": "《爸爸去哪儿》与《海贼王》混剪",
+          "key_elements": [
+            "亲子",
+            "霸气"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用机械音效强化官腔感",
+        "配合办公室环境音制造反差",
+        "快速切换场景保持节奏感"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "职场",
+        "套路",
+        "反差"
+      ],
+      "humor_style": "职场黑色幽默",
+      "use_case": "适用于职场类混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "职场",
+      "套路",
+      "反差"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502037.4805293,
+    "context": {
+      "previous": "从今天起你就属于重案组 请坐",
+      "next": "我不管你以前在特警组 是怎么英明神武"
+    }
+  },
+  {
+    "id": "line_35",
+    "text": "我不管你以前在特警组 是怎么英明神武",
+    "start": 437.23,
+    "end": 441.72,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "突然打断"
+      },
+      "semantic_summary": {
+        "brief": "特警组身份被否定的荒诞",
+        "keywords": [
+          "身份反转",
+          "荒诞反差",
+          "无效沟通"
+        ],
+        "humor_style": "通过身份否定制造反差幽默",
+        "use_case": "适合职场吐槽/反差萌类混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "职场剧+喜剧",
+          "科幻+日常"
+        ],
+        "audio_suggestions": [
+          "金属碰撞音效",
+          "突然静音"
+        ],
+        "visual_suggestions": [
+          "特警装备变废品",
+          "角色表情僵硬"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "职场反差",
+          "description": "特警组成员被要求重新培训的荒诞场景",
+          "key_elements": [
+            "警服变工装",
+            "训练器械"
+          ]
+        },
+        {
+          "style": "科幻穿越",
+          "description": "未来特警组被派去修马桶的滑稽片段",
+          "key_elements": [
+            "全息投影",
+            "机械马桶"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用特警装备变废品的慢放制造反差",
+        "在台词后加入突然静音+金属碰撞音效",
+        "用画外音解释'英明神武'的荒谬性"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "身份反转",
+        "荒诞反差",
+        "无效沟通"
+      ],
+      "humor_style": "通过身份否定制造反差幽默",
+      "use_case": "适合职场吐槽/反差萌类混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "突然打断",
+      "身份反转",
+      "荒诞反差",
+      "无效沟通"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502039.284433,
+    "context": {
+      "previous": "谢谢 长官",
+      "next": "可是你调到我们这儿来 就要从头开始"
+    }
+  },
+  {
+    "id": "line_36",
+    "text": "可是你调到我们这儿来 就要从头开始",
+    "start": 442.0,
+    "end": 444.13,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "调岗需重头开始的荒诞宣言",
+        "keywords": [
+          "调岗",
+          "重头开始",
+          "身份冲突"
+        ],
+        "humor_style": "身份错位的反差笑点",
+        "use_case": "适用于职场/军队题材混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "职场喜剧+军事题材",
+          "校园日常+特种兵训练"
+        ],
+        "audio_suggestions": [
+          "金属碰撞音效",
+          "打火机点火声"
+        ],
+        "visual_suggestions": [
+          "战术训练场",
+          "办公室工位"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "职场反差",
+          "description": "特警组成员被调岗到办公室，用战术动作敲击键盘",
+          "key_elements": [
+            "战术手枪",
+            "办公椅"
+          ]
+        },
+        {
+          "style": "军事喜剧",
+          "description": "特种兵在军营被分配到后勤岗，用战术口吻抱怨炊事班",
+          "key_elements": [
+            "军用匕首",
+            "军用饭盒"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "用战术手枪敲击键盘制造反差音效",
+        "在办公室场景中加入军用装备特写",
+        "用突然静音+画外音强调荒诞感"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "调岗",
+        "重头开始",
+        "身份冲突"
+      ],
+      "humor_style": "身份错位的反差笑点",
+      "use_case": "适用于职场/军队题材混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "调岗",
+      "重头开始",
+      "身份冲突"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502042.3403695,
+    "context": {
+      "previous": "我不管你以前在特警组 是怎么英明神武",
+      "next": "是 长官"
+    }
+  },
+  {
+    "id": "line_37",
+    "text": "是 长官",
+    "start": 444.74,
+    "end": 445.7,
+    "mashup_analysis": {
+      "quick_tags": {
+        "primary": "身份反转",
+        "style": "反讽高级黑",
+        "connection": "接反转",
+        "rhythm": "快速切梗"
+      },
+      "semantic_summary": {
+        "brief": "服从指令的机械式应答",
+        "keywords": [
+          "服从",
+          "指令",
+          "机械"
+        ],
+        "humor_style": "通过反差制造荒诞幽默",
+        "use_case": "适合职场/军事/动漫混剪"
+      },
+      "creative_params": {
+        "crossover_types": [
+          "职场剧+赛博朋克",
+          "军事片+喜剧"
+        ],
+        "audio_suggestions": [
+          "金属齿轮声",
+          "机械女声",
+          "突然静音"
+        ],
+        "visual_suggestions": [
+          "全息投影",
+          "机械臂操作",
+          "电子屏幕"
+        ]
+      },
+      "creative_examples": [
+        {
+          "style": "赛博朋克",
+          "description": "赛博朋克警匪片中机械义眼突然说出'是 长官'",
+          "key_elements": [
+            "全息投影",
+            "电子屏幕",
+            "机械义眼"
+          ]
+        },
+        {
+          "style": "军事喜剧",
+          "description": "搞笑军事剧里士兵对着智能手表机械应答",
+          "key_elements": [
+            "智能手表",
+            "战术背心",
+            "电子音效"
+          ]
+        }
+      ],
+      "practical_tips": [
+        "使用机械音效叠加原声制造违和感",
+        "在关键帧添加电子屏幕闪烁特效",
+        "用快速剪辑切换不同机械装置的应答场景"
+      ]
+    },
+    "vector_friendly": {
+      "primary_tag": "身份反转",
+      "style_tag": "反讽高级黑",
+      "connection_tag": "接反转",
+      "keywords": [
+        "服从",
+        "指令",
+        "机械"
+      ],
+      "humor_style": "通过反差制造荒诞幽默",
+      "use_case": "适合职场/军事/动漫混剪"
+    },
+    "search_tags": [
+      "身份反转",
+      "反讽高级黑",
+      "接反转",
+      "快速切梗",
+      "服从",
+      "指令",
+      "机械"
+    ],
+    "config_version": "v4.0-mashup-optimized",
+    "analysis_time": 1769502044.6417685,
+    "context": {
+      "previous": "可是你调到我们这儿来 就要从头开始",
+      "next": "是 长官"
+    }
+  }
+]

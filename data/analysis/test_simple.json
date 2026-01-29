@@ -1,0 +1,535 @@
+[
+  {
+    "id": "line_0",
+    "text": "不可能没有的 依我的经验应该在这儿 是不是?",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "自信发言引发反差",
+    "keywords": [
+      "自信",
+      "反差",
+      "语境错位"
+    ],
+    "humor_style": "通过语境错位制造幽默"
+  },
+  {
+    "id": "line_1",
+    "text": "我说你们在这儿啦",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "台词在新语境下产生荒诞反差",
+    "keywords": [
+      "身份错位",
+      "语境反转",
+      "荒诞幽默"
+    ],
+    "humor_style": "通过语境错位制造反差笑点"
+  },
+  {
+    "id": "line_2",
+    "text": "整合完召集特警行动组全体集合",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接爆发",
+    "brief": "命令式口误引发荒诞行动",
+    "keywords": [
+      "口误",
+      "行动组",
+      "荒诞"
+    ],
+    "humor_style": "通过语义错位制造反差笑点"
+  },
+  {
+    "id": "line_3",
+    "text": "阴沟里翻船了!",
+    "primary_tag": "身份反转",
+    "style_tag": "谐音梗王",
+    "connection_tag": "接反转",
+    "brief": "阴沟翻船的夸张演绎",
+    "keywords": [
+      "翻船",
+      "阴沟",
+      "夸张"
+    ],
+    "humor_style": "谐音双关+夸张演绎"
+  },
+  {
+    "id": "line_4",
+    "text": "立正!",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接爆发",
+    "brief": "命令式台词引发荒诞场景",
+    "keywords": [
+      "命令",
+      "荒诞",
+      "反差"
+    ],
+    "humor_style": "通过语境错位制造喜剧效果"
+  },
+  {
+    "id": "line_5",
+    "text": "这次破解行动组的演习非常的成功",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接爆发",
+    "brief": "演习成功却暗藏玄机",
+    "keywords": [
+      "演习",
+      "成功",
+      "反差"
+    ],
+    "humor_style": "通过表面成功揭示深层荒诞"
+  },
+  {
+    "id": "line_6",
+    "text": "它可以证明一件事",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "用证据证明自己是饭桶",
+    "keywords": [
+      "证据",
+      "饭桶",
+      "证明"
+    ],
+    "humor_style": "反讽与自嘲结合"
+  },
+  {
+    "id": "line_7",
+    "text": "就是我们全体特警组的人 个个都是饭桶",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "特警组自曝饭桶引发反差笑点",
+    "keywords": [
+      "特警组",
+      "饭桶",
+      "反差"
+    ],
+    "humor_style": "身份反差+自嘲解构"
+  },
+  {
+    "id": "line_8",
+    "text": "这次除了扮演 恐怖分子的鹰头小组之外",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "特警组被曝为恐怖分子",
+    "keywords": [
+      "特警",
+      "恐怖分子",
+      "身份反转"
+    ],
+    "humor_style": "反差萌+身份错位"
+  },
+  {
+    "id": "line_9",
+    "text": "其他队员禁出两个礼拜 停止休假",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "强制休假令的荒诞执行",
+    "keywords": [
+      "强制休假",
+      "荒诞执行",
+      "军队管理"
+    ],
+    "humor_style": "通过反差制造荒诞幽默"
+  },
+  {
+    "id": "line_10",
+    "text": "加强训练",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "训练指令引发荒诞误会",
+    "keywords": [
+      "训练",
+      "误解",
+      "反差"
+    ],
+    "humor_style": "通过语境错位制造笑点"
+  },
+  {
+    "id": "line_11",
+    "text": "立正!",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "训练指令引发荒诞场景",
+    "keywords": [
+      "立正",
+      "训练",
+      "反差"
+    ],
+    "humor_style": "通过指令与场景的反差制造笑点"
+  },
+  {
+    "id": "line_12",
+    "text": "完毕",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "一句标准结束语的荒诞演绎",
+    "keywords": [
+      "标准结束语",
+      "荒诞演绎",
+      "语境错位"
+    ],
+    "humor_style": "通过语境错位制造反差笑点"
+  },
+  {
+    "id": "line_13",
+    "text": "表姑妈和三表姐老是劝我",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "表亲劝婚语境的荒诞演绎",
+    "keywords": [
+      "表亲",
+      "劝婚",
+      "荒诞"
+    ],
+    "humor_style": "通过身份错位制造反差笑点"
+  },
+  {
+    "id": "line_14",
+    "text": "要好好地找个男朋友 千万不要找个当差的",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "表亲劝婚语的荒诞升级",
+    "keywords": [
+      "表亲",
+      "劝婚",
+      "当差"
+    ],
+    "humor_style": "身份错位的黑色幽默"
+  },
+  {
+    "id": "line_15",
+    "text": "你说说看 我认识你这么久 有没有劝过你改行?",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接爆发",
+    "brief": "质疑关系本质的讽刺台词",
+    "keywords": [
+      "关系质问",
+      "身份错位",
+      "讽刺反差"
+    ],
+    "humor_style": "通过身份错位制造荒诞反差"
+  },
+  {
+    "id": "line_16",
+    "text": "没有",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "反讽式否定的戏剧张力",
+    "keywords": [
+      "否定",
+      "反讽",
+      "戏剧"
+    ],
+    "humor_style": "通过语义反差制造黑色幽默"
+  },
+  {
+    "id": "line_17",
+    "text": "那就是咯 你爱怎么样就怎么样",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接爆发",
+    "brief": "强势宣言与弱小反差",
+    "keywords": [
+      "强势",
+      "弱小",
+      "反差"
+    ],
+    "humor_style": "反差萌与傲娇口嫌结合"
+  },
+  {
+    "id": "line_18",
+    "text": "你说一 我从来不说二",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "无效沟通的傲娇宣言",
+    "keywords": [
+      "无效沟通",
+      "傲娇",
+      "反讽"
+    ],
+    "humor_style": "通过身份反转制造反差笑点"
+  },
+  {
+    "id": "line_19",
+    "text": "你说转右 我从来不说转左",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "反逻辑对话引发认知冲突",
+    "keywords": [
+      "逻辑悖论",
+      "语义反转",
+      "无效沟通"
+    ],
+    "humor_style": "通过语义矛盾制造黑色幽默"
+  },
+  {
+    "id": "line_20",
+    "text": "你说不喜欢我在酒吧工作 我就转到餐厅来工作",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "职场妥协的荒谬逻辑",
+    "keywords": [
+      "职场",
+      "妥协",
+      "荒谬"
+    ],
+    "humor_style": "荒诞职场黑色幽默"
+  },
+  {
+    "id": "line_21",
+    "text": "一个对你千依百顺的小姐 你有没有打算跟她一起生活?",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接爆发",
+    "brief": "反差萌金句引发爆笑",
+    "keywords": [
+      "千依百顺",
+      "生活打算",
+      "反差萌"
+    ],
+    "humor_style": "通过身份反差制造笑点"
+  },
+  {
+    "id": "line_22",
+    "text": "没有 哈哈 不是 有 有",
+    "primary_tag": "身份反转",
+    "style_tag": "谐音梗王",
+    "connection_tag": "接自嘲",
+    "brief": "矛盾语句引发跨作品笑点",
+    "keywords": [
+      "语义矛盾",
+      "谐音梗",
+      "跨作品"
+    ],
+    "humor_style": "通过语义冲突制造笑点"
+  },
+  {
+    "id": "line_23",
+    "text": "既然有 那你打算什么时候向她求婚?",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接爆发",
+    "brief": "反差萌的求婚威胁",
+    "keywords": [
+      "求婚",
+      "反差",
+      "威胁"
+    ],
+    "humor_style": "通过反差制造荒诞幽默"
+  },
+  {
+    "id": "line_24",
+    "text": "不知道",
+    "primary_tag": "强行解释",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接冷场",
+    "brief": "无意义回答引发喜剧冲突",
+    "keywords": [
+      "无意义",
+      "冷场",
+      "反讽"
+    ],
+    "humor_style": "通过荒谬回答制造戏剧性冲突"
+  },
+  {
+    "id": "line_25",
+    "text": "你究竟想怎么样?",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接爆发",
+    "brief": "质问式反差",
+    "keywords": [
+      "质问",
+      "反差",
+      "失控"
+    ],
+    "humor_style": "通过角色身份错位制造笑点"
+  },
+  {
+    "id": "line_26",
+    "text": "你是不是想始乱终弃?",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "情话变威胁的语义反转",
+    "keywords": [
+      "威胁",
+      "情话",
+      "反转"
+    ],
+    "humor_style": "语义悖论式幽默"
+  },
+  {
+    "id": "line_27",
+    "text": "你不要乱说啊 我碰都没碰过你",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "否认接触的强势否认",
+    "keywords": [
+      "否认",
+      "强势",
+      "矛盾"
+    ],
+    "humor_style": "反差萌与逻辑错位"
+  },
+  {
+    "id": "line_28",
+    "text": "又怎么会对你始乱终弃呢?",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "伪善誓言反噬",
+    "keywords": [
+      "伪善",
+      "誓言",
+      "反噬"
+    ],
+    "humor_style": "伪善反讽"
+  },
+  {
+    "id": "line_29",
+    "text": "是你自己不要碰我嘛",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "反讽式自我辩解语句",
+    "keywords": [
+      "自我辩解",
+      "反讽",
+      "身份错位"
+    ],
+    "humor_style": "通过身份错位制造荒诞反差"
+  },
+  {
+    "id": "line_30",
+    "text": "小心开车",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "警惕性警告的反差表达",
+    "keywords": [
+      "警告",
+      "反差",
+      "语境"
+    ],
+    "humor_style": "通过语境反差制造笑点"
+  },
+  {
+    "id": "line_31",
+    "text": "别这样",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "劝阻与反向行为的语义冲突",
+    "keywords": [
+      "劝阻",
+      "反向",
+      "语义冲突"
+    ],
+    "humor_style": "通过反向行为制造意外笑点"
+  },
+  {
+    "id": "line_32",
+    "text": "欢迎你加入",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "空洞欢迎语的荒诞反差",
+    "keywords": [
+      "欢迎语",
+      "身份反转",
+      "反讽"
+    ],
+    "humor_style": "通过语境错位制造荒诞幽默"
+  },
+  {
+    "id": "line_33",
+    "text": "从今天起你就属于重案组 请坐",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "重案组入组仪式的荒诞升级",
+    "keywords": [
+      "身份反转",
+      "荒诞升级",
+      "反讽黑",
+      "重案组"
+    ],
+    "humor_style": "通过仪式感与荒诞性的碰撞制造黑色幽默"
+  },
+  {
+    "id": "line_34",
+    "text": "谢谢 长官",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "官场套路混剪",
+    "keywords": [
+      "职场",
+      "套路",
+      "反差"
+    ],
+    "humor_style": "职场黑色幽默"
+  },
+  {
+    "id": "line_35",
+    "text": "我不管你以前在特警组 是怎么英明神武",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "特警组身份被否定的荒诞",
+    "keywords": [
+      "身份反转",
+      "荒诞反差",
+      "无效沟通"
+    ],
+    "humor_style": "通过身份否定制造反差幽默"
+  },
+  {
+    "id": "line_36",
+    "text": "可是你调到我们这儿来 就要从头开始",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "调岗需重头开始的荒诞宣言",
+    "keywords": [
+      "调岗",
+      "重头开始",
+      "身份冲突"
+    ],
+    "humor_style": "身份错位的反差笑点"
+  },
+  {
+    "id": "line_37",
+    "text": "是 长官",
+    "primary_tag": "身份反转",
+    "style_tag": "反讽高级黑",
+    "connection_tag": "接反转",
+    "brief": "服从指令的机械式应答",
+    "keywords": [
+      "服从",
+      "指令",
+      "机械"
+    ],
+    "humor_style": "通过反差制造荒诞幽默"
+  }
+]

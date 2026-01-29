@@ -1,0 +1,1901 @@
+[
+  {
+    "id": "line_0",
+    "text": "不可能没有的 依我的经验应该在这儿 是不是?",
+    "start": 196.15,
+    "end": 199.35,
+    "traditional": {
+      "speech_act": "询问确认",
+      "emotion": "不确定但坚定",
+      "intent": "确认对方是否在场",
+      "summary": "说话者根据经验认为某人应该在场，但不确定，因此询问确认。"
+    },
+    "mashup": {
+      "primary_function": "强行解释",
+      "secondary_tags": [
+        "一本正经胡说",
+        "降智打击"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配",
+        "audio_cue": "音效配合",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接打脸",
+        "example_response": "接'这不可能吧？'或'你确定吗？'产生反差萌",
+        "avoid_match": "接认怂或接解释"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》宫斗场景中，配上《海贼王》路飞霸气画面，接'不可能没有的 依我的经验应该在这儿 是不是?'产生阴阳怪气效果",
+        "创意2：在《奥特曼》战斗画面中，突然切到《死神》黑崎一护的呆毛特写，配'是不是?'制造降维打击"
+      ],
+      "practical_tips": [
+        "建议用变速处理突出'依我的经验'的傲娇语气",
+        "可添加'啪'的音效强化'不可能没有的'的戏剧性"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494777.9947245
+  },
+  {
+    "id": "line_1",
+    "text": "我说你们在这儿啦",
+    "start": 201.69,
+    "end": 203.92000000000002,
+    "traditional": {
+      "speech_act": "声明",
+      "emotion": "确定性",
+      "intent": "确认对方存在",
+      "summary": "说话者确定对方在场，并确认他们的存在。"
+    },
+    "mashup": {
+      "primary_function": "强行解释",
+      "secondary_tags": [
+        "降智打击",
+        "无厘头搞笑"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面中人物突然从严肃变搞笑，如从西装革履变成滑稽服装",
+        "audio_cue": "配合夸张的音效如'咔嚓'声或'咚咚'鼓点",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'救命啊这下可怎么办'，形成'我在这儿啦-救命啊'的反差",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》严肃宫斗场景中突然切到《疯狂动物城》的滑稽画面，配'我说你们在这儿啦'",
+        "创意2：将《哈利波特》的魔法场景与《海绵宝宝》的搞笑画面交叉剪辑，用此台词制造魔幻现实主义笑点"
+      ],
+      "practical_tips": [
+        "使用变速处理让台词出现'语速突变'效果",
+        "在台词后加'咔嚓'音效制造突然转折"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494778.1794894
+  },
+  {
+    "id": "line_2",
+    "text": "整合完召集特警行动组全体集合",
+    "start": 295.55,
+    "end": 297.75,
+    "traditional": {
+      "speech_act": "发出指令",
+      "emotion": "紧张/焦虑",
+      "intent": "组织应急行动",
+      "summary": "说话者在紧张状态下发出指令，要求整合资源并召集特警行动组进行应急处理，暗示情况可能失控（'阴沟里翻船了'）"
+    },
+    "mashup": {
+      "primary_function": "强行解释",
+      "secondary_tags": [
+        "一本正经胡说",
+        "降智打击"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面突然切换到办公室场景，主角正襟危坐",
+        "audio_cue": "配合机械运转声和键盘敲击声",
+        "special_effect": false
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我真是求你别逼我了'产生最佳反差",
+        "avoid_match": "避免接'我们已经准备好了'这种合理解释"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "职场喜剧",
+          "办公室日常",
+          "反差萌"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《动物世界》中，配上狮子在办公室开会的画面，接'整合完召集特警行动组全体集合'产生荒诞感",
+        "创意2：在《甄嬛传》中，让安陵容在御前会议上突然说这句话，配合惊恐表情"
+      ],
+      "practical_tips": [
+        "建议用变速处理突出'整合完'的机械感",
+        "可添加'特警行动组'的拟声词效果"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494784.8699164
+  },
+  {
+    "id": "line_3",
+    "text": "阴沟里翻船了!",
+    "start": 302.19,
+    "end": 303.52,
+    "traditional": {
+      "speech_act": "警告/通知",
+      "emotion": "焦虑/紧张",
+      "intent": "提醒特警行动组注意可能的意外情况",
+      "summary": "说话者在整合完信息后，通过'阴沟里翻船了!'提醒特警行动组可能在行动中出现意外，表现出焦虑情绪，意图是让团队提高警惕，防止意外发生。"
+    },
+    "mashup": {
+      "primary_function": "强行解释",
+      "secondary_tags": [
+        "降维打击",
+        "神转折"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配",
+        "audio_cue": "突然插入低沉男声BGM",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我真是无能为力啊'产生反差萌",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "恐怖喜剧",
+          "动画真人",
+          "综艺影视"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《盗梦空间》梦境场景中突然插入外卖小哥送餐画面，配'阴沟里翻船了!'的低沉男声BGM",
+        "创意2：将'阴沟里翻船了!'与《动物森友会》中角色在沙滩上发呆的画面进行场景嫁接，配合突然响起的海浪声"
+      ],
+      "practical_tips": [
+        "使用变速处理让'翻船'动作变得夸张滑稽",
+        "在'阴沟'画面中加入荧光绿水花特效增强视觉冲击"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494785.6322548
+  },
+  {
+    "id": "line_4",
+    "text": "立正!",
+    "start": 316.21,
+    "end": 317.5,
+    "traditional": {
+      "speech_act": "命令",
+      "emotion": "严肃",
+      "intent": "要求对方执行立正动作",
+      "summary": "说话者在演习中严肃地命令对方立正，表明对当前情况的重视和对行动的严格要求。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "降维打击",
+        "画外音怼"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "反差萌画面（如严肃表情突然变成搞笑动作）",
+        "audio_cue": "突然插入搞笑音效（如机械音+搞笑BGM）",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我再也不敢了！'产生强烈反差",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》宫廷场景中，突然切到现代军训画面，配上'立正！'机械音效，接'我再也不敢了！'产生强烈反差",
+        "创意2：动画《进击的巨人》中，艾伦突然用'立正！'指挥士兵，接'我再也不敢了！'制造荒诞喜剧效果"
+      ],
+      "practical_tips": [
+        "建议使用变速处理突出反差感",
+        "配合突然静音+搞笑音效增强喜剧效果"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494783.6607256
+  },
+  {
+    "id": "line_5",
+    "text": "这次破解行动组的演习非常的成功",
+    "start": 318.48,
+    "end": 321.38,
+    "traditional": {
+      "speech_act": "陈述事实",
+      "emotion": "中性",
+      "intent": "宣布演习成功",
+      "summary": "说话者陈述本次破解行动组的演习取得了成功，可能用于汇报或确认行动结果。"
+    },
+    "mashup": {
+      "primary_function": "强行解释",
+      "secondary_tags": [
+        "一本正经胡说",
+        "降智打击"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配",
+        "audio_cue": "音效配合",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我其实根本没在演习'或'这个演习是假的'",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 7,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》安陵容的'我不要了'画面中，突然切到《战狼》的'这次任务非常成功'，配上'这次破解行动组的演习非常的成功'，用低音炮音效制造反差",
+        "创意2：将《鬼吹灯》的'这下可真是死路一条'画面与《火影忍者》的'这次任务成功了'台词切接，用突然静音+爆炸音效制造鬼畜效果"
+      ],
+      "practical_tips": [
+        "建议使用变速处理让'非常成功'的'成'字放慢三倍速，制造'成'字爆破音效果",
+        "在切接时加入'啪'的音效，模拟打脸声，增强反差感"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494779.0453098
+  },
+  {
+    "id": "line_6",
+    "text": "它可以证明一件事",
+    "start": 321.61,
+    "end": 324.05,
+    "traditional": {
+      "speech_act": "声明",
+      "emotion": "讽刺",
+      "intent": "暗示特警组成员能力不足",
+      "summary": "说话者通过'它可以证明一件事'这句话，讽刺性地暗示特警组成员在演习中表现不佳，个个都是饭桶。"
+    },
+    "mashup": {
+      "primary_function": "强行解释",
+      "secondary_tags": [
+        "一本正经胡说",
+        "降智打击"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面突然切换到主角在超市挑选食材",
+        "audio_cue": "搭配超市收银机'叮'声和背景音乐突然切换成《欢乐颂》",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'这下可真是锅了'",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "综艺影视",
+          "动画真人",
+          "历史搞笑"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》宫斗场景中，突然切到主角在火锅店涮羊肉，配'它可以证明一件事'，接着切到皇上在吃烤鸭",
+        "创意2：在《哪吒之魔童降世》战斗场面中，突然切到主角在健身房举铁，配'它可以证明一件事'，接着切到敖丙在跳绳"
+      ],
+      "practical_tips": [
+        "使用变速处理让'它可以证明一件事'的语速变慢，制造反差",
+        "在切换画面时加入夸张的特写镜头，比如主角拿着菜刀切菜的慢动作"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494792.267873
+  },
+  {
+    "id": "line_7",
+    "text": "就是我们全体特警组的人 个个都是饭桶",
+    "start": 324.38,
+    "end": 327.41,
+    "traditional": {
+      "speech_act": "声明",
+      "emotion": "讽刺",
+      "intent": "表达对团队能力的不满",
+      "summary": "说话者在讽刺性地声明特警组成员能力不足，暗示团队在任务中可能无法胜任。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "一本正经胡说",
+        "降智打击"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "特警组成员在厨房切菜/打游戏/打瞌睡",
+        "audio_cue": "配合菜刀剁菜声/游戏音效/打鼾声",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'你们这群人连切菜都不会'",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "恐怖喜剧",
+          "战争日常",
+          "动画真人"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《动物世界》中，特警组成员在动物园里用菜刀切香蕉，接'就是我们全体特警组的人个个都是饭桶'",
+        "创意2：在《海绵宝宝》中，痞子菜人切菜时突然暴怒，接'就是我们全体特警组的人个个都是饭桶'"
+      ],
+      "practical_tips": [
+        "建议用变速处理突出'饭桶'的荒谬感",
+        "可加入特写镜头展现人物夸张的表情"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494790.5441258
+  },
+  {
+    "id": "line_8",
+    "text": "这次除了扮演 恐怖分子的鹰头小组之外",
+    "start": 329.99,
+    "end": 333.86,
+    "traditional": {
+      "speech_act": "陈述事实",
+      "emotion": "讽刺",
+      "intent": "表达对队员能力的不满",
+      "summary": "说话者讽刺地指出队员在此次任务中除了扮演恐怖分子的鹰头小组外，其他队员将被停职两周，暗示队员能力不足。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "降智打击",
+        "强行解释"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "特写镜头切换+夸张肢体动作",
+        "audio_cue": "突然变调的电子音效+搞笑BGM",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我这可是专业级的鹰头小组！'产生反差萌",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "恐怖喜剧",
+          "战争日常",
+          "动画真人"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《动物世界》片段中插入特警组成员夸张的鹰头造型，接'这次除了扮演恐怖分子的鹰头小组之外'产生荒诞感",
+        "创意2：将这句话与《死神来了》的惊悚画面叠加，用突然变快的剪辑节奏制造反差喜剧效果"
+      ],
+      "practical_tips": [
+        "使用变速处理时注意保留台词原声，避免失真",
+        "建议用'鹰头小组'的视觉符号进行画面重复强化"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494792.4809566
+  },
+  {
+    "id": "line_9",
+    "text": "其他队员禁出两个礼拜 停止休假",
+    "start": 334.12,
+    "end": 337.56,
+    "traditional": {
+      "speech_act": "指令",
+      "emotion": "严肃",
+      "intent": "要求其他队员暂停休假，加强训练",
+      "summary": "命令其他队员暂停休假两周，以加强训练。"
+    },
+    "mashup": {
+      "primary_function": "强行解释",
+      "secondary_tags": [
+        "一本正经胡说",
+        "降智打击"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配",
+        "audio_cue": "音效配合",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我错了，我再也不敢了'",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "恐怖喜剧",
+          "战争日常",
+          "综艺影视"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《复仇者联盟》中，钢铁侠说'其他队员禁出两个礼拜 停止休假'，配合漫威英雄集体在实验室里打闹的画面，接'加强训练'的台词",
+        "创意2：在《动物森友会》中，NPC说'其他队员禁出两个礼拜 停止休假'，配合森林里动物们集体偷懒的画面，接'加强训练'的台词"
+      ],
+      "practical_tips": [
+        "使用变速处理突出'禁出'的强制感",
+        "配合'停止休假'的台词加入夸张的钟表音效"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494799.4309642
+  },
+  {
+    "id": "line_10",
+    "text": "加强训练",
+    "start": 337.8,
+    "end": 338.85,
+    "traditional": {
+      "speech_act": "命令",
+      "emotion": "严肃",
+      "intent": "要求队员加强训练",
+      "summary": "命令队员加强训练，保持纪律，提高战斗力。"
+    },
+    "mashup": {
+      "primary_function": "强行解释",
+      "secondary_tags": [
+        "一本正经胡说",
+        "降智打击"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "特写镜头中人物夸张的面部表情",
+        "audio_cue": "配合机械运转声或电子提示音",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我再也不敢了'的台词产生反差萌",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《动物世界》片段中，配上机械臂突然出现的BGM，接'加强训练'产生科幻感",
+        "创意2：在《甄嬛传》宫廷场景中，用电子提示音配合'加强训练'制造反差笑点"
+      ],
+      "practical_tips": [
+        "建议使用变速处理突出'加强'的强调效果",
+        "可添加像素化特效增强'训练'的抽象感"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494797.160583
+  },
+  {
+    "id": "line_11",
+    "text": "立正!",
+    "start": 339.2,
+    "end": 340.19,
+    "traditional": {
+      "speech_act": "命令",
+      "emotion": "严肃",
+      "intent": "要求士兵立正",
+      "summary": "在加强训练的背景下，说话者通过命令'立正!'要求士兵执行立正动作，表现出严肃的态度，意图是确保训练纪律和规范。"
+    },
+    "mashup": {
+      "primary_function": "跨服聊天",
+      "secondary_tags": [
+        "降维打击",
+        "画外音怼"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配",
+        "audio_cue": "机械音效+搞笑BGM",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我再也不练了！'产生反差萌",
+        "avoid_match": "接解释"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 10,
+        "recommended_genres": [
+          "古现混搭",
+          "动漫真人",
+          "综艺影视"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》宫斗场景中突然切到《孤勇者》MV画面，配上机械音效版'立正!'",
+        "创意2：将《动物世界》画面与《大圣归来》战斗场景交叉剪辑，用变速处理'立正!'产生降智打击"
+      ],
+      "practical_tips": [
+        "建议使用AI语音合成将'立正!'处理成不同角色声线",
+        "可搭配'咚咚咚'节奏音效强化机械感"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494799.0565002
+  },
+  {
+    "id": "line_12",
+    "text": "完毕",
+    "start": 341.17,
+    "end": 341.89,
+    "traditional": {
+      "speech_act": "陈述",
+      "emotion": "中性",
+      "intent": "回应上级命令",
+      "summary": "说话者回应上级的命令，表示已经完成动作，同时暗示可能有其他未完成的任务或需要进一步的指示。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "降维打击",
+        "强行解释"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "突然切换到反差画面，如严肃脸+搞笑动作",
+        "audio_cue": "配合突然的音效（如'叮'声）和变速处理",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我保证下次不会了'，形成反差萌",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 10,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》严肃宫斗场景中突然切到主角在火锅店大喊'完毕'，配'叮'声特效",
+        "创意2：将'完毕'与《赛博朋克2077》的机械臂动作结合，配'咔哒'音效形成反差"
+      ],
+      "practical_tips": [
+        "使用变速处理时注意节奏控制，避免过快导致理解困难",
+        "建议在'完毕'后加入1秒静音，强化反差效果"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494804.488625
+  },
+  {
+    "id": "line_13",
+    "text": "表姑妈和三表姐老是劝我",
+    "start": 350.90999999999997,
+    "end": 355.0,
+    "traditional": {
+      "speech_act": "劝告",
+      "emotion": "担忧或焦虑",
+      "intent": "希望说话者找到合适的男朋友，避免与当差的交往",
+      "summary": "表姑妈和三表姐担心说话者在选择男朋友时可能遇到不当的人，因此劝说她要谨慎选择，不要与当差的人交往。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "强说清醒",
+        "降智打击"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面突然切换到古代仕女图或现代都市人挤人场景",
+        "audio_cue": "配合'咚咚咚'的鼓点与突然静音的反差",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'但是我现在连外卖都点不了'的台词",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》御花园场景中，突然切到现代地铁站，配上'表姑妈和三表姐老是劝我'的画外音，接着切到地铁乘客们惊恐的表情",
+        "创意2：将台词嵌入《动物森友会》游戏画面，当角色在森林里迷路时，突然响起这句话，配合'咚咚咚'音效制造荒诞感"
+      ],
+      "practical_tips": [
+        "建议用变速处理突出'劝我'的语气，配合突然的静音制造反差",
+        "可尝试将台词与《大话西游》的'曾经有一份真挚的爱情'进行画面嫁接，制造时空错位笑点"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494807.677309
+  },
+  {
+    "id": "line_14",
+    "text": "要好好地找个男朋友 千万不要找个当差的",
+    "start": 355.48,
+    "end": 357.34000000000003,
+    "traditional": {
+      "speech_act": "劝告",
+      "emotion": "担忧与焦虑",
+      "intent": "希望对方避免从事当差工作，选择更稳定或体面的职业",
+      "summary": "表姑妈和三表姐担忧对方的未来，劝告其不要选择当差职业，而应寻找更稳定或体面的男朋友，暗示对职业道路的关心。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "降智打击",
+        "时代错位"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "古代仕女与现代都市女性的对比画面",
+        "audio_cue": "传统乐器与电子音效的混剪BGM",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我这双手可没那么脏'或'我这身衣服可不配'",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "历史搞笑",
+          "动画真人"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》选秀场景中插入现代职场面试画面，配'要好好地找个男朋友 千万不要找个当差的'，用唢呐与电子音乐混剪",
+        "创意2：将《红楼梦》大观园场景切到现代办公室，用'当差的'指代办公室群聊，配合键盘敲击声与古琴音效"
+      ],
+      "practical_tips": [
+        "使用画中画技术同时展示古今场景",
+        "在'当差的'处加入AI生成的古代差役与现代打工人对比动画"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494807.0232844
+  },
+  {
+    "id": "line_15",
+    "text": "你说说看 我认识你这么久 有没有劝过你改行?",
+    "start": 358.08,
+    "end": 360.55,
+    "traditional": {
+      "speech_act": "质问",
+      "emotion": "失望/不满",
+      "intent": "表达对对方选择的不满，希望对方改变职业或生活方式",
+      "summary": "说话者对对方长期未改变职业选择感到失望，质问对方是否曾被劝说改行，暗示对方的职业路径可能存在问题。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "阴阳怪气",
+        "一本正经胡说"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配，比如在职场会议中突然出现古装造型",
+        "audio_cue": "配合机械音效和突然切换的古风BGM",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我求你别逼我了'的台词，形成反差萌",
+        "avoid_match": "接傲娇，容易产生逻辑矛盾"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "宫庭职场"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》的宫廷场景中突然插入《流浪地球》的机械画面，配上海棠的台词，形成科幻与古代的碰撞",
+        "创意2：将台词与《死神》的灵界场景结合，配上'我认识你这么久'的台词，制造时空错位的搞笑效果"
+      ],
+      "practical_tips": [
+        "建议使用变速处理，让台词和画面节奏错位增强喜剧效果",
+        "注意画面切换时的音效配合，比如机械音效突然切换成古琴声"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494815.2991347
+  },
+  {
+    "id": "line_16",
+    "text": "没有",
+    "start": 360.92,
+    "end": 361.61,
+    "traditional": {
+      "speech_act": "否定回应",
+      "emotion": "冷静或漠然",
+      "intent": "拒绝或否认",
+      "summary": "说话者否认曾劝说对方改行，表现出冷静或漠然的态度，意图是拒绝或否认对方的质疑。"
+    },
+    "mashup": {
+      "primary_function": "强行解释",
+      "secondary_tags": [
+        "无厘头搞笑",
+        "降智打击"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "动画角色突然切换成现实场景",
+        "audio_cue": "突然插入机械音效和电子音",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我再也不敢了'产生反差萌",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "动画真人",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《盗墓笔记》古墓场景中突然切到《赛博朋克》霓虹灯画面，配上'没有'的机械音效，接'我再也不敢了'产生时空错位",
+        "创意2：将《甄嬛传》宫廷戏切换成《瑞克和莫蒂》的量子宇宙，用'没有'作为关键转折点，配合电子音效制造降智打击"
+      ],
+      "practical_tips": [
+        "建议使用快速切镜技巧，在'没有'出现时立即切换到完全不同的画面",
+        "可加入粒子特效或像素化处理增强跨次元感"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494812.1305
+  },
+  {
+    "id": "line_17",
+    "text": "那就是咯 你爱怎么样就怎么样",
+    "start": 362.42,
+    "end": 365.08,
+    "traditional": {
+      "speech_act": "陈述",
+      "emotion": "冷漠或轻蔑",
+      "intent": "表达对对方行为的漠视或不认同",
+      "summary": "说话者表现出对对方的不认同和漠视，认为对方的行为可以随意处理。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "一本正经胡说",
+        "强行解释"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "反差萌画面（如严肃脸+搞笑动作）",
+        "audio_cue": "突然变调的BGM或音效",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我错了...但是...你爱怎么样就怎么样'",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》御前奏折画面中，突然切到《动物世界》的丛林画面，配上'那就是咯 你爱怎么样就怎么样'，配合突然响起的非洲鼓点",
+        "创意2：将《哈利波特》魔法部会议场景与《海绵宝宝》厨房画面交叉剪辑，用此台词配合魔法杖敲击锅铲的音效"
+      ],
+      "practical_tips": [
+        "建议使用变速处理突出'你爱怎么样就怎么样'的后半句",
+        "可添加夸张的肢体语言特效（如人物突然变大变小）"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494814.614408
+  },
+  {
+    "id": "line_18",
+    "text": "你说一 我从来不说二",
+    "start": 365.39,
+    "end": 367.58,
+    "traditional": {
+      "speech_act": "拒绝或妥协",
+      "emotion": "顺从或无奈",
+      "intent": "表达对对方决定的接受但带有保留",
+      "summary": "说话者表面上接受对方的决定（如'你说一'），但通过'我从来不说二'表达自己的立场，暗示不愿妥协或遵循对方的指示，整体表现出一种顺从但带有保留的态度。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "自说自话",
+        "蜜汁自信"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "反差画面：比如在严肃会议中突然出现搞笑场景",
+        "audio_cue": "搭配搞笑BGM或突然的音效",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我真是求你了'产生反差萌",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 10,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》的严肃宫斗场景中突然切到《海绵宝宝》的搞笑画面，配上这句话产生反差喜剧效果",
+        "创意2：将这句话与《动物森友会》的日常对话场景拼接，突出'一本正经胡说'的搞笑效果"
+      ],
+      "practical_tips": [
+        "建议使用变速处理强调'二'字，配合突然静音效果",
+        "可以尝试在台词后加入夸张的肢体动作画面"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494821.8494775
+  },
+  {
+    "id": "line_19",
+    "text": "你说转右 我从来不说转左",
+    "start": 367.99,
+    "end": 370.52,
+    "traditional": {
+      "speech_act": "反语或对立表达",
+      "emotion": "冷漠或疏离",
+      "intent": "表达对立立场或拒绝妥协",
+      "summary": "说话者通过反语表达对对方提议的拒绝，强调自己的立场和独立性，暗示不愿妥协或顺从对方的意愿。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "自说自话",
+        "阴阳怪气"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "建议配合画面：西装革履的上班族在咖啡厅用手机疯狂打字，突然转场到穿着汉服的古风女子在弹琴",
+        "audio_cue": "建议配合音效：机械键盘敲击声+古筝泛音",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我这把琴可是传了三代的'，形成'你说转右我从来不说转左，我这把琴可是传了三代的'的反差萌",
+        "avoid_match": "应避免的拼接类型：接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "宫庭职场"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》宫廷场景中，让甄嬛穿着现代职业装在办公室说'你说转右 我从来不说转左'，接《办公室》里女上司的台词",
+        "创意2：动画《赛博朋克》中，角色在霓虹灯下说这句台词，配合《红楼梦》中贾宝玉的扮相"
+      ],
+      "practical_tips": [
+        "建议使用变速处理突出'转右'和'转左'的对比，0.5倍速强调'从来不说'的傲娇感",
+        "可添加画中画效果：左侧是现代职场画面，右侧是古风场景，形成视觉反差"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494820.5965664
+  },
+  {
+    "id": "line_20",
+    "text": "你说不喜欢我在酒吧工作 我就转到餐厅来工作",
+    "start": 371.4,
+    "end": 374.92,
+    "traditional": {
+      "speech_act": "陈述事实",
+      "emotion": "无奈/委屈",
+      "intent": "表达对对方态度的不满与无奈",
+      "summary": "说话者因对方不喜欢其在酒吧工作而转到餐厅工作，表现出对对方态度的不满和无奈，同时暗示对方可能没有认真考虑其感受。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "反差萌",
+        "强行解释"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配",
+        "audio_cue": "音效配合",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我明明很努力了'或'我哪里错了'",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "动画真人",
+          "日剧国剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》的后宫争斗场景中，配上《灌篮高手》的篮球画面，接'你说不喜欢我在酒吧工作 我就转到餐厅来工作'，用篮球撞击玻璃的音效强化反差",
+        "创意2：将《流浪地球》的太空场景与《动物世界》的丛林画面交叉剪辑，用机械音效+鸟鸣声制造荒诞感，接此台词产生'人类文明转行当动物'的搞笑效果"
+      ],
+      "practical_tips": [
+        "建议用变速处理突出'转到餐厅'的突然转变",
+        "可添加玻璃碎裂音效强化'转'的动作感"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494821.632961
+  },
+  {
+    "id": "line_21",
+    "text": "一个对你千依百顺的小姐 你有没有打算跟她一起生活?",
+    "start": 375.4,
+    "end": 379.2,
+    "traditional": {
+      "speech_act": "质问/质疑",
+      "emotion": "焦虑/不安",
+      "intent": "质疑对方是否打算与千依百顺的小姐在一起",
+      "summary": "说话者质疑对方是否打算与一个对他千依百顺的小姐在一起，表现出对关系未来的不安和焦虑。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "强制定义",
+        "降智打击"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配",
+        "audio_cue": "突然插入机械音效",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我...我好像不太会...（突然被机械音打断）'",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《西游记》取经场景中，配上现代机械臂画面，接'一个对你千依百顺的小姐'，配机械音效制造反差",
+        "创意2：在《进击的巨人》动画中，用巨人破墙画面配合台词，配'你有没有打算跟她一起生活?'，制造时代错位笑点"
+      ],
+      "practical_tips": [
+        "建议使用变速处理突出机械音效的突兀感",
+        "可添加画面扭曲特效增强身份反转效果"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494828.712172
+  },
+  {
+    "id": "line_22",
+    "text": "没有 哈哈 不是 有 有",
+    "start": 379.34,
+    "end": 382.43,
+    "traditional": {
+      "speech_act": "否认与否定",
+      "emotion": "犹豫与不确定",
+      "intent": "拒绝或回避",
+      "summary": "说话者对是否与千依百顺的小姐一起生活表示否定，表现出犹豫和不确定，意图是拒绝或回避这个问题。"
+    },
+    "mashup": {
+      "primary_function": "强行解释",
+      "secondary_tags": [
+        "无厘头搞笑",
+        "无效沟通"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配",
+        "audio_cue": "音效配合",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接打脸",
+        "example_response": "接'你连求婚都还没想好？'或'你根本没打算结婚！'",
+        "avoid_match": "接认怂"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "动画真人",
+          "日剧国剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》安陵容的'你别想骗我'场景中，突然插入《甄嬛传》'没有 哈哈 不是 有 有'，配上'你根本没打算结婚！'的音效，制造时空错位感",
+        "创意2：将《动物森友会》中主角'我今天想钓鱼'的台词，切到《甄嬛传》'没有 哈哈 不是 有 有'，配合钓鱼竿和宫墙的画面切换，制造反差萌"
+      ],
+      "practical_tips": [
+        "建议使用变速处理突出'有 有'的强调效果",
+        "可添加'啪'的音效强化'没有 哈哈'的突然转折"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494830.049775
+  },
+  {
+    "id": "line_23",
+    "text": "既然有 那你打算什么时候向她求婚?",
+    "start": 382.67,
+    "end": 385.51,
+    "traditional": {
+      "speech_act": "反问",
+      "emotion": "调侃/戏谑",
+      "intent": "试探对方的意图或态度",
+      "summary": "说话者以反问的方式调侃对方，试图了解对方是否真的有求婚的打算，或者是在开玩笑。"
+    },
+    "mashup": {
+      "primary_function": "强行解释",
+      "secondary_tags": [
+        "降智打击",
+        "无厘头搞笑"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配，如一个西装革履的都市白领突然出现在古风场景中",
+        "audio_cue": "配合金属碰撞声与古筝混音",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我...我其实根本不想结婚'的台词",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 10,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》的御花园场景中，突然切到一个穿着西装的上班族对着空荡荡的宫殿说'既然有 那你打算什么时候向她求婚?'，配上金属碰撞声与古筝混音",
+        "创意2：在《进击的巨人》的战场场景中，艾伦突然对着巨人的残肢说'既然有 那你打算什么时候向她求婚?'，配合机械齿轮声与人声嘶吼"
+      ],
+      "practical_tips": [
+        "使用变速处理突出'既然有'的语气变化",
+        "在关键句处加入突然的静音效果制造反差"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494828.3978662
+  },
+  {
+    "id": "line_24",
+    "text": "不知道",
+    "start": 387.98,
+    "end": 389.17,
+    "traditional": {
+      "speech_act": "否认",
+      "emotion": "犹豫或不确定",
+      "intent": "回避问题或不愿直接回答",
+      "summary": "说话者对求婚时间的询问表示不确定或不愿直接回答，可能在回避问题或处于犹豫状态。"
+    },
+    "mashup": {
+      "primary_function": "抛梗开场",
+      "secondary_tags": [
+        "无效沟通",
+        "自说自话"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "动画角色在会议中突然变成萌宠",
+        "audio_cue": "机械音配合夸张的音效",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我求你别逼我了'产生反差萌",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 10,
+        "recommended_genres": [
+          "动画真人",
+          "恐怖喜剧",
+          "战争日常"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《鬼灭之刃》战斗场景中，炭治郎突然变成布偶猫，配上'不知道'的机械音，接'我求你别逼我了'产生反差萌",
+        "创意2：在《甄嬛传》宫斗戏中，甄嬛突然变成机械人，机械音重复'不知道'，接'我求你别逼我了'制造荒诞喜剧效果"
+      ],
+      "practical_tips": [
+        "建议使用变速处理配合机械音，增强荒诞感",
+        "在关键节点添加突然的音效突变，强化反差喜剧效果"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494836.2368937
+  },
+  {
+    "id": "line_25",
+    "text": "你究竟想怎么样?",
+    "start": 390.18,
+    "end": 391.58,
+    "traditional": {
+      "speech_act": "质疑",
+      "emotion": "警惕或怀疑",
+      "intent": "询问对方的真实意图或目的",
+      "summary": "说话者对对方的意图表示怀疑，询问对方的真实目的，可能带有不信任或警惕的情绪。"
+    },
+    "mashup": {
+      "primary_function": "强行解释",
+      "secondary_tags": [
+        "一本正经胡说",
+        "降智打击"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配",
+        "audio_cue": "音效配合",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接打脸",
+        "example_response": "接'你根本不知道自己在说什么'",
+        "avoid_match": "接认怂"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》甄嬛端着茶杯对皇上说'你究竟想怎么样?'，配上《动物世界》的BGM，接'你这是在找死'的台词",
+        "创意2：在《哪吒之魔童降世》中，敖丙对天庭说'你究竟想怎么样?'，配上《大话西游》的插曲，接'你这是在浪费我生命'的台词"
+      ],
+      "practical_tips": [
+        "建议使用变速处理突出'你究竟想怎么样?'的语气变化",
+        "可以加入画面外的音效，比如'咔嚓'声配合突然的静音"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494835.938563
+  },
+  {
+    "id": "line_26",
+    "text": "你是不是想始乱终弃?",
+    "start": 391.68,
+    "end": 392.84000000000003,
+    "traditional": {
+      "speech_act": "质疑/质问",
+      "emotion": "愤怒/不满",
+      "intent": "质疑对方的意图或行为",
+      "summary": "说话者质疑对方是否有不忠或不诚实的意图，表达出愤怒和不满的情绪，意图是确认对方是否在欺骗或有不当行为。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "降维打击",
+        "强行解释"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配",
+        "audio_cue": "音效配合",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我还没碰你呢！'产生反差萌",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "日剧国剧",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》安陵容的'你是不是想始乱终弃？'画面中，突然插入《甄嬛传》安陵容的'我还没碰你呢！'，配合'砰'的音效，制造反差萌",
+        "创意2：在《动物森友会》的日常对话中，突然插入'你是不是想始乱终弃？'，配合'啪'的音效，制造出荒诞感"
+      ],
+      "practical_tips": [
+        "建议使用变速处理，让台词产生'慢镜头'的错位感",
+        "可加入'啪'的音效，强化画面突然转折的喜剧效果"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494837.5353682
+  },
+  {
+    "id": "line_27",
+    "text": "你不要乱说啊 我碰都没碰过你",
+    "start": 393.75,
+    "end": 396.24,
+    "traditional": {
+      "speech_act": "否认",
+      "emotion": "焦虑/不安",
+      "intent": "试图澄清误会，表达清白",
+      "summary": "说话者试图否认对方的指控，表现出焦虑情绪，意图澄清误会，表明自己并未做出被指控的行为。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "一本正经胡说",
+        "强行解释"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面中主角突然从严肃变滑稽，比如从正经表情突然变成呆毛竖起",
+        "audio_cue": "配合'诶？'的惊讶音效，后接'啊！'的惊慌音效",
+        "special_effect": false
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我求你别生气啦'产生反差萌",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "动画真人",
+          "日剧国剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》安陵容的'你不要乱说啊'场景中，突然切到《海绵宝宝》中派大星在烧烤摊大喊'我碰都没碰过你'，配合'啪'的打火机声",
+        "创意2：将《咒术回战》的'你不要乱说啊'与《瑞克和莫蒂》中瑞克在实验室说'我碰都没碰过你'进行时空交错剪辑，加入量子纠缠音效"
+      ],
+      "practical_tips": [
+        "使用变速处理让'我碰都没碰过你'这句话变得像口吃一样滑稽",
+        "在关键句处加入'啪'的脆响音效，强化'碰都没碰过'的荒谬感"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494845.0795283
+  },
+  {
+    "id": "line_28",
+    "text": "又怎么会对你始乱终弃呢?",
+    "start": 396.39,
+    "end": 398.79,
+    "traditional": {
+      "speech_act": "反问",
+      "emotion": "愤怒/不满",
+      "intent": "反驳对方的无端指责",
+      "summary": "说话者通过反问句式表达对对方无端指责的不满，强调自己并未对对方有不忠行为，意图反驳并维护自身清白。"
+    },
+    "mashup": {
+      "primary_function": "强行解释",
+      "secondary_tags": [
+        "一本正经胡说",
+        "降智打击"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配，比如主角在实验室做实验却说情话",
+        "audio_cue": "配合机械运转音效和轻快BGM",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'但是你明明...（突然被电击）'",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 7,
+        "recommended_genres": [
+          "科幻喜剧",
+          "实验室日常",
+          "未来恋爱"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《攻壳机动队》赛博格场景中，主角一边调试机械臂一边说'又怎么会对你始乱终弃呢?'，配合金属摩擦音效",
+        "创意2：将台词植入《疯狂动物城》的办公室场景，搭配'啪嗒啪嗒'的键盘敲击声"
+      ],
+      "practical_tips": [
+        "建议用变速处理突出'始乱终弃'的反差",
+        "可添加像素化特效制造赛博格感"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494844.5357165
+  },
+  {
+    "id": "line_29",
+    "text": "是你自己不要碰我嘛",
+    "start": 399.76,
+    "end": 400.92,
+    "traditional": {
+      "speech_act": "反问/责备",
+      "emotion": "愤怒/不满",
+      "intent": "指责对方的不忠行为",
+      "summary": "说话者愤怒地指责对方不忠，认为对方不应该触碰自己，暗示对方可能有不正当的意图。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "阴阳怪气",
+        "一本正经胡说"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配，比如主角在严肃场合突然做出滑稽动作",
+        "audio_cue": "配合夸张的音效，如突然的笑声或机械音",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我真没做错什么'产生反差萌",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》的宫廷场景中，配上现代人打游戏的画面，接'是你自己不要碰我嘛'制造时空错位",
+        "创意2：在《咒术回战》的战斗场景中，突然切到主角在便利店买泡面，接此台词制造反差喜剧效果"
+      ],
+      "practical_tips": [
+        "使用变速处理让台词和画面节奏错位",
+        "配合画外音用'这话说得真有道理'等反差台词"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494843.357134
+  },
+  {
+    "id": "line_30",
+    "text": "小心开车",
+    "start": 403.63,
+    "end": 405.53,
+    "traditional": {
+      "speech_act": "警告/提醒",
+      "emotion": "担忧/焦虑",
+      "intent": "提醒对方注意安全",
+      "summary": "说话者担心对方可能做出危险行为，因此提醒对方注意安全，避免发生意外。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "降维打击",
+        "强行解释"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配",
+        "audio_cue": "音效配合",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我错了'或'求你别开啊'产生反差萌",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 10,
+        "recommended_genres": [
+          "恐怖喜剧",
+          "动画真人",
+          "综艺影视"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《疯狂动物城》中，兔子说'小心开车'，配合汽车冲撞画面，接'我错了'产生荒诞喜剧效果",
+        "创意2：在《哪吒之魔童降世》场景中，敖丙说'小心开车'，配合魔丸转世画面，接'我才是魔丸'制造次元突破"
+      ],
+      "practical_tips": [
+        "使用变速处理突出'小心开车'的突然性",
+        "配合机械音效与突然静音制造反差"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494850.7456021
+  },
+  {
+    "id": "line_31",
+    "text": "别这样",
+    "start": 415.84000000000003,
+    "end": 416.81,
+    "traditional": {
+      "speech_act": "警告/劝阻",
+      "emotion": "担忧/责备",
+      "intent": "提醒对方注意安全",
+      "summary": "说话者在提醒对方注意安全，可能是在驾驶场景中警告对方不要做出危险行为。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "降智打击",
+        "强行解释"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "反差萌画面：比如动画角色突然穿着西装在办公室",
+        "audio_cue": "配合机械音效+突然变快的BGM",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我真没偷吃'的台词形成反差",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "动画真人",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《哪吒之魔童降世》片段中，哪吒突然穿着西装在办公室说'别这样'，配合机械音效和变快的BGM",
+        "创意2：将《动物森友会》角色在森林里说'别这样'，接《甄嬛传》的宫廷场景形成反差"
+      ],
+      "practical_tips": [
+        "建议用变速处理突出角色身份转换的违和感",
+        "配合突然的音效和画面切换增强喜剧效果"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494852.10983
+  },
+  {
+    "id": "line_32",
+    "text": "欢迎你加入",
+    "start": 428.65,
+    "end": 429.85,
+    "traditional": {
+      "speech_act": "邀请/接纳",
+      "emotion": "友好/积极",
+      "intent": "接纳新成员，表示欢迎",
+      "summary": "说话者以友好的态度欢迎新成员加入重案组，表示接纳和欢迎。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "降智打击",
+        "跨服聊天"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配",
+        "audio_cue": "音效配合",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我是不是做错了什么'产生反差萌",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》宫廷场景中，配上《动物世界》画面，接'欢迎你加入'产生阴阳怪气效果",
+        "创意2：在《进击的巨人》战斗场景中，突然切到《甄嬛传》宫斗画面，配上'欢迎你加入'制造降智打击"
+      ],
+      "practical_tips": [
+        "建议使用变速处理突出'欢迎你加入'的突然感",
+        "配合'叮咚'音效增强跨服聊天的错位感"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494852.3049314
+  },
+  {
+    "id": "line_33",
+    "text": "从今天起你就属于重案组 请坐",
+    "start": 430.62,
+    "end": 434.82,
+    "traditional": {
+      "speech_act": "任命/委派",
+      "emotion": "正式/严肃",
+      "intent": "正式任命新成员为重案组成员",
+      "summary": "说话者正式任命新成员加入重案组，标志着新成员正式成为团队一员。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "强行解释",
+        "降维打击"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "突然切换到反差画面，如在动漫中突然切到现实场景",
+        "audio_cue": "搭配金属碰撞音效和突然静音",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'救命啊这局我输了'或'我真不是故意的'",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "动画真人",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《哈利波特》魔法课堂画面中突然切到外卖小哥送餐，配上'从今天起你就属于重案组 请坐'，接外卖小哥'这单我送定了'",
+        "创意2：在《动物森友会》游戏画面中切到警察局场景，搭配'请坐'音效，接'我这把伞能防暴'的台词"
+      ],
+      "practical_tips": [
+        "使用变速处理突出'请坐'的突然性",
+        "在切场景时加入画面扭曲特效增强反差感"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494858.2379408
+  },
+  {
+    "id": "line_34",
+    "text": "谢谢 长官",
+    "start": 436.03,
+    "end": 436.99,
+    "traditional": {
+      "speech_act": "感谢",
+      "emotion": "谦逊",
+      "intent": "表达对长官的尊重与服从",
+      "summary": "说话者通过'谢谢长官'表达对上级的尊重和服从，显示出谦逊的态度，同时暗示自己即将加入重案组，愿意接受上级的指导。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "降维打击",
+        "强行解释"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "反差画面：比如特工在幼儿园教孩子叠纸飞机",
+        "audio_cue": "配合金属碰撞声+纸张撕裂声",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我...我只是一只会说话的汤圆'",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 10,
+        "recommended_genres": [
+          "动画真人",
+          "恐怖喜剧",
+          "战争日常"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《西部世界》机械人偶的机械臂上贴卡通贴纸，配上'谢谢 长官'后突然弹出'我刚学会用筷子'的字幕",
+        "创意2：将《鬼吹灯》角色在现代便利店用扫码枪扫描商品时突然变出枪械，说'谢谢 长官'"
+      ],
+      "practical_tips": [
+        "建议用变速处理突出'长官'二字，配合金属质感滤镜",
+        "可加入画面外的机械齿轮转动声增强科幻感"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494859.6065075
+  },
+  {
+    "id": "line_35",
+    "text": "我不管你以前在特警组 是怎么英明神武",
+    "start": 437.23,
+    "end": 441.72,
+    "traditional": {
+      "speech_act": "警告/训斥",
+      "emotion": "严厉/不耐烦",
+      "intent": "强调新岗位需重新考核",
+      "summary": "说话者警告对方即使过去有成就，现在也必须从头开始，暗示新岗位需要重新证明自己。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "强行解释",
+        "降维打击"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "特警组成员突然变成幼儿园老师",
+        "audio_cue": "配合夸张的拟声词和搞笑BGM",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我再也不敢乱说话了'产生反差萌",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "动画真人",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《动物世界》中，把特警组成员剪成动物，配上'我不管你以前在特警组是怎么英明神武'的画外音，接动物们慌乱逃跑的画面",
+        "创意2：在《西游记》中，把孙悟空剪成特警组成员，配上该台词接他被压在五指山下的画面，制造时空错位笑点"
+      ],
+      "practical_tips": [
+        "使用变速处理突出'不管'二字的强调效果",
+        "在画面切换时加入夸张的音效，如'咔嚓'声或'啊啊啊'拟声词"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494860.0069504
+  },
+  {
+    "id": "line_36",
+    "text": "可是你调到我们这儿来 就要从头开始",
+    "start": 442.0,
+    "end": 444.13,
+    "traditional": {
+      "speech_act": "警告/训斥",
+      "emotion": "严肃/不满",
+      "intent": "警告对方需适应新环境",
+      "summary": "说话者警告对方，尽管过去有经验，但调到新岗位后需从头开始，强调新环境的挑战和适应性。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "降维打击",
+        "强行解释"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配",
+        "audio_cue": "音效配合",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'我保证这次一定不搞砸'，形成反差萌",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 10,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《动物世界》中，配上熊猫在实验室做实验的画面，接'可是你调到我们这儿来 就要从头开始'，形成荒诞反差",
+        "创意2：在《全职高手》叶修解说时，配上他对着观众席比划'从头开始'的手势，配合'啪'的音效，制造荒诞喜剧效果"
+      ],
+      "practical_tips": [
+        "建议用变速处理突出'从头开始'的强调效果",
+        "可添加'啪'的音效强化突然转折感"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494866.3807056
+  },
+  {
+    "id": "line_37",
+    "text": "是 长官",
+    "start": 444.74,
+    "end": 445.7,
+    "traditional": {
+      "speech_act": "服从命令",
+      "emotion": "顺从",
+      "intent": "接受命令，开始新工作",
+      "summary": "说话者表示服从上级命令，同意调职并准备从头开始工作。"
+    },
+    "mashup": {
+      "primary_function": "身份反转",
+      "secondary_tags": [
+        "降维打击",
+        "强行解释"
+      ],
+      "editing_suggestions": {
+        "rhythm": "快速切梗",
+        "visual_cue": "画面神配",
+        "audio_cue": "突然打断的音效",
+        "special_effect": true
+      },
+      "connection_potential": {
+        "best_match": "接求饶",
+        "example_response": "接'救命啊我错了'产生反差萌",
+        "avoid_match": "接傲娇"
+      },
+      "crossover_score": {
+        "versatility": 8,
+        "humor_value": 9,
+        "viral_potential": 9,
+        "recommended_genres": [
+          "古现混搭",
+          "中二科幻",
+          "恐怖喜剧"
+        ]
+      },
+      "creative_examples": [
+        "创意1：在《甄嬛传》宫廷场景中，配上《动物森友会》角色的'是 长官'，接《名侦探柯南》的'不许动'产生跨服聊天",
+        "创意2：将《全职高手》的打斗画面与《老友记》的对话场景交叉剪辑，用'是 长官'引出'我跟你说'的对话"
+      ],
+      "practical_tips": [
+        "使用变速处理强调'是'字的语气",
+        "在'长官'后添加突然的音效如'咔嚓'声制造反差"
+      ]
+    },
+    "config_version": "v3.0-mashup-pro",
+    "analysis_time": 1769494865.515054
+  }
+]

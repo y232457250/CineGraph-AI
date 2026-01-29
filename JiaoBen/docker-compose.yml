@@ -1,0 +1,68 @@
+#启动命令首先找到这个docker-compose.yml文件，
+#切换到该目录下
+#运行docker-compose up -d
+#停止docker-compose down
+#Qwen3-Chat	http://localhost:8001	语义分析
+#Qwen3-Emb	http://localhost:8000	向量化
+#ChromaDB	http://localhost:8002	向量数据库管理界面
+version: '3.8'
+
+services:
+  # Qwen3-Chat-4B 服务
+  qwen3-chat:
+    image: vllm/vllm-openai:latest
+    command: >
+      --model /model
+      --dtype half
+      --tensor-parallel-size 1
+      --max-model-len 4096
+      --gpu-memory-utilization 0.8
+      --served-model-name qwen3-chat
+      --port 8000
+    volumes:
+      - D:/AI/KaiFaGongJu/MoXing/Qwen3-4B:/model
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    ports:
+      - "8001:8000"
+    #restart: unless-stopped
+
+  # Qwen3-Embedding-4B 服务
+  qwen3-emb:
+    image: vllm/vllm-openai:latest
+    command: >
+      --model /model
+      --task embedding
+      --dtype half
+      --port 8000
+    volumes:
+      - D:/AI/KaiFaGongJu/MoXing/Qwen3-Embedding-4B:/model
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    ports:
+      - "8000:8000"
+    #restart: unless-stopped
+
+  # ChromaDB（可选）
+  chroma:
+    image: ghcr.io/chroma-core/chroma:latest
+    environment:
+      - IS_PERSISTENT=true
+    volumes:
+      - D:/AI/CineGraph-AI/data/chroma_db:/chroma/chroma
+    ports:
+      - "8002:8000"
+    restart: unless-stopped
+
+volumes:
+  chroma_data:
