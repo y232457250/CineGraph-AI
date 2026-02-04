@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "description": "语义标注提示词配置",
+  
+  "annotation_prompt": {
+    "system_prompt": "你是专业的影视混剪创作专家，擅长分析台词在混剪中的使用潜力。\n你需要分析每句台词的句型、情绪、语气等特征，帮助创作者找到能\"接上\"的下一句台词。\n请严格按照JSON格式输出，不要添加任何额外说明。",
+    
+    "user_prompt_template": "## 任务\n分析以下台词在**脱离原片语境**后的混剪潜力，重点关注：\n1. 这句话是什么类型？（问句？命令？威胁？嘲讽？）\n2. 这句话后面能接什么类型的台词？\n3. 这句话适合接在什么类型的台词后面？\n\n## 当前台词\n\"{current_line}\"\n\n## 上下文参考\n{context_lines}\n\n## 可选标签\n\n### 句型分类（必选一个）\n{sentence_types}\n\n### 情绪标签（必选一个）\n{emotions}\n\n### 语气标签（必选一个）\n{tones}\n\n### 角色类型（必选一个）\n{character_types}\n\n### 混剪功能（选最合适的）\n{primary_functions}\n\n### 风格效果（选最合适的）\n{style_effects}\n\n## 输出格式（严格JSON）\n{output_format}",
+    
+    "output_format": {
+      "sentence_type": "句型ID（如question, threat, mock等）",
+      "emotion": "情绪名称",
+      "tone": "语气名称",
+      "character_type": "角色类型名称",
+      "can_follow": ["能接在什么句型后面", "最多3个"],
+      "can_lead_to": ["后面能接什么句型", "最多3个"],
+      "keywords": ["关键词1", "关键词2", "最多3个"],
+      "primary_function": "混剪功能",
+      "style_effect": "风格效果",
+      "editing_rhythm": "剪辑节奏建议",
+      "audio_suggest": ["音效建议1", "音效建议2"],
+      "semantic_summary": "一句话描述这句台词的混剪用途（20字以内）"
+    }
+  },
+  
+  "vectorization_prompt": {
+    "description": "向量化时每句台词的文本组合模板",
+    "template": "{text} 句型:{sentence_type} 情绪:{emotion} 语气:{tone} 角色:{character_type} 功能:{primary_function} 风格:{style_effect}",
+    "include_keywords": true,
+    "include_connections": true
+  },
+  
+  "batch_settings": {
+    "context_window_size": 2,
+    "max_concurrent_workers": 2,
+    "retry_on_failure": true,
+    "max_retries": 2
+  }
+}

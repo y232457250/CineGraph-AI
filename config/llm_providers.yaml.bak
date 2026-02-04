@@ -1,0 +1,76 @@
+active_provider: local_ollama
+deepseek:
+  api_key: ${DEEPSEEK_API_KEY}
+  base_url: https://api.deepseek.com/v1
+  description: DeepSeek，中文效果好，价格便宜
+  max_tokens: 2000
+  model: deepseek-chat
+  name: DeepSeek
+  price_per_1k_tokens: 0.001
+  temperature: 0.7
+  timeout: 30
+  type: commercial
+local_ollama:
+  base_url: http://localhost:11434/v1
+  description: 通过Ollama运行的本地模型
+  local_mode: ollama
+  max_tokens: 2000
+  model: qwen3:4b
+  name: qwen3:4b
+  temperature: 0.7
+  timeout: 120
+  type: local
+local_qwen:
+  base_url: http://localhost:8001/v1
+  description: 本地部署的Qwen3模型，无需API费用
+  local_mode: docker
+  max_tokens: 2000
+  model: qwen3-chat
+  name: 本地Qwen3
+  temperature: 0.7
+  timeout: 60
+  type: local
+openai:
+  api_key: ${OPENAI_API_KEY}
+  base_url: https://api.openai.com/v1
+  description: OpenAI GPT-4，效果最好但费用较高
+  max_tokens: 2000
+  model: gpt-4-turbo-preview
+  name: OpenAI GPT-4
+  price_per_1k_tokens: 0.03
+  temperature: 0.7
+  timeout: 30
+  type: commercial
+openai_mini:
+  api_key: ${OPENAI_API_KEY}
+  base_url: https://api.openai.com/v1
+  description: OpenAI 性价比之选
+  max_tokens: 2000
+  model: gpt-4o-mini
+  name: OpenAI GPT-4o-mini
+  price_per_1k_tokens: 0.00015
+  temperature: 0.7
+  timeout: 30
+  type: commercial
+qwen_cloud:
+  api_key: ${DASHSCOPE_API_KEY}
+  base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+  description: 阿里云通义千问
+  max_tokens: 2000
+  model: qwen-max
+  name: 通义千问
+  price_per_1k_tokens: 0.02
+  temperature: 0.7
+  timeout: 30
+  type: commercial
+zhipu:
+  api_key: ${ZHIPU_API_KEY}
+  base_url: https://open.bigmodel.cn/api/paas/v4
+  description: 智谱GLM-4，国产大模型
+  max_tokens: 2000
+  model: glm-4
+  name: 智谱GLM-4
+  price_per_1k_tokens: 0.1
+  temperature: 0.7
+  timeout: 30
+  type: commercial

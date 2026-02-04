@@ -1,14 +1,9 @@
 // src/App/PropertyPanel.tsx
-import React from 'react';
-import { useNodeStore } from '@/store/nodeStore';
-
-const PropertyPanel = () => {
-  const { activeNode } = useNodeStore();
-
+const PropertyPanel = ({ activeNode }: { activeNode?: any | null }) => {
   if (!activeNode) return null;
 
   return (
-    <div className="absolute right-4 bottom-4 w-80 bg-[#2d2d3a] rounded-lg p-4 shadow-lg">
+    <div className="w-80 bg-[#2d2d3a] rounded-lg p-4 shadow-lg">
       <h3 className="font-bold text-white mb-3">属性设置</h3>
       
       <div className="mb-3">

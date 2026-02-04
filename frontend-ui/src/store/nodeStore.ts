@@ -28,6 +28,7 @@ interface NodeStore {
   nodes: NodeData[];
   edges: EdgeData[];
   activeNodeId: string | null;
+  activeNode: NodeData | null;
   maxNodes: number; // 节点上限 (内存保护)
   
   // 核心操作
@@ -52,6 +53,7 @@ export const useNodeStore = create<NodeStore>()(
       nodes: [],
       edges: [],
       activeNodeId: null,
+      activeNode: null,
       maxNodes: MAX_NODES,
       
       addNode: (node) => {
@@ -94,7 +96,7 @@ export const useNodeStore = create<NodeStore>()(
         }));
       },
       
-      setActiveNode: (id) => set({ activeNodeId: id }),
+      setActiveNode: (id) => set((state) => ({ activeNodeId: id, activeNode: state.nodes.find(n => n.id === id) || null })),
       
       addEdge: (edge) => set((state) => ({ 
         edges: [...state.edges, edge] 
