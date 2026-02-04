@@ -1,0 +1,116 @@
+{
+  "version": "v5.0-mashup-connection",
+  "description": "台词混剪语义标注配置 - 专注接话逻辑",
+  
+  "sentence_types": {
+    "description": "句型分类 - 决定能接什么类型的下一句",
+    "types": [
+      {"id": "question", "name": "问句", "can_follow": ["answer", "counter_question", "refuse"], "example": "你是谁？"},
+      {"id": "answer", "name": "答句", "can_follow": ["question", "command", "comment"], "example": "我是玉面小飞龙"},
+      {"id": "command", "name": "命令", "can_follow": ["obey", "refuse", "question", "fear"], "example": "给我跪下"},
+      {"id": "threat", "name": "威胁", "can_follow": ["fear", "counter_attack", "mock", "surrender"], "example": "再说一次试试"},
+      {"id": "counter_question", "name": "反问", "can_follow": ["answer", "mock", "anger"], "example": "你敢打我？"},
+      {"id": "mock", "name": "嘲讽", "can_follow": ["anger", "counter_attack", "surrender", "mock"], "example": "就凭你？"},
+      {"id": "refuse", "name": "拒绝", "can_follow": ["threat", "anger", "surrender", "persuade"], "example": "不可能，绝对不可能"},
+      {"id": "fear", "name": "害怕", "can_follow": ["mock", "comfort", "threat"], "example": "别打了别打了"},
+      {"id": "surrender", "name": "求饶", "can_follow": ["mock", "forgive", "refuse"], "example": "我错了，放过我吧"},
+      {"id": "counter_attack", "name": "反击", "can_follow": ["fear", "anger", "mock", "fight"], "example": "我还打你呢"},
+      {"id": "anger", "name": "愤怒", "can_follow": ["fear", "counter_attack", "command"], "example": "放肆！"},
+      {"id": "exclaim", "name": "感叹", "can_follow": ["question", "comment", "answer"], "example": "太可怕了"},
+      {"id": "persuade", "name": "劝说", "can_follow": ["refuse", "agree", "question"], "example": "识时务者为俊杰嘛"},
+      {"id": "agree", "name": "同意", "can_follow": ["command", "comment", "action"], "example": "行，没问题"},
+      {"id": "action", "name": "行动", "can_follow": ["result", "interrupt", "question"], "example": "来人，大刑伺候"},
+      {"id": "interrupt", "name": "打断", "can_follow": ["question", "command", "refuse"], "example": "等一等"},
+      {"id": "reveal", "name": "揭示", "can_follow": ["shock", "question", "refuse"], "example": "其实我有件重要的事想告诉你"}
+    ]
+  },
+  
+  "emotions": {
+    "description": "情绪标签 - 用于情绪匹配和递进",
+    "types": [
+      {"id": "angry", "name": "愤怒", "can_escalate_to": ["rage", "threat"], "can_contrast_to": ["fear", "surrender"]},
+      {"id": "rage", "name": "狂怒", "can_escalate_to": ["violence"], "can_contrast_to": ["calm"]},
+      {"id": "fear", "name": "害怕", "can_escalate_to": ["panic", "surrender"], "can_contrast_to": ["brave"]},
+      {"id": "mock", "name": "嘲讽", "can_escalate_to": ["humiliate"], "can_contrast_to": ["respect"]},
+      {"id": "proud", "name": "得意", "can_escalate_to": ["arrogant"], "can_contrast_to": ["humble"]},
+      {"id": "arrogant", "name": "嚣张", "can_escalate_to": ["rage"], "can_contrast_to": ["fear"]},
+      {"id": "helpless", "name": "无奈", "can_escalate_to": ["surrender"], "can_contrast_to": ["determined"]},
+      {"id": "calm", "name": "冷静", "can_escalate_to": ["determined"], "can_contrast_to": ["panic"]},
+      {"id": "shock", "name": "震惊", "can_escalate_to": ["fear", "angry"], "can_contrast_to": ["calm"]},
+      {"id": "funny", "name": "搞笑", "can_escalate_to": ["absurd"], "can_contrast_to": ["serious"]},
+      {"id": "absurd", "name": "荒诞", "can_escalate_to": ["chaos"], "can_contrast_to": ["normal"]},
+      {"id": "tsundere", "name": "傲娇", "can_escalate_to": ["honest"], "can_contrast_to": ["direct"]}
+    ]
+  },
+  
+  "tones": {
+    "description": "语气标签 - 影响节奏和氛围",
+    "types": [
+      {"id": "strong", "name": "强硬"},
+      {"id": "weak", "name": "软弱"},
+      {"id": "provocative", "name": "挑衅"},
+      {"id": "humble", "name": "卑微"},
+      {"id": "arrogant", "name": "傲慢"},
+      {"id": "questioning", "name": "质疑"},
+      {"id": "certain", "name": "肯定"},
+      {"id": "hesitant", "name": "犹豫"},
+      {"id": "pleading", "name": "恳求"},
+      {"id": "threatening", "name": "威胁"}
+    ]
+  },
+  
+  "character_types": {
+    "description": "角色类型 - 跨剧接话匹配",
+    "types": [
+      {"id": "emperor", "name": "皇帝/领导", "typical_tones": ["arrogant", "strong", "threatening"]},
+      {"id": "official", "name": "大臣/下属", "typical_tones": ["humble", "pleading", "hesitant"]},
+      {"id": "hero", "name": "英雄/主角", "typical_tones": ["strong", "certain", "provocative"]},
+      {"id": "villain", "name": "反派", "typical_tones": ["arrogant", "threatening", "provocative"]},
+      {"id": "comic", "name": "搞笑角色", "typical_tones": ["weak", "hesitant", "pleading"]},
+      {"id": "victim", "name": "受害者", "typical_tones": ["weak", "pleading", "humble"]},
+      {"id": "bystander", "name": "旁观者", "typical_tones": ["questioning", "hesitant"]},
+      {"id": "wise", "name": "智者/军师", "typical_tones": ["calm", "certain"]}
+    ]
+  },
+  
+  "connection_rules": {
+    "description": "接话规则 - 混剪核心逻辑",
+    "rules": [
+      {"from": "question", "to": ["answer", "counter_question", "refuse"], "weight": 1.0},
+      {"from": "threat", "to": ["fear", "counter_attack", "mock"], "weight": 1.0},
+      {"from": "command", "to": ["obey", "refuse", "fear"], "weight": 1.0},
+      {"from": "mock", "to": ["anger", "counter_attack", "surrender"], "weight": 1.0},
+      {"from": "counter_attack", "to": ["fear", "counter_attack", "surrender"], "weight": 1.0},
+      {"from": "anger", "to": ["fear", "counter_attack", "mock"], "weight": 0.9},
+      {"from": "refuse", "to": ["threat", "persuade", "anger"], "weight": 0.9},
+      {"from": "fear", "to": ["mock", "surrender", "comfort"], "weight": 0.8},
+      {"from": "interrupt", "to": ["question", "reveal", "command"], "weight": 1.0}
+    ],
+    "emotion_transitions": {
+      "escalation": [["angry", "rage"], ["fear", "panic"], ["mock", "humiliate"]],
+      "contrast": [["arrogant", "fear"], ["angry", "surrender"], ["proud", "humble"]]
+    }
+  },
+  
+  "primary_functions": [
+    "强行解释", "身份反转", "场景嫁接", "金句引用", 
+    "跨服聊天", "反差萌", "一本正经胡说", "降维打击",
+    "时代错位", "次元突破", "神转折", "废话文学"
+  ],
+  
+  "style_effects": [
+    "反讽高级黑", "自嘲解构", "谐音梗王", "双关大师",
+    "夸张比喻", "正话反说", "无效沟通", "蜜汁自信",
+    "弱小可怜", "嚣张跋扈", "傲娇口嫌", "凡尔赛文学"
+  ],
+  
+  "editing_rhythms": [
+    "快速切梗", "慢放打脸", "重复鬼畜", "戛然而止",
+    "递进夸张", "突然打断", "画外音怼", "画面神配"
+  ],
+  
+  "sound_effects": [
+    "变速处理", "回声效果", "混响处理", "电子变声",
+    "环境音突显", "BGM骤停", "音效叠加", "静音反差"
+  ]
+}

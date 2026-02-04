@@ -6,8 +6,8 @@ from ...models.media import MediaItem
 class MediaScanner:
     def __init__(self, root_dir: str):
         self.root_dir = Path(root_dir)
-        # 匹配数字(豆瓣ID) + 名字的正则
-        self.folder_pattern = re.compile(r'^(\d+)\s*(.*)')
+        # 匹配数字(豆瓣ID) + 分隔符 + 名字的正则，支持 "数字-名字" 或 "数字 名字" 格式
+        self.folder_pattern = re.compile(r'^(\d+)[\s\-]+(.*)')
 
     def scan(self) -> List[MediaItem]:
         media_list = []
@@ -18,7 +18,7 @@ class MediaScanner:
                 match = self.folder_pattern.match(folder.name)
                 if match:
                     douban_id = match.group(1)
-                    title = match.group(2).strip()
+                    title = match.group(2).strip().lstrip('-').strip()
                     
                     # 在文件夹内匹配视频和字幕
                     video_file = None

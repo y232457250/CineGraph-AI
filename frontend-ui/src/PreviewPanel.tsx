@@ -1,13 +1,11 @@
 // src/App/PreviewPanel.tsx
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
-import { useNodeStore } from '@/store/nodeStore';
 
-const PreviewPanel = () => {
+const PreviewPanel = ({ activeNode }: { activeNode?: any | null }) => {
   const videoRef = useRef<HTMLDivElement>(null);
-  const playerRef = useRef<videojs.Player | null>(null);
-  const { activeNode } = useNodeStore();
+  const playerRef = useRef<any | null>(null);
 
   useEffect(() => {
     if (!videoRef.current || !activeNode) return;
@@ -42,7 +40,7 @@ const PreviewPanel = () => {
   }, [activeNode]);
 
   return (
-    <div className="absolute top-4 right-4 w-96 h-52 bg-black rounded-lg overflow-hidden shadow-2xl">
+    <div className="w-96 h-52 bg-black rounded-lg overflow-hidden shadow-2xl">
       <div ref={videoRef} className="w-full h-full" />
     </div>
   );

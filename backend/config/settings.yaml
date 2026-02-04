@@ -1,0 +1,23 @@
+annotation:
+  _loaded: true
+  batch_size: 15
+  concurrent_requests: 1
+  max_retries: 3
+  retry_delay: 1000
+  save_interval: 5
+app:
+  auto_save: true
+  confirm_before_delete: true
+  language: zh-CN
+  show_tips: true
+  theme: dark
+paths:
+  annotations_dir: data/annotations
+  cache_dir: data/cache
+  media_root: D:\AI\CineGraph-AI\data\media
+  posters_dir: data/posters
+  vectors_dir: data/chroma_db
+vector_db:
+  collection_name: cinegraph_subtitles
+  path: data/chroma_db
+  type: chroma

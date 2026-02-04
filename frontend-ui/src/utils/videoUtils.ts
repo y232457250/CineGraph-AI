@@ -5,6 +5,9 @@ import { invoke } from '@tauri-apps/api/core';
  * 获取媒体文件列表 (通过Tauri安全API)
  * 避免前端直接访问文件系统 (安全限制)
  */
+export interface VideoUtilsInterface {
+  someUtilityFunction: () => void;
+}
 export interface MediaFile {
   path: string;
   name: string;

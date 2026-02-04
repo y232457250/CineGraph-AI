@@ -1,6 +1,7 @@
 // src/store/videoStore.ts
 import { create } from 'zustand';
 import { getVideoThumbnail, releaseThumbnail } from '@/utils/videoUtils';
+import { useEffect } from 'react';
 
 // LRU缓存配置 (10个视频缩略图)
 const MAX_CACHE_SIZE = 10;
@@ -113,8 +114,8 @@ export const useVideoStore = create<VideoStore>((set, get) => ({
 // 组件卸载时自动清理缩略图
 export const useThumbnailCleanup = (videoPath: string | null) => {
   const { incrementRef, decrementRef } = useVideoStore();
-  
-  React.useEffect(() => {
+
+  useEffect(() => {
     if (videoPath) {
       incrementRef(videoPath);
       return () => decrementRef(videoPath);

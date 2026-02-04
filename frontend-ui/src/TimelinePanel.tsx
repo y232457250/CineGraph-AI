@@ -1,10 +1,8 @@
 // src/App/TimelinePanel.tsx
-import React, { useRef, useEffect } from 'react';
-import { useNodeStore } from '@/store/nodeStore';
+import { useRef, useEffect, useState } from 'react';
 
-const TimelinePanel = () => {
+const TimelinePanel = ({ activeNode }: { activeNode?: any | null }) => {
   const timelineRef = useRef<HTMLDivElement>(null);
-  const { activeNode } = useNodeStore();
   const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
@@ -27,7 +25,7 @@ const TimelinePanel = () => {
   };
 
   return (
-    <div className="absolute bottom-4 left-4 w-[calc(100%-200px)] bg-[#2d2d3a] rounded-lg p-2 shadow-lg">
+    <div className="w-full bg-[#2d2d3a] rounded-lg p-2 shadow-lg">
       <div className="flex items-center">
         <input 
           type="range" 
