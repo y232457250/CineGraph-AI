@@ -1,0 +1,146 @@
+[
+  {
+    "id": "25717233_ep2_line_0",
+    "text": "好好的一个家",
+    "source": {
+      "media_id": "25717233_ep2",
+      "start": 0.0,
+      "end": 1.01
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "无奈",
+      "tone": "软弱",
+      "primary_function": "场景嫁接",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "答句",
+        "命令"
+      ],
+      "can_lead_to": [
+        "反问",
+        "反讽"
+      ],
+      "keywords": [
+        "家",
+        "支离破碎"
+      ],
+      "character_type": "受害者"
+    },
+    "vector_text": "问句 无奈 软弱 好好的一个家 反问 反讽 家 支离破碎",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.01
+    },
+    "semantic_summary": "用于构建家庭破碎的场景过渡，暗示后续冲突",
+    "annotated_at": 1770225175.3093784
+  },
+  {
+    "id": "25717233_ep2_line_1",
+    "text": "突然变得支离破碎的",
+    "source": {
+      "media_id": "25717233_ep2",
+      "start": 1.02,
+      "end": 3.04
+    },
+    "mashup_tags": {
+      "sentence_type": "描述句",
+      "emotion": "震惊",
+      "tone": "质疑",
+      "primary_function": "金句引用",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "命令",
+        "反问"
+      ],
+      "can_lead_to": [
+        "反问",
+        "反讽"
+      ],
+      "keywords": [
+        "支离破碎",
+        "突然"
+      ],
+      "character_type": "旁观者"
+    },
+    "vector_text": "描述句 震惊 质疑 突然变得支离破碎的 反问 反讽 支离破碎 突然",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 2.02
+    },
+    "semantic_summary": "突出突变的戏剧性，增强混剪的冲击力",
+    "annotated_at": 1770225175.3093784
+  },
+  {
+    "id": "25717233_ep2_line_2",
+    "text": "这到底做了什么孽呀",
+    "source": {
+      "media_id": "25717233_ep2",
+      "start": 4.03,
+      "end": 6.07
+    },
+    "mashup_tags": {
+      "sentence_type": "反问",
+      "emotion": "害怕",
+      "tone": "恳求",
+      "primary_function": "身份反转",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "命令",
+        "威胁"
+      ],
+      "can_lead_to": [
+        "答句",
+        "反问"
+      ],
+      "keywords": [
+        "做了什么孽",
+        "孽"
+      ],
+      "character_type": "受害者"
+    },
+    "vector_text": "反问 害怕 恳求 这到底做了什么孽呀 答句 反问 做了什么孽 孽",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 2.04
+    },
+    "semantic_summary": "引发观众对因果关系的思考，实现角色心理反转",
+    "annotated_at": 1770225175.3093784
+  },
+  {
+    "id": "25717233_ep2_line_3",
+    "text": "好了   好了你也不要着急了",
+    "source": {
+      "media_id": "25717233_ep2",
+      "start": 9.0,
+      "end": 10.034
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "冷静",
+      "tone": "强硬",
+      "primary_function": "降维打击",
+      "style_effect": "蜜汁自信",
+      "can_follow": [
+        "答句",
+        "反问"
+      ],
+      "can_lead_to": [
+        "命令",
+        "反问"
+      ],
+      "keywords": [
+        "好了",
+        "不要着急"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 冷静 强硬 好了   好了你也不要着急了 命令 反问 好了 不要着急",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.03
+    },
+    "semantic_summary": "用冷静的安抚实现情绪压制，制造反差效果",
+    "annotated_at": 1770225175.3093784
+  }
+]

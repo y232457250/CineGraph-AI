@@ -1,0 +1,387 @@
+[
+  {
+    "id": "1300064_ep4_line_0",
+    "text": "大师兄",
+    "source": {
+      "media_id": "1300064_ep4",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "冷静",
+      "tone": "强硬",
+      "primary_function": "身份反转",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "答句",
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令",
+        "反问"
+      ],
+      "keywords": [
+        "大师兄"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 冷静 强硬 大师兄 命令 反问 大师兄",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "通过简短称呼引发身份混淆，为混剪提供角色定位冲突点",
+    "annotated_at": 1770194955.8455677
+  },
+  {
+    "id": "1300064_ep4_line_1",
+    "text": "好",
+    "source": {
+      "media_id": "1300064_ep4",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "无奈",
+      "tone": "软弱",
+      "primary_function": "场景嫁接",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "命令",
+        "反问"
+      ],
+      "can_lead_to": [
+        "命令",
+        "答句"
+      ],
+      "keywords": [
+        "好"
+      ],
+      "character_type": "下属"
+    },
+    "vector_text": "答句 无奈 软弱 好 命令 答句 好",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "简短应答体现角色服从性，适合衔接上级指令场景",
+    "annotated_at": 1770194955.8455677
+  },
+  {
+    "id": "1300064_ep4_line_2",
+    "text": "哎",
+    "source": {
+      "media_id": "1300064_ep4",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "感叹",
+      "emotion": "惊讶",
+      "tone": "质疑",
+      "primary_function": "反差萌",
+      "style_effect": "无效沟通",
+      "can_follow": [
+        "命令",
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令",
+        "反问"
+      ],
+      "keywords": [
+        "哎"
+      ],
+      "character_type": "旁观者"
+    },
+    "vector_text": "感叹 惊讶 质疑 哎 命令 反问 哎",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "无意义感叹词制造节奏停顿，增强混剪的意外感",
+    "annotated_at": 1770194955.8455677
+  },
+  {
+    "id": "1300064_ep4_line_3",
+    "text": "哎师傅",
+    "source": {
+      "media_id": "1300064_ep4",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "嚣张",
+      "tone": "强硬",
+      "primary_function": "身份反转",
+      "style_effect": "谐音梗王",
+      "can_follow": [
+        "答句",
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令",
+        "反问"
+      ],
+      "keywords": [
+        "哎师傅"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "命令 嚣张 强硬 哎师傅 命令 反问 哎师傅",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "称呼错位制造权力关系反转，适合混剪中身份错位场景",
+    "annotated_at": 1770194955.8455677
+  },
+  {
+    "id": "1300064_ep4_line_4",
+    "text": "来来来我给你个安身法来",
+    "source": {
+      "media_id": "1300064_ep4",
+      "start": 0.0,
+      "end": 1.195
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "得意",
+      "tone": "肯定",
+      "primary_function": "金句引用",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "答句",
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令",
+        "反问"
+      ],
+      "keywords": [
+        "来来来我给你个安身法来"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 得意 肯定 来来来我给你个安身法来 命令 反问 来来来我给你个安身法来",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.2
+    },
+    "semantic_summary": "重复句式强化指令感，适合混剪中突出主角的自信态度",
+    "annotated_at": 1770194955.8455677
+  },
+  {
+    "id": "1300064_ep4_line_5",
+    "text": "过来师傅走过来",
+    "source": {
+      "media_id": "1300064_ep4",
+      "start": 1.895,
+      "end": 3.862
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "冷静",
+      "tone": "强硬",
+      "primary_function": "场景嫁接",
+      "style_effect": "双关大师",
+      "can_follow": [
+        "答句",
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令",
+        "反问"
+      ],
+      "keywords": [
+        "过来师傅走过来"
+      ],
+      "character_type": "师傅"
+    },
+    "vector_text": "命令 冷静 强硬 过来师傅走过来 命令 反问 过来师傅走过来",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.97
+    },
+    "semantic_summary": "动作指令明确，适合混剪中快速切换场景动作",
+    "annotated_at": 1770194955.8455677
+  },
+  {
+    "id": "1300064_ep4_line_6",
+    "text": "沙师弟走",
+    "source": {
+      "media_id": "1300064_ep4",
+      "start": 4.662,
+      "end": 5.929
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "嚣张",
+      "tone": "强硬",
+      "primary_function": "降维打击",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "答句",
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令",
+        "反问"
+      ],
+      "keywords": [
+        "沙师弟走"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "命令 嚣张 强硬 沙师弟走 命令 反问 沙师弟走",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.27
+    },
+    "semantic_summary": "简短驱使指令制造反差，适合混剪中突出角色强势",
+    "annotated_at": 1770194955.8455677
+  },
+  {
+    "id": "1300064_ep4_line_7",
+    "text": "就在这啊",
+    "source": {
+      "media_id": "1300064_ep4",
+      "start": 8.695,
+      "end": 9.829
+    },
+    "mashup_tags": {
+      "sentence_type": "陈述",
+      "emotion": "震惊",
+      "tone": "肯定",
+      "primary_function": "跨服聊天",
+      "style_effect": "蜜汁自信",
+      "can_follow": [
+        "命令",
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令",
+        "反问"
+      ],
+      "keywords": [
+        "就在这啊"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "陈述 震惊 肯定 就在这啊 命令 反问 就在这啊",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.13
+    },
+    "semantic_summary": "确认性陈述增强画面冲击力，适合混剪中关键场景定位",
+    "annotated_at": 1770194955.8455677
+  },
+  {
+    "id": "1300064_ep4_line_8",
+    "text": "坐下坐下师傅",
+    "source": {
+      "media_id": "1300064_ep4",
+      "start": 9.829,
+      "end": 11.462
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "冷静",
+      "tone": "软弱",
+      "primary_function": "反差萌",
+      "style_effect": "无效沟通",
+      "can_follow": [
+        "命令",
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令",
+        "反问"
+      ],
+      "keywords": [
+        "坐下坐下师傅"
+      ],
+      "character_type": "下属"
+    },
+    "vector_text": "命令 冷静 软弱 坐下坐下师傅 命令 反问 坐下坐下师傅",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.63
+    },
+    "semantic_summary": "重复指令体现角色服从，适合混剪中制造角色互动张力",
+    "annotated_at": 1770194955.8455677
+  },
+  {
+    "id": "1300064_ep4_line_9",
+    "text": "坐下",
+    "source": {
+      "media_id": "1300064_ep4",
+      "start": 11.462,
+      "end": 12.262
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "无奈",
+      "tone": "软弱",
+      "primary_function": "场景嫁接",
+      "style_effect": "自嘲解构",
+      "can_follow": [
+        "命令",
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令",
+        "反问"
+      ],
+      "keywords": [
+        "坐下"
+      ],
+      "character_type": "下属"
+    },
+    "vector_text": "命令 无奈 软弱 坐下 命令 反问 坐下",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.8
+    },
+    "semantic_summary": "简短指令强化场景切换，适合混剪中快速推进动作线",
+    "annotated_at": 1770194955.8455677
+  },
+  {
+    "id": "1300064_ep4_line_10",
+    "text": "接着",
+    "source": {
+      "media_id": "1300064_ep4",
+      "start": 12.529,
+      "end": 13.329
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "得意",
+      "tone": "肯定",
+      "primary_function": "金句引用",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "命令",
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令",
+        "反问"
+      ],
+      "keywords": [
+        "接着"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 得意 肯定 接着 命令 反问 接着",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.8
+    },
+    "semantic_summary": "延续性指令增强节奏感，适合混剪中突出角色连贯性",
+    "annotated_at": 1770194955.8455677
+  }
+]

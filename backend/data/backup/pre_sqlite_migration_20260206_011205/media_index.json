@@ -1,0 +1,556 @@
+{
+  "movies": [
+    {
+      "douban_id": "1300064",
+      "title": "家有喜事",
+      "folder": "1300064-家有喜事",
+      "video_path": "D:\\AI\\影片测试\\1300064-家有喜事\\西续集.mp4",
+      "subtitle_path": "D:\\AI\\影片测试\\1300064-家有喜事\\家有喜事-第1集.srt",
+      "video_count": 1,
+      "subtitle_count": 4,
+      "media_type": "tv",
+      "episodes": [
+        {
+          "episode_number": 1,
+          "video_path": "D:\\AI\\影片测试\\1300064-家有喜事\\西续集.mp4",
+          "subtitle_path": null,
+          "video_filename": "西续集.mp4",
+          "subtitle_filename": null
+        },
+        {
+          "episode_number": 2,
+          "video_path": null,
+          "subtitle_path": "D:\\AI\\影片测试\\1300064-家有喜事\\家有喜事-第1集.srt",
+          "video_filename": null,
+          "subtitle_filename": "家有喜事-第1集.srt"
+        },
+        {
+          "episode_number": 3,
+          "video_path": null,
+          "subtitle_path": "D:\\AI\\影片测试\\1300064-家有喜事\\家有喜事-第2集.srt",
+          "video_filename": null,
+          "subtitle_filename": "家有喜事-第2集.srt"
+        },
+        {
+          "episode_number": 4,
+          "video_path": null,
+          "subtitle_path": "D:\\AI\\影片测试\\1300064-家有喜事\\家有喜事-第3集.srt",
+          "video_filename": null,
+          "subtitle_filename": "家有喜事-第3集.srt"
+        },
+        {
+          "episode_number": 5,
+          "video_path": null,
+          "subtitle_path": "D:\\AI\\影片测试\\1300064-家有喜事\\家有喜事-第4集.srt",
+          "video_filename": null,
+          "subtitle_filename": "家有喜事-第4集.srt"
+        }
+      ],
+      "status": "ready",
+      "is_custom": false,
+      "stage": "pending",
+      "local_poster": "D:\\AI\\影片测试\\1300064-家有喜事\\poster.jpg",
+      "genre": "剧情 / 喜剧 / 爱情",
+      "country": "中国香港",
+      "language": "中文",
+      "release_date": "1992-01-25(中国香港)",
+      "director": "高志森",
+      "starring": [
+        "张国荣",
+        "周星驰",
+        "张曼玉",
+        "吴君如"
+      ],
+      "writer": "谷德昭",
+      "douban_url": "https://movie.douban.com/subject/1300064/",
+      "poster_url": "https://img9.doubanio.com/view/photo/m_ratio_poster/public/p940263436.jpg",
+      "rating": "8.5"
+    },
+    {
+      "douban_id": "1830575",
+      "title": "雍正王朝",
+      "folder": "1830575-雍正王朝",
+      "video_path": "D:\\AI\\影片测试\\1830575-雍正王朝\\雍正王朝-第1集.mp4",
+      "subtitle_path": "D:\\AI\\影片测试\\1830575-雍正王朝\\雍正王朝-第1集.srt",
+      "video_count": 3,
+      "subtitle_count": 1,
+      "media_type": "tv",
+      "episodes": [
+        {
+          "episode_number": 1,
+          "video_path": "D:\\AI\\影片测试\\1830575-雍正王朝\\雍正王朝-第1集.mp4",
+          "subtitle_path": "D:\\AI\\影片测试\\1830575-雍正王朝\\雍正王朝-第1集.srt",
+          "video_filename": "雍正王朝-第1集.mp4",
+          "subtitle_filename": "雍正王朝-第1集.srt"
+        },
+        {
+          "episode_number": 2,
+          "video_path": "D:\\AI\\影片测试\\1830575-雍正王朝\\雍正王朝-第2集.mp4",
+          "subtitle_path": null,
+          "video_filename": "雍正王朝-第2集.mp4",
+          "subtitle_filename": null
+        },
+        {
+          "episode_number": 3,
+          "video_path": "D:\\AI\\影片测试\\1830575-雍正王朝\\雍正王朝-第3集.mp4",
+          "subtitle_path": null,
+          "video_filename": "雍正王朝-第3集.mp4",
+          "subtitle_filename": null
+        }
+      ],
+      "status": "ready",
+      "is_custom": false,
+      "stage": "pending",
+      "local_poster": "D:\\AI\\影片测试\\1830575-雍正王朝\\poster.jpg",
+      "genre": "剧情 / 历史 / 古装",
+      "country": "中国大陆",
+      "language": "中文",
+      "release_date": "1999-01-03(中国大陆)",
+      "director": "胡玫",
+      "starring": [
+        "唐国强",
+        "焦晃",
+        "王绘春",
+        "杜雨露"
+      ],
+      "douban_url": "https://movie.douban.com/subject/1830575/",
+      "poster_url": "https://img1.doubanio.com/view/photo/m_ratio_poster/public/p1844028639.jpg",
+      "rating": "9.4"
+    },
+    {
+      "douban_id": "25717233",
+      "title": "心花路放",
+      "folder": "25717233-心花路放",
+      "video_path": "D:\\AI\\影片测试\\25717233-心花路放\\新白娘子传奇.mp4",
+      "subtitle_path": "D:\\AI\\影片测试\\25717233-心花路放\\新白娘子传奇 - 副本.srt",
+      "video_count": 1,
+      "subtitle_count": 2,
+      "media_type": "tv",
+      "episodes": [
+        {
+          "episode_number": 1,
+          "video_path": "D:\\AI\\影片测试\\25717233-心花路放\\新白娘子传奇.mp4",
+          "subtitle_path": "D:\\AI\\影片测试\\25717233-心花路放\\新白娘子传奇 - 副本.srt",
+          "video_filename": "新白娘子传奇.mp4",
+          "subtitle_filename": "新白娘子传奇 - 副本.srt"
+        },
+        {
+          "episode_number": 2,
+          "video_path": null,
+          "subtitle_path": "D:\\AI\\影片测试\\25717233-心花路放\\新白娘子传奇.srt",
+          "video_filename": null,
+          "subtitle_filename": "新白娘子传奇.srt"
+        }
+      ],
+      "status": "ready",
+      "is_custom": false,
+      "stage": "pending",
+      "local_poster": "D:\\AI\\影片测试\\25717233-心花路放\\poster.jpg",
+      "genre": "喜剧 / 爱情",
+      "country": "中国大陆",
+      "language": "中文",
+      "release_date": "2014-09-30(中国大陆)",
+      "director": "宁浩",
+      "starring": [
+        "黄渤",
+        "徐峥",
+        "袁泉",
+        "周冬雨"
+      ],
+      "writer": "岳小军",
+      "douban_url": "https://movie.douban.com/subject/25717233/",
+      "poster_url": "https://img3.doubanio.com/view/photo/m_ratio_poster/public/p2221061003.jpg",
+      "rating": "7.2"
+    },
+    {
+      "douban_id": "25853071",
+      "title": "庆余年 第一季",
+      "folder": "25853071-庆余年 第一季",
+      "video_path": "D:\\AI\\影片测试\\25853071-庆余年 第一季\\庆余年.mp4",
+      "subtitle_path": "D:\\AI\\影片测试\\25853071-庆余年 第一季\\庆余年.srt",
+      "video_count": 1,
+      "subtitle_count": 1,
+      "media_type": "movie",
+      "episodes": [],
+      "status": "ready",
+      "is_custom": false,
+      "stage": "pending",
+      "local_poster": "D:\\AI\\影片测试\\25853071-庆余年 第一季\\poster.jpg",
+      "genre": "剧情 / 古装",
+      "country": "中国大陆",
+      "language": "中文",
+      "release_date": "2019-11-26(中国大陆)",
+      "director": "孙皓",
+      "starring": [
+        "张若昀",
+        "李沁",
+        "陈道明",
+        "吴刚"
+      ],
+      "douban_url": "https://movie.douban.com/subject/25853071/",
+      "poster_url": "https://img3.doubanio.com/view/photo/m_ratio_poster/public/p2575362797.jpg",
+      "rating": "7.9"
+    },
+    {
+      "douban_id": "35235151",
+      "title": "唐朝诡事录",
+      "folder": "35235151-唐朝诡事录",
+      "video_path": "D:\\AI\\影片测试\\35235151-唐朝诡事录\\唐朝诡事录.mp4",
+      "subtitle_path": "D:\\AI\\影片测试\\35235151-唐朝诡事录\\唐朝诡事录.srt",
+      "video_count": 1,
+      "subtitle_count": 1,
+      "media_type": "movie",
+      "episodes": [],
+      "status": "ready",
+      "is_custom": false,
+      "stage": "pending",
+      "local_poster": "D:\\AI\\影片测试\\35235151-唐朝诡事录\\poster.jpg",
+      "genre": "悬疑 / 奇幻 / 武侠",
+      "country": "中国大陆",
+      "language": "中文",
+      "release_date": "2022-09-27(中国大陆)",
+      "director": "柏杉",
+      "starring": [
+        "杨旭文",
+        "杨志刚",
+        "郜思雯",
+        "陈创"
+      ],
+      "writer": "魏风华",
+      "douban_url": "https://movie.douban.com/subject/35235151/",
+      "poster_url": "https://img3.doubanio.com/view/photo/m_ratio_poster/public/p2883995667.jpg",
+      "rating": "8.1"
+    },
+    {
+      "douban_id": "3718447",
+      "title": "三枪拍案惊奇",
+      "folder": "3718447-三枪拍案惊奇",
+      "video_path": "D:\\AI\\影片测试\\3718447-三枪拍案惊奇\\三枪拍案惊奇.mp4",
+      "subtitle_path": null,
+      "video_count": 1,
+      "subtitle_count": 0,
+      "media_type": "movie",
+      "episodes": [],
+      "status": "ready",
+      "is_custom": false,
+      "stage": "pending",
+      "local_poster": "D:\\AI\\影片测试\\3718447-三枪拍案惊奇\\poster.jpg",
+      "genre": "喜剧 / 悬疑 / 古装",
+      "country": "中国大陆 / 中国香港",
+      "language": "中文 / 英文",
+      "release_date": "2009-12-11(中国大陆)",
+      "director": "张艺谋",
+      "starring": [
+        "小沈阳",
+        "闫妮",
+        "孙红雷",
+        "倪大红"
+      ],
+      "douban_url": "https://movie.douban.com/subject/3718447/",
+      "poster_url": "https://img1.doubanio.com/view/photo/m_ratio_poster/public/p776980060.jpg",
+      "rating": "4.8"
+    },
+    {
+      "douban_id": "3882715",
+      "title": "武林外传",
+      "folder": "3882715-武林外传",
+      "video_path": "D:\\AI\\影片测试\\3882715-武林外传\\武林外传 - 副本.mp4",
+      "subtitle_path": "D:\\AI\\影片测试\\3882715-武林外传\\武林外传.srt",
+      "video_count": 2,
+      "subtitle_count": 1,
+      "media_type": "tv",
+      "episodes": [
+        {
+          "episode_number": 1,
+          "video_path": "D:\\AI\\影片测试\\3882715-武林外传\\武林外传.mp4",
+          "subtitle_path": "D:\\AI\\影片测试\\3882715-武林外传\\武林外传.srt",
+          "video_filename": "武林外传.mp4",
+          "subtitle_filename": "武林外传.srt"
+        },
+        {
+          "episode_number": 2,
+          "video_path": "D:\\AI\\影片测试\\3882715-武林外传\\武林外传 - 副本.mp4",
+          "subtitle_path": null,
+          "video_filename": "武林外传 - 副本.mp4",
+          "subtitle_filename": null
+        }
+      ],
+      "status": "ready",
+      "is_custom": false,
+      "stage": "pending",
+      "local_poster": "D:\\AI\\影片测试\\3882715-武林外传\\poster.jpg",
+      "genre": "喜剧 / 武侠 / 古装",
+      "country": "中国大陆",
+      "language": "中文 / 英文",
+      "release_date": "2006-01-02(中国大陆)",
+      "director": "尚敬",
+      "starring": [
+        "闫妮",
+        "姚晨",
+        "沙溢",
+        "喻恩泰"
+      ],
+      "writer": "宁财神",
+      "douban_url": "https://movie.douban.com/subject/3882715/",
+      "poster_url": "https://img2.doubanio.com/view/photo/m_ratio_poster/public/p2529669661.jpg",
+      "rating": "9.6"
+    },
+    {
+      "douban_id": "3928370",
+      "title": "越光宝盒",
+      "folder": "3928370-越光宝盒",
+      "video_path": null,
+      "subtitle_path": "D:\\AI\\影片测试\\3928370-越光宝盒\\越光宝盒.srt",
+      "video_count": 0,
+      "subtitle_count": 1,
+      "media_type": "movie",
+      "episodes": [],
+      "status": "ready",
+      "is_custom": false,
+      "stage": "pending",
+      "genre": "喜剧 / 爱情 / 奇幻",
+      "country": "中国大陆 / 中国香港",
+      "language": "中文",
+      "release_date": "2010-03-18(中国大陆)",
+      "director": "刘镇伟",
+      "starring": [
+        "孙俪",
+        "郑中基",
+        "朱茵",
+        "梁咏琪"
+      ],
+      "writer": "刘镇伟",
+      "douban_url": "https://movie.douban.com/subject/3928370/",
+      "poster_url": "https://img9.doubanio.com/view/photo/m_ratio_poster/public/p798688444.jpg",
+      "rating": "5.4"
+    },
+    {
+      "douban_id": "4922787",
+      "title": "后宫·甄嬛传",
+      "folder": "4922787-后宫·甄嬛传",
+      "video_path": "D:\\AI\\影片测试\\4922787-后宫·甄嬛传\\后宫·甄嬛传_第50集.mp4",
+      "subtitle_path": "D:\\AI\\影片测试\\4922787-后宫·甄嬛传\\后宫·甄嬛传_第50集.srt",
+      "video_count": 3,
+      "subtitle_count": 3,
+      "media_type": "tv",
+      "episodes": [
+        {
+          "episode_number": 1,
+          "video_path": "D:\\AI\\影片测试\\4922787-后宫·甄嬛传\\后宫·甄嬛传_第50集.mp4",
+          "subtitle_path": "D:\\AI\\影片测试\\4922787-后宫·甄嬛传\\后宫·甄嬛传_第50集.srt",
+          "video_filename": "后宫·甄嬛传_第50集.mp4",
+          "subtitle_filename": "后宫·甄嬛传_第50集.srt"
+        },
+        {
+          "episode_number": 2,
+          "video_path": "D:\\AI\\影片测试\\4922787-后宫·甄嬛传\\后宫·甄嬛传_第51集.mp4",
+          "subtitle_path": "D:\\AI\\影片测试\\4922787-后宫·甄嬛传\\后宫·甄嬛传_第51集.srt",
+          "video_filename": "后宫·甄嬛传_第51集.mp4",
+          "subtitle_filename": "后宫·甄嬛传_第51集.srt"
+        },
+        {
+          "episode_number": 3,
+          "video_path": "D:\\AI\\影片测试\\4922787-后宫·甄嬛传\\后宫·甄嬛传_第52集.mp4",
+          "subtitle_path": "D:\\AI\\影片测试\\4922787-后宫·甄嬛传\\后宫·甄嬛传_第52集.srt",
+          "video_filename": "后宫·甄嬛传_第52集.mp4",
+          "subtitle_filename": "后宫·甄嬛传_第52集.srt"
+        }
+      ],
+      "status": "ready",
+      "is_custom": false,
+      "stage": "pending",
+      "local_poster": "D:\\AI\\影片测试\\4922787-后宫·甄嬛传\\poster.jpg",
+      "genre": "剧情 / 古装",
+      "country": "中国大陆",
+      "language": "中文",
+      "release_date": "2011-11-17(中国大陆)",
+      "director": "郑晓龙",
+      "starring": [
+        "孙俪",
+        "陈建斌",
+        "蔡少芬",
+        "李东学"
+      ],
+      "writer": "流潋紫",
+      "douban_url": "https://movie.douban.com/subject/4922787/",
+      "poster_url": "https://img3.doubanio.com/view/photo/m_ratio_poster/public/p1480046723.jpg",
+      "rating": "9.4"
+    },
+    {
+      "douban_id": "5308265",
+      "title": "西游降魔篇",
+      "folder": "5308265-西游降魔篇",
+      "video_path": "D:\\AI\\影片测试\\5308265-西游降魔篇\\西游记续集_第7集 .mp4",
+      "subtitle_path": "D:\\AI\\影片测试\\5308265-西游降魔篇\\西游记续集_第7集 .srt",
+      "video_count": 2,
+      "subtitle_count": 2,
+      "media_type": "tv",
+      "episodes": [
+        {
+          "episode_number": 1,
+          "video_path": "D:\\AI\\影片测试\\5308265-西游降魔篇\\西游记续集_第7集 .mp4",
+          "subtitle_path": "D:\\AI\\影片测试\\5308265-西游降魔篇\\西游记续集_第7集 .srt",
+          "video_filename": "西游记续集_第7集 .mp4",
+          "subtitle_filename": "西游记续集_第7集 .srt"
+        },
+        {
+          "episode_number": 2,
+          "video_path": "D:\\AI\\影片测试\\5308265-西游降魔篇\\西游记续集_第8集.mp4",
+          "subtitle_path": "D:\\AI\\影片测试\\5308265-西游降魔篇\\西游记续集_第8集.srt",
+          "video_filename": "西游记续集_第8集.mp4",
+          "subtitle_filename": "西游记续集_第8集.srt"
+        }
+      ],
+      "status": "ready",
+      "is_custom": false,
+      "stage": "pending",
+      "local_poster": "D:\\AI\\影片测试\\5308265-西游降魔篇\\poster.jpg",
+      "genre": "喜剧 / 奇幻 / 冒险",
+      "country": "中国大陆 / 中国香港",
+      "language": "中文",
+      "release_date": "2013-02-10(中国大陆)",
+      "director": "周星驰, 郭子健",
+      "starring": [
+        "文章",
+        "舒淇",
+        "黄渤",
+        "罗志祥"
+      ],
+      "douban_url": "https://movie.douban.com/subject/5308265/",
+      "poster_url": "https://img3.doubanio.com/view/photo/m_ratio_poster/public/p1856385532.jpg",
+      "rating": "7.2"
+    },
+    {
+      "douban_id": "custom_6cd80804",
+      "title": "小品相声",
+      "folder": "小品相声",
+      "video_path": "D:\\AI\\影片测试\\小品相声\\功夫-宋小宝.mp4",
+      "subtitle_path": "D:\\AI\\影片测试\\小品相声\\买车-赵四刘能.srt",
+      "video_count": 3,
+      "subtitle_count": 2,
+      "media_type": "tv",
+      "episodes": [
+        {
+          "episode_number": 1,
+          "video_path": "D:\\AI\\影片测试\\小品相声\\功夫-宋小宝.mp4",
+          "subtitle_path": null,
+          "video_filename": "功夫-宋小宝.mp4",
+          "subtitle_filename": null
+        },
+        {
+          "episode_number": 2,
+          "video_path": "D:\\AI\\影片测试\\小品相声\\卖拐-赵本山范伟.mp4",
+          "subtitle_path": "D:\\AI\\影片测试\\小品相声\\卖拐-赵本山范伟.srt",
+          "video_filename": "卖拐-赵本山范伟.mp4",
+          "subtitle_filename": "卖拐-赵本山范伟.srt"
+        },
+        {
+          "episode_number": 3,
+          "video_path": "D:\\AI\\影片测试\\小品相声\\拐-赵本副本.mp4",
+          "subtitle_path": null,
+          "video_filename": "拐-赵本副本.mp4",
+          "subtitle_filename": null
+        },
+        {
+          "episode_number": 4,
+          "video_path": null,
+          "subtitle_path": "D:\\AI\\影片测试\\小品相声\\买车-赵四刘能.srt",
+          "video_filename": null,
+          "subtitle_filename": "买车-赵四刘能.srt"
+        }
+      ],
+      "status": "ready",
+      "is_custom": true,
+      "local_poster": "D:\\AI\\影片测试\\小品相声\\poster.jpg",
+      "stage": "pending"
+    },
+    {
+      "douban_id": "custom_8b76c13f",
+      "title": "综艺节目",
+      "folder": "综艺节目",
+      "video_path": null,
+      "subtitle_path": "D:\\AI\\影片测试\\综艺节目\\梦想-付航.ass",
+      "video_count": 0,
+      "subtitle_count": 2,
+      "media_type": "tv",
+      "episodes": [
+        {
+          "episode_number": 1,
+          "video_path": null,
+          "subtitle_path": "D:\\AI\\影片测试\\综艺节目\\梦想-付航.ass",
+          "video_filename": null,
+          "subtitle_filename": "梦想-付航.ass"
+        },
+        {
+          "episode_number": 2,
+          "video_path": null,
+          "subtitle_path": "D:\\AI\\影片测试\\综艺节目\\跑男.srt",
+          "video_filename": null,
+          "subtitle_filename": "跑男.srt"
+        }
+      ],
+      "status": "ready",
+      "is_custom": true,
+      "stage": "pending"
+    },
+    {
+      "douban_id": "custom_cdac905f",
+      "title": "网络热更",
+      "folder": "网络热更",
+      "video_path": "D:\\AI\\影片测试\\网络热更\\丝瓜汤.mp4",
+      "subtitle_path": "D:\\AI\\影片测试\\网络热更\\颗秒-2025.01.09 - 副本 (2).srt",
+      "video_count": 2,
+      "subtitle_count": 3,
+      "media_type": "tv",
+      "episodes": [
+        {
+          "episode_number": 1,
+          "video_path": "D:\\AI\\影片测试\\网络热更\\丝瓜汤.mp4",
+          "subtitle_path": null,
+          "video_filename": "丝瓜汤.mp4",
+          "subtitle_filename": null
+        },
+        {
+          "episode_number": 2,
+          "video_path": "D:\\AI\\影片测试\\网络热更\\颗秒-2025.01.09.mp4",
+          "subtitle_path": "D:\\AI\\影片测试\\网络热更\\颗秒-2025.01.09 - 副本 (2).srt",
+          "video_filename": "颗秒-2025.01.09.mp4",
+          "subtitle_filename": "颗秒-2025.01.09 - 副本 (2).srt"
+        },
+        {
+          "episode_number": 3,
+          "video_path": null,
+          "subtitle_path": "D:\\AI\\影片测试\\网络热更\\颗秒-2025.01.09.srt",
+          "video_filename": null,
+          "subtitle_filename": "颗秒-2025.01.09.srt"
+        },
+        {
+          "episode_number": 4,
+          "video_path": null,
+          "subtitle_path": "D:\\AI\\影片测试\\网络热更\\颗秒-2025.01.09 - 副本.srt",
+          "video_filename": null,
+          "subtitle_filename": "颗秒-2025.01.09 - 副本.srt"
+        }
+      ],
+      "status": "ready",
+      "is_custom": true,
+      "local_poster": "D:\\AI\\影片测试\\网络热更\\poster.jpg",
+      "stage": "pending"
+    },
+    {
+      "douban_id": "custom_75f156a8",
+      "title": "脱口秀",
+      "folder": "脱口秀",
+      "video_path": "D:\\AI\\影片测试\\脱口秀\\梦想-付航.mp4",
+      "subtitle_path": "D:\\AI\\影片测试\\脱口秀\\梦想-付航.ass",
+      "video_count": 1,
+      "subtitle_count": 1,
+      "media_type": "movie",
+      "episodes": [],
+      "status": "ready",
+      "is_custom": true,
+      "local_poster": "D:\\AI\\影片测试\\脱口秀\\poster.jpg",
+      "stage": "pending"
+    }
+  ]
+}

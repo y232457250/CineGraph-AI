@@ -1,0 +1,361 @@
+[
+  {
+    "id": "25853071_line_0",
+    "text": "你们两个先上去等我吧",
+    "source": {
+      "media_id": "25853071",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "无奈",
+      "tone": "强硬",
+      "primary_function": "场景嫁接",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "反问",
+        "威胁"
+      ],
+      "can_lead_to": [
+        "命令",
+        "答句"
+      ],
+      "keywords": [
+        "你们",
+        "等我"
+      ],
+      "character_type": "旁观者"
+    },
+    "vector_text": "命令 无奈 强硬 你们两个先上去等我吧 命令 答句 你们 等我",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "混剪中用于制造角色间责任转移的过渡句，暗示后续行动冲突",
+    "annotated_at": 1770225190.256661
+  },
+  {
+    "id": "25853071_line_1",
+    "text": "你还真去啊",
+    "source": {
+      "media_id": "25853071",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "反问",
+      "emotion": "嘲讽",
+      "tone": "挑衅",
+      "primary_function": "反差萌",
+      "style_effect": "自嘲解构",
+      "can_follow": [
+        "命令",
+        "威胁"
+      ],
+      "can_lead_to": [
+        "答句",
+        "命令"
+      ],
+      "keywords": [
+        "真去",
+        "啊"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "反问 嘲讽 挑衅 你还真去啊 答句 命令 真去 啊",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "用于制造角色行为与预期的反差，突出反派的轻蔑态度",
+    "annotated_at": 1770225190.256661
+  },
+  {
+    "id": "25853071_line_2",
+    "text": "烦请带路",
+    "source": {
+      "media_id": "25853071",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "礼貌",
+      "tone": "卑微",
+      "primary_function": "身份反转",
+      "style_effect": "谐音梗王",
+      "can_follow": [
+        "反问",
+        "命令"
+      ],
+      "can_lead_to": [
+        "答句",
+        "命令"
+      ],
+      "keywords": [
+        "烦请",
+        "带路"
+      ],
+      "character_type": "下属"
+    },
+    "vector_text": "命令 礼貌 卑微 烦请带路 答句 命令 烦请 带路",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "通过卑微语气暗示权力关系，为混剪中身份错位提供基础",
+    "annotated_at": 1770225190.256661
+  },
+  {
+    "id": "25853071_line_3",
+    "text": "哥",
+    "source": {
+      "media_id": "25853071",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "称呼",
+      "emotion": "冷静",
+      "tone": "软弱",
+      "primary_function": "跨服聊天",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "命令",
+        "反问"
+      ],
+      "can_lead_to": [
+        "命令",
+        "答句"
+      ],
+      "keywords": [
+        "哥"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "称呼 冷静 软弱 哥 命令 答句 哥",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "简短称呼用于快速建立角色间联系，适合混剪中跨场景对话",
+    "annotated_at": 1770225190.256661
+  },
+  {
+    "id": "25853071_line_4",
+    "text": "姐 你看看他",
+    "source": {
+      "media_id": "25853071",
+      "start": 1.263,
+      "end": 2.343
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "震惊",
+      "tone": "质疑",
+      "primary_function": "强行解释",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "反问",
+        "命令"
+      ],
+      "can_lead_to": [
+        "答句",
+        "命令"
+      ],
+      "keywords": [
+        "姐",
+        "看看"
+      ],
+      "character_type": "旁观者"
+    },
+    "vector_text": "命令 震惊 质疑 姐 你看看他 答句 命令 姐 看看",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.08
+    },
+    "semantic_summary": "用于引导观众注意力，制造场景焦点切换",
+    "annotated_at": 1770225190.256661
+  },
+  {
+    "id": "25853071_line_5",
+    "text": "何其地不体面",
+    "source": {
+      "media_id": "25853071",
+      "start": 2.904,
+      "end": 4.424
+    },
+    "mashup_tags": {
+      "sentence_type": "反问",
+      "emotion": "愤怒",
+      "tone": "嚣张",
+      "primary_function": "降维打击",
+      "style_effect": "蜜汁自信",
+      "can_follow": [
+        "命令",
+        "威胁"
+      ],
+      "can_lead_to": [
+        "答句",
+        "命令"
+      ],
+      "keywords": [
+        "何其",
+        "地不体面"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "反问 愤怒 嚣张 何其地不体面 答句 命令 何其 地不体面",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.52
+    },
+    "semantic_summary": "高调自嘲式攻击，适用于混剪中制造反差情绪冲击",
+    "annotated_at": 1770225190.256661
+  },
+  {
+    "id": "25853071_line_6",
+    "text": "你懂什么",
+    "source": {
+      "media_id": "25853071",
+      "start": 5.223,
+      "end": 6.103
+    },
+    "mashup_tags": {
+      "sentence_type": "反问",
+      "emotion": "嘲讽",
+      "tone": "挑衅",
+      "primary_function": "反差萌",
+      "style_effect": "无效沟通",
+      "can_follow": [
+        "命令",
+        "威胁"
+      ],
+      "can_lead_to": [
+        "答句",
+        "命令"
+      ],
+      "keywords": [
+        "你",
+        "懂什么"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "反问 嘲讽 挑衅 你懂什么 答句 命令 你 懂什么",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.88
+    },
+    "semantic_summary": "突出角色认知差异，用于混剪中制造幽默冲突",
+    "annotated_at": 1770225190.256661
+  },
+  {
+    "id": "25853071_line_7",
+    "text": "那书是哥写的",
+    "source": {
+      "media_id": "25853071",
+      "start": 7.304,
+      "end": 8.503
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "肯定",
+      "primary_function": "身份反转",
+      "style_effect": "双关大师",
+      "can_follow": [
+        "反问",
+        "命令"
+      ],
+      "can_lead_to": [
+        "答句",
+        "命令"
+      ],
+      "keywords": [
+        "那书",
+        "哥"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "答句 得意 肯定 那书是哥写的 答句 命令 那书 哥",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.2
+    },
+    "semantic_summary": "确认身份的陈述句，用于混剪中角色关系重新定义",
+    "annotated_at": 1770225190.256661
+  },
+  {
+    "id": "25853071_line_8",
+    "text": "他写的",
+    "source": {
+      "media_id": "25853071",
+      "start": 10.143,
+      "end": 11.463
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "冷静",
+      "tone": "质疑",
+      "primary_function": "强行解释",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "命令",
+        "反问"
+      ],
+      "can_lead_to": [
+        "答句",
+        "命令"
+      ],
+      "keywords": [
+        "他",
+        "写"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "答句 冷静 质疑 他写的 答句 命令 他 写",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.32
+    },
+    "semantic_summary": "简短确认信息，为混剪中情节转折提供线索",
+    "annotated_at": 1770225190.256661
+  },
+  {
+    "id": "25853071_line_9",
+    "text": "二位请慢用",
+    "source": {
+      "media_id": "25853071",
+      "start": 12.263,
+      "end": 12.944
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "嚣张",
+      "tone": "强硬",
+      "primary_function": "跨服聊天",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "命令",
+        "反问"
+      ],
+      "can_lead_to": [
+        "答句",
+        "命令"
+      ],
+      "keywords": [
+        "二位",
+        "慢用"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "命令 嚣张 强硬 二位请慢用 答句 命令 二位 慢用",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.68
+    },
+    "semantic_summary": "高调的命令式结束语，适用于混剪中制造权力反转",
+    "annotated_at": 1770225190.256661
+  }
+]

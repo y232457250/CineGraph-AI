@@ -1,0 +1,376 @@
+[
+  {
+    "id": "5308265_ep2_line_0",
+    "text": "大师兄",
+    "source": {
+      "media_id": "5308265_ep2",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "傲慢",
+      "primary_function": "身份反转",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令",
+        "答句"
+      ],
+      "keywords": [
+        "大师兄"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "答句 得意 傲慢 大师兄 命令 答句 大师兄",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "通过'大师兄'暗示主角身份，混剪中可制造身份错位效果",
+    "annotated_at": 1770225313.47964
+  },
+  {
+    "id": "5308265_ep2_line_1",
+    "text": "好",
+    "source": {
+      "media_id": "5308265_ep2",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "傲慢",
+      "primary_function": "身份反转",
+      "style_effect": "自嘲解构",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令",
+        "答句"
+      ],
+      "keywords": [
+        "好"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "答句 得意 傲慢 好 命令 答句 好",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "简短应答体现主角自信，混剪中可强化角色权威感",
+    "annotated_at": 1770225313.47964
+  },
+  {
+    "id": "5308265_ep2_line_2",
+    "text": "哎",
+    "source": {
+      "media_id": "5308265_ep2",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "害怕",
+      "tone": "软弱",
+      "primary_function": "反差萌",
+      "style_effect": "谐音梗王",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "答句",
+        "命令"
+      ],
+      "keywords": [
+        "哎"
+      ],
+      "character_type": "受害者"
+    },
+    "vector_text": "问句 害怕 软弱 哎 答句 命令 哎",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "单字感叹词展现紧张情绪，混剪中可制造角色脆弱感",
+    "annotated_at": 1770225313.47964
+  },
+  {
+    "id": "5308265_ep2_line_3",
+    "text": "哎师傅",
+    "source": {
+      "media_id": "5308265_ep2",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "害怕",
+      "tone": "软弱",
+      "primary_function": "反差萌",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "答句",
+        "命令"
+      ],
+      "keywords": [
+        "哎师傅"
+      ],
+      "character_type": "受害者"
+    },
+    "vector_text": "问句 害怕 软弱 哎师傅 答句 命令 哎师傅",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "对师长的怯懦称呼，混剪中可突出师徒关系张力",
+    "annotated_at": 1770225313.47964
+  },
+  {
+    "id": "5308265_ep2_line_4",
+    "text": "来来来我给你个安身法来",
+    "source": {
+      "media_id": "5308265_ep2",
+      "start": 0.0,
+      "end": 1.195
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "得意",
+      "tone": "傲慢",
+      "primary_function": "场景嫁接",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令",
+        "答句"
+      ],
+      "keywords": [
+        "来来来我给你个安身法来"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 得意 傲慢 来来来我给你个安身法来 命令 答句 来来来我给你个安身法来",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.2
+    },
+    "semantic_summary": "强势指导动作，混剪中可快速切换场景逻辑",
+    "annotated_at": 1770225313.47964
+  },
+  {
+    "id": "5308265_ep2_line_5",
+    "text": "过来师傅走过来",
+    "source": {
+      "media_id": "5308265_ep2",
+      "start": 1.895,
+      "end": 3.862
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "得意",
+      "tone": "傲慢",
+      "primary_function": "场景嫁接",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令",
+        "答句"
+      ],
+      "keywords": [
+        "过来师傅走过来"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 得意 傲慢 过来师傅走过来 命令 答句 过来师傅走过来",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.97
+    },
+    "semantic_summary": "强制性动作指令，混剪中可制造角色移动节奏",
+    "annotated_at": 1770225313.47964
+  },
+  {
+    "id": "5308265_ep2_line_6",
+    "text": "沙师弟走",
+    "source": {
+      "media_id": "5308265_ep2",
+      "start": 4.662,
+      "end": 5.929
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "得意",
+      "tone": "傲慢",
+      "primary_function": "身份反转",
+      "style_effect": "双关大师",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令",
+        "答句"
+      ],
+      "keywords": [
+        "沙师弟走"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 得意 傲慢 沙师弟走 命令 答句 沙师弟走",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.27
+    },
+    "semantic_summary": "命令式驱使，混剪中可强化角色间权力关系",
+    "annotated_at": 1770225313.47964
+  },
+  {
+    "id": "5308265_ep2_line_7",
+    "text": "就在这啊",
+    "source": {
+      "media_id": "5308265_ep2",
+      "start": 8.695,
+      "end": 9.829
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "傲慢",
+      "primary_function": "金句引用",
+      "style_effect": "蜜汁自信",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令",
+        "答句"
+      ],
+      "keywords": [
+        "就在这啊"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "答句 得意 傲慢 就在这啊 命令 答句 就在这啊",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.13
+    },
+    "semantic_summary": "自信定位，混剪中可作为场景锚点",
+    "annotated_at": 1770225313.47964
+  },
+  {
+    "id": "5308265_ep2_line_8",
+    "text": "坐下坐下师傅",
+    "source": {
+      "media_id": "5308265_ep2",
+      "start": 9.829,
+      "end": 11.462
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "得意",
+      "tone": "傲慢",
+      "primary_function": "场景嫁接",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令",
+        "答句"
+      ],
+      "keywords": [
+        "坐下坐下师傅"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 得意 傲慢 坐下坐下师傅 命令 答句 坐下坐下师傅",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.63
+    },
+    "semantic_summary": "重复命令强化指令，混剪中可制造节奏停顿",
+    "annotated_at": 1770225313.47964
+  },
+  {
+    "id": "5308265_ep2_line_9",
+    "text": "坐下",
+    "source": {
+      "media_id": "5308265_ep2",
+      "start": 11.462,
+      "end": 12.262
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "得意",
+      "tone": "傲慢",
+      "primary_function": "身份反转",
+      "style_effect": "谐音梗王",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令",
+        "答句"
+      ],
+      "keywords": [
+        "坐下"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 得意 傲慢 坐下 命令 答句 坐下",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.8
+    },
+    "semantic_summary": "简短指令体现角色主导性，混剪中可实现快速场景转换",
+    "annotated_at": 1770225313.47964
+  },
+  {
+    "id": "5308265_ep2_line_10",
+    "text": "接着",
+    "source": {
+      "media_id": "5308265_ep2",
+      "start": 12.529,
+      "end": 13.329
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "得意",
+      "tone": "傲慢",
+      "primary_function": "强行解释",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令",
+        "答句"
+      ],
+      "keywords": [
+        "接着"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 得意 傲慢 接着 命令 答句 接着",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.8
+    },
+    "semantic_summary": "延续性指令，混剪中可实现动作连续性",
+    "annotated_at": 1770225313.47964
+  }
+]

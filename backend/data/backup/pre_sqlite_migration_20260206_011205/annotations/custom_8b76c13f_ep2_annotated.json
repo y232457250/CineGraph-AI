@@ -1,0 +1,250 @@
+[
+  {
+    "id": "custom_8b76c13f_ep2_line_0",
+    "text": "东西拿来了",
+    "source": {
+      "media_id": "custom_8b76c13f_ep2",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "冷静",
+      "tone": "肯定",
+      "primary_function": "场景嫁接",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "反问",
+        "命令"
+      ],
+      "can_lead_to": [
+        "问句",
+        "威胁"
+      ],
+      "keywords": [
+        "东西",
+        "拿来了"
+      ],
+      "character_type": "旁观者"
+    },
+    "vector_text": "答句 冷静 肯定 东西拿来了 问句 威胁 东西 拿来了",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "用于构建动作场景的自然过渡，暗示事件进展",
+    "annotated_at": 1770225348.5008078
+  },
+  {
+    "id": "custom_8b76c13f_ep2_line_1",
+    "text": "言冰云借沈重妹妹",
+    "source": {
+      "media_id": "custom_8b76c13f_ep2",
+      "start": 3.332,
+      "end": 5.812
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "嚣张",
+      "tone": "强硬",
+      "primary_function": "身份反转",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "命令",
+        "威胁"
+      ],
+      "can_lead_to": [
+        "问句",
+        "答句"
+      ],
+      "keywords": [
+        "言冰云",
+        "借沈重妹妹"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "命令 嚣张 强硬 言冰云借沈重妹妹 问句 答句 言冰云 借沈重妹妹",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 2.48
+    },
+    "semantic_summary": "通过命令式表达制造角色身份冲突，增强混剪戏剧性",
+    "annotated_at": 1770225348.5008078
+  },
+  {
+    "id": "custom_8b76c13f_ep2_line_2",
+    "text": "掩护身份",
+    "source": {
+      "media_id": "custom_8b76c13f_ep2",
+      "start": 5.893,
+      "end": 7.332
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "冷酷",
+      "tone": "强硬",
+      "primary_function": "身份反转",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "命令",
+        "威胁"
+      ],
+      "can_lead_to": [
+        "反问",
+        "答句"
+      ],
+      "keywords": [
+        "掩护身份"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 冷酷 强硬 掩护身份 反问 答句 掩护身份",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.44
+    },
+    "semantic_summary": "强调行动目标，适用于快速切换场景的混剪逻辑",
+    "annotated_at": 1770225348.5008078
+  },
+  {
+    "id": "custom_8b76c13f_ep2_line_3",
+    "text": "从细节上看",
+    "source": {
+      "media_id": "custom_8b76c13f_ep2",
+      "start": 7.452,
+      "end": 8.853
+    },
+    "mashup_tags": {
+      "sentence_type": "陈述句",
+      "emotion": "冷静",
+      "tone": "质疑",
+      "primary_function": "强行解释",
+      "style_effect": "自嘲解构",
+      "can_follow": [
+        "陈述句",
+        "反问"
+      ],
+      "can_lead_to": [
+        "命令",
+        "反问"
+      ],
+      "keywords": [
+        "从细节上看"
+      ],
+      "character_type": "智者/军师"
+    },
+    "vector_text": "陈述句 冷静 质疑 从细节上看 命令 反问 从细节上看",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.4
+    },
+    "semantic_summary": "用于提供逻辑分析，增强混剪的深度和合理性",
+    "annotated_at": 1770225348.5008078
+  },
+  {
+    "id": "custom_8b76c13f_ep2_line_4",
+    "text": "沈重的妹妹对言冰云",
+    "source": {
+      "media_id": "custom_8b76c13f_ep2",
+      "start": 9.093,
+      "end": 10.613
+    },
+    "mashup_tags": {
+      "sentence_type": "陈述句",
+      "emotion": "震惊",
+      "tone": "肯定",
+      "primary_function": "跨服聊天",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "陈述句",
+        "反问"
+      ],
+      "can_lead_to": [
+        "问句",
+        "答句"
+      ],
+      "keywords": [
+        "沈重的妹妹",
+        "对言冰云"
+      ],
+      "character_type": "沈重的妹妹"
+    },
+    "vector_text": "陈述句 震惊 肯定 沈重的妹妹对言冰云 问句 答句 沈重的妹妹 对言冰云",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.52
+    },
+    "semantic_summary": "构建角色间关系的混剪点，适用于角色互动场景",
+    "annotated_at": 1770225348.5008078
+  },
+  {
+    "id": "custom_8b76c13f_ep2_line_5",
+    "text": "观感极好",
+    "source": {
+      "media_id": "custom_8b76c13f_ep2",
+      "start": 10.893,
+      "end": 12.052
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "肯定",
+      "primary_function": "金句引用",
+      "style_effect": "蜜汁自信",
+      "can_follow": [
+        "答句",
+        "命令"
+      ],
+      "can_lead_to": [
+        "问句",
+        "命令"
+      ],
+      "keywords": [
+        "观感极好"
+      ],
+      "character_type": "皇帝/领导"
+    },
+    "vector_text": "答句 得意 肯定 观感极好 问句 命令 观感极好",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.16
+    },
+    "semantic_summary": "用于表达满意评价，增强混剪的节奏感和情绪高潮",
+    "annotated_at": 1770225348.5008078
+  },
+  {
+    "id": "custom_8b76c13f_ep2_line_6",
+    "text": "可有这女子的情报",
+    "source": {
+      "media_id": "custom_8b76c13f_ep2",
+      "start": 12.292,
+      "end": 13.692
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "紧张",
+      "tone": "质疑",
+      "primary_function": "强行解释",
+      "style_effect": "无效沟通",
+      "can_follow": [
+        "问句",
+        "命令"
+      ],
+      "can_lead_to": [
+        "答句",
+        "命令"
+      ],
+      "keywords": [
+        "可有这女子的情报"
+      ],
+      "character_type": "受害者"
+    },
+    "vector_text": "问句 紧张 质疑 可有这女子的情报 答句 命令 可有这女子的情报",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.4
+    },
+    "semantic_summary": "用于制造悬念，引导混剪剧情走向",
+    "annotated_at": 1770225348.5008078
+  }
+]

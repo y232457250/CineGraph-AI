@@ -1,0 +1,365 @@
+[
+  {
+    "id": "1300064_ep5_line_0",
+    "text": "大师兄",
+    "source": {
+      "media_id": "1300064_ep5",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "冷静",
+      "tone": "强硬",
+      "primary_function": "场景嫁接",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "大师兄"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 冷静 强硬 大师兄 命令 大师兄",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "用于快速建立角色身份，暗示主角地位",
+    "annotated_at": 1770225140.651835
+  },
+  {
+    "id": "1300064_ep5_line_1",
+    "text": "好",
+    "source": {
+      "media_id": "1300064_ep5",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "无奈",
+      "tone": "软弱",
+      "primary_function": "身份反转",
+      "style_effect": "无效沟通",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "好"
+      ],
+      "character_type": "下属"
+    },
+    "vector_text": "答句 无奈 软弱 好 命令 好",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "简短回应体现角色顺从，制造反差",
+    "annotated_at": 1770225140.651835
+  },
+  {
+    "id": "1300064_ep5_line_2",
+    "text": "哎",
+    "source": {
+      "media_id": "1300064_ep5",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "感叹",
+      "emotion": "搞笑",
+      "tone": "犹豫",
+      "primary_function": "反差萌",
+      "style_effect": "谐音梗王",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "哎"
+      ],
+      "character_type": "旁观者"
+    },
+    "vector_text": "感叹 搞笑 犹豫 哎 命令 哎",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "拟声词强化画面感，制造轻松氛围",
+    "annotated_at": 1770225140.651835
+  },
+  {
+    "id": "1300064_ep5_line_3",
+    "text": "哎师傅",
+    "source": {
+      "media_id": "1300064_ep5",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "嚣张",
+      "tone": "挑衅",
+      "primary_function": "强行解释",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "哎师傅"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "命令 嚣张 挑衅 哎师傅 命令 哎师傅",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "反派对师傅的称呼体现权力关系，制造冲突",
+    "annotated_at": 1770225140.651835
+  },
+  {
+    "id": "1300064_ep5_line_4",
+    "text": "来来来我给你个安身法来",
+    "source": {
+      "media_id": "1300064_ep5",
+      "start": 0.0,
+      "end": 1.195
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "得意",
+      "tone": "肯定",
+      "primary_function": "场景嫁接",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "来来来我给你个安身法来"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 得意 肯定 来来来我给你个安身法来 命令 来来来我给你个安身法来",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.2
+    },
+    "semantic_summary": "提供解决方案，推动剧情转折",
+    "annotated_at": 1770225140.651835
+  },
+  {
+    "id": "1300064_ep5_line_5",
+    "text": "过来师傅走过来",
+    "source": {
+      "media_id": "1300064_ep5",
+      "start": 1.895,
+      "end": 3.862
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "冷静",
+      "tone": "强硬",
+      "primary_function": "身份反转",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "过来师傅走过来"
+      ],
+      "character_type": "师傅"
+    },
+    "vector_text": "命令 冷静 强硬 过来师傅走过来 命令 过来师傅走过来",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.97
+    },
+    "semantic_summary": "明确指令，强化角色权威",
+    "annotated_at": 1770225140.651835
+  },
+  {
+    "id": "1300064_ep5_line_6",
+    "text": "沙师弟走",
+    "source": {
+      "media_id": "1300064_ep5",
+      "start": 4.662,
+      "end": 5.929
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "嚣张",
+      "tone": "挑衅",
+      "primary_function": "强行解释",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "沙师弟走"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "命令 嚣张 挑衅 沙师弟走 命令 沙师弟走",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.27
+    },
+    "semantic_summary": "命令式语气体现反派对下属的控制",
+    "annotated_at": 1770225140.651835
+  },
+  {
+    "id": "1300064_ep5_line_7",
+    "text": "就在这啊",
+    "source": {
+      "media_id": "1300064_ep5",
+      "start": 8.695,
+      "end": 9.829
+    },
+    "mashup_tags": {
+      "sentence_type": "感叹",
+      "emotion": "震惊",
+      "tone": "肯定",
+      "primary_function": "金句引用",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "就在这啊"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "感叹 震惊 肯定 就在这啊 命令 就在这啊",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.13
+    },
+    "semantic_summary": "确认关键点，制造戏剧性转折",
+    "annotated_at": 1770225140.651835
+  },
+  {
+    "id": "1300064_ep5_line_8",
+    "text": "坐下坐下师傅",
+    "source": {
+      "media_id": "1300064_ep5",
+      "start": 9.829,
+      "end": 11.462
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "冷静",
+      "tone": "软弱",
+      "primary_function": "场景嫁接",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "坐下坐下师傅"
+      ],
+      "character_type": "下属"
+    },
+    "vector_text": "命令 冷静 软弱 坐下坐下师傅 命令 坐下坐下师傅",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.63
+    },
+    "semantic_summary": "重复指令体现角色的顺从",
+    "annotated_at": 1770225140.651835
+  },
+  {
+    "id": "1300064_ep5_line_9",
+    "text": "坐下",
+    "source": {
+      "media_id": "1300064_ep5",
+      "start": 11.462,
+      "end": 12.262
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "无奈",
+      "tone": "软弱",
+      "primary_function": "身份反转",
+      "style_effect": "无效沟通",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "坐下"
+      ],
+      "character_type": "下属"
+    },
+    "vector_text": "命令 无奈 软弱 坐下 命令 坐下",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.8
+    },
+    "semantic_summary": "简短命令体现角色的被动",
+    "annotated_at": 1770225140.6523664
+  },
+  {
+    "id": "1300064_ep5_line_10",
+    "text": "接着",
+    "source": {
+      "media_id": "1300064_ep5",
+      "start": 12.529,
+      "end": 13.329
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "得意",
+      "tone": "肯定",
+      "primary_function": "降维打击",
+      "style_effect": "蜜汁自信",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "接着"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 得意 肯定 接着 命令 接着",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.8
+    },
+    "semantic_summary": "简短推进剧情，体现主角掌控力",
+    "annotated_at": 1770225140.6523664
+  }
+]

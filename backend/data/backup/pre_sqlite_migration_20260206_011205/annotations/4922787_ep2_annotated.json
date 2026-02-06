@@ -1,0 +1,181 @@
+[
+  {
+    "id": "4922787_ep2_line_0",
+    "text": "你胡说你胡说你胡说",
+    "source": {
+      "media_id": "4922787_ep2",
+      "start": 0.0,
+      "end": 1.87
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "愤怒",
+      "tone": "强硬",
+      "primary_function": "强行解释",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "威胁",
+        "命令"
+      ],
+      "can_lead_to": [
+        "反问",
+        "嘲讽"
+      ],
+      "keywords": [
+        "胡说",
+        "重复"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "答句 愤怒 强硬 你胡说你胡说你胡说 反问 嘲讽 胡说 重复",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.87
+    },
+    "semantic_summary": "通过重复强调制造强烈冲突，适用于反派角色在混乱中强行解释自身立场",
+    "annotated_at": 1770225272.377207
+  },
+  {
+    "id": "4922787_ep2_line_1",
+    "text": "我没有胡说",
+    "source": {
+      "media_id": "4922787_ep2",
+      "start": 2.17,
+      "end": 2.95
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "冷静",
+      "tone": "质质疑",
+      "primary_function": "身份反转",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "命令",
+        "威胁"
+      ],
+      "can_lead_to": [
+        "反问",
+        "答句"
+      ],
+      "keywords": [
+        "胡说",
+        "否认"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "答句 冷静 质质疑 我没有胡说 反问 答句 胡说 否认",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.78
+    },
+    "semantic_summary": "主角冷静否认指控，暗示潜在危机，可引发观众对真相的思考",
+    "annotated_at": 1770225272.377207
+  },
+  {
+    "id": "4922787_ep2_line_2",
+    "text": "我拿我们多年的友情发誓",
+    "source": {
+      "media_id": "4922787_ep2",
+      "start": 3.71,
+      "end": 5.33
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "无奈",
+      "tone": "恳求",
+      "primary_function": "场景嫁接",
+      "style_effect": "自嘲解构",
+      "can_follow": [
+        "命令",
+        "威胁"
+      ],
+      "can_lead_to": [
+        "反问",
+        "答句"
+      ],
+      "keywords": [
+        "友情",
+        "发誓"
+      ],
+      "character_type": "受害者"
+    },
+    "vector_text": "答句 无奈 恳求 我拿我们多年的友情发誓 反问 答句 友情 发誓",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.62
+    },
+    "semantic_summary": "用友情发誓表达脆弱，为后续剧情提供情感转折点",
+    "annotated_at": 1770225272.377207
+  },
+  {
+    "id": "4922787_ep2_line_3",
+    "text": "我真的没有胡说 我没有骗你",
+    "source": {
+      "media_id": "4922787_ep2",
+      "start": 5.67,
+      "end": 7.16
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "肯定",
+      "primary_function": "金句引用",
+      "style_effect": "蜜汁自信",
+      "can_follow": [
+        "命令",
+        "威胁"
+      ],
+      "can_lead_to": [
+        "反问",
+        "答句"
+      ],
+      "keywords": [
+        "没有胡说",
+        "骗你"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "答句 得意 肯定 我真的没有胡说 我没有骗你 反问 答句 没有胡说 骗你",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.49
+    },
+    "semantic_summary": "自信地否认指控，强化角色人设，适合突出主角的坚定形象",
+    "annotated_at": 1770225272.377207
+  },
+  {
+    "id": "4922787_ep2_line_4",
+    "text": "他死了",
+    "source": {
+      "media_id": "4922787_ep2",
+      "start": 9.63,
+      "end": 10.71
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "震惊",
+      "tone": "质疑",
+      "primary_function": "降维打击",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "命令",
+        "威胁"
+      ],
+      "can_lead_to": [
+        "反问",
+        "答句"
+      ],
+      "keywords": [
+        "死"
+      ],
+      "character_type": "旁观者"
+    },
+    "vector_text": "答句 震惊 质疑 他死了 反问 答句 死",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.08
+    },
+    "semantic_summary": "用死亡信息制造强烈冲击，适用于剧情转折点的突然揭露",
+    "annotated_at": 1770225272.377207
+  }
+]

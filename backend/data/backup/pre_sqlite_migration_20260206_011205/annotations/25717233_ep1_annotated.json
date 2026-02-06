@@ -1,0 +1,324 @@
+[
+  {
+    "id": "25717233_ep1_line_0",
+    "text": "好好的一个家",
+    "source": {
+      "media_id": "25717233_ep1",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "无奈",
+      "tone": "软弱",
+      "primary_function": "场景嫁接",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "命令",
+        "答句"
+      ],
+      "can_lead_to": [
+        "反问",
+        "反讽"
+      ],
+      "keywords": [
+        "家",
+        "支离破碎"
+      ],
+      "character_type": "受害者"
+    },
+    "vector_text": "问句 无奈 软弱 好好的一个家 反问 反讽 家 支离破碎",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "通过家庭破碎的意象触发观众对生活脆弱性的共鸣，适合作为混剪开场的视觉化隐喻",
+    "annotated_at": 1770225166.833359
+  },
+  {
+    "id": "25717233_ep1_line_1",
+    "text": "突然变得支离破碎的",
+    "source": {
+      "media_id": "25717233_ep1",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "害怕",
+      "tone": "质疑",
+      "primary_function": "强行解释",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "问句",
+        "反问"
+      ],
+      "can_lead_to": [
+        "命令",
+        "威胁"
+      ],
+      "keywords": [
+        "支离破碎",
+        "突然"
+      ],
+      "character_type": "旁观者"
+    },
+    "vector_text": "答句 害怕 质疑 突然变得支离破碎的 命令 威胁 支离破碎 突然",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "用时间突变的表述暗示生活无常，可衔接情感转折点",
+    "annotated_at": 1770225166.833359
+  },
+  {
+    "id": "25717233_ep1_line_2",
+    "text": "这到底做了什么孽呀",
+    "source": {
+      "media_id": "25717233_ep1",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "愤怒",
+      "tone": "挑衅",
+      "primary_function": "身份反转",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "命令",
+        "威胁"
+      ],
+      "can_lead_to": [
+        "反问",
+        "嘲讽"
+      ],
+      "keywords": [
+        "做了什么孽",
+        "到底"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "问句 愤怒 挑衅 这到底做了什么孽呀 反问 嘲讽 做了什么孽 到底",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "质问命运的台词可制造因果反转，突出角色的无力感与愤怒情绪",
+    "annotated_at": 1770225166.833359
+  },
+  {
+    "id": "25717233_ep1_line_3",
+    "text": "好了   好了你也不要着急了",
+    "source": {
+      "media_id": "25717233_ep1",
+      "start": 0.0,
+      "end": 1.034
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "冷静",
+      "tone": "恳求",
+      "primary_function": "金句引用",
+      "style_effect": "蜜汁自信",
+      "can_follow": [
+        "反问",
+        "反讽"
+      ],
+      "can_lead_to": [
+        "命令",
+        "答句"
+      ],
+      "keywords": [
+        "好了",
+        "不要着急"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "答句 冷静 恳求 好了   好了你也不要着急了 命令 答句 好了 不要着急",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.03
+    },
+    "semantic_summary": "安抚性台词可缓解紧张氛围，适合用于情感修复场景的混剪",
+    "annotated_at": 1770225166.833359
+  },
+  {
+    "id": "25717233_ep1_line_4",
+    "text": "宝山他也不在镖局",
+    "source": {
+      "media_id": "25717233_ep1",
+      "start": 1.174,
+      "end": 3.374
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "傲慢",
+      "tone": "强硬",
+      "primary_function": "身份反转",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "答句",
+        "命令"
+      ],
+      "can_lead_to": [
+        "威胁",
+        "反问"
+      ],
+      "keywords": [
+        "宝山",
+        "不在镖局"
+      ],
+      "character_type": "皇帝/领导"
+    },
+    "vector_text": "命令 傲慢 强硬 宝山他也不在镖局 威胁 反问 宝山 不在镖局",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 2.2
+    },
+    "semantic_summary": "通过权威角色的陈述制造信息差，可触发观众对权力关系的思考",
+    "annotated_at": 1770225166.833359
+  },
+  {
+    "id": "25717233_ep1_line_5",
+    "text": "那就八成是跟着去了",
+    "source": {
+      "media_id": "25717233_ep1",
+      "start": 3.514,
+      "end": 5.344
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "肯定",
+      "primary_function": "降维打击",
+      "style_effect": "自嘲解构",
+      "can_follow": [
+        "命令",
+        "答句"
+      ],
+      "can_lead_to": [
+        "威胁",
+        "命令"
+      ],
+      "keywords": [
+        "八成",
+        "跟着去了"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "答句 得意 肯定 那就八成是跟着去了 威胁 命令 八成 跟着去了",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.83
+    },
+    "semantic_summary": "带有自信的推测可制造意外转折，适合用于反转剧情的混剪",
+    "annotated_at": 1770225166.833359
+  },
+  {
+    "id": "25717233_ep1_line_6",
+    "text": "不会有事的",
+    "source": {
+      "media_id": "25717233_ep1",
+      "start": 5.484,
+      "end": 7.314
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "冷静",
+      "tone": "肯定",
+      "primary_function": "强行解释",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "命令",
+        "威胁"
+      ],
+      "can_lead_to": [
+        "答句",
+        "命令"
+      ],
+      "keywords": [
+        "不会有事"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "答句 冷静 肯定 不会有事的 答句 命令 不会有事",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.83
+    },
+    "semantic_summary": "安抚性承诺可作为情绪缓释点，适合用于危机后的希望表达",
+    "annotated_at": 1770225166.833359
+  },
+  {
+    "id": "25717233_ep1_line_7",
+    "text": "你懂什么",
+    "source": {
+      "media_id": "25717233_ep1",
+      "start": 7.454,
+      "end": 8.714
+    },
+    "mashup_tags": {
+      "sentence_type": "反问",
+      "emotion": "嘲笑",
+      "tone": "挑衅",
+      "primary_function": "反差萌",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "命令",
+        "答句"
+      ],
+      "can_lead_to": [
+        "威胁",
+        "反讽"
+      ],
+      "keywords": [
+        "懂什么"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "反问 嘲笑 挑衅 你懂什么 威胁 反讽 懂什么",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.26
+    },
+    "semantic_summary": "质疑式台词可制造角色间认知差，适合用于情绪对冲的混剪",
+    "annotated_at": 1770225166.833359
+  },
+  {
+    "id": "25717233_ep1_line_8",
+    "text": "有他在 说不定更有事",
+    "source": {
+      "media_id": "25717233_ep1",
+      "start": 8.854,
+      "end": 12.344
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "得意",
+      "tone": "肯定",
+      "primary_function": "跨服聊天",
+      "style_effect": "双关大师",
+      "can_follow": [
+        "答句",
+        "反问"
+      ],
+      "can_lead_to": [
+        "命令",
+        "威胁"
+      ],
+      "keywords": [
+        "有他在",
+        "更有事"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 得意 肯定 有他在 说不定更有事 命令 威胁 有他在 更有事",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 3.49
+    },
+    "semantic_summary": "隐含的因果关系可串联多角色行动，适合用于多线叙事的混剪",
+    "annotated_at": 1770225166.833359
+  }
+]

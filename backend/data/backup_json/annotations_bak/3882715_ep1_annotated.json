@@ -1,0 +1,937 @@
+[
+  {
+    "id": "3882715_ep1_line_0",
+    "text": "那他为啥不入呢",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "无奈",
+      "tone": "质疑",
+      "primary_function": "反差萌",
+      "style_effect": "自嘲解构",
+      "can_follow": [
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "为啥",
+        "入"
+      ],
+      "character_type": "旁观者"
+    },
+    "vector_text": "问句 无奈 质疑 那他为啥不入呢 命令 为啥 入",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "通过质疑式提问制造角色间关系的反差",
+    "annotated_at": 1770225220.6169739
+  },
+  {
+    "id": "3882715_ep1_line_1",
+    "text": "我不让他入啊",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "嚣张",
+      "tone": "强硬",
+      "primary_function": "身份反转",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "反问"
+      ],
+      "keywords": [
+        "不",
+        "入"
+      ],
+      "character_type": "皇帝/领导"
+    },
+    "vector_text": "答句 嚣张 强硬 我不让他入啊 反问 不 入",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "强势回应体现权力关系的反转",
+    "annotated_at": 1770225220.6169739
+  },
+  {
+    "id": "3882715_ep1_line_2",
+    "text": "谁让他笑我字写的难看了",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "反问",
+      "emotion": "嘲讽",
+      "tone": "挑衅",
+      "primary_function": "反差萌",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "反问"
+      ],
+      "keywords": [
+        "笑",
+        "难看"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "反问 嘲讽 挑衅 谁让他笑我字写的难看了 反问 笑 难看",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "用反问句制造角色间幽默冲突",
+    "annotated_at": 1770225220.6169739
+  },
+  {
+    "id": "3882715_ep1_line_3",
+    "text": "你说你还挺记仇你这孩子",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "反问",
+      "emotion": "得意",
+      "tone": "傲慢",
+      "primary_function": "强行解释",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "威胁"
+      ],
+      "keywords": [
+        "记仇",
+        "孩子"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "反问 得意 傲慢 你说你还挺记仇你这孩子 威胁 记仇 孩子",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "通过反问句揭示角色性格的深层动机",
+    "annotated_at": 1770225220.6169739
+  },
+  {
+    "id": "3882715_ep1_line_4",
+    "text": "不光我记你们都得记",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "愤怒",
+      "tone": "强硬",
+      "primary_function": "身份反转",
+      "style_effect": "自嘲解构",
+      "can_follow": [
+        "威胁"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "记",
+        "大家"
+      ],
+      "character_type": "皇帝/领导"
+    },
+    "vector_text": "命令 愤怒 强硬 不光我记你们都得记 命令 记 大家",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "命令式表达强化角色权威感",
+    "annotated_at": 1770225220.6169739
+  },
+  {
+    "id": "3882715_ep1_line_5",
+    "text": "凭什么呀",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 0.0,
+      "end": 0.555
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "愤怒",
+      "tone": "质问",
+      "primary_function": "反差萌",
+      "style_effect": "谐音梗王",
+      "can_follow": [
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "凭什么"
+      ],
+      "character_type": "皇帝/领导"
+    },
+    "vector_text": "问句 愤怒 质问 凭什么呀 命令 凭什么",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.56
+    },
+    "semantic_summary": "质问句体现角色对规则的不满",
+    "annotated_at": 1770225220.6169739
+  },
+  {
+    "id": "3882715_ep1_line_6",
+    "text": "我宣布你们大家全都入我八大派",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 1.595,
+      "end": 3.595
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "狂怒",
+      "tone": "强硬",
+      "primary_function": "强行解释",
+      "style_effect": "无效沟通",
+      "can_follow": [
+        "威胁"
+      ],
+      "can_lead_to": [
+        "反问"
+      ],
+      "keywords": [
+        "入",
+        "八大派"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 狂怒 强硬 我宣布你们大家全都入我八大派 反问 入 八大派",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 2.0
+    },
+    "semantic_summary": "命令式表达制造角色间权力冲突",
+    "annotated_at": 1770225220.6169739
+  },
+  {
+    "id": "3882715_ep1_line_7",
+    "text": "吕先生你就是军师",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 5.595,
+      "end": 7.675
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "得意",
+      "tone": "傲慢",
+      "primary_function": "身份反转",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "反问"
+      ],
+      "keywords": [
+        "军师"
+      ],
+      "character_type": "智者/军师"
+    },
+    "vector_text": "命令 得意 傲慢 吕先生你就是军师 反问 军师",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 2.08
+    },
+    "semantic_summary": "用命令式称呼强化角色的智者身份",
+    "annotated_at": 1770225220.6169739
+  },
+  {
+    "id": "3882715_ep1_line_8",
+    "text": "你是左护法",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 8.715,
+      "end": 9.515
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "嚣张",
+      "tone": "强硬",
+      "primary_function": "身份反转",
+      "style_effect": "自嘲解构",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "左护法"
+      ],
+      "character_type": "左护法"
+    },
+    "vector_text": "命令 嚣张 强硬 你是左护法 命令 左护法",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.8
+    },
+    "semantic_summary": "直接称呼体现角色在权力结构中的定位",
+    "annotated_at": 1770225220.6169739
+  },
+  {
+    "id": "3882715_ep1_line_9",
+    "text": "谁谁我",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 9.995,
+      "end": 10.715
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "惊讶",
+      "tone": "质疑",
+      "primary_function": "反差萌",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "谁",
+        "谁"
+      ],
+      "character_type": "旁观者"
+    },
+    "vector_text": "问句 惊讶 质疑 谁谁我 命令 谁 谁",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.72
+    },
+    "semantic_summary": "重复问句制造角色间的意外互动",
+    "annotated_at": 1770225220.6169739
+  },
+  {
+    "id": "3882715_ep1_line_10",
+    "text": "你是右护法",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 11.355,
+      "end": 11.915
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "嚣张",
+      "tone": "强硬",
+      "primary_function": "身份反转",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "右护法"
+      ],
+      "character_type": "右护法"
+    },
+    "vector_text": "命令 嚣张 强硬 你是右护法 命令 右护法",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.56
+    },
+    "semantic_summary": "直接称呼体现角色在权力结构中的定位",
+    "annotated_at": 1770225220.6169739
+  },
+  {
+    "id": "3882715_ep1_line_11",
+    "text": "一",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 12.155,
+      "end": 12.395
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "荒诞",
+      "tone": "质疑",
+      "primary_function": "一本正经胡说",
+      "style_effect": "谐音梗王",
+      "can_follow": [
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "一"
+      ],
+      "character_type": "搞笑角色"
+    },
+    "vector_text": "问句 荒诞 质疑 一 命令 一",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.24
+    },
+    "semantic_summary": "单字问句制造荒诞感",
+    "annotated_at": 1770225220.6169739
+  },
+  {
+    "id": "3882715_ep1_line_12",
+    "text": "啊",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 12.635,
+      "end": 12.875
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "搞笑",
+      "tone": "软弱",
+      "primary_function": "反差萌",
+      "style_effect": "蜜汁自信",
+      "can_follow": [
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "啊"
+      ],
+      "character_type": "受害者"
+    },
+    "vector_text": "问句 搞笑 软弱 啊 命令 啊",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.24
+    },
+    "semantic_summary": "感叹词制造角色的无厘头反应",
+    "annotated_at": 1770225220.6169739
+  },
+  {
+    "id": "3882715_ep1_line_13",
+    "text": "你除了做饭还会干啥",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 13.035,
+      "end": 14.395
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "嚣张",
+      "tone": "挑衅",
+      "primary_function": "反差萌",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "做饭",
+        "干啥"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "问句 嚣张 挑衅 你除了做饭还会干啥 命令 做饭 干啥",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.36
+    },
+    "semantic_summary": "反问句体现角色的多面性",
+    "annotated_at": 1770225220.6169739
+  },
+  {
+    "id": "3882715_ep1_line_14",
+    "text": "还会吃饭",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 14.955,
+      "end": 15.515
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "傲慢",
+      "primary_function": "降维打击",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "吃饭"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "答句 得意 傲慢 还会吃饭 命令 吃饭",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.56
+    },
+    "semantic_summary": "简短答句制造角色间的实力对比",
+    "annotated_at": 1770225220.6169739
+  },
+  {
+    "id": "3882715_ep1_line_15",
+    "text": "那你还当你的厨子吧",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 15.995,
+      "end": 16.955
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "嘲笑",
+      "tone": "强硬",
+      "primary_function": "反差萌",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "问句"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "厨子",
+        "当"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "命令 嘲笑 强硬 那你还当你的厨子吧 命令 厨子 当",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.96
+    },
+    "semantic_summary": "用反差感制造笑点，反派命令式语气与‘厨子’的荒诞结合",
+    "annotated_at": 1770225237.031505
+  },
+  {
+    "id": "3882715_ep1_line_16",
+    "text": "?? 那我呢",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 18.155,
+      "end": 18.475
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "无奈",
+      "tone": "软弱",
+      "primary_function": "身份反转",
+      "style_effect": "自嘲解构",
+      "can_follow": [
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "那我呢"
+      ],
+      "character_type": "下属"
+    },
+    "vector_text": "问句 无奈 软弱 ?? 那我呢 命令 那我呢",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.32
+    },
+    "semantic_summary": "下属用疑问句表达迷茫，为后续身份反转埋下伏笔",
+    "annotated_at": 1770225237.031505
+  },
+  {
+    "id": "3882715_ep1_line_17",
+    "text": "名誉掌门一兼任银钱使",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 19.275,
+      "end": 21.275
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "嚣张",
+      "primary_function": "身份反转",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "问句"
+      ],
+      "keywords": [
+        "名誉掌门",
+        "兼任"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "答句 得意 嚣张 名誉掌门一兼任银钱使 问句 名誉掌门 兼任",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 2.0
+    },
+    "semantic_summary": "主角自夸身份，制造反差感，为混剪提供身份反转点",
+    "annotated_at": 1770225237.031505
+  },
+  {
+    "id": "3882715_ep1_line_18",
+    "text": "什么使",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 21.835,
+      "end": 22.075
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "疑惑",
+      "tone": "质疑",
+      "primary_function": "强行解释",
+      "style_effect": "谐音梗王",
+      "can_follow": [
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "什么使"
+      ],
+      "character_type": "旁观者"
+    },
+    "vector_text": "问句 疑惑 质疑 什么使 命令 什么使",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.24
+    },
+    "semantic_summary": "旁观者对‘使’的疑问，触发谐音梗效果",
+    "annotated_at": 1770225237.031505
+  },
+  {
+    "id": "3882715_ep1_line_19",
+    "text": "什么使",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 22.075,
+      "end": 22.315
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "疑惑",
+      "tone": "质疑",
+      "primary_function": "强行解释",
+      "style_effect": "谐音梗王",
+      "can_follow": [
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "什么使"
+      ],
+      "character_type": "旁观者"
+    },
+    "vector_text": "问句 疑惑 质疑 什么使 命令 什么使",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.24
+    },
+    "semantic_summary": "重复疑问句强化疑惑，突出谐音梗的喜剧效果",
+    "annotated_at": 1770225237.031505
+  },
+  {
+    "id": "3882715_ep1_line_20",
+    "text": "就是专门给钱的",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 23.275,
+      "end": 24.315
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "冷静",
+      "tone": "肯定",
+      "primary_function": "强行解释",
+      "style_effect": "谐音梗王",
+      "can_follow": [
+        "问句"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "专门给钱的"
+      ],
+      "character_type": "智者/军师"
+    },
+    "vector_text": "答句 冷静 肯定 就是专门给钱的 命令 专门给钱的",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.04
+    },
+    "semantic_summary": "军师用简洁回答解释‘使’的含义，形成谐音梗",
+    "annotated_at": 1770225237.031505
+  },
+  {
+    "id": "3882715_ep1_line_21",
+    "text": "官还不小吗",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 26.795,
+      "end": 27.595
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "嚣张",
+      "tone": "强硬",
+      "primary_function": "身份反转",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "官还不小吗"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 嚣张 强硬 官还不小吗 命令 官还不小吗",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.8
+    },
+    "semantic_summary": "主角用命令式语气强调身份地位，制造反差",
+    "annotated_at": 1770225237.031505
+  },
+  {
+    "id": "3882715_ep1_line_22",
+    "text": "S 小贝五十文",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 28.475,
+      "end": 28.795
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "嚣张",
+      "primary_function": "金句引用",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "S 小贝五十文"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "答句 得意 嚣张 S 小贝五十文 命令 S 小贝五十文",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.32
+    },
+    "semantic_summary": "主角用夸张数字体现财富，形成金句式表达",
+    "annotated_at": 1770225237.031505
+  },
+  {
+    "id": "3882715_ep1_line_23",
+    "text": "TD 小贝五十文",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 28.795,
+      "end": 29.435
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "嚣张",
+      "primary_function": "金句引用",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "TD 小贝五十文"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "答句 得意 嚣张 TD 小贝五十文 命令 TD 小贝五十文",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.64
+    },
+    "semantic_summary": "主角用数字强调财富，制造反差感",
+    "annotated_at": 1770225237.031505
+  },
+  {
+    "id": "3882715_ep1_line_24",
+    "text": "小贝五十文",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 29.515,
+      "end": 30.315
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "嚣张",
+      "primary_function": "金句引用",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "小贝五十文"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "答句 得意 嚣张 小贝五十文 命令 小贝五十文",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.8
+    },
+    "semantic_summary": "主角用具体数字体现财富，形成金句",
+    "annotated_at": 1770225237.031505
+  },
+  {
+    "id": "3882715_ep1_line_25",
+    "text": "拿着花去",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 31.115,
+      "end": 31.675
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "鼓励",
+      "tone": "肯定",
+      "primary_function": "反差萌",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "拿着花去"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 鼓励 肯定 拿着花去 命令 拿着花去",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.56
+    },
+    "semantic_summary": "主角用鼓励命令制造反差，‘花’的隐喻增强趣味",
+    "annotated_at": 1770225237.031505
+  },
+  {
+    "id": "3882715_ep1_line_26",
+    "text": "你的功劳本掌门记下了",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 32.075,
+      "end": 33.115
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "嚣张",
+      "primary_function": "身份反转",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "功劳",
+        "记下"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "答句 得意 嚣张 你的功劳本掌门记下了 命令 功劳 记下",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.04
+    },
+    "semantic_summary": "主角强调功劳记录，突出身份地位",
+    "annotated_at": 1770225237.031505
+  },
+  {
+    "id": "3882715_ep1_line_27",
+    "text": "以后一定要再接再厉啊",
+    "source": {
+      "media_id": "3882715_ep1",
+      "start": 33.595,
+      "end": 34.555
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "鼓励",
+      "tone": "肯定",
+      "primary_function": "反差萌",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "再接再厉"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 鼓励 肯定 以后一定要再接再厉啊 命令 再接再厉",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.96
+    },
+    "semantic_summary": "用鼓励式命令制造反差，强化角色自信",
+    "annotated_at": 1770225237.031505
+  }
+]

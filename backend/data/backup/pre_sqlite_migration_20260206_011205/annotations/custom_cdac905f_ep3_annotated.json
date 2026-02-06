@@ -1,0 +1,308 @@
+[
+  {
+    "id": "custom_cdac905f_ep3_line_0",
+    "text": "那就只能有劳卢参军了",
+    "source": {
+      "media_id": "custom_cdac905f_ep3",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "无奈",
+      "tone": "强硬",
+      "primary_function": "身份反转",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "问句",
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令",
+        "威胁"
+      ],
+      "keywords": [
+        "卢参军"
+      ],
+      "character_type": "皇帝/领导"
+    },
+    "vector_text": "命令 无奈 强硬 那就只能有劳卢参军了 命令 威胁 卢参军",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "暗示主角身份与任务的矛盾，用于制造角色身份混淆的混剪点",
+    "annotated_at": 1770127887.6116476
+  },
+  {
+    "id": "custom_cdac905f_ep3_line_1",
+    "text": "走吧",
+    "source": {
+      "media_id": "custom_cdac905f_ep3",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "冷静",
+      "tone": "强硬",
+      "primary_function": "场景嫁接",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "问句"
+      ],
+      "can_lead_to": [
+        "命令",
+        "答句"
+      ],
+      "keywords": [
+        "走"
+      ],
+      "character_type": "英雄/主角"
+    },
+    "vector_text": "命令 冷静 强硬 走吧 命令 答句 走",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "简短动作指令，用于快速切换场景，保持混剪节奏",
+    "annotated_at": 1770127887.6116476
+  },
+  {
+    "id": "custom_cdac905f_ep3_line_2",
+    "text": "你们要带我去哪儿",
+    "source": {
+      "media_id": "custom_cdac905f_ep3",
+      "start": 0.061,
+      "end": 1.101
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "害怕",
+      "tone": "质询",
+      "primary_function": "跨服聊天",
+      "style_effect": "反差萌",
+      "can_follow": [
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令",
+        "答句"
+      ],
+      "keywords": [
+        "带去哪"
+      ],
+      "character_type": "受害者"
+    },
+    "vector_text": "问句 害怕 质询 你们要带我去哪儿 命令 答句 带去哪",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.04
+    },
+    "semantic_summary": "表达对未知目的地的恐惧，用于制造角色心理冲突的混剪点",
+    "annotated_at": 1770127887.6116476
+  },
+  {
+    "id": "custom_cdac905f_ep3_line_3",
+    "text": "当然是留守府了",
+    "source": {
+      "media_id": "custom_cdac905f_ep3",
+      "start": 1.381,
+      "end": 2.981
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "傲慢",
+      "primary_function": "身份反转",
+      "style_effect": "自嘲解构",
+      "can_follow": [
+        "问句"
+      ],
+      "can_lead_to": [
+        "命令",
+        "威胁"
+      ],
+      "keywords": [
+        "留守府"
+      ],
+      "character_type": "皇帝/领导"
+    },
+    "vector_text": "答句 得意 傲慢 当然是留守府了 命令 威胁 留守府",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.6
+    },
+    "semantic_summary": "明确地点回应，用于强化角色地位与场景的混剪对比",
+    "annotated_at": 1770127887.6116476
+  },
+  {
+    "id": "custom_cdac905f_ep3_line_4",
+    "text": "你每隔一段时间",
+    "source": {
+      "media_id": "custom_cdac905f_ep3",
+      "start": 3.461,
+      "end": 4.781
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "冷静",
+      "tone": "强硬",
+      "primary_function": "强行解释",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "问句",
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令",
+        "威胁"
+      ],
+      "keywords": [
+        "每隔一段时间"
+      ],
+      "character_type": "智者/军师"
+    },
+    "vector_text": "命令 冷静 强硬 你每隔一段时间 命令 威胁 每隔一段时间",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.32
+    },
+    "semantic_summary": "描述周期性行为，用于解释复杂事件的混剪逻辑",
+    "annotated_at": 1770127887.6116476
+  },
+  {
+    "id": "custom_cdac905f_ep3_line_5",
+    "text": "都会拿出一些豹黄",
+    "source": {
+      "media_id": "custom_cdac905f_ep3",
+      "start": 5.461,
+      "end": 6.781
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "嚣张",
+      "tone": "挑衅",
+      "primary_function": "降维打击",
+      "style_effect": "蜜汁自信",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "威胁"
+      ],
+      "keywords": [
+        "拿出"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "命令 嚣张 挑衅 都会拿出一些豹黄 威胁 拿出",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.32
+    },
+    "semantic_summary": "展示资源控制，用于制造权力对比的混剪点",
+    "annotated_at": 1770127887.6116476
+  },
+  {
+    "id": "custom_cdac905f_ep3_line_6",
+    "text": "出来卖",
+    "source": {
+      "media_id": "custom_cdac905f_ep3",
+      "start": 6.781,
+      "end": 7.461
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "嚣张",
+      "tone": "挑衅",
+      "primary_function": "反差萌",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "威胁"
+      ],
+      "keywords": [
+        "卖"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "命令 嚣张 挑衅 出来卖 威胁 卖",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.68
+    },
+    "semantic_summary": "轻描淡写地描述交易，用于突出反派的荒诞感",
+    "annotated_at": 1770127887.6116476
+  },
+  {
+    "id": "custom_cdac905f_ep3_line_7",
+    "text": "想必此物",
+    "source": {
+      "media_id": "custom_cdac905f_ep3",
+      "start": 7.861,
+      "end": 8.861
+    },
+    "mashup_tags": {
+      "sentence_type": "反问",
+      "emotion": "震惊",
+      "tone": "质疑",
+      "primary_function": "金句引用",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "答句"
+      ],
+      "can_lead_to": [
+        "反问",
+        "答句"
+      ],
+      "keywords": [
+        "此物"
+      ],
+      "character_type": "智者/军师"
+    },
+    "vector_text": "反问 震惊 质疑 想必此物 反问 答句 此物",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.0
+    },
+    "semantic_summary": "提出关键性疑问，用于制造逻辑转折的混剪点",
+    "annotated_at": 1770127887.6116476
+  },
+  {
+    "id": "custom_cdac905f_ep3_line_8",
+    "text": "定是种在留守府无疑了",
+    "source": {
+      "media_id": "custom_cdac905f_ep3",
+      "start": 9.741,
+      "end": 11.861
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "傲慢",
+      "primary_function": "身份反转",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "反问"
+      ],
+      "can_lead_to": [
+        "命令",
+        "威胁"
+      ],
+      "keywords": [
+        "留守府"
+      ],
+      "character_type": "皇帝/领导"
+    },
+    "vector_text": "答句 得意 傲慢 定是种在留守府无疑了 命令 威胁 留守府",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 2.12
+    },
+    "semantic_summary": "最终确认地点，用于完成身份与场景的混剪闭环",
+    "annotated_at": 1770127887.6116476
+  }
+]

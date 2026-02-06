@@ -1,0 +1,22 @@
+# 1. 安装依赖
+pip install -r requirements.txt
+
+# 2. 初始化数据库
+cd backend
+python scripts/init_database.py
+
+# 3. 迁移现有数据（如有）
+cd backend
+python scripts/migrate_json_to_sqlite.py
+
+# 4. 验证设置
+cd backend
+python scripts/verify_setup.py
+
+# 5. 启动后台服务
+cd backend
+python main.py
+
+# 6. 启动前台服务
+ cd D:\AI\CineGraph-AI\frontend-ui>
+ npm run tauri dev

@@ -1,0 +1,308 @@
+[
+  {
+    "id": "35235151_line_0",
+    "text": "那就只能有劳卢参军了",
+    "source": {
+      "media_id": "35235151",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "无奈",
+      "tone": "强硬",
+      "primary_function": "身份反转",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "问句",
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令",
+        "威胁"
+      ],
+      "keywords": [
+        "卢参军"
+      ],
+      "character_type": "皇帝/领导"
+    },
+    "vector_text": "命令 无奈 强硬 那就只能有劳卢参军了 命令 威胁 卢参军",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "混剪中用于暗示权力结构的被动接受，通过命令句式展现皇帝的无奈处境",
+    "annotated_at": 1770225203.149629
+  },
+  {
+    "id": "35235151_line_1",
+    "text": "走吧",
+    "source": {
+      "media_id": "35235151",
+      "start": 0.0,
+      "end": 0.0
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "冷静",
+      "tone": "强硬",
+      "primary_function": "场景嫁接",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "问句",
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令",
+        "威胁"
+      ],
+      "keywords": [
+        "走吧"
+      ],
+      "character_type": "皇帝/领导"
+    },
+    "vector_text": "命令 冷静 强硬 走吧 命令 威胁 走吧",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0
+    },
+    "semantic_summary": "简洁命令句用于快速切换场景，体现权力关系的强制性推进",
+    "annotated_at": 1770225203.149629
+  },
+  {
+    "id": "35235151_line_2",
+    "text": "你们要带我去哪儿",
+    "source": {
+      "media_id": "35235151",
+      "start": 0.061,
+      "end": 1.101
+    },
+    "mashup_tags": {
+      "sentence_type": "问句",
+      "emotion": "害怕",
+      "tone": "质疑",
+      "primary_function": "反差萌",
+      "style_effect": "自嘲解构",
+      "can_follow": [
+        "答句",
+        "命令"
+      ],
+      "can_lead_to": [
+        "答句",
+        "威胁"
+      ],
+      "keywords": [
+        "带去哪"
+      ],
+      "character_type": "受害者"
+    },
+    "vector_text": "问句 害怕 质疑 你们要带我去哪儿 答句 威胁 带去哪",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.04
+    },
+    "semantic_summary": "质问式台词展现受压迫者的不安，用于制造角色心理张力",
+    "annotated_at": 1770225203.149629
+  },
+  {
+    "id": "35235151_line_3",
+    "text": "当然是留守府了",
+    "source": {
+      "media_id": "35235151",
+      "start": 1.381,
+      "end": 2.981
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "嚣张",
+      "primary_function": "身份反转",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "问句"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "留守府"
+      ],
+      "character_type": "皇帝/领导"
+    },
+    "vector_text": "答句 得意 嚣张 当然是留守府了 命令 留守府",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.6
+    },
+    "semantic_summary": "自信回答体现权力掌控，用于强化角色身份与场景关联",
+    "annotated_at": 1770225203.149629
+  },
+  {
+    "id": "35235151_line_4",
+    "text": "你每隔一段时间",
+    "source": {
+      "media_id": "35235151",
+      "start": 3.461,
+      "end": 4.781
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "冷静",
+      "tone": "强硬",
+      "primary_function": "场景嫁接",
+      "style_effect": "正话反说",
+      "can_follow": [
+        "问句",
+        "答句"
+      ],
+      "can_lead_to": [
+        "命令",
+        "威胁"
+      ],
+      "keywords": [
+        "每隔一段时间"
+      ],
+      "character_type": "军师"
+    },
+    "vector_text": "命令 冷静 强硬 你每隔一段时间 命令 威胁 每隔一段时间",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.32
+    },
+    "semantic_summary": "时间频率命令用于构建节奏感，暗示后续行动逻辑",
+    "annotated_at": 1770225203.149629
+  },
+  {
+    "id": "35235151_line_5",
+    "text": "都会拿出一些豹黄",
+    "source": {
+      "media_id": "35235151",
+      "start": 5.461,
+      "end": 6.781
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "得意",
+      "tone": "嚣张",
+      "primary_function": "身份反转",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "命令",
+        "威胁"
+      ],
+      "keywords": [
+        "拿出豹黄"
+      ],
+      "character_type": "军师"
+    },
+    "vector_text": "命令 得意 嚣张 都会拿出一些豹黄 命令 威胁 拿出豹黄",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.32
+    },
+    "semantic_summary": "军师的自信动作描述，强化内部权力运作的隐秘性",
+    "annotated_at": 1770225203.149629
+  },
+  {
+    "id": "35235151_line_6",
+    "text": "出来卖",
+    "source": {
+      "media_id": "35235151",
+      "start": 6.781,
+      "end": 7.461
+    },
+    "mashup_tags": {
+      "sentence_type": "命令",
+      "emotion": "嚣张",
+      "tone": "挑衅",
+      "primary_function": "降维打击",
+      "style_effect": "谐音梗王",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "威胁"
+      ],
+      "keywords": [
+        "出来卖"
+      ],
+      "character_type": "反派"
+    },
+    "vector_text": "命令 嚣张 挑衅 出来卖 威胁 出来卖",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 0.68
+    },
+    "semantic_summary": "反派挑衅式命令，通过谐音制造荒诞反差，突出权力挑衅",
+    "annotated_at": 1770225203.149629
+  },
+  {
+    "id": "35235151_line_7",
+    "text": "想必此物",
+    "source": {
+      "media_id": "35235151",
+      "start": 7.861,
+      "end": 8.861
+    },
+    "mashup_tags": {
+      "sentence_type": "反问",
+      "emotion": "震惊",
+      "tone": "质疑",
+      "primary_function": "金句引用",
+      "style_effect": "夸张比喻",
+      "can_follow": [
+        "命令"
+      ],
+      "can_lead_to": [
+        "答句"
+      ],
+      "keywords": [
+        "此物"
+      ],
+      "character_type": "智者/军师"
+    },
+    "vector_text": "反问 震惊 质疑 想必此物 答句 此物",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 1.0
+    },
+    "semantic_summary": "智者反问用于点明关键，制造逻辑转折的悬念",
+    "annotated_at": 1770225203.149629
+  },
+  {
+    "id": "35235151_line_8",
+    "text": "定是种在留守府无疑了",
+    "source": {
+      "media_id": "35235151",
+      "start": 9.741,
+      "end": 11.861
+    },
+    "mashup_tags": {
+      "sentence_type": "答句",
+      "emotion": "得意",
+      "tone": "嚣张",
+      "primary_function": "身份反转",
+      "style_effect": "反讽高级黑",
+      "can_follow": [
+        "反问"
+      ],
+      "can_lead_to": [
+        "命令"
+      ],
+      "keywords": [
+        "留守府"
+      ],
+      "character_type": "智者/军师"
+    },
+    "vector_text": "答句 得意 嚣张 定是种在留守府无疑了 命令 留守府",
+    "editing_params": {
+      "rhythm": "",
+      "duration": 2.12
+    },
+    "semantic_summary": "精准回答强化军师的洞察力，用于构建权力逻辑闭环",
+    "annotated_at": 1770225203.149629
+  }
+]
