@@ -92,6 +92,7 @@ class UnifiedStore:
             movie.year = movie_data.get('year', movie.year)
             movie.media_type = movie_data.get('media_type', movie.media_type or 'movie')
             movie.folder = movie_data.get('folder', movie.folder)
+            movie.folder_path = movie_data.get('folder_path', movie.folder_path)
             movie.poster_url = movie_data.get('poster_url', movie.poster_url)
             movie.local_poster = movie_data.get('local_poster', movie.local_poster)
             movie.director = movie_data.get('director', movie.director)
@@ -103,8 +104,7 @@ class UnifiedStore:
             movie.release_date = movie_data.get('release_date', movie.release_date)
             movie.douban_url = movie_data.get('douban_url', movie.douban_url)
             movie.rating = movie_data.get('rating', movie.rating)
-            movie.crossover_genre = movie_data.get('crossover_genre', movie.crossover_genre)
-            movie.status = movie_data.get('status', movie.status or 'pending')
+            movie.status_import = movie_data.get('status_import', movie.status_import or 'pending')
             movie.status_annotate = movie_data.get('status_annotate', movie.status_annotate or 'pending')
             movie.status_vectorize = movie_data.get('status_vectorize', movie.status_vectorize or 'pending')
             movie.import_batch = movie_data.get('import_batch', movie.import_batch)
@@ -141,6 +141,33 @@ class UnifiedStore:
                 return True
             return False
     
+    def delete_episode(self, movie_id: str, episode_number: int) -> Tuple[bool, int]:
+        """
+        删除影片的某一集
+        
+        Args:
+            movie_id: 影片ID
+            episode_number: 集数
+            
+        Returns:
+            (是否成功, 剩余集数)
+        """
+        with self.session_scope() as session:
+            episode = session.query(Episode).filter(
+                Episode.movie_id == movie_id,
+                Episode.episode_number == episode_number
+            ).first()
+            
+            if not episode:
+                return (False, -1)
+            
+            session.delete(episode)
+            
+            # 计算剩余集数
+            remaining = session.query(Episode).filter(Episode.movie_id == movie_id).count()
+            
+            return (True, remaining)
+    
     def _delete_vector_data(self, movie_id: str):
         """删除 ChromaDB 中的向量数据"""
         try:
@@ -155,8 +182,8 @@ class UnifiedStore:
         with self.session_scope() as session:
             movie = session.query(Movie).filter(Movie.id == movie_id).first()
             if movie:
-                if 'status' in status_updates:
-                    movie.status = status_updates['status']
+                if 'status_import' in status_updates:
+                    movie.status_import = status_updates['status_import']
                 if 'status_annotate' in status_updates:
                     movie.status_annotate = status_updates['status_annotate']
                 if 'status_vectorize' in status_updates:
@@ -193,12 +220,23 @@ class UnifiedStore:
                 # 检查是否已存在
                 existing = session.query(Line).filter(Line.line_id == line.line_id).first()
                 if existing:
-                    # 更新现有记录
-                    for key in ['text', 'vector_text', 'start_time', 'end_time', 'duration',
-                               'sentence_type', 'emotion', 'tone', 'character_type',
-                               'can_follow_types', 'can_lead_to_types', 'keywords',
-                               'primary_function', 'style_effect', 'editing_rhythm',
-                               'semantic_summary', 'intensity', 'hook_score', 'ambiguity']:
+                    # 更新现有记录 - 使用新的字段名
+                    update_fields = [
+                        # 基础字段
+                        'text', 'vector_text', 'start_time', 'end_time', 'duration', 'character_name',
+                        # 第一层：基础标签
+                        'sentence_type', 'emotion', 'tone', 'character_type', 'can_follow', 'can_lead_to',
+                        # 第二层：潜台词
+                        'context_dye', 'context_intensity', 'subtext_type', 'subtext_description',
+                        'is_meme', 'meme_name', 'social_function',
+                        'surface_sentiment', 'actual_sentiment', 'sentiment_polarity',
+                        # 第三层：隐喻
+                        'metaphor_category', 'metaphor_keyword', 'metaphor_direction', 
+                        'metaphor_strength', 'semantic_field',
+                        # 算法字段
+                        'intensity', 'hook_score', 'ambiguity', 'viral_potential'
+                    ]
+                    for key in update_fields:
                         setattr(existing, key, getattr(line, key))
                     existing.updated_at = datetime.utcnow()
                 else:

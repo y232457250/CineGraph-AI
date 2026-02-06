@@ -25,7 +25,7 @@ from app.ingestion import enricher
 
 # 语义标注和向量化模块
 try:
-    from app.ingestion.semantic_annotator import SemanticAnnotator, LLMProviderManager
+    from app.ingestion.semantic_annotator import SemanticAnnotator, LLMProviderManager, load_checkpoint, delete_checkpoint
     from app.ingestion.vectorizer import Vectorizer
     ANNOTATION_AVAILABLE = True
 except ImportError as e:
@@ -46,6 +46,8 @@ class AnnotateRequest(BaseModel):
     concurrent_requests: int = None
     max_retries: int = None
     save_interval: int = None
+    # 断点续标
+    resume_from_checkpoint: bool = False
 
 class VectorizeRequest(BaseModel):
     annotation_file: str = None  # 单文件模式（向后兼容）
@@ -65,6 +67,7 @@ class NextLineRequest(BaseModel):
 # 全局状态
 annotation_status = {
     "running": False,
+    "paused": False,
     "progress": 0,
     "total": 0,
     "current_movie": "",
@@ -73,6 +76,8 @@ annotation_status = {
 
 # 标注取消事件
 annotation_cancel_event = threading.Event()
+# 标注暂停事件（set = 暂停）
+annotation_pause_event = threading.Event()
 
 vectorize_status = {
     "running": False,
@@ -283,6 +288,7 @@ class MediaScanner:
                 "douban_id": douban_id,
                 "title": movie_name,
                 "folder": folder_name,
+                "folder_path": str(folder_path),
                 "video_path": video_file,
                 "subtitle_path": subtitle_file,
                 "video_count": len(video_files),
@@ -376,15 +382,20 @@ async def scan_directory(request: ScanRequest):
             existing = existing_map[movie_id]
             old_video_count = existing.get('video_count', 0)
             old_subtitle_count = existing.get('subtitle_count', 0)
-            old_episode_count = len(existing.get('episodes', []))
             
             new_video_count = movie.get('video_count', 0)
             new_subtitle_count = movie.get('subtitle_count', 0)
-            new_episode_count = len(movie.get('episodes', []))
+            
+            # 对于电视剧，额外比较剧集数
+            has_episode_change = False
+            if movie.get('media_type') == 'tv':
+                old_episode_count = len(existing.get('episodes', []))
+                new_episode_count = len(movie.get('episodes', []))
+                has_episode_change = (new_episode_count != old_episode_count)
             
             if (new_video_count != old_video_count or 
                 new_subtitle_count != old_subtitle_count or
-                new_episode_count != old_episode_count):
+                has_episode_change):
                 movie['_scan_status'] = 'updated'
             else:
                 movie['_scan_status'] = 'unchanged'
@@ -468,17 +479,49 @@ async def list_library():
 
 @app.delete("/api/library/delete/{movie_id}")
 async def delete_from_library(movie_id: str):
-    """从影片库中删除指定影片"""
+    """从影片库中删除指定影片，同时清理标注文件和向量化数据"""
     try:
-        movies = metadata_store.load_movies()
-        original_count = len(movies)
-        movies = [m for m in movies if m.get('douban_id') != movie_id]
+        # 先获取影片信息（用于清理关联数据）
+        movie_info = metadata_store.get_movie(movie_id)
         
-        if len(movies) == original_count:
+        success = metadata_store.delete_movie(movie_id)
+        
+        if not success:
             raise HTTPException(status_code=404, detail="未找到该影片")
         
-        metadata_store.save_movies(movies, merge_existing=False)
-        return {"status": "ok", "deleted": movie_id}
+        # 清理标注文件
+        annotations_dir = Path(__file__).parent / "data" / "annotations"
+        deleted_annotations = []
+        if annotations_dir.exists():
+            # 删除电影标注：movie_id_annotated.json
+            ann_file = annotations_dir / f"{movie_id}_annotated.json"
+            if ann_file.exists():
+                ann_file.unlink()
+                deleted_annotations.append(str(ann_file.name))
+            # 删除剧集标注：movie_id_epN_annotated.json
+            for f in annotations_dir.glob(f"{movie_id}_ep*_annotated.json"):
+                f.unlink()
+                deleted_annotations.append(str(f.name))
+        
+        if deleted_annotations:
+            print(f"\U0001f5d1\ufe0f 已删除标注文件: {', '.join(deleted_annotations)}")
+        
+        # 清理向量化数据（ChromaDB）
+        try:
+            if ANNOTATION_AVAILABLE:
+                vectorizer_instance = Vectorizer()
+                # 删除电影向量数据
+                vectorizer_instance.store.delete_by_movie(movie_id)
+                # 如果是电视剧，也删除每集的向量数据
+                if movie_info and movie_info.get('media_type') == 'tv':
+                    for ep in movie_info.get('episodes', []):
+                        ep_id = f"{movie_id}_ep{ep.get('episode_number', 0)}"
+                        vectorizer_instance.store.delete_by_movie(ep_id)
+                print(f"\U0001f5d1\ufe0f 已清理向量化数据: {movie_id}")
+        except Exception as e:
+            print(f"\u26a0\ufe0f 清理向量化数据失败 ({movie_id}): {e}")
+        
+        return {"status": "ok", "deleted": movie_id, "cleaned_annotations": deleted_annotations}
     except HTTPException:
         raise
     except Exception as e:
@@ -487,31 +530,31 @@ async def delete_from_library(movie_id: str):
 
 @app.delete("/api/library/delete-episode/{movie_id}/{episode_number}")
 async def delete_episode_from_library(movie_id: str, episode_number: int):
-    """从影片库中删除指定影片的某一集"""
+    """从影片库中删除指定影片的某一集，同时清理关联的标注和向量数据"""
     try:
-        movies = metadata_store.load_movies()
+        success, remaining = metadata_store.delete_episode(movie_id, episode_number)
         
-        found_movie = None
-        for m in movies:
-            if m.get('douban_id') == movie_id:
-                found_movie = m
-                break
-        
-        if not found_movie:
-            raise HTTPException(status_code=404, detail="未找到该影片")
-        
-        episodes = found_movie.get('episodes', [])
-        original_count = len(episodes)
-        episodes = [ep for ep in episodes if ep.get('episode_number') != episode_number]
-        
-        if len(episodes) == original_count:
+        if not success:
             raise HTTPException(status_code=404, detail="未找到该集")
         
-        found_movie['episodes'] = episodes
-        found_movie['video_count'] = len(episodes)
+        # 清理该集的标注文件
+        annotations_dir = Path(__file__).parent / "data" / "annotations"
+        ep_ann_file = annotations_dir / f"{movie_id}_ep{episode_number}_annotated.json"
+        if ep_ann_file.exists():
+            ep_ann_file.unlink()
+            print(f"\U0001f5d1\ufe0f 已删除剧集标注: {ep_ann_file.name}")
         
-        metadata_store.save_movies(movies, merge_existing=False)
-        return {"status": "ok", "deleted_episode": episode_number, "remaining_episodes": len(episodes)}
+        # 清理该集的向量化数据
+        try:
+            if ANNOTATION_AVAILABLE:
+                ep_id = f"{movie_id}_ep{episode_number}"
+                vectorizer_instance = Vectorizer()
+                vectorizer_instance.store.delete_by_movie(ep_id)
+                print(f"\U0001f5d1\ufe0f 已清理剧集向量数据: {ep_id}")
+        except Exception as e:
+            print(f"\u26a0\ufe0f 清理剧集向量数据失败: {e}")
+        
+        return {"status": "ok", "deleted_episode": episode_number, "remaining_episodes": remaining}
     except HTTPException:
         raise
     except Exception as e:
@@ -523,19 +566,12 @@ async def update_library_item(movie_id: str, request: Request):
     """更新影片库中的指定影片信息"""
     try:
         update_data = await request.json()
-        movies = metadata_store.load_movies()
         
-        found = False
-        for i, m in enumerate(movies):
-            if m.get('douban_id') == movie_id:
-                movies[i].update(update_data)
-                found = True
-                break
+        success = metadata_store.update_movie(movie_id, update_data)
         
-        if not found:
+        if not success:
             raise HTTPException(status_code=404, detail="未找到该影片")
         
-        metadata_store.save_movies(movies)
         return {"status": "ok", "updated": movie_id}
     except HTTPException:
         raise
@@ -545,18 +581,17 @@ async def update_library_item(movie_id: str, request: Request):
 
 @app.post("/api/ingest/import")
 async def import_scan_results(request: Request):
-    """Persist scanned movies metadata to disk for later processing.
+    """将扫描结果持久化到数据库中。
 
-    This endpoint accepts either a raw JSON list of movie objects, or an
-    object with a `movies` key containing the list. It returns the saved
-    count on success.
+    接受 JSON 列表 [{}, ...] 或 { "movies": [...] } 格式。
+    会为每部影片创建数据库记录（含 episodes），并设置 status_import='done'。
     """
     try:
         payload = await request.json()
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid JSON body")
 
-    # Support both `[{}, ...]` and `{ "movies": [ ... ] }`
+    # 支持两种格式
     if isinstance(payload, dict) and 'movies' in payload:
         movies = payload.get('movies')
     else:
@@ -568,24 +603,58 @@ async def import_scan_results(request: Request):
     # 检查是否有新增或更新的内容
     has_changes = any(m.get('_scan_status') in ('new', 'updated') for m in movies)
     
-    # 移除临时的扫描状态字段
-    for m in movies:
-        m.pop('_scan_status', None)
-
-    # Save quickly and start background enrichment (non-blocking)
+    # 过滤：只保存 new 和 updated 的影片，跳过 unchanged
+    movies_to_save = [m for m in movies if m.get('_scan_status') in ('new', 'updated')]
+    unchanged_count = sum(1 for m in movies if m.get('_scan_status') == 'unchanged')
+    
+    # 生成导入批次号
+    import_batch = f"batch_{uuid.uuid4().hex[:8]}"
+    
+    # 收集需要 enrichment 的豆瓣ID（只针对新增/更新的非自定义影片）
+    enrich_ids = []
+    
+    # 准备导入数据：移除临时字段，设置状态
+    for m in movies_to_save:
+        scan_status = m.pop('_scan_status', None)
+        m.pop('is_custom', None)
+        # 标记导入状态为完成
+        m['status_import'] = 'done'
+        m['import_batch'] = import_batch
+        
+        # 收集需要 enrichment 的豆瓣ID
+        douban_id = m.get('douban_id', '')
+        if douban_id and not str(douban_id).startswith('custom_'):
+            enrich_ids.append(str(douban_id))
+    
     try:
-        metadata_store.save_movies(movies)
-        # 只有在有新增或更新时才启动 enrichment
-        if has_changes:
-            try:
-                enricher.start_enrichment()
-            except Exception:
-                # don't fail the request if background start fails
-                print("Warning: failed to start enricher")
+        if movies_to_save:
+            metadata_store.save_movies(movies_to_save)
+            print(f"✅ 导入完成：{len(movies_to_save)} 部影片已写入数据库 (批次: {import_batch})")
+            if unchanged_count > 0:
+                print(f"   ⏭️ 跳过 {unchanged_count} 部无变化的影片")
         else:
-            print("[*] No changes detected, skipping enrichment")
-        return {"status": "ok", "count": len(movies), "enrichment_started": has_changes}
+            print(f"[*] 所有 {len(movies)} 部影片均无变化，跳过写入")
+        
+        # 只有在有新增或更新的非自定义影片时才启动 enrichment
+        enrichment_started = False
+        if has_changes and enrich_ids:
+            try:
+                enricher.start_enrichment(target_ids=enrich_ids)
+                enrichment_started = True
+            except Exception:
+                print("⚠️ 启动元数据抓取失败，但导入已完成")
+        else:
+            print("[*] 无需抓取元数据")
+        
+        return {
+            "status": "ok", 
+            "count": len(movies_to_save),
+            "skipped": unchanged_count,
+            "import_batch": import_batch,
+            "enrichment_started": enrichment_started
+        }
     except Exception as e:
+        print(f"❌ 导入失败: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -671,6 +740,7 @@ async def start_annotation(request: AnnotateRequest, background_tasks: Backgroun
     
     # 启动后台任务
     annotation_cancel_event.clear()
+    annotation_pause_event.clear()
     background_tasks.add_task(
         run_annotation,
         request.movie_id,
@@ -680,7 +750,8 @@ async def start_annotation(request: AnnotateRequest, background_tasks: Backgroun
         request.batch_size,
         request.concurrent_requests,
         request.max_retries,
-        request.save_interval
+        request.save_interval,
+        request.resume_from_checkpoint
     )
     
     return {"status": "started", "movie_id": request.movie_id}
@@ -694,13 +765,15 @@ def run_annotation(
     batch_size: int = None,
     concurrent_requests: int = None,
     max_retries: int = None,
-    save_interval: int = None
+    save_interval: int = None,
+    resume_from_checkpoint: bool = False
 ):
-    """后台执行语义标注"""
+    """后台执行语义标注（支持增量保存、暂停/恢复、checkpoint）"""
     global annotation_status
     
     annotation_status = {
         "running": True,
+        "paused": False,
         "progress": 0,
         "total": 0,
         "current_movie": movie_name,
@@ -721,43 +794,47 @@ def run_annotation(
         
         # 打印使用的参数
         print(f"📋 标注参数: batch_size={batch_size}, concurrent={concurrent_requests}, max_retries={max_retries}, save_interval={save_interval}")
-        print(f"📋 影片ID: {movie_id}, 影片名称: {movie_name}")
+        print(f"📋 影片ID: {movie_id}, 影片名称: {movie_name}, 续标={resume_from_checkpoint}")
         
         annotations = annotator.annotate_subtitle_file(
             subtitle_path=subtitle_path,
             movie_name=movie_name,
-            movie_id=movie_id,  # 传入豆瓣ID用于media_id
-            window_size=5,  # 上下文窗口保持固定值
-            max_workers=concurrent_requests,  # concurrent_requests 对应 max_workers
-            batch_size=batch_size,  # 批量处理大小（一次 LLM 调用处理多少行）
+            movie_id=movie_id,
+            window_size=5,
+            max_workers=concurrent_requests,
+            batch_size=batch_size,
             progress_callback=progress_callback,
-            cancel_event=annotation_cancel_event
+            cancel_event=annotation_cancel_event,
+            pause_event=annotation_pause_event,
+            resume_from_checkpoint=resume_from_checkpoint
         )
         
-        # 取消时不保存结果，直接返回
-        if annotation_cancel_event.is_set():
+        # 暂停时：增量保存已由 annotator 内部完成，保持 paused 状态
+        if annotation_pause_event.is_set():
             annotation_status["running"] = False
-            annotation_status["current_movie"] = "已取消（未保存当前文件）"
-            annotation_status["error"] = "已取消"
-            print(f"⚠️ 标注已取消，当前文件 {movie_name} 未保存")
+            annotation_status["paused"] = True
+            annotation_status["current_movie"] = f"已暂停 - {movie_name}"
+            print(f"⏸️ 标注已暂停: {movie_name}，进度已保存")
             return
         
-        # 只有在未取消且有结果时才保存
-        if annotations and len(annotations) > 0:
-            output_dir = Path(__file__).parent / "data" / "annotations"
-            output_dir.mkdir(parents=True, exist_ok=True)
-            output_path = output_dir / f"{movie_id}_annotated.json"
-            
-            annotator.save_annotations(annotations, str(output_path))
-            print(f"✅ 标注已保存: {output_path}")
-        else:
-            print(f"⚠️ 标注结果为空，跳过保存")
+        # 取消时：增量保存已由 annotator 内部完成
+        if annotation_cancel_event.is_set():
+            annotation_status["running"] = False
+            annotation_status["paused"] = False
+            annotation_status["current_movie"] = f"已取消 - {movie_name}"
+            annotation_status["error"] = "已取消（已保存进度）"
+            print(f"⚠️ 标注已取消: {movie_name}，进度已保存")
+            return
         
+        # 正常完成（annotator内部已保存并清理checkpoint）
         annotation_status["running"] = False
+        annotation_status["paused"] = False
         annotation_status["progress"] = annotation_status["total"]
+        print(f"✅ 标注完成: {movie_name}")
         
     except Exception as e:
         annotation_status["running"] = False
+        annotation_status["paused"] = False
         annotation_status["error"] = str(e)
         print(f"❌ 标注失败: {e}")
 
@@ -768,12 +845,61 @@ async def get_annotation_status():
     return annotation_status
 
 
+@app.post("/api/annotation/pause")
+async def pause_annotation():
+    """暂停当前标注任务（保留checkpoint，可恢复）"""
+    if not annotation_status.get("running"):
+        return {"success": False, "error": "没有正在运行的标注任务"}
+    annotation_pause_event.set()
+    annotation_status["paused"] = True
+    return {"success": True, "message": "暂停信号已发送，标注将在当前批次完成后暂停"}
+
+
+@app.post("/api/annotation/resume")
+async def resume_annotation():
+    """恢复暂停的标注任务
+    注意：恢复实际上是由前端重新发送 /api/annotation/start 并设置 resume_from_checkpoint=true 来实现的。
+    此API仅用于在同一个标注线程暂停期间恢复（线程仍然阻塞等待中）。
+    """
+    if annotation_pause_event.is_set():
+        annotation_pause_event.clear()
+        annotation_status["paused"] = False
+        return {"success": True, "message": "恢复信号已发送"}
+    return {"success": False, "error": "标注未处于暂停状态"}
+
+
 @app.post("/api/annotation/cancel")
 async def cancel_annotation():
-    """取消当前标注任务"""
+    """取消当前标注任务（增量保存已完成部分）"""
     annotation_cancel_event.set()
+    # 如果处于暂停状态，也需要解除暂停让线程能退出
+    if annotation_pause_event.is_set():
+        annotation_pause_event.clear()
     annotation_status["running"] = False
-    annotation_status["error"] = "已取消"
+    annotation_status["paused"] = False
+    annotation_status["error"] = "已取消（已保存进度）"
+    return {"success": True}
+
+
+@app.get("/api/annotation/checkpoint/{movie_id}")
+async def get_checkpoint(movie_id: str):
+    """获取指定影片的checkpoint信息（用于前端判断是否可以续标）"""
+    if not ANNOTATION_AVAILABLE:
+        raise HTTPException(status_code=503, detail="语义标注模块未加载")
+    
+    cp = load_checkpoint(movie_id)
+    if cp:
+        return {"has_checkpoint": True, "checkpoint": cp}
+    return {"has_checkpoint": False, "checkpoint": None}
+
+
+@app.delete("/api/annotation/checkpoint/{movie_id}")
+async def remove_checkpoint(movie_id: str):
+    """删除指定影片的checkpoint（重新标注时使用）"""
+    if not ANNOTATION_AVAILABLE:
+        raise HTTPException(status_code=503, detail="语义标注模块未加载")
+    
+    delete_checkpoint(movie_id)
     return {"success": True}
 
 
@@ -836,7 +962,7 @@ async def start_vectorize(request: VectorizeRequest, background_tasks: Backgroun
         else:
             # 尝试从metadata获取annotation_path
             try:
-                metadata = metadata_store.get_metadata(movie_id)
+                metadata = metadata_store.get_movie(movie_id)
                 if metadata and metadata.get("annotation_path"):
                     ann_path = metadata["annotation_path"]
                     if os.path.exists(ann_path):
@@ -931,7 +1057,7 @@ def run_vectorize_batch(annotation_files: List[str], provider_id: str = None):
                     douban_id = match.group(1)
                     try:
                         vector_path = annotation_file.replace("_annotated.json", "_vectorized")
-                        metadata_store.update_metadata(douban_id, {
+                        metadata_store.update_movie(douban_id, {
                             "status_vectorize": "done",
                             "vector_path": vector_path
                         })

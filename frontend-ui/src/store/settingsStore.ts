@@ -102,7 +102,7 @@ const defaultAnnotationConfig: AnnotationConfig = {
   batch_size: 10,
   max_retries: 3,
   retry_delay: 1000,
-  save_interval: 5,
+  save_interval: 50,
   concurrent_requests: 1,
   _loaded: false,  // 标记是否已从后端加载
 };

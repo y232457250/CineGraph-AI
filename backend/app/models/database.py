@@ -151,6 +151,7 @@ class Movie(Base):
     
     # 文件信息
     folder = Column(String(500))
+    folder_path = Column(String(500))  # 完整文件夹路径
     poster_url = Column(String(500))
     local_poster = Column(String(500))
     
@@ -165,15 +166,13 @@ class Movie(Base):
     douban_url = Column(String(500))
     rating = Column(String(10))
     
-    # 跨界类型（crossover_genres）
-    crossover_genre = Column(String(50))  # 古装+科幻/动画+现实/武侠+现代...
-    
     # 状态
-    status = Column(String(20), default='pending')  # pending, ready
+    status_import = Column(String(20), default='pending')  # pending, done
     status_annotate = Column(String(20), default='pending')  # pending, partial, done
     status_vectorize = Column(String(20), default='pending')  # pending, partial, done
     
     import_batch = Column(String(50), index=True)
+    imported_by = Column(String(100))  # 导入者
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
@@ -199,6 +198,7 @@ class Movie(Base):
             'year': self.year,
             'media_type': self.media_type,
             'folder': self.folder,
+            'folder_path': self.folder_path,
             'poster_url': self.poster_url,
             'local_poster': self.local_poster,
             'director': self.director,
@@ -210,10 +210,11 @@ class Movie(Base):
             'release_date': self.release_date,
             'douban_url': self.douban_url,
             'rating': self.rating,
-            'crossover_genre': self.crossover_genre,
-            'status': self.status,
+            'status_import': self.status_import,
             'status_annotate': self.status_annotate,
             'status_vectorize': self.status_vectorize,
+            'import_batch': self.import_batch,
+            'imported_by': self.imported_by,
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'updated_at': self.updated_at.isoformat() if self.updated_at else None,
         }
@@ -274,15 +275,14 @@ class Character(Base):
 
 class Line(Base):
     """
-    核心台词表 - 融合方案
-    结合四层标签 + 抖音算法字段
+    核心台词表 - 基于 cinegraph_database_schema.sql
+    支持三层标签体系 + 抖音算法字段
     """
     __tablename__ = 'lines'
     
     id = Column(Integer, primary_key=True, autoincrement=True)
     line_id = Column(String(100), unique=True, index=True)  # {media_id}_ep{N}_line_{idx}
     movie_id = Column(String(50), ForeignKey('movies.id', ondelete='CASCADE'), index=True)
-    character_id = Column(Integer, ForeignKey('characters.id', ondelete='SET NULL'), index=True, nullable=True)
     episode_number = Column(Integer, nullable=True)  # NULL表示电影
     line_index = Column(Integer, default=0)  # 在剧集中的行号
     
@@ -292,58 +292,58 @@ class Line(Base):
     vector_text = Column(Text)  # 用于向量化的文本
     start_time = Column(Float, default=0.0)
     end_time = Column(Float, default=0.0)
-    duration = Column(Float, default=0.0)  # 秒，抖音算法关键字段
+    duration = Column(Float, default=0.0)  # 秒
+    character_name = Column(String(100))
+    character_id = Column(Integer, ForeignKey('characters.id', ondelete='SET NULL'), index=True, nullable=True)
     
-    audio_path = Column(String(500))
-    audio_hash = Column(String(64), index=True)
-    
-    # ==================== 四层标签体系（核心） ====================
-    
-    # 1. 句型层
+    # ==================== 第一层：基础标签 ====================
     sentence_type = Column(String(30), index=True)
-    can_follow_types = Column(Text)      # JSON: ["question", "command"]
-    can_lead_to_types = Column(Text)     # JSON: ["answer", "refuse"]
-    
-    # 2. 情绪层
+    can_follow = Column(Text)      # JSON: 可接在哪些标签后
+    can_lead_to = Column(Text)     # JSON: 后可接哪些标签
     emotion = Column(String(30), index=True)
     emotion_transition = Column(String(20))  # escalation/contrast/stable
-    
-    # 3. 语气层
     tone = Column(String(30), index=True)
-    
-    # 4. 角色层
     character_type = Column(String(30), index=True)
     
-    # ==================== 抖音算法优化字段 ====================
+    # ==================== 第二层：潜台词 ====================
+    context_dye = Column(String(50), index=True)  # 语境染色
+    context_intensity = Column(Float, default=0.5)
+    subtext_type = Column(String(50))  # 隐含语义
+    subtext_description = Column(Text)
+    is_meme = Column(Boolean, default=False)  # 是否网络梗
+    meme_name = Column(String(100))  # 梗名称
+    meme_popularity = Column(Integer)  # 梗热度
+    social_function = Column(String(50))  # 社交功能
+    surface_sentiment = Column(String(30))  # 表面情感
+    actual_sentiment = Column(String(30))  # 实际情感
+    sentiment_polarity = Column(String(20))  # consistent/ironic/mixed
     
+    # ==================== 第三层：隐喻分析 ====================
+    metaphor_category = Column(String(50), index=True)  # 隐喻类别
+    metaphor_keyword = Column(String(100))  # 关键词
+    metaphor_direction = Column(String(50))  # 方向
+    metaphor_strength = Column(Float, default=0.5)
+    semantic_field = Column(String(50), index=True)  # 语义场
+    
+    # ==================== 算法字段 ====================
     intensity = Column(Integer, default=5)        # 1-10，冲突强度
     hook_score = Column(Float, default=0.5)       # 0-1，前3秒吸引力
-    ambiguity = Column(Float, default=0.5)        # 0-1，出处模糊度（引发评论）
-    completeness = Column(Float, default=1.0)     # 语义完整度
-    
-    # ==================== 功能与风格标签 ====================
-    
-    primary_function = Column(String(50))  # 强行解释/身份反转...
-    style_effect = Column(String(50))      # 反讽高级黑/自嘲解构...
-    editing_rhythm = Column(String(50))    # 快速切梗/慢放打脸/重复鬼畜...
-    sound_effects = Column(Text)           # JSON: ["变速处理", "回声效果"]
-    
-    # 潜台词
-    semantic_summary = Column(Text)
-    keywords = Column(Text)  # JSON: 关键词提取
+    ambiguity = Column(Float, default=0.5)        # 0-1，出处模糊度
+    viral_potential = Column(Float, default=0.5)  # 爆梗潜力
+    tags_json = Column(Text)  # 扩展字段 JSON
     
     # ==================== 向量化状态 ====================
-    
-    vectorized = Column(Boolean, default=False)
+    vectorized = Column(Boolean, default=False, index=True)
     vector_id = Column(String(100))  # ChromaDB中的ID
     
-    # ==================== 使用统计（抖音回传优化） ====================
-    
-    usage_count = Column(Integer, default=0)
-    last_used_at = Column(DateTime)
-    avg_completion_rate = Column(Float)  # 历史完播率缓存
-    
+    # ==================== 标注信息 ====================
+    annotated_by = Column(String(100))
     annotated_at = Column(DateTime)
+    annotation_confidence = Column(Float)
+    is_signature = Column(Boolean, default=False, index=True)  # 是否标志性台词
+    is_catchphrase = Column(Boolean, default=False)  # 是否金句
+    signature_score = Column(Float, default=0)
+    
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
@@ -360,20 +360,17 @@ class Line(Base):
     
     def to_dict(self, include_audio: bool = False) -> Dict:
         """API返回格式"""
-        can_follow = []
-        can_lead_to = []
-        kw = []
-        sounds = []
+        can_follow_list = []
+        can_lead_to_list = []
+        tags = {}
         
         try:
-            if self.can_follow_types:
-                can_follow = json.loads(self.can_follow_types)
-            if self.can_lead_to_types:
-                can_lead_to = json.loads(self.can_lead_to_types)
-            if self.keywords:
-                kw = json.loads(self.keywords)
-            if self.sound_effects:
-                sounds = json.loads(self.sound_effects)
+            if self.can_follow:
+                can_follow_list = json.loads(self.can_follow)
+            if self.can_lead_to:
+                can_lead_to_list = json.loads(self.can_lead_to)
+            if self.tags_json:
+                tags = json.loads(self.tags_json)
         except:
             pass
         
@@ -384,7 +381,7 @@ class Line(Base):
             'movie_id': self.movie_id,
             'movie': self.movie.title if self.movie else None,
             'episode_number': self.episode_number,
-            'character': self.character.name if self.character else None,
+            'character': self.character_name or (self.character.name if self.character else None),
             'character_type': self.character_type,
             
             # 时间信息
@@ -394,35 +391,52 @@ class Line(Base):
                 'end': self.end_time
             },
             
-            # 四层标签
+            # 三层标签
             'mashup_tags': {
                 'sentence_type': self.sentence_type,
                 'emotion': self.emotion,
                 'tone': self.tone,
                 'character_type': self.character_type,
-                'can_follow': can_follow,
-                'can_lead_to': can_lead_to,
-                'keywords': kw,
-                'primary_function': self.primary_function,
-                'style_effect': self.style_effect,
+                'can_follow': can_follow_list,
+                'can_lead_to': can_lead_to_list,
+            },
+            
+            # 潜台词层
+            'subtext': {
+                'context_dye': self.context_dye,
+                'context_intensity': self.context_intensity,
+                'subtext_type': self.subtext_type,
+                'is_meme': self.is_meme,
+                'meme_name': self.meme_name,
+                'social_function': self.social_function,
+                'surface_sentiment': self.surface_sentiment,
+                'actual_sentiment': self.actual_sentiment,
+                'sentiment_polarity': self.sentiment_polarity,
+            },
+            
+            # 隐喻层
+            'metaphor': {
+                'category': self.metaphor_category,
+                'keyword': self.metaphor_keyword,
+                'direction': self.metaphor_direction,
+                'strength': self.metaphor_strength,
+                'semantic_field': self.semantic_field,
             },
             
             # 抖音指标
             'intensity': self.intensity,
             'hook_score': self.hook_score,
             'ambiguity': self.ambiguity,
+            'viral_potential': self.viral_potential,
             'duration': self.duration,
             
-            # 剪辑参数
-            'editing_params': {
-                'rhythm': self.editing_rhythm,
-                'duration': self.duration,
-            },
-            
-            'semantic_summary': self.semantic_summary,
-            'audio_url': self.audio_path if include_audio else None,
+            # 标注状态
+            'is_signature': self.is_signature,
+            'is_catchphrase': self.is_catchphrase,
+            'signature_score': self.signature_score,
             'vectorized': self.vectorized,
             'annotated_at': self.annotated_at.timestamp() if self.annotated_at else None,
+            'tags': tags,
         }
     
     @staticmethod
@@ -430,7 +444,8 @@ class Line(Base):
         """从标注字典创建 Line 对象"""
         source = ann.get('source', {})
         tags = ann.get('mashup_tags', {})
-        editing = ann.get('editing_params', {})
+        subtext = ann.get('subtext', {})
+        metaphor = ann.get('metaphor', {})
         
         line = Line(
             line_id=ann.get('id', f"{movie_id}_ep{episode_number}_line_{idx}" if episode_number else f"{movie_id}_line_{idx}"),
@@ -441,28 +456,48 @@ class Line(Base):
             vector_text=ann.get('vector_text', ann.get('text', '')),
             start_time=source.get('start', 0),
             end_time=source.get('end', 0),
-            duration=editing.get('duration', source.get('end', 0) - source.get('start', 0)),
+            duration=ann.get('duration', source.get('end', 0) - source.get('start', 0)),
+            character_name=ann.get('character', ''),
             
-            # 四层标签
+            # 第一层：基础标签
             sentence_type=tags.get('sentence_type'),
             emotion=tags.get('emotion'),
             tone=tags.get('tone'),
             character_type=tags.get('character_type'),
-            can_follow_types=json.dumps(tags.get('can_follow', []), ensure_ascii=False),
-            can_lead_to_types=json.dumps(tags.get('can_lead_to', []), ensure_ascii=False),
-            keywords=json.dumps(tags.get('keywords', []), ensure_ascii=False),
+            can_follow=json.dumps(tags.get('can_follow', []), ensure_ascii=False),
+            can_lead_to=json.dumps(tags.get('can_lead_to', []), ensure_ascii=False),
             
-            # 功能风格
-            primary_function=tags.get('primary_function'),
-            style_effect=tags.get('style_effect'),
-            editing_rhythm=editing.get('rhythm'),
+            # 第二层：潜台词
+            context_dye=subtext.get('context_dye'),
+            context_intensity=subtext.get('context_intensity', 0.5),
+            subtext_type=subtext.get('subtext_type'),
+            subtext_description=subtext.get('description'),
+            is_meme=subtext.get('is_meme', False),
+            meme_name=subtext.get('meme_name'),
+            social_function=subtext.get('social_function'),
+            surface_sentiment=subtext.get('surface_sentiment'),
+            actual_sentiment=subtext.get('actual_sentiment'),
+            sentiment_polarity=subtext.get('sentiment_polarity'),
             
-            semantic_summary=ann.get('semantic_summary', ''),
+            # 第三层：隐喻
+            metaphor_category=metaphor.get('category'),
+            metaphor_keyword=metaphor.get('keyword'),
+            metaphor_direction=metaphor.get('direction'),
+            metaphor_strength=metaphor.get('strength', 0.5),
+            semantic_field=metaphor.get('semantic_field'),
+            
+            # 算法字段
+            intensity=ann.get('intensity', 5),
+            hook_score=ann.get('hook_score', 0.5),
+            ambiguity=ann.get('ambiguity', 0.5),
+            viral_potential=ann.get('viral_potential', 0.5),
+            
             annotated_at=datetime.fromtimestamp(ann.get('annotated_at', 0)) if ann.get('annotated_at') else None,
         )
         
-        # 自动计算抖音指标
-        line.calculate_douyin_scores()
+        # 自动计算抖音指标（如果没有提供）
+        if not ann.get('intensity'):
+            line.calculate_douyin_scores()
         
         return line
     
@@ -850,6 +885,8 @@ class DatabaseManager:
             return
         
         if db_path is None:
+            # 数据库位于 backend/data 文件夹
+            # backend/app/models/database.py -> backend/data/cinegraph.db
             db_path = Path(__file__).parent.parent.parent / 'data' / 'cinegraph.db'
         
         self.db_path = Path(db_path)

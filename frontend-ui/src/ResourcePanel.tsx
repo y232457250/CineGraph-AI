@@ -562,8 +562,9 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
   const [filterType, setFilterType] = useState<'all' | 'movie' | 'tv' | 'no-subtitle'>('all');
   
   // 导入流程
-  const [importStep, setImportStep] = useState<'idle' | 'scanning' | 'fetching' | 'done' | 'error'>('idle');
+  const [importStep, setImportStep] = useState<'idle' | 'scanning' | 'scanned' | 'importing' | 'fetching' | 'done' | 'error'>('idle');
   const [scannedItems, setScannedItems] = useState<any[]>([]);
+  const [importResultInfo, setImportResultInfo] = useState<{count: number, skipped: number} | null>(null);
   const [importProgress, setImportProgress] = useState({ current: 0, total: 0, currentItem: '' });
   const [canCancel, setCanCancel] = useState(false);
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
@@ -574,6 +575,7 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
   
   const [annotationStatus, setAnnotationStatus] = useState<any>(null);
   const [annotationStopping, setAnnotationStopping] = useState(false);
+  const [annotationPaused, setAnnotationPaused] = useState(false);
   const [annotationQueueStatus, setAnnotationQueueStatus] = useState({
     current: 0,
     total: 0,
@@ -946,17 +948,13 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
           testLLMConnection(selectedProvider);
         }
       });
-      // 如果已加载过就不重复加载
-      if (!libraryLoadedRef.current) {
-        loadLibrary();
-      }
+      // 切换到标定页时始终刷新影片库，确保标注状态是最新的
+      loadLibrary(true);
       // 恢复标注状态：从后端获取当前运行状态
       fetchAnnotationStatus();
     } else if (activeView === 'vectorize') {
-      // 如果已加载过就不重复加载
-      if (!libraryLoadedRef.current) {
-        loadLibrary();
-      }
+      // 切换到向量化页时始终刷新影片库，确保标注/向量化状态是最新的
+      loadLibrary(true);
     }
   }, [activeView, clearMovieList]);
 
@@ -1029,82 +1027,106 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
     setImportProgress({ current: 0, total: 0, currentItem: '' });
     setImportStep('idle');
     setExpandedItems(new Set());
+    setImportResultInfo(null);
     // 标记为用户主动触发
     importTriggeredRef.current = true;
     await handleSelectFolder();
   };
 
-  // 扫描完成后自动显示结果并开始导入
-  // 只有当用户主动选择文件夹后（importTriggeredRef.current = true）才会触发
+  // 扫描完成后自动执行导入和元数据抓取（无需用户确认）
   useEffect(() => {
     if (activeView === 'import' && movieList && movieList.length > 0 && importStep === 'idle' && importTriggeredRef.current) {
       setScannedItems(movieList);
-      // 自动开始导入和抓取
-      setImportStep('fetching');
-      setCanCancel(true);
-      
-      // 异步执行导入
-      (async () => {
-        try {
-          const res = await fetch('http://127.0.0.1:8000/api/ingest/import', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(movieList)
-          });
-          
-          if (!res.ok) {
-            const data = await res.json();
-            throw new Error(data.detail || '保存失败');
-          }
-
-          const enrichRes = await fetch('http://127.0.0.1:8000/api/ingest/enrich/start', { method: 'POST' });
-          if (!enrichRes.ok) {
-            throw new Error('启动抓取失败');
-          }
-
-          // 轮询进度
-          const pollId = setInterval(async () => {
-            try {
-              const statusRes = await fetch('http://127.0.0.1:8000/api/ingest/enrich/status');
-              if (statusRes.ok) {
-                const status = await statusRes.json();
-                setImportProgress({
-                  current: status.processed || 0,
-                  total: status.total || 0,
-                  currentItem: status.current?.title || ''
-                });
-
-                if (status.status === 'done') {
-                  clearInterval(pollId);
-                  setImportStep('done');
-                  setCanCancel(false);
-                  setLibraryLoading(true);
-                  loadLibrary(true);
-                } else if (status.status === 'error') {
-                  clearInterval(pollId);
-                  setImportStep('error');
-                  setCanCancel(false);
-                }
-              }
-            } catch (e) {
-              console.error('轮询状态失败:', e);
-            }
-          }, 1000);
-
-        } catch (err: any) {
-          console.error('导入失败:', err);
-          setImportStep('error');
-          setCanCancel(false);
-        }
-      })();
+      // 自动开始导入流程
+      importTriggeredRef.current = false;
+      doImportAndEnrich(movieList);
     }
   }, [movieList, activeView, importStep]);
+
+  // 执行导入和元数据抓取（扫描完成后自动调用）
+  const doImportAndEnrich = async (items: any[]) => {
+    if (items.length === 0) return;
+    
+    setImportStep('importing');
+    
+    try {
+      // 第一步：保存到数据库
+      const res = await fetch('http://127.0.0.1:8000/api/ingest/import', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(items)
+      });
+      
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.detail || '导入失败');
+      }
+      
+      const importResult = await res.json();
+      console.log('导入结果:', importResult);
+      setImportResultInfo({ count: importResult.count || 0, skipped: importResult.skipped || 0 });
+      
+      // 第二步：如果有豆瓣ID的影片，启动元数据抓取
+      if (importResult.enrichment_started) {
+        setImportStep('fetching');
+        setCanCancel(true);
+        
+        // 轮询抓取进度
+        const pollId = setInterval(async () => {
+          try {
+            const statusRes = await fetch('http://127.0.0.1:8000/api/ingest/enrich/status');
+            if (statusRes.ok) {
+              const status = await statusRes.json();
+              setImportProgress({
+                current: status.processed || 0,
+                total: status.total || 0,
+                currentItem: status.current?.title || ''
+              });
+
+              if (status.status === 'done') {
+                clearInterval(pollId);
+                setImportStep('done');
+                setCanCancel(false);
+                // 刷新影片库数据
+                libraryLoadedRef.current = false;
+                loadLibrary(true);
+              } else if (status.status === 'error') {
+                clearInterval(pollId);
+                // 虽然抓取失败，但基础数据已经导入成功
+                setImportStep('done');
+                setCanCancel(false);
+                libraryLoadedRef.current = false;
+                loadLibrary(true);
+              }
+            }
+          } catch (e) {
+            console.error('轮询状态失败:', e);
+          }
+        }, 1000);
+      } else {
+        // 没有需要抓取的，直接完成
+        setImportStep('done');
+        setImportProgress({ current: items.length, total: items.length, currentItem: '' });
+        // 刷新影片库数据
+        libraryLoadedRef.current = false;
+        loadLibrary(true);
+      }
+      
+    } catch (err: any) {
+      console.error('导入失败:', err);
+      setImportStep('error');
+      setCanCancel(false);
+    }
+  };
 
   const cancelImport = async () => {
     try {
       await fetch('http://127.0.0.1:8000/api/ingest/enrich/cancel', { method: 'POST' });
-      setImportStep('idle');
+      // 元数据抓取取消，但基础数据已导入，直接标记为完成
+      setImportStep('done');
       setCanCancel(false);
+      libraryLoadedRef.current = false;
+      loadLibrary(true);
     } catch (e) {
       console.error('取消失败:', e);
     }
@@ -1112,7 +1134,7 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
 
   // ==================== 语义标定 ====================
   
-  const startAnnotation = async () => {
+  const startAnnotation = async (forceResume: boolean = false) => {
     if (selectedForAnnotation.size === 0 || !selectedProvider) {
       alert('请选择要标定的影片和AI模型');
       return;
@@ -1179,6 +1201,7 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
     console.log(`开始标注 ${subtitleTasks.length} 个字幕文件，配置: batch_size=${annotationConfig.batch_size}, concurrent=${annotationConfig.concurrent_requests}`);
     annotationCancelRef.current = false;
     setAnnotationStopping(false);
+    setAnnotationPaused(false);
     setAnnotationQueueStatus({
       current: 0,
       total: subtitleTasks.length,
@@ -1197,6 +1220,56 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
       }
       const task = subtitleTasks[i];
       
+      // ===== checkpoint 检测与模型更换检测 =====
+      let resumeFromCheckpoint = forceResume;
+      try {
+        const cpRes = await fetch(`http://127.0.0.1:8000/api/annotation/checkpoint/${task.movie_id}`);
+        if (cpRes.ok) {
+          const cpData = await cpRes.json();
+          if (cpData.has_checkpoint && cpData.checkpoint) {
+            const cp = cpData.checkpoint;
+            const cpProvider = cp.llm_provider || '';
+            const completedCount = cp.completed_count || 0;
+            const totalLines = cp.total_lines || 0;
+            
+            // 模型更换检测
+            if (cpProvider && cpProvider !== selectedProvider) {
+              const userChoice = confirm(
+                `⚠️ 模型更换检测\n\n` +
+                `"${task.movie_name}" 有未完成的标注存档：\n` +
+                `• 存档模型: ${cpProvider}\n` +
+                `• 当前模型: ${selectedProvider}\n` +
+                `• 已完成: ${completedCount}/${totalLines} 行\n\n` +
+                `使用不同模型续标可能导致标注风格不一致。\n\n` +
+                `点击「确定」使用当前模型续标\n` +
+                `点击「取消」跳过此影片`
+              );
+              if (!userChoice) {
+                processedCount = i + 1;
+                continue; // 跳过此任务
+              }
+            }
+            
+            // 有checkpoint，询问是否续标
+            if (!forceResume) {
+              const resume = confirm(
+                `📋 发现未完成的标注\n\n` +
+                `"${task.movie_name}" 已标注 ${completedCount}/${totalLines} 行 (${totalLines > 0 ? Math.round(completedCount/totalLines*100) : 0}%)\n\n` +
+                `点击「确定」从断点继续\n` +
+                `点击「取消」从头重新标注`
+              );
+              resumeFromCheckpoint = resume;
+              if (!resume) {
+                // 用户选择重新标注，删除旧checkpoint
+                await fetch(`http://127.0.0.1:8000/api/annotation/checkpoint/${task.movie_id}`, { method: 'DELETE' });
+              }
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('检查checkpoint失败:', e);
+      }
+      
       try {
         setAnnotationQueueStatus({
           current: i,
@@ -1205,6 +1278,7 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
         });
         setAnnotationStatus({
           running: true,
+          paused: false,
           progress: 0,
           total: 0,
           current_movie: `[${i + 1}/${subtitleTasks.length}] ${task.movie_name}`,
@@ -1223,12 +1297,14 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
             batch_size: annotationConfig.batch_size,
             concurrent_requests: annotationConfig.concurrent_requests,
             max_retries: annotationConfig.max_retries,
-            save_interval: annotationConfig.save_interval
+            save_interval: annotationConfig.save_interval,
+            // 断点续标
+            resume_from_checkpoint: resumeFromCheckpoint
           })
         });
 
         if (res.ok) {
-          // 等待当前任务完成
+          // 等待当前任务完成（或暂停/取消）
           await new Promise<void>((resolve) => {
             if (annotationPollRef.current) {
               clearInterval(annotationPollRef.current);
@@ -1242,9 +1318,17 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                     ...status,
                     current_movie: `[${i + 1}/${subtitleTasks.length}] ${task.movie_name}`
                   });
+                  // 更新暂停状态
+                  if (status.paused) {
+                    setAnnotationPaused(true);
+                  }
                   if (!status.running) {
                     clearInterval(pollAnnotation);
                     annotationPollRef.current = null;
+                    // 如果是暂停导致的停止，中断队列
+                    if (status.paused) {
+                      annotationCancelRef.current = true;
+                    }
                     resolve();
                   }
                 }
@@ -1269,33 +1353,48 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
       }
     }
     
-    // 全部完成
     // 全部完成，重置全局标注状态
     setAnnotationRunning(false);
+    const wasPaused = annotationPaused;
     const finishedCount = annotationCancelRef.current
       ? processedCount
       : subtitleTasks.length;
     setAnnotationStatus({
       running: false,
+      paused: wasPaused,
       progress: finishedCount,
       total: subtitleTasks.length,
-      current_movie: annotationCancelRef.current ? '已停止' : '全部完成',
+      current_movie: wasPaused ? '已暂停（进度已保存）' : (annotationCancelRef.current ? '已停止（进度已保存）' : '全部完成'),
       error: null
     });
     setAnnotationQueueStatus({
       current: annotationCancelRef.current ? processedCount : subtitleTasks.length,
       total: subtitleTasks.length,
-      currentTitle: annotationCancelRef.current ? '已停止' : '全部完成'
+      currentTitle: wasPaused ? '已暂停' : (annotationCancelRef.current ? '已停止' : '全部完成')
     });
     setAnnotationStopping(false);
     // 强制刷新影片库以更新标定状态
     await loadLibrary(true);
-    // 清空已选择的标定项（因为已经完成）
-    setSelectedForAnnotation(new Set());
+    // 暂停时不清空选择，便于恢复
+    if (!wasPaused) {
+      setSelectedForAnnotation(new Set());
+    }
   };
 
-  const stopAnnotation = async () => {
+  // 暂停标注（保留checkpoint，可恢复）
+  const pauseAnnotation = async () => {
     if (!annotationStatus?.running) return;
+    try {
+      await fetch('http://127.0.0.1:8000/api/annotation/pause', { method: 'POST' });
+      setAnnotationPaused(true);
+    } catch (e) {
+      console.error('暂停标注失败:', e);
+    }
+  };
+
+  // 停止标注（取消，但保留已增量保存的部分）
+  const stopAnnotation = async () => {
+    if (!annotationStatus?.running && !annotationPaused) return;
     annotationCancelRef.current = true;
     setAnnotationStopping(true);
     try {
@@ -1310,11 +1409,13 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
     setAnnotationStatus((prev: any) => ({
       ...prev,
       running: false,
-      current_movie: '已停止',
+      paused: false,
+      current_movie: '已停止（进度已保存）',
       error: '已取消'
     }));
     setAnnotationRunning(false);
     setAnnotationStopping(false);
+    setAnnotationPaused(false);
     await loadLibrary(true);
     setSelectedForAnnotation(new Set());
   };
@@ -1746,46 +1847,47 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                 <h3 className="font-bold text-white mb-4">导入流程</h3>
                 <div className="flex items-center gap-4">
                   <div className={`flex items-center gap-2 px-3 py-2 rounded-lg ${
-                    importStep === 'idle' ? 'bg-blue-500/20 text-blue-400' : 
+                    importStep === 'idle' || importStep === 'scanning' ? 'bg-blue-500/20 text-blue-400' : 
                     'bg-green-500/20 text-green-400'
                   }`}>
                     <span className="w-6 h-6 rounded-full bg-current/20 flex items-center justify-center text-xs font-bold">1</span>
-                    <span className="text-sm">选择文件夹</span>
+                    <span className="text-sm">{importStep === 'scanning' ? '扫描中...' : '扫描文件夹'}</span>
                   </div>
                   <ChevronRight size={16} className="text-gray-600" />
                   <div className={`flex items-center gap-2 px-3 py-2 rounded-lg ${
-                    importStep === 'scanning' ? 'bg-blue-500/20 text-blue-400' :
-                    importStep === 'fetching' || importStep === 'done' ? 'bg-green-500/20 text-green-400' :
-                    'bg-gray-500/20 text-gray-400'
-                  }`}>
-                    <span className="w-6 h-6 rounded-full bg-current/20 flex items-center justify-center text-xs font-bold">2</span>
-                    <span className="text-sm">扫描影片</span>
-                  </div>
-                  <ChevronRight size={16} className="text-gray-600" />
-                  <div className={`flex items-center gap-2 px-3 py-2 rounded-lg ${
+                    importStep === 'importing' ? 'bg-blue-500/20 text-blue-400 animate-pulse' :
                     importStep === 'fetching' ? 'bg-blue-500/20 text-blue-400 animate-pulse' :
                     importStep === 'done' ? 'bg-green-500/20 text-green-400' :
                     'bg-gray-500/20 text-gray-400'
                   }`}>
-                    <span className="w-6 h-6 rounded-full bg-current/20 flex items-center justify-center text-xs font-bold">3</span>
-                    <span className="text-sm">抓取元数据</span>
+                    <span className="w-6 h-6 rounded-full bg-current/20 flex items-center justify-center text-xs font-bold">2</span>
+                    <span className="text-sm">{importStep === 'fetching' ? '抓取元数据中...' : importStep === 'importing' ? '写入数据库中...' : '导入 & 抓取'}</span>
                   </div>
                   <ChevronRight size={16} className="text-gray-600" />
                   <div className={`flex items-center gap-2 px-3 py-2 rounded-lg ${
                     importStep === 'done' ? 'bg-green-500/20 text-green-400' :
                     'bg-gray-500/20 text-gray-400'
                   }`}>
-                    <span className="w-6 h-6 rounded-full bg-current/20 flex items-center justify-center text-xs font-bold">4</span>
+                    <span className="w-6 h-6 rounded-full bg-current/20 flex items-center justify-center text-xs font-bold">3</span>
                     <span className="text-sm">完成</span>
                   </div>
                 </div>
 
-                {/* 进度条/状态提示 - 放在步骤条下方 */}
+                {/* 进度条/状态提示 */}
+                {importStep === 'importing' && (
+                  <div className="mt-4 p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
+                    <div className="flex items-center gap-2">
+                      <Loader2 size={14} className="animate-spin text-blue-400" />
+                      <span className="text-sm text-white">正在将 {scannedItems.length} 部影片写入数据库...</span>
+                    </div>
+                  </div>
+                )}
+
                 {importStep === 'fetching' && (
                   <div className="mt-4 p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
                     <div className="flex items-center gap-2 mb-2">
                       <Loader2 size={14} className="animate-spin text-blue-400" />
-                      <span className="text-sm text-white">正在抓取: {importProgress.currentItem}</span>
+                      <span className="text-sm text-white">正在抓取豆瓣元数据: {importProgress.currentItem}</span>
                     </div>
                     <ProgressBar 
                       progress={importProgress.current} 
@@ -1798,7 +1900,18 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                   <div className="mt-4 p-4 bg-green-500/10 rounded-lg border border-green-500/20">
                     <div className="flex items-center gap-2">
                       <CheckCircle2 size={16} className="text-green-400" />
-                      <span className="text-sm text-green-400">导入完成！共导入 {importProgress.total} 条记录</span>
+                      <span className="text-sm text-green-400">
+                        导入完成！
+                        {importResultInfo && importResultInfo.count > 0 && (
+                          <>{importResultInfo.count} 部影片已写入数据库</>  
+                        )}
+                        {importResultInfo && importResultInfo.skipped > 0 && (
+                          <span className="text-gray-400">（跳过 {importResultInfo.skipped} 部无变化的影片）</span>
+                        )}
+                        {importResultInfo && importResultInfo.count === 0 && importResultInfo.skipped > 0 && (
+                          <>所有影片均已在库中，无需重复导入</>
+                        )}
+                      </span>
                     </div>
                   </div>
                 )}
@@ -1817,7 +1930,7 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
               <div className="bg-[#151515] rounded-xl border border-white/5 p-6">
                 <h3 className="font-bold text-white mb-2">选择媒体文件夹</h3>
                 <p className="text-sm text-gray-500 mb-4">
-                  选择包含影视文件的根目录，系统将自动扫描符合 "豆瓣ID-影片名" 格式的子文件夹
+                  选择包含影视文件的根目录，系统将自动扫描符合 "豆瓣ID-影片名" 或自定义命名的子文件夹
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="flex-1 px-4 py-3 bg-[#1a1a1a] rounded-lg border border-white/10 font-mono text-sm text-gray-400 truncate">
@@ -1825,7 +1938,7 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                   </div>
                   <button 
                     onClick={handleSelectAndScan}
-                    disabled={importStep === 'fetching'}
+                    disabled={importStep === 'importing' || importStep === 'fetching'}
                     className="shrink-0 flex items-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-500 disabled:bg-gray-700 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors"
                   >
                     <FolderOpen size={16} />
@@ -1833,11 +1946,15 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                   </button>
                 </div>
                 
-                {/* 操作按钮 - 放在文件夹选择下方 */}
+                {/* 操作按钮 */}
                 {(importStep === 'done' || importStep === 'error') && (
                   <div className="flex gap-3 mt-4">
                     <button
-                      onClick={() => setActiveView('library')}
+                      onClick={() => { 
+                        libraryLoadedRef.current = false;
+                        setActiveView('library'); 
+                        loadLibrary(true);
+                      }}
                       className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg transition-colors"
                     >
                       <Database size={16} />
@@ -1847,6 +1964,8 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                       onClick={() => {
                         setImportStep('idle');
                         setScannedItems([]);
+                        setImportResultInfo(null);
+                        importTriggeredRef.current = false;
                         clearMovieList?.();
                       }}
                       className="flex items-center justify-center gap-2 px-4 py-3 bg-gray-700 hover:bg-gray-600 text-white font-medium rounded-lg transition-colors"
@@ -1864,7 +1983,7 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                       className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-red-600 hover:bg-red-500 text-white font-medium rounded-lg transition-colors"
                     >
                       <X size={16} />
-                      取消
+                      取消抓取
                     </button>
                   </div>
                 )}
@@ -1926,12 +2045,23 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                                 {item.episodes?.length || item.video_count} 集
                               </span>
                             )}
-                            <span className="text-xs text-gray-500">{item.douban_id}</span>
-                            {item.subtitle_path ? (
-                              <CheckCircle2 size={14} className="text-green-400" />
+                            <span className="text-xs text-gray-500 font-mono">{item.douban_id}</span>
+                            {item.subtitle_count > 0 || item.subtitle_path ? (
+                              <span className="flex items-center gap-1 text-xs text-green-400" title="有字幕">
+                                <CheckCircle2 size={12} />
+                                <span>{item.subtitle_count || 1} 字幕</span>
+                              </span>
                             ) : (
-                              <AlertTriangle size={14} className="text-yellow-400" />
+                              <span className="flex items-center gap-1 text-xs text-yellow-400" title="无字幕">
+                                <AlertTriangle size={12} />
+                                <span>无字幕</span>
+                              </span>
                             )}
+                            {item.video_count > 0 || item.video_path ? (
+                              <span className="flex items-center gap-1 text-xs text-green-400" title="有视频">
+                                <Film size={12} />
+                              </span>
+                            ) : null}
                           </div>
                           
                           {/* 电视剧集数列表 */}
@@ -1963,6 +2093,8 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                       );
                     })}
                   </div>
+                  
+
                 </div>
               )}
 
@@ -1971,9 +2103,10 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                 <h3 className="font-bold text-white mb-3">文件夹命名规范</h3>
                 <div className="space-y-2 text-sm text-gray-400">
                   <p>• 每个影视作品放在单独的文件夹中</p>
-                  <p>• 文件夹命名格式：<code className="bg-white/10 px-1.5 py-0.5 rounded text-blue-400">豆瓣ID-影片名</code></p>
+                  <p>• 推荐命名格式：<code className="bg-white/10 px-1.5 py-0.5 rounded text-blue-400">豆瓣ID-影片名</code>（导入后自动抓取豆瓣元数据）</p>
                   <p>• 示例：<code className="bg-white/10 px-1.5 py-0.5 rounded">25717233-心花路放</code></p>
-                  <p>• 电视剧每集会生成独立的JSON文件，元数据只抓取一次</p>
+                  <p>• 也支持任意文件夹名，系统会自动生成ID（标记为自定义）</p>
+                  <p>• 电视剧自动识别多集（支持 EP01、第1集、S01E01 等格式）</p>
                   <p>• 支持的视频格式：MP4, MKV, AVI, MOV, WMV, FLV, TS</p>
                   <p>• 支持的字幕格式：SRT, ASS, VTT</p>
                 </div>
@@ -2055,9 +2188,9 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
               {/* 左侧：配置和操作 */}
               <div className="w-1/2 border-r border-white/5 flex flex-col overflow-y-auto custom-scrollbar">
                 <div className="p-6 space-y-6">
-                  {/* 开始按钮 */}
+                  {/* 开始/恢复按钮 */}
                   <button
-                    onClick={startAnnotation}
+                    onClick={() => startAnnotation(false)}
                     disabled={annotationStatus?.running || selectedForAnnotation.size === 0 || !selectedProvider}
                     className="w-full flex items-center justify-center gap-2 px-4 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:from-gray-700 disabled:to-gray-700 disabled:cursor-not-allowed text-white font-medium rounded-xl transition-all shadow-lg shadow-indigo-500/20 disabled:shadow-none"
                   >
@@ -2074,14 +2207,25 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                     )}
                   </button>
 
+                  {/* 暂停 + 停止 按钮组 */}
                   {annotationStatus?.running && (
-                    <button
-                      onClick={stopAnnotation}
-                      className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-medium rounded-xl transition-all shadow-lg shadow-red-500/20"
-                    >
-                      <X size={18} />
-                      {annotationStopping ? '停止中（完成当前字幕后停止）' : '停止标定（完成当前字幕后停止）'}
-                    </button>
+                    <div className="flex gap-3">
+                      <button
+                        onClick={pauseAnnotation}
+                        disabled={annotationPaused}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 disabled:from-gray-700 disabled:to-gray-700 disabled:cursor-not-allowed text-white font-medium rounded-xl transition-all shadow-lg shadow-amber-500/20 disabled:shadow-none"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                        {annotationPaused ? '暂停中...' : '暂停'}
+                      </button>
+                      <button
+                        onClick={stopAnnotation}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-medium rounded-xl transition-all shadow-lg shadow-red-500/20"
+                      >
+                        <X size={18} />
+                        {annotationStopping ? '停止中...' : '停止'}
+                      </button>
+                    </div>
                   )}
 
                   {/* 标定说明/进度（合并卡片） */}
@@ -2089,8 +2233,17 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                     {annotationStatus?.running ? (
                       <>
                         <div className="flex items-center gap-2 mb-3">
-                          <Loader2 size={16} className="animate-spin text-indigo-400" />
-                          <span className="text-sm font-medium text-white">语义标定进度</span>
+                          {annotationPaused ? (
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-400"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                          ) : (
+                            <Loader2 size={16} className="animate-spin text-indigo-400" />
+                          )}
+                          <span className="text-sm font-medium text-white">
+                            {annotationPaused ? '语义标定已暂停' : '语义标定进度'}
+                          </span>
+                          {annotationPaused && (
+                            <span className="text-xs text-amber-400 bg-amber-500/20 px-2 py-0.5 rounded">进度已保存</span>
+                          )}
                         </div>
                         <p className="text-sm text-gray-300 mb-3">
                           当前字幕：{annotationStatus.current_movie}
@@ -2115,6 +2268,9 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                             />
                           </div>
                         )}
+                        <p className="mt-3 text-xs text-gray-500">
+                          💾 每 {annotationConfig.save_interval} 条自动增量保存 · 暂停/停止均保留已标注进度
+                        </p>
                       </>
                     ) : (
                       <>
@@ -2123,7 +2279,8 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                           <p>• 分析每句台词的<span className="text-indigo-400">句型、情绪、语气</span>等语义特征</p>
                           <p>• 为每部影片生成结构化的标注JSON文件</p>
                           <p>• 电视剧会按集分别处理</p>
-                          <p>• 标注结果用于后续语义搜索和智能混剪</p>
+                          <p>• 支持<span className="text-amber-400">暂停/恢复</span>和<span className="text-green-400">断点续标</span></p>
+                          <p>• 每 {annotationConfig.save_interval} 条自动增量保存，不怕中途中断</p>
                         </div>
                       </>
                     )}

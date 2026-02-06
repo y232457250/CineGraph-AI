@@ -1,5 +1,8 @@
 fastapi
 uvicorn
 requests
-beautifulsoup4pyyaml
+beautifulsoup4
+pyyaml
 chromadb
+sqlalchemy
+pydantic

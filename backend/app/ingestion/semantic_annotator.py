@@ -9,6 +9,7 @@ import re
 import json
 import time
 import yaml
+import threading
 import requests
 from typing import List, Dict, Optional, Tuple
 from pathlib import Path
@@ -199,6 +200,43 @@ class LineAnnotation:
             parts.extend(tags.keywords)
         
         self.vector_text = " ".join(filter(None, parts))
+    
+    @classmethod
+    def from_dict(cls, d: Dict) -> "LineAnnotation":
+        """从字典恢复 LineAnnotation 对象（用于 checkpoint 恢复）"""
+        source_d = d.get("source", {})
+        source = SourceInfo(
+            media_id=source_d.get("media_id", ""),
+            start=source_d.get("start", 0.0),
+            end=source_d.get("end", 0.0)
+        )
+        tags_d = d.get("mashup_tags", {})
+        mashup_tags = MashupTags(
+            sentence_type=tags_d.get("sentence_type", ""),
+            emotion=tags_d.get("emotion", ""),
+            tone=tags_d.get("tone", ""),
+            primary_function=tags_d.get("primary_function", ""),
+            style_effect=tags_d.get("style_effect", ""),
+            can_follow=tags_d.get("can_follow", []),
+            can_lead_to=tags_d.get("can_lead_to", []),
+            keywords=tags_d.get("keywords", []),
+            character_type=tags_d.get("character_type", "")
+        )
+        ep_d = d.get("editing_params", {})
+        editing_params = EditingParams(
+            rhythm=ep_d.get("rhythm", ""),
+            duration=ep_d.get("duration", 0.0)
+        )
+        return cls(
+            id=d.get("id", ""),
+            text=d.get("text", ""),
+            source=source,
+            mashup_tags=mashup_tags,
+            vector_text=d.get("vector_text", ""),
+            editing_params=editing_params,
+            semantic_summary=d.get("semantic_summary", ""),
+            annotated_at=d.get("annotated_at", 0)
+        )
 
 
 # ==================== LLM提供者管理 ====================
@@ -795,6 +833,43 @@ def _time_to_seconds(time_str: str) -> float:
     return float(h) * 3600 + float(m) * 60 + float(s_ms)
 
 
+# ==================== Checkpoint 工具函数 ====================
+ANNOTATION_DIR = Path(__file__).parent.parent.parent / "data" / "annotations"
+
+def _checkpoint_path(movie_id: str) -> Path:
+    """获取 checkpoint 文件路径"""
+    return ANNOTATION_DIR / f"{movie_id}_checkpoint.json"
+
+def _annotation_output_path(movie_id: str) -> Path:
+    """获取标注输出文件路径"""
+    return ANNOTATION_DIR / f"{movie_id}_annotated.json"
+
+def load_checkpoint(movie_id: str) -> Optional[Dict]:
+    """加载 checkpoint（如果存在）
+    
+    Returns:
+        checkpoint dict with keys:
+            movie_id, llm_provider, total_lines, completed_indices,
+            last_save_time, subtitle_path, movie_name
+        or None if no checkpoint
+    """
+    cp_path = _checkpoint_path(movie_id)
+    if cp_path.exists():
+        try:
+            with open(cp_path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"⚠️ 加载checkpoint失败: {e}")
+    return None
+
+def delete_checkpoint(movie_id: str):
+    """删除 checkpoint 文件"""
+    cp_path = _checkpoint_path(movie_id)
+    if cp_path.exists():
+        cp_path.unlink()
+        print(f"🗑️ 已删除checkpoint: {cp_path.name}")
+
+
 # ==================== 语义标注器 ====================
 class SemanticAnnotator:
     """语义标注器"""
@@ -816,6 +891,9 @@ class SemanticAnnotator:
         
         self.llm = self.llm_manager.get_provider()
         self.provider_name = self.llm_manager.active_provider
+        
+        # 暂停事件（区别于取消）
+        self._pause_event = threading.Event()
     
     def annotate_line(
         self, 
@@ -1116,9 +1194,11 @@ class SemanticAnnotator:
         max_workers: Optional[int] = None,
         batch_size: Optional[int] = None,
         progress_callback=None,
-        cancel_event=None
+        cancel_event=None,
+        pause_event=None,
+        resume_from_checkpoint: bool = False
     ) -> List[LineAnnotation]:
-        """标注整个字幕文件
+        """标注整个字幕文件（支持增量保存和断点续标）
         
         Args:
             subtitle_path: 字幕文件路径
@@ -1127,6 +1207,10 @@ class SemanticAnnotator:
             batch_size: 每次LLM调用处理的台词数量（真正的批处理）
             max_workers: 并发的批处理任务数
             window_size: 上下文窗口大小（用于单行标注模式）
+            progress_callback: 进度回调
+            cancel_event: 取消事件
+            pause_event: 暂停事件（set时暂停）
+            resume_from_checkpoint: 是否从checkpoint恢复
         """
         
         # 如果没有提供movie_id，使用movie_name作为备选
@@ -1138,6 +1222,8 @@ class SemanticAnnotator:
             max_workers = int(self.batch_settings.get("max_concurrent_workers", 4))
         if window_size is None:
             window_size = int(self.batch_settings.get("context_window_size", 2))
+        
+        save_interval = int(self.batch_settings.get("save_interval", 50))
         
         # 解析字幕
         lines = parse_srt(subtitle_path)
@@ -1155,19 +1241,102 @@ class SemanticAnnotator:
         if batch_size < 1:
             batch_size = 1
         
+        # ===== 断点恢复：加载已完成的行 =====
+        completed_indices: set = set()
+        results: List[LineAnnotation] = [None] * total
+        
+        if resume_from_checkpoint:
+            checkpoint = load_checkpoint(movie_id)
+            if checkpoint and checkpoint.get("completed_indices"):
+                completed_indices = set(checkpoint["completed_indices"])
+                # 从已有的annotated JSON加载已完成的结果
+                ann_path = _annotation_output_path(movie_id)
+                if ann_path.exists():
+                    try:
+                        with open(ann_path, "r", encoding="utf-8") as f:
+                            existing_data = json.load(f)
+                        for ann_dict in existing_data:
+                            # 从id中提取行号（格式: {media_id}_line_{idx}）
+                            ann_id = ann_dict.get("id", "")
+                            parts = ann_id.rsplit("_line_", 1)
+                            if len(parts) == 2 and parts[1].isdigit():
+                                idx = int(parts[1])
+                                if 0 <= idx < total:
+                                    results[idx] = LineAnnotation.from_dict(ann_dict)
+                        print(f"🔄 从checkpoint恢复: 已完成 {len(completed_indices)}/{total} 行")
+                    except Exception as e:
+                        print(f"⚠️ 加载已有标注失败，从头开始: {e}")
+                        completed_indices = set()
+                        results = [None] * total
+        
         # 判断使用批处理模式还是单行模式
         use_batch_mode = batch_size > 1
         
-        if use_batch_mode:
-            print(f"🔧 使用批处理模式: batch_size={batch_size}, max_workers={max_workers}")
-            print(f"📊 找到 {total} 行字幕，分 {(total + batch_size - 1) // batch_size} 批处理...")
-        else:
-            print(f"🔧 使用单行模式: window_size={window_size}, max_workers={max_workers}")
-            print(f"📊 找到 {total} 行字幕，开始标注...")
+        remaining = total - len(completed_indices)
+        if remaining <= 0:
+            print(f"✅ 所有 {total} 行已标注完成，无需继续")
+            results = [r for r in results if r is not None]
+            return results
         
-        results: List[LineAnnotation] = [None] * total
+        if use_batch_mode:
+            print(f"🔧 使用批处理模式: batch_size={batch_size}, max_workers={max_workers}, save_interval={save_interval}")
+            print(f"📊 找到 {total} 行字幕，待处理 {remaining} 行")
+        else:
+            print(f"🔧 使用单行模式: window_size={window_size}, max_workers={max_workers}, save_interval={save_interval}")
+            print(f"📊 找到 {total} 行字幕，待处理 {remaining} 行")
+        
         start_time = time.time()
-        completed = 0
+        completed = len(completed_indices)
+        last_save_completed = completed  # 上次增量保存时的完成数
+        paused = False  # 是否被暂停
+        
+        # ===== 增量保存辅助函数 =====
+        def _incremental_save():
+            """增量保存当前结果和checkpoint"""
+            nonlocal last_save_completed
+            ANNOTATION_DIR.mkdir(parents=True, exist_ok=True)
+            
+            # 保存已完成的标注结果
+            completed_results = [r for r in results if r is not None]
+            if completed_results:
+                out_path = _annotation_output_path(movie_id)
+                data = [a.to_dict() for a in completed_results]
+                with open(out_path, "w", encoding="utf-8") as f:
+                    json.dump(data, f, ensure_ascii=False, indent=2)
+            
+            # 保存checkpoint
+            current_completed = [i for i in range(total) if results[i] is not None]
+            cp_data = {
+                "movie_id": movie_id,
+                "movie_name": movie_name,
+                "subtitle_path": subtitle_path,
+                "llm_provider": self.provider_name,
+                "total_lines": total,
+                "completed_indices": current_completed,
+                "completed_count": len(current_completed),
+                "last_save_time": time.time(),
+                "batch_size": batch_size,
+                "save_interval": save_interval
+            }
+            cp_path = _checkpoint_path(movie_id)
+            with open(cp_path, "w", encoding="utf-8") as f:
+                json.dump(cp_data, f, ensure_ascii=False, indent=2)
+            
+            last_save_completed = completed
+            print(f"💾 增量保存: {len(current_completed)}/{total} 行 ({len(current_completed)/total:.1%})")
+        
+        def _check_pause():
+            """检查暂停事件，如果设置了就等待"""
+            if pause_event and pause_event.is_set():
+                print(f"⏸️ 标注已暂停，当前进度 {completed}/{total}")
+                _incremental_save()
+                # 等待暂停解除或取消
+                while pause_event.is_set():
+                    if cancel_event and cancel_event.is_set():
+                        return True  # 暂停期间被取消
+                    time.sleep(0.5)
+                print(f"▶️ 标注恢复")
+            return False
         
         if use_batch_mode:
             # 批处理模式：将台词分批，每批一次LLM调用
@@ -1177,6 +1346,8 @@ class SemanticAnnotator:
                     break
                 batch = []
                 for j in range(i, min(i + batch_size, total)):
+                    if j in completed_indices:
+                        continue  # 跳过已完成的行
                     # 预计算上下文（用于批量失败时的回退单行标注）
                     start_idx = max(0, j - window_size)
                     end_idx = min(total, j + window_size + 1)
@@ -1188,7 +1359,8 @@ class SemanticAnnotator:
                         "end": lines[j]["end"],
                         "context": context
                     })
-                batches.append(batch)
+                if batch:
+                    batches.append(batch)
             
             def process_batch(batch):
                 return self.annotate_batch(batch, movie_name, actual_media_id, subtitle_path)
@@ -1199,10 +1371,16 @@ class SemanticAnnotator:
                 for batch in batches:
                     if cancel_event and cancel_event.is_set():
                         break
+                    if _check_pause():
+                        break
                     futures[executor.submit(process_batch, batch)] = batch
                 
                 for future in as_completed(futures):
                     if cancel_event and cancel_event.is_set():
+                        for f in futures:
+                            f.cancel()
+                        break
+                    if _check_pause():
                         for f in futures:
                             f.cancel()
                         break
@@ -1212,6 +1390,7 @@ class SemanticAnnotator:
                         for idx, annotation in batch_results:
                             results[idx] = annotation
                             completed += 1
+                            completed_indices.add(idx)
                             
                             if progress_callback and not (cancel_event and cancel_event.is_set()):
                                 progress_callback(completed, total)
@@ -1220,6 +1399,10 @@ class SemanticAnnotator:
                         elapsed = time.time() - start_time
                         speed = completed / elapsed if elapsed > 0 else 0
                         print(f"🔄 进度: {completed}/{total} ({completed/total:.1%}) | 速度: {speed:.1f}行/秒")
+                        
+                        # ===== 增量保存检查 =====
+                        if save_interval > 0 and (completed - last_save_completed) >= save_interval:
+                            _incremental_save()
                         
                     except Exception as e:
                         print(f"❌ 批次处理失败: {e}")
@@ -1236,6 +1419,7 @@ class SemanticAnnotator:
                                 annotated_at=time.time()
                             )
                             completed += 1
+                            completed_indices.add(idx)
                             if progress_callback and not (cancel_event and cancel_event.is_set()):
                                 progress_callback(completed, total)
         else:
@@ -1259,7 +1443,11 @@ class SemanticAnnotator:
             with ThreadPoolExecutor(max_workers=max_workers) as executor:
                 futures = {}
                 for i in range(total):
+                    if i in completed_indices:
+                        continue  # 跳过已完成的行
                     if cancel_event and cancel_event.is_set():
+                        break
+                    if _check_pause():
                         break
                     futures[executor.submit(process_line, i)] = i
                 
@@ -1268,10 +1456,15 @@ class SemanticAnnotator:
                         for f in futures:
                             f.cancel()
                         break
+                    if _check_pause():
+                        for f in futures:
+                            f.cancel()
+                        break
                     idx = futures[future]
                     try:
                         results[idx] = future.result()
                         completed += 1
+                        completed_indices.add(idx)
                         
                         if progress_callback and not (cancel_event and cancel_event.is_set()):
                             progress_callback(completed, total)
@@ -1280,6 +1473,10 @@ class SemanticAnnotator:
                             elapsed = time.time() - start_time
                             speed = completed / elapsed if elapsed > 0 else 0
                             print(f"🔄 进度: {completed}/{total} ({completed/total:.1%}) | 速度: {speed:.1f}行/秒")
+                        
+                        # ===== 增量保存检查 =====
+                        if save_interval > 0 and (completed - last_save_completed) >= save_interval:
+                            _incremental_save()
                             
                     except Exception as e:
                         print(f"❌ 行 {idx} 处理失败: {e}")
@@ -1293,9 +1490,32 @@ class SemanticAnnotator:
                             ),
                             annotated_at=time.time()
                         )
+                        completed += 1
+                        completed_indices.add(idx)
+        
+        # 检查是否因暂停而中断
+        if pause_event and pause_event.is_set():
+            _incremental_save()
+            paused = True
+            print(f"⏸️ 标注暂停，已保存 {completed}/{total} 行")
+            # 返回已完成的部分
+            results = [r for r in results if r is not None]
+            return results
+        
+        # 检查是否因取消而中断
+        if cancel_event and cancel_event.is_set():
+            # 取消时也做增量保存（保留已完成的部分）
+            _incremental_save()
+            print(f"⚠️ 标注已取消，已保存 {completed}/{total} 行")
+            results = [r for r in results if r is not None]
+            return results
         
         # 过滤None
         results = [r for r in results if r is not None]
+        
+        # 正常完成：做最终保存并删除checkpoint
+        _incremental_save()
+        delete_checkpoint(movie_id)
         
         print(f"✅ 标注完成！共 {len(results)} 行，耗时 {time.time() - start_time:.1f}秒")
         

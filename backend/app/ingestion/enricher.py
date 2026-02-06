@@ -149,11 +149,20 @@ def download_poster(poster_url: str, movie_folder: Path, douban_id: str) -> Opti
         return None
 
 
-def _run_enrichment():
+def _run_enrichment(target_ids: list = None):
     try:
         print(f"[*] Starting background enrichment...")
         TASK.update({"status": "running", "errors": [], "processed": 0, "current": None})
-        movies = metadata_store.load_movies()
+        all_movies = metadata_store.load_movies()
+        
+        # 如果指定了 target_ids，只处理这些影片
+        if target_ids:
+            target_set = set(str(tid) for tid in target_ids)
+            movies = [m for m in all_movies if str(m.get('douban_id', '')) in target_set]
+            print(f"[*] Targeted enrichment: {len(movies)} / {len(all_movies)} movies")
+        else:
+            movies = all_movies
+        
         TASK["total"] = len(movies)
 
         for idx, m in enumerate(movies):
@@ -166,18 +175,23 @@ def _run_enrichment():
             
             has_metadata = m.get("director") or m.get("starring")
             
-            # 直接检查电影文件夹中是否存在 poster.jpg
-            video_path = m.get("video_path")
-            movie_folder = Path(video_path).parent if video_path else None
+            # 确定电影文件夹路径（优先使用 folder_path，否则从 video_path 推断）
+            folder_path = m.get("folder_path")
+            if not folder_path:
+                video_path = m.get("video_path")
+                if video_path:
+                    folder_path = str(Path(video_path).parent)
+            
+            movie_folder = Path(folder_path) if folder_path else None
             poster_file = movie_folder / "poster.jpg" if movie_folder else None
             has_poster = poster_file and poster_file.exists()
             
-            # 如果有海报文件但JSON中没有记录，更新记录
+            # 如果有海报文件但数据库中没有记录，更新记录
             if has_poster and not m.get("local_poster"):
                 m["local_poster"] = str(poster_file)
-                metadata_store.save_movies(movies)
+                metadata_store.save_movies([m])
             
-            # 如果JSON记录了local_poster但文件已被删除，清除错误记录
+            # 如果数据库记录了local_poster但文件已被删除，清除错误记录
             if m.get("local_poster") and not has_poster:
                 print(f"[!] Poster file missing for: {m.get('title')}, will re-download")
                 m["local_poster"] = None  # 清除错误记录
@@ -207,7 +221,7 @@ def _run_enrichment():
                     if local_poster:
                         m['local_poster'] = local_poster
                         print(f" [OK] Poster saved: {local_poster}")
-                    metadata_store.save_movies(movies)
+                    metadata_store.save_movies([m])
                     time.sleep(0.5)  # 避免请求太快
                 TASK["processed"] = idx + 1
                 continue
@@ -236,7 +250,7 @@ def _run_enrichment():
                 
                 TASK["processed"] = idx + 1
                 # persist incremental updates
-                metadata_store.save_movies(movies)
+                metadata_store.save_movies([m])
                 time.sleep(1.0) # slightly slower to be safe
             except Exception as e:
                 print(f" [EX] Error fetching {douban_id}: {e}")
@@ -252,10 +266,10 @@ def _run_enrichment():
         TASK["errors"].append({"error": str(e)})
 
 
-def start_enrichment() -> Dict:
+def start_enrichment(target_ids: list = None) -> Dict:
     if TASK.get("status") == "running":
         return {"status": "running"}
-    t = threading.Thread(target=_run_enrichment, daemon=True)
+    t = threading.Thread(target=_run_enrichment, args=(target_ids,), daemon=True)
     t.start()
     return {"status": "started"}
 
