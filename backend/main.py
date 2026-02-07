@@ -323,10 +323,16 @@ try:
     from app.api.llm import router as llm_router
     from app.api.config import router as config_router
     from app.api.settings import router as settings_router
+    from app.api.model_providers import router as model_providers_router
+    from app.api.ingestion_profiles import router as ingestion_profiles_router
+    from app.api.prompt_templates import router as prompt_templates_router
     app.include_router(llm_router)
     app.include_router(config_router)
     app.include_router(settings_router)
-    print("✅ LLM、Config 和 Settings API 路由已注册")
+    app.include_router(model_providers_router)
+    app.include_router(ingestion_profiles_router)
+    app.include_router(prompt_templates_router)
+    print("✅ LLM、Config、Settings、ModelProviders、IngestionProfiles、PromptTemplates API 路由已注册")
 except ImportError as e:
     print(f"⚠️ API 路由加载失败: {e}")
 
@@ -689,10 +695,20 @@ async def import_scan_debug(request: Request):
 
 @app.get("/api/annotation/providers")
 async def list_llm_providers():
-    """列出所有可用的LLM提供者"""
+    """列出所有可用的LLM提供者（兼容旧接口，优先从数据库读取）"""
     if not ANNOTATION_AVAILABLE:
         raise HTTPException(status_code=503, detail="语义标注模块未加载")
     
+    # 优先使用数据库
+    try:
+        from app.core.model_provider_service import get_model_provider_service
+        service = get_model_provider_service()
+        providers = service.list_providers(category='llm')
+        return {"providers": providers}
+    except Exception:
+        pass
+    
+    # 回退到 LLMProviderManager
     manager = LLMProviderManager()
     return {"providers": manager.list_providers()}
 

@@ -2,6 +2,7 @@
 """
 LLM提供者管理器
 统一管理和调度各类LLM提供者
+优先从数据库读取配置，回退到YAML文件
 """
 
 import os
@@ -16,7 +17,7 @@ from .providers.openai_compatible import OpenAICompatibleProvider
 from .providers.commercial import CommercialProvider
 
 
-# 配置文件路径
+# 配置文件路径（作为回退）
 BASE_DIR = Path(__file__).parent.parent.parent.parent
 CONFIG_DIR = BASE_DIR / "config"
 LLM_CONFIG_PATH = CONFIG_DIR / "llm_providers.yaml"
@@ -27,7 +28,8 @@ class LLMProviderManager:
     LLM提供者管理器
     
     功能:
-    - 加载和管理LLM配置
+    - 优先从数据库加载模型配置
+    - 回退到YAML配置文件
     - 根据配置类型创建对应的Provider实例
     - 切换活跃的Provider
     - 列出所有可用的Provider
@@ -38,10 +40,47 @@ class LLMProviderManager:
         self.providers: Dict[str, Dict] = {}
         self.active_provider: str = ""
         self._provider_cache: Dict[str, BaseLLMProvider] = {}
+        self._use_db = False
         self._load_config()
     
     def _load_config(self):
-        """加载配置文件"""
+        """加载配置 - 优先数据库，回退YAML"""
+        try:
+            self._load_from_db()
+            if self.providers:
+                self._use_db = True
+                return
+        except Exception as e:
+            print(f"⚠️ 从数据库加载LLM配置失败，回退到YAML: {e}")
+        
+        self._load_from_yaml()
+    
+    def _load_from_db(self):
+        """从数据库加载配置"""
+        from app.core.model_provider_service import get_model_provider_service
+        service = get_model_provider_service()
+        
+        providers_list = service.list_providers(category='llm')
+        if not providers_list:
+            return
+        
+        self.providers = {}
+        for p in providers_list:
+            provider_id = p['id']
+            # 获取完整配置（含API Key）
+            config = service.get_provider_config(provider_id)
+            if config:
+                self.providers[provider_id] = config
+                if p.get('is_active'):
+                    self.active_provider = provider_id
+        
+        if not self.active_provider and self.providers:
+            self.active_provider = next(iter(self.providers))
+        
+        print(f"✅ LLM配置从数据库加载成功，当前使用: {self.active_provider} ({len(self.providers)} 个提供者)")
+    
+    def _load_from_yaml(self):
+        """从YAML文件加载配置（回退方案）"""
         if not self.config_path.exists():
             print(f"⚠️ LLM配置文件不存在: {self.config_path}")
             self._use_default_config()
@@ -53,12 +92,11 @@ class LLMProviderManager:
             
             self.active_provider = config.get("active_provider", "local_ollama")
             
-            # 加载所有提供者配置
             for key, value in config.items():
                 if isinstance(value, dict) and "base_url" in value:
                     self.providers[key] = value
             
-            print(f"✅ LLM配置加载成功，当前使用: {self.active_provider}")
+            print(f"✅ LLM配置从YAML加载成功，当前使用: {self.active_provider}")
         except Exception as e:
             print(f"⚠️ LLM配置加载失败: {e}")
             self._use_default_config()
@@ -169,6 +207,16 @@ class LLMProviderManager:
             raise ValueError(f"未知的LLM提供者: {provider_id}")
         
         self.active_provider = provider_id
+        
+        # 同步到数据库
+        if self._use_db:
+            try:
+                from app.core.model_provider_service import get_model_provider_service
+                service = get_model_provider_service()
+                service.set_active_provider(provider_id, 'llm')
+            except Exception as e:
+                print(f"⚠️ 同步活跃提供者到数据库失败: {e}")
+        
         print(f"✅ 已切换LLM提供者: {provider_id}")
     
     def test_provider(self, provider_id: str = None) -> Dict:

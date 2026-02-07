@@ -1,58 +1,36 @@
 // frontend-ui/src/SettingsPanel.tsx
 /**
- * 设置面板组件 - 重新设计版本
- * 统一管理 AI 模型、向量化、系统配置等所有设置
+ * 设置中心 - 重新设计版本
+ * 4个主要模块：模型管理 / 入库管理 / 数据库管理 / 提示词管理
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import {
-  Settings,
-  Cpu,
-  Database,
-  FileText,
-  Globe,
-  CheckCircle2,
-  XCircle,
-  Loader2,
-  ChevronRight,
-  ChevronDown,
-  RefreshCw,
-  AlertTriangle,
-  Check,
-  X,
-  Zap,
-  Server,
-  Sliders,
-  Save,
-  Info,
-  Edit3,
-  TestTube,
-  Sparkles,
-  HardDrive,
-  FolderOpen,
-  Tag,
-  Plus,
+  Settings, Cpu, Database, FileText,
+  CheckCircle2, XCircle, Loader2, ChevronRight, ChevronDown,
+  RefreshCw, AlertTriangle, Check, X, Zap, ZapOff,
+  Server, Sliders, Save, TestTube,
+  HardDrive, FolderOpen, Tag, Plus, Cloud, Star,
+  Pencil, Trash2, RotateCcw, BookOpen, MessageSquare,
+  Activity, Archive, BarChart3,
 } from 'lucide-react';
 import useSettingsStore from './store/settingsStore';
-import { open } from '@tauri-apps/plugin-dialog';
-import type { AnnotationConfig, VectorizationConfig } from './types/settings';
+import type {
+  ModelProvider, AnnotationConfig, VectorizationConfig,
+  IngestionProfile, PromptTemplate, TagCategory, TagDefinition,
+} from './types/settings';
+
+// ==================== 设置Tab类型 ====================
+type SettingsTab = 'models' | 'ingestion' | 'database' | 'prompts';
 
 // ==================== 子组件 ====================
 
-interface SettingsSectionProps {
-  title: string;
-  icon: React.ReactNode;
-  children: React.ReactNode;
-  description?: string;
-  badge?: string;
-  badgeColor?: string;
-  action?: React.ReactNode;
-  allowOverflow?: boolean;
-}
-
-function SettingsSection({ title, icon, children, description, badge, badgeColor = 'blue', action, allowOverflow = false }: SettingsSectionProps) {
+function SettingsSection({ title, icon, children, description, badge, action }: {
+  title: string; icon: React.ReactNode; children: React.ReactNode;
+  description?: string; badge?: string; action?: React.ReactNode;
+}) {
   return (
-    <div className={`bg-[#151515] rounded-xl border border-white/5 ${allowOverflow ? 'overflow-visible' : 'overflow-hidden'}`}>
+    <div className="bg-[#151515] rounded-xl border border-white/5 overflow-hidden">
       <div className="px-5 py-4 border-b border-white/5 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="text-blue-400">{icon}</div>
@@ -62,11 +40,7 @@ function SettingsSection({ title, icon, children, description, badge, badgeColor
           </div>
         </div>
         <div className="flex items-center gap-2">
-          {badge && (
-            <span className={`text-xs px-2 py-0.5 rounded bg-${badgeColor}-500/20 text-${badgeColor}-400`}>
-              {badge}
-            </span>
-          )}
+          {badge && <span className="text-xs px-2 py-0.5 rounded bg-blue-500/20 text-blue-400">{badge}</span>}
           {action}
         </div>
       </div>
@@ -75,86 +49,14 @@ function SettingsSection({ title, icon, children, description, badge, badgeColor
   );
 }
 
-// 下拉选择组件
-interface SelectDropdownProps {
-  label: string;
-  value: string;
-  options: Array<{ id: string; name: string; description?: string }>;
-  onChange: (value: string) => void;
-  placeholder?: string;
-  disabled?: boolean;
-}
-
-function SelectDropdown({ label, value, options, onChange, placeholder = '请选择', disabled }: SelectDropdownProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const selected = options.find(o => o.id === value);
-  
-  return (
-    <div className="relative">
-      <label className="text-xs text-gray-500 mb-1.5 block">{label}</label>
-      <button
-        onClick={() => !disabled && setIsOpen(!isOpen)}
-        disabled={disabled}
-        className={`w-full flex items-center justify-between px-3 py-2.5 bg-[#1a1a1a] border border-white/10 rounded-lg text-sm transition-colors ${
-          disabled ? 'opacity-50 cursor-not-allowed' : 'hover:border-white/20'
-        }`}
-      >
-        <span className={selected ? 'text-white' : 'text-gray-500'}>
-          {selected?.name || placeholder}
-        </span>
-        <ChevronDown size={16} className={`text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-      </button>
-      
-      {isOpen && (
-        <>
-          <div className="fixed inset-0 z-10" onClick={() => setIsOpen(false)} />
-          <div className="absolute z-20 top-full left-0 right-0 mt-1 bg-[#1a1a1a] border border-white/10 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar">
-            {options.length > 0 ? options.map((option) => (
-              <button
-                key={option.id}
-                onClick={() => {
-                  onChange(option.id);
-                  setIsOpen(false);
-                }}
-                className={`w-full flex items-center justify-between px-3 py-2.5 text-left text-sm transition-colors hover:bg-white/5 ${
-                  value === option.id ? 'bg-blue-500/10 text-blue-400' : 'text-gray-300'
-                }`}
-              >
-                <div>
-                  <div className="font-medium">{option.name}</div>
-                  {option.description && (
-                    <div className="text-xs text-gray-500 mt-0.5">{option.description}</div>
-                  )}
-                </div>
-                {value === option.id && <Check size={14} className="text-blue-400" />}
-              </button>
-            )) : (
-              <div className="px-3 py-4 text-center text-gray-500 text-sm">暂无可选项</div>
-            )}
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
-
-// 导航项组件
-interface SettingsNavItemProps {
-  icon: React.ReactNode;
-  label: string;
-  active?: boolean;
-  onClick?: () => void;
-  badge?: number;
-}
-
-function SettingsNavItem({ icon, label, active, onClick, badge }: SettingsNavItemProps) {
+function SettingsNavItem({ icon, label, active, onClick, badge }: {
+  icon: React.ReactNode; label: string; active?: boolean; onClick?: () => void; badge?: number;
+}) {
   return (
     <button
       onClick={onClick}
       className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${
-        active
-          ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
-          : 'text-gray-400 hover:text-white hover:bg-white/5'
+        active ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' : 'text-gray-400 hover:text-white hover:bg-white/5'
       }`}
     >
       <div className="flex items-center gap-3">
@@ -163,9 +65,7 @@ function SettingsNavItem({ icon, label, active, onClick, badge }: SettingsNavIte
       </div>
       <div className="flex items-center gap-2">
         {badge !== undefined && badge > 0 && (
-          <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
-            active ? 'bg-white/20' : 'bg-yellow-500 text-black font-bold'
-          }`}>
+          <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${active ? 'bg-white/20' : 'bg-yellow-500 text-black font-bold'}`}>
             {badge}
           </span>
         )}
@@ -175,1576 +75,1735 @@ function SettingsNavItem({ icon, label, active, onClick, badge }: SettingsNavIte
   );
 }
 
+// 空白模型模板
+const emptyProvider = (category: 'llm' | 'embedding'): Partial<ModelProvider> => ({
+  name: '', category, provider_type: 'local', local_mode: 'ollama',
+  base_url: category === 'llm' ? 'http://localhost:11434/v1' : 'http://localhost:11434',
+  model: '', api_key: '', api_style: 'openai', max_tokens: 2000, temperature: 0.7,
+  timeout: 60, dimension: 0, description: '', price_info: '',
+});
+
 // ==================== 主组件 ====================
 
-type SettingsTab = 'llm' | 'embedding' | 'vectordb' | 'prompt' | 'system';
-
-// 混剪标签配置类型
-interface MashupConfig {
-  version: string;
-  primary_functions: string[];
-  style_effects: string[];
-  connection_types: string[];
-  editing_rhythms: string[];
-  sound_effects: string[];
-}
-
-const DEFAULT_MASHUP_CONFIG: MashupConfig = {
-  version: "v4.0-mashup-optimized",
-  primary_functions: [
-    "强行解释", "身份反转", "场景嫁接", "金句引用", 
-    "跨服聊天", "反差萌", "一本正经胡说", "降维打击",
-    "时代错位", "次元突破", "神转折", "废话文学"
-  ],
-  style_effects: [
-    "反讽高级黑", "自嘲解构", "谐音梗王", "双关大师",
-    "夸张比喻", "正话反说", "无效沟通", "蜜汁自信",
-    "弱小可怜", "嚣张跋扈", "傲娇口嫌", "凡尔赛文学"
-  ],
-  connection_types: [
-    "接反转", "接质疑", "接自嘲", "接玩梗",
-    "接冷场", "接爆发", "接解释", "接吐槽",
-    "接求饶", "接傲娇", "接装傻", "接暴怒"
-  ],
-  editing_rhythms: [
-    "快速切梗", "慢放打脸", "重复鬼畜", "戛然而止",
-    "递进夸张", "突然打断", "画外音怼", "画面神配"
-  ],
-  sound_effects: [
-    "变速处理", "回声效果", "混响处理", "电子变声",
-    "环境音突显", "BGM骤停", "音效叠加", "静音反差"
-  ]
-};
-
 export default function SettingsPanel() {
-  const [activeTab, setActiveTab] = useState<SettingsTab>('llm');
-  const [showConfigEditor, setShowConfigEditor] = useState(false);
-  const [configEditorContent, setConfigEditorContent] = useState('');
-  const [configEditorType, setConfigEditorType] = useState<'llm' | 'embedding' | 'vectordb' | 'prompt' | 'mashup'>('llm');
-  
-  // 模型选择状态
-  const [selectedProviderType, setSelectedProviderType] = useState<'local' | 'commercial' | 'cloud'>('local');
-  const [selectedLocalMode, setSelectedLocalMode] = useState<string>('docker');
-  const [selectedLocalModel, setSelectedLocalModel] = useState<string>('');
-  const [selectedCommercialModel, setSelectedCommercialModel] = useState<string>('');
-  
-  // Embedding 连接测试状态（独立于LLM）
-  const [embeddingConnectionStatus, setEmbeddingConnectionStatus] = useState<{
-    status: 'idle' | 'testing' | 'connected' | 'failed';
-    error?: string;
-  }>({ status: 'idle' });
-  
-  // 提示词预览状态
-  const [showPromptPreview, setShowPromptPreview] = useState<'system' | 'user' | null>(null);
-  
-  // 向量化模型选择
-  const [selectedEmbeddingProviderType, setSelectedEmbeddingProviderType] = useState<'local' | 'commercial' | 'cloud'>('local');
-  const [selectedEmbeddingLocalMode, setSelectedEmbeddingLocalMode] = useState<string>('docker');
-  const [selectedEmbeddingLocalModel, setSelectedEmbeddingLocalModel] = useState<string>('');
-  const [selectedEmbeddingCommercialModel, setSelectedEmbeddingCommercialModel] = useState<string>('');
-  
-  // 混剪标签配置
-  const [mashupConfig, setMashupConfig] = useState<MashupConfig>(DEFAULT_MASHUP_CONFIG);
-  const [editingTagCategory, setEditingTagCategory] = useState<string | null>(null);
-  const [newTag, setNewTag] = useState('');
-  const [annotationDraft, setAnnotationDraft] = useState<AnnotationConfig | null>(null);
-  const [vectorizationDraft, setVectorizationDraft] = useState<VectorizationConfig | null>(null);
-  
+  const [activeTab, setActiveTab] = useState<SettingsTab>('models');
+
   const {
-    llmProviders,
-    embeddingProviders,
-    activeLLMProvider,
-    activeEmbeddingProvider,
-    llmConnectionStatus,
-    annotationConfig,
-    vectorizationConfig,
-    appSettings,
-    pathConfig,
-    vectorDB,
-    isLoading,
-    isSaving,
-    error,
-    promptConfigRaw,
-    loadAllSettings,
-    loadSettingsSections,
-    loadLLMProviders,
-    loadEmbeddingProviders,
-    loadLLMConfigRaw,
-    loadEmbeddingConfigRaw,
-    loadPromptConfig,
-    setActiveLLMProvider,
-    setActiveEmbeddingProvider,
-    testLLMConnection,
-    saveLLMConfig,
-    saveEmbeddingConfig,
-    savePromptConfig,
-    saveAnnotationConfig,
-    saveVectorizationConfig,
-    setError,
+    llmProviders, embeddingProviders,
+    loadLLMProviders, loadEmbeddingProviders,
+    loadIngestionProfiles, loadPromptTemplates, loadTagCategories,
+    loadDatabaseStats, loadSettingsSections,
   } = useSettingsStore();
-  
+
   // 初始加载
   useEffect(() => {
-    loadAllSettings();
+    loadLLMProviders();
+    loadEmbeddingProviders();
+    loadSettingsSections();
   }, []);
-  
-  // 同步选中状态
+
+  // 切换tab时加载对应数据
   useEffect(() => {
-    if (activeLLMProvider && llmProviders.length > 0) {
-      const provider = llmProviders.find(p => p.id === activeLLMProvider);
-      if (provider) {
-        const nextType = provider.type === 'commercial'
-          ? (selectedProviderType === 'cloud' ? 'cloud' : 'commercial')
-          : 'local';
-        setSelectedProviderType(nextType);
-        if (provider.type === 'local') {
-          setSelectedLocalMode(provider.local_mode || 'docker');
-          setSelectedLocalModel(provider.id);
-        } else {
-          setSelectedCommercialModel(provider.id);
-        }
-      }
+    if (activeTab === 'ingestion') {
+      loadIngestionProfiles();
+    } else if (activeTab === 'database') {
+      loadDatabaseStats();
+    } else if (activeTab === 'prompts') {
+      loadPromptTemplates();
+      loadTagCategories();
     }
-  }, [activeLLMProvider, llmProviders]);
+  }, [activeTab]);
 
-  // 同步 Embedding 选中状态
-  useEffect(() => {
-    if (activeEmbeddingProvider && embeddingProviders.length > 0) {
-      const provider = embeddingProviders.find(p => p.id === activeEmbeddingProvider);
-      if (provider) {
-        const nextType = provider.type === 'commercial'
-          ? (selectedEmbeddingProviderType === 'cloud' ? 'cloud' : 'commercial')
-          : 'local';
-        setSelectedEmbeddingProviderType(nextType);
-        if (provider.type === 'local') {
-          setSelectedEmbeddingLocalMode(provider.local_mode || 'docker');
-          setSelectedEmbeddingLocalModel(provider.id);
-        } else {
-          setSelectedEmbeddingCommercialModel(provider.id);
-        }
-      }
-    }
-  }, [activeEmbeddingProvider, embeddingProviders]);
-
-  // 同步标注参数草稿
-  useEffect(() => {
-    if (annotationConfig && annotationConfig._loaded) {
-      setAnnotationDraft(annotationConfig);
-    }
-  }, [annotationConfig]);
-
-  // 同步向量化参数草稿
-  useEffect(() => {
-    if (vectorizationConfig && vectorizationConfig._loaded) {
-      setVectorizationDraft(vectorizationConfig);
-    }
-  }, [vectorizationConfig]);
-
-  // 切换到向量化模型页时刷新列表
-  useEffect(() => {
-    if (activeTab === 'embedding') {
-      loadEmbeddingProviders();
-    }
-  }, [activeTab, loadEmbeddingProviders]);
-  
-  // 处理模型选择
-  const handleSelectProvider = useCallback(async (providerId: string) => {
-    setActiveLLMProvider(providerId);
-    await testLLMConnection(providerId);
-  }, [setActiveLLMProvider, testLLMConnection]);
-
-  const handleSelectEmbeddingProvider = useCallback(async (providerId: string) => {
-    await setActiveEmbeddingProvider(providerId);
-    await testEmbeddingConnection();
-  }, [setActiveEmbeddingProvider]);
-
-  const handleAnnotationDraftChange = (patch: Partial<AnnotationConfig>) => {
-    setAnnotationDraft(prev => ({ ...(prev ?? annotationConfig), ...patch }));
-  };
-
-  const handleSaveAnnotationConfig = async () => {
-    if (!annotationDraft) return;
-    await saveAnnotationConfig(annotationDraft);
-    await loadSettingsSections();
-  };
-
-  const annotationHasChanges = !!annotationDraft && annotationConfig._loaded && (
-    annotationDraft.batch_size !== annotationConfig.batch_size ||
-    annotationDraft.concurrent_requests !== annotationConfig.concurrent_requests ||
-    annotationDraft.max_retries !== annotationConfig.max_retries ||
-    annotationDraft.save_interval !== annotationConfig.save_interval ||
-    annotationDraft.retry_delay !== annotationConfig.retry_delay
-  );
-
-  const handleVectorizationDraftChange = (patch: Partial<VectorizationConfig>) => {
-    setVectorizationDraft(prev => ({ ...(prev ?? vectorizationConfig), ...patch }));
-  };
-
-  const handleSaveVectorizationConfig = async () => {
-    if (!vectorizationDraft) return;
-    await saveVectorizationConfig(vectorizationDraft);
-    await loadSettingsSections();
-  };
-
-  const vectorizationHasChanges = !!vectorizationDraft && vectorizationConfig._loaded && (
-    vectorizationDraft.batch_size !== vectorizationConfig.batch_size ||
-    vectorizationDraft.concurrent_requests !== vectorizationConfig.concurrent_requests ||
-    vectorizationDraft.max_retries !== vectorizationConfig.max_retries ||
-    vectorizationDraft.retry_delay !== vectorizationConfig.retry_delay
-  );
-  
-  // 测试 Embedding 连接
-  const testEmbeddingConnection = async () => {
-    const providerId = selectedEmbeddingProviderType === 'local' 
-      ? selectedEmbeddingLocalModel 
-      : selectedEmbeddingCommercialModel;
-    
-    if (!providerId) return;
-    
-    setEmbeddingConnectionStatus({ status: 'testing' });
-    try {
-      const res = await fetch('http://127.0.0.1:8000/api/settings/embedding/test-connection', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ provider_id: providerId })
-      });
-      const result = await res.json();
-      
-      if (result.success) {
-        setEmbeddingConnectionStatus({ 
-          status: 'connected',
-          error: undefined
-        });
-      } else {
-        setEmbeddingConnectionStatus({ 
-          status: 'failed', 
-          error: result.message || '连接失败' 
-        });
-      }
-    } catch (e: any) {
-      setEmbeddingConnectionStatus({ 
-        status: 'failed', 
-        error: e.message || '网络错误' 
-      });
-    }
-  };
-  
-  // 打开配置编辑器
-  const openConfigEditor = async (type: 'llm' | 'embedding' | 'vectordb' | 'prompt' | 'mashup') => {
-    setConfigEditorType(type);
-    
-    if (type === 'llm' || type === 'vectordb') {
-      const content = await loadLLMConfigRaw();
-      setConfigEditorContent(content);
-    } else if (type === 'embedding') {
-      const content = await loadEmbeddingConfigRaw();
-      setConfigEditorContent(content);
-    } else if (type === 'prompt') {
-      await loadPromptConfig();
-      setConfigEditorContent(promptConfigRaw);
-    } else {
-      setConfigEditorContent(JSON.stringify(mashupConfig, null, 2));
-    }
-    
-    setShowConfigEditor(true);
-  };
-  
-  // 保存配置
-  const handleSaveConfig = async () => {
-    let success = false;
-    
-    if (configEditorType === 'llm' || configEditorType === 'vectordb') {
-      success = await saveLLMConfig(configEditorContent);
-    } else if (configEditorType === 'embedding') {
-      success = await saveEmbeddingConfig(configEditorContent);
-    } else if (configEditorType === 'prompt') {
-      success = await savePromptConfig(configEditorContent);
-    } else {
-      try {
-        const parsed = JSON.parse(configEditorContent);
-        setMashupConfig(parsed);
-        success = true;
-      } catch {
-        setError('JSON 格式错误');
-        return;
-      }
-    }
-    
-    if (success) {
-      setShowConfigEditor(false);
-      if (configEditorType === 'embedding') {
-        await loadEmbeddingProviders();
-      } else {
-        await loadLLMProviders();
-      }
-    }
-  };
-  
-  // 选择文件夹
-  const handleSelectFolder = async (key: string) => {
-    try {
-      const selected = await open({
-        directory: true,
-        multiple: false,
-        title: '选择文件夹'
-      });
-      if (selected) {
-        console.log(`Selected folder for ${key}:`, selected);
-        // TODO: 保存路径到后端
-      }
-    } catch (e) {
-      console.error('Failed to select folder:', e);
-    }
-  };
-  
-  // 添加标签
-  const handleAddTag = (category: keyof MashupConfig) => {
-    if (!newTag.trim()) return;
-    const current = mashupConfig[category];
-    if (Array.isArray(current) && !current.includes(newTag.trim())) {
-      setMashupConfig({
-        ...mashupConfig,
-        [category]: [...current, newTag.trim()]
-      });
-    }
-    setNewTag('');
-    setEditingTagCategory(null);
-  };
-  
-  // 删除标签
-  const handleRemoveTag = (category: keyof MashupConfig, tag: string) => {
-    const current = mashupConfig[category];
-    if (Array.isArray(current)) {
-      setMashupConfig({
-        ...mashupConfig,
-        [category]: current.filter(t => t !== tag)
-      });
-    }
-  };
-  
-  // 计算统计
-  const localProviders = llmProviders.filter(p => p.type === 'local');
-  const commercialProviders = llmProviders.filter(p => p.type === 'commercial');
-  const localEmbeddingProviders = embeddingProviders.filter(p => p.type === 'local');
-  const commercialEmbeddingProviders = embeddingProviders.filter(p => p.type === 'commercial');
-  
-  // 按运行方式分组
-  const localModeOptions = [
-    { id: 'docker', name: 'Docker', description: '容器方式部署' },
-    { id: 'ollama', name: 'Ollama', description: 'Ollama 服务' },
-    { id: 'native', name: 'Python 原生', description: '直接调用本地模型' },
-  ];
-  
-  const localProvidersForMode = localProviders.filter(p => (p.local_mode || 'native') === selectedLocalMode);
-  const localModelOptions = localProvidersForMode.map(p => ({
-    id: p.id,
-    name: p.name,
-    description: p.description
-  }));
-
-  const localEmbeddingProvidersForMode = localEmbeddingProviders.filter(p => (p.local_mode || 'native') === selectedEmbeddingLocalMode);
-  const localEmbeddingModelOptions = localEmbeddingProvidersForMode.map(p => ({
-    id: p.id,
-    name: p.name,
-    description: p.description
-  }));
-  
-  // 标签类别配置
-  const tagCategories: Array<{ key: keyof MashupConfig; label: string; color: string }> = [
-    { key: 'primary_functions', label: '核心功能标签', color: 'blue' },
-    { key: 'style_effects', label: '风格效果标签', color: 'purple' },
-    { key: 'connection_types', label: '连接方式', color: 'green' },
-    { key: 'editing_rhythms', label: '剪辑节奏', color: 'orange' },
-    { key: 'sound_effects', label: '音效建议', color: 'pink' },
-  ];
-  
   return (
-    <div className="h-full flex bg-[#0d0d0d]">
+    <div className="w-full h-full flex bg-[#0a0a0a] overflow-hidden">
       {/* 左侧导航 */}
-      <nav className="w-64 shrink-0 border-r border-white/5 bg-[#0a0a0a] p-4 flex flex-col">
-        <div className="mb-6">
-          <h1 className="text-xl font-bold text-white flex items-center gap-2">
-            <Settings size={22} className="text-blue-400" />
-            设置中心
-          </h1>
-          <p className="text-xs text-gray-500 mt-1">管理 AI 模型和系统配置</p>
-        </div>
-        
-        <div className="space-y-1 flex-1">
-          <SettingsNavItem
-            icon={<Cpu size={18} />}
-            label="语义标定"
-            active={activeTab === 'llm'}
-            onClick={() => setActiveTab('llm')}
-          />
-          <SettingsNavItem
-            icon={<Sparkles size={18} />}
-            label="向量化模型"
-            active={activeTab === 'embedding'}
-            onClick={() => setActiveTab('embedding')}
-          />
-          <SettingsNavItem
-            icon={<Database size={18} />}
-            label="向量数据库"
-            active={activeTab === 'vectordb'}
-            onClick={() => setActiveTab('vectordb')}
-          />
-          <SettingsNavItem
-            icon={<FileText size={18} />}
-            label="提示词与标签"
-            active={activeTab === 'prompt'}
-            onClick={() => setActiveTab('prompt')}
-          />
-          
-          <div className="!mt-4 pt-4 border-t border-white/5">
-            <SettingsNavItem
-              icon={<Globe size={18} />}
-              label="系统设置"
-              active={activeTab === 'system'}
-              onClick={() => setActiveTab('system')}
-            />
+      <div className="w-72 bg-[#111] border-r border-white/5 p-6 flex flex-col overflow-y-auto">
+        <div className="mb-8">
+          <div className="flex items-center gap-3 mb-2">
+            <Settings size={24} className="text-blue-400" />
+            <h1 className="text-xl font-bold text-white">设置中心</h1>
           </div>
+          <p className="text-xs text-gray-500">管理 AI 模型和系统配置</p>
         </div>
-        
-        {/* 底部刷新按钮 */}
-        <button
-          onClick={() => loadAllSettings()}
-          disabled={isLoading}
-          className="flex items-center justify-center gap-2 px-4 py-2.5 bg-white/5 hover:bg-white/10 rounded-xl text-gray-400 hover:text-white transition-colors"
-        >
-          <RefreshCw size={14} className={isLoading ? 'animate-spin' : ''} />
-          <span className="text-sm">刷新配置</span>
-        </button>
-      </nav>
-      
-      {/* 右侧内容区 */}
-      <main className="flex-1 overflow-y-auto custom-scrollbar p-6">
+
+        <div className="space-y-2">
+          <SettingsNavItem
+            icon={<Cpu size={18} />} label="模型管理"
+            active={activeTab === 'models'} onClick={() => setActiveTab('models')}
+            badge={llmProviders.length + embeddingProviders.length}
+          />
+          <SettingsNavItem
+            icon={<Sliders size={18} />} label="入库管理"
+            active={activeTab === 'ingestion'} onClick={() => setActiveTab('ingestion')}
+          />
+          <SettingsNavItem
+            icon={<Database size={18} />} label="数据库管理"
+            active={activeTab === 'database'} onClick={() => setActiveTab('database')}
+          />
+          <SettingsNavItem
+            icon={<BookOpen size={18} />} label="提示词管理"
+            active={activeTab === 'prompts'} onClick={() => setActiveTab('prompts')}
+          />
+        </div>
+
+        <div className="flex-1" />
+        <div className="text-xs text-gray-600 mt-4">
+          CineGraph-AI v1.0.0-beta
+        </div>
+      </div>
+
+      {/* 右侧内容 */}
+      <div className="flex-1 overflow-y-auto p-6 custom-scrollbar">
         <div className="max-w-4xl mx-auto space-y-6">
-          
-          {/* 错误提示 */}
-          {error && (
-            <div className="flex items-center gap-3 p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
-              <AlertTriangle size={18} className="text-red-400 shrink-0" />
-              <p className="text-sm text-red-400 flex-1">{error}</p>
-              <button onClick={() => setError(null)} className="text-red-400 hover:text-red-300">
-                <X size={16} />
-              </button>
-            </div>
-          )}
-          
-          {/* ========== 语义标定（合并模型选择和标注参数）========== */}
-          {activeTab === 'llm' && (
-            <>
-              <div className="flex items-center justify-between">
-                <div>
-                  <h2 className="text-2xl font-bold text-white">语义标定</h2>
-                  <p className="text-sm text-gray-500 mt-1">选择 AI 模型并配置标注参数</p>
-                </div>
-                <button
-                  onClick={() => openConfigEditor('llm')}
-                  className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-xl text-gray-300 hover:text-white transition-colors"
-                >
-                  <Edit3 size={14} />
-                  编辑配置文件
-                </button>
-              </div>
-              
-              {/* 模型选择区域 - 统一三级下拉菜单 */}
-              <SettingsSection
-                title="模型选择"
-                icon={<Cpu size={18} />}
-                description="选择用于语义标定的大语言模型"
-                allowOverflow
-              >
-                <div className="space-y-4">
-                  {/* 三级下拉菜单 */}
-                  <div className="grid grid-cols-3 gap-4">
-                    {/* 第一级：类型（本地/商用） */}
-                    <SelectDropdown
-                      label="模型类型"
-                      value={selectedProviderType}
-                      options={[
-                        { id: 'local', name: '🖥️ 本地模型', description: '免费，需启动服务' },
-                        { id: 'commercial', name: '☁️ 商用 API', description: '付费，稳定可靠' },
-                        { id: 'cloud', name: '☁️ 云端', description: '与商用一致的调用方式' },
-                      ]}
-                      onChange={(v) => {
-                        const nextType = v === 'cloud' ? 'cloud' : v === 'commercial' ? 'commercial' : 'local';
-                        setSelectedProviderType(nextType);
-                        // 切换类型时重置连接状态
-                        useSettingsStore.setState({ llmConnectionStatus: { status: 'idle' } });
-                        if (nextType === 'local') {
-                          setSelectedCommercialModel('');
-                          if (!selectedLocalMode) {
-                            setSelectedLocalMode('docker');
-                          }
-                        } else {
-                          setSelectedLocalModel('');
-                        }
-                      }}
-                      disabled={llmConnectionStatus.status === 'testing'}
-                    />
-                    
-                    {/* 第二级：运行方式（本地）或 API 提供商（商用） */}
-                    {selectedProviderType === 'local' ? (
-                      <SelectDropdown
-                        label="运行方式"
-                        value={selectedLocalMode}
-                        options={localModeOptions}
-                        onChange={(v) => {
-                          setSelectedLocalMode(v);
-                          setSelectedLocalModel('');
-                          // 切换运行方式时重置连接状态
-                          useSettingsStore.setState({ llmConnectionStatus: { status: 'idle' } });
-                        }}
-                        disabled={llmConnectionStatus.status === 'testing'}
-                      />
-                    ) : (
-                      <div className="opacity-50">
-                        <label className="text-xs text-gray-500 mb-1.5 block">API 提供商</label>
-                        <div className="px-3 py-2.5 bg-[#1a1a1a] border border-white/10 rounded-lg text-sm text-gray-400">
-                          由模型决定
-                        </div>
-                      </div>
-                    )}
-                    
-                    {/* 第三级：具体模型 */}
-                    {selectedProviderType === 'local' ? (
-                      <SelectDropdown
-                        label="选择模型"
-                        value={selectedLocalModel}
-                        options={localModelOptions}
-                        onChange={(v) => {
-                          setSelectedLocalModel(v);
-                          handleSelectProvider(v);
-                        }}
-                        placeholder={localModelOptions.length === 0 ? '该方式暂无模型' : '请选择模型'}
-                        disabled={localModelOptions.length === 0 || llmConnectionStatus.status === 'testing'}
-                      />
-                    ) : (
-                      <SelectDropdown
-                        label="选择模型"
-                        value={selectedCommercialModel}
-                        options={commercialProviders.map(p => ({
-                          id: p.id,
-                          name: p.name,
-                          description: `${p.description} (¥${(p.price_per_1k_tokens || 0) * 7}/1K)`
-                        }))}
-                        onChange={(v) => {
-                          setSelectedCommercialModel(v);
-                          if (v) handleSelectProvider(v);
-                        }}
-                        placeholder="请选择商用模型"
-                        disabled={llmConnectionStatus.status === 'testing'}
-                      />
-                    )}
-                  </div>
-                  
-                  {/* 当前选择状态和连接测试 */}
-                  <div className="p-4 bg-[#1a1a1a] rounded-xl border border-white/5">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        {/* 当前模型信息 */}
-                        {(() => {
-                          const currentProviderId = selectedProviderType === 'local' ? selectedLocalModel : selectedCommercialModel;
-                          return currentProviderId ? (
-                          <>
-                            <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                              selectedProviderType === 'local' ? 'bg-green-500/20' : 'bg-purple-500/20'
-                            }`}>
-                              {selectedProviderType === 'local' ? <Server size={20} className="text-green-400" /> : <Zap size={20} className="text-purple-400" />}
-                            </div>
-                            <div>
-                              <p className="text-sm font-medium text-white">
-                                {llmProviders.find(p => p.id === currentProviderId)?.name || '未知模型'}
-                              </p>
-                              <p className="text-xs text-gray-500">
-                                {selectedProviderType === 'local' ? `本地 · ${selectedLocalMode}` : (selectedProviderType === 'cloud' ? '云端 API' : '商用 API')}
-                                {selectedProviderType === 'local' && (
-                                  <span className="text-green-400 ml-2">免费</span>
-                                )}
-                                {selectedProviderType === 'commercial' && (
-                                  <span className="text-purple-400 ml-2">
-                                    ¥{((llmProviders.find(p => p.id === currentProviderId)?.price_per_1k_tokens || 0) * 7).toFixed(4)}/1K
-                                  </span>
-                                )}
-                              </p>
-                            </div>
-                          </>
-                        ) : (
-                          <div className="flex items-center gap-2 text-gray-500">
-                            <AlertTriangle size={16} />
-                            <span className="text-sm">请选择一个模型</span>
-                          </div>
-                        );
-                        })()}
-                      </div>
-                      
-                      {/* 连接状态和测试按钮 */}
-                      <div className="flex items-center gap-3">
-                        <div className="flex items-center gap-2">
-                          {llmConnectionStatus.status === 'connected' && (
-                            <><CheckCircle2 size={14} className="text-green-400" /><span className="text-xs text-green-400">已连接</span></>
-                          )}
-                          {llmConnectionStatus.status === 'failed' && (
-                            <><XCircle size={14} className="text-red-400" /><span className="text-xs text-red-400">{llmConnectionStatus.error || '连接失败'}</span></>
-                          )}
-                          {llmConnectionStatus.status === 'testing' && (
-                            <><Loader2 size={14} className="text-blue-400 animate-spin" /><span className="text-xs text-blue-400">测试中...</span></>
-                          )}
-                        </div>
-                        <button
-                          onClick={() => {
-                            const providerId = selectedProviderType === 'local' ? selectedLocalModel : selectedCommercialModel;
-                            if (providerId) testLLMConnection(providerId);
-                          }}
-                          disabled={(!(selectedProviderType === 'local' ? selectedLocalModel : selectedCommercialModel) || llmConnectionStatus.status === 'testing')}
-                          className={`flex items-center gap-1 px-4 py-2 rounded-lg text-white text-xs transition-colors ${
-                            selectedProviderType === 'local' 
-                              ? 'bg-green-600 hover:bg-green-500' 
-                              : 'bg-purple-600 hover:bg-purple-500'
-                          } disabled:bg-gray-700 disabled:cursor-not-allowed`}
-                        >
-                          {llmConnectionStatus.status === 'testing' ? (
-                            <Loader2 size={12} className="animate-spin" />
-                          ) : (
-                            <TestTube size={12} />
-                          )}
-                          测试连接
-                        </button>
-                      </div>
-                    </div>
-                    
-                    {/* 本地模型提示 */}
-                    {selectedLocalModel && (
-                      <div className="mt-3 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
-                        <div className="flex items-start gap-2">
-                          <Info size={14} className="text-yellow-400 mt-0.5 shrink-0" />
-                          <div className="text-xs text-yellow-300/80">
-                            <p className="font-medium text-yellow-400 mb-1">使用本地模型前请确保：</p>
-                            <ul className="list-disc list-inside space-y-0.5">
-                              {selectedLocalMode === 'docker' && <li>Docker 容器已启动并运行</li>}
-                              {selectedLocalMode === 'ollama' && <li>Ollama 服务已启动 (ollama serve)</li>}
-                              {selectedLocalMode === 'native' && <li>Python 环境和模型已正确配置</li>}
-                              <li>模型服务地址可访问</li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </SettingsSection>
-              
-              {/* 标注参数 */}
-              <SettingsSection
-                title="标注参数"
-                icon={<Sliders size={18} />}
-                description="调整语义标注的运行参数"
-                action={
-                  <button
-                    onClick={handleSaveAnnotationConfig}
-                    disabled={!annotationHasChanges || isSaving || !annotationConfig._loaded}
-                    className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-lg transition-colors ${
-                      annotationHasChanges && !isSaving && annotationConfig._loaded
-                        ? 'bg-blue-500/20 text-blue-300 hover:bg-blue-500/30'
-                        : 'bg-white/5 text-gray-500 cursor-not-allowed'
-                    }`}
-                  >
-                    <Save size={12} />
-                    保存
-                  </button>
-                }
-              >
-                {!annotationConfig._loaded ? (
-                  <div className="flex items-center justify-center py-8 text-gray-500">
-                    <Loader2 size={20} className="animate-spin mr-2" />
-                    <span className="text-sm">加载配置中...</span>
-                  </div>
-                ) : (
-                <>
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="flex items-center justify-between">
-                      <span className="text-sm text-gray-300">批处理大小</span>
-                      <span className="text-xs text-blue-400 bg-blue-500/20 px-2 py-0.5 rounded">
-                        {annotationDraft?.batch_size ?? annotationConfig.batch_size}
-                      </span>
-                    </label>
-                    <input
-                      type="range"
-                      min="1"
-                      max="50"
-                      value={annotationDraft?.batch_size ?? annotationConfig.batch_size}
-                      onChange={(e) => handleAnnotationDraftChange({ batch_size: parseInt(e.target.value) })}
-                      className="w-full accent-blue-500"
-                    />
-                    <p className="text-xs text-gray-500">每次请求处理的字幕数量</p>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label className="flex items-center justify-between">
-                      <span className="text-sm text-gray-300">并发请求数</span>
-                      <span className="text-xs text-blue-400 bg-blue-500/20 px-2 py-0.5 rounded">
-                        {annotationDraft?.concurrent_requests ?? annotationConfig.concurrent_requests}
-                      </span>
-                    </label>
-                    <input
-                      type="range"
-                      min="1"
-                      max="5"
-                      value={annotationDraft?.concurrent_requests ?? annotationConfig.concurrent_requests}
-                      onChange={(e) => handleAnnotationDraftChange({ concurrent_requests: parseInt(e.target.value) })}
-                      className="w-full accent-blue-500"
-                    />
-                    <p className="text-xs text-gray-500">同时发送的 API 请求数量</p>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label className="flex items-center justify-between">
-                      <span className="text-sm text-gray-300">最大重试次数</span>
-                      <span className="text-xs text-purple-400 bg-purple-500/20 px-2 py-0.5 rounded">
-                        {annotationDraft?.max_retries ?? annotationConfig.max_retries}
-                      </span>
-                    </label>
-                    <input
-                      type="range"
-                      min="0"
-                      max="5"
-                      value={annotationDraft?.max_retries ?? annotationConfig.max_retries}
-                      onChange={(e) => handleAnnotationDraftChange({ max_retries: parseInt(e.target.value) })}
-                      className="w-full accent-purple-500"
-                    />
-                    <p className="text-xs text-gray-500">请求失败时的重试次数</p>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label className="flex items-center justify-between">
-                      <span className="text-sm text-gray-300">自动保存间隔</span>
-                      <span className="text-xs text-green-400 bg-green-500/20 px-2 py-0.5 rounded">
-                        {(annotationDraft?.save_interval ?? annotationConfig.save_interval)} 条
-                      </span>
-                    </label>
-                    <input
-                      type="range"
-                      min="1"
-                      max="20"
-                      value={annotationDraft?.save_interval ?? annotationConfig.save_interval}
-                      onChange={(e) => handleAnnotationDraftChange({ save_interval: parseInt(e.target.value) })}
-                      className="w-full accent-green-500"
-                    />
-                    <p className="text-xs text-gray-500">每处理多少条后保存一次</p>
-                  </div>
-                </div>
-                
-                <div className="mt-4 pt-4 border-t border-white/5">
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-sm text-gray-300">重试延迟 (毫秒)</label>
-                      <input
-                        type="number"
-                        min="100"
-                        max="10000"
-                        step="100"
-                        value={annotationDraft?.retry_delay ?? annotationConfig.retry_delay}
-                        onChange={(e) => handleAnnotationDraftChange({ retry_delay: parseInt(e.target.value) })}
-                        className="w-full px-3 py-2 bg-[#1a1a1a] border border-white/10 rounded-lg text-sm text-white focus:outline-none focus:border-blue-500"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-4 flex items-center justify-between text-xs text-gray-500">
-                  <span>修改后点击保存以生效</span>
-                  {annotationHasChanges && <span className="text-blue-400">有未保存的更改</span>}
-                </div>
-                </>
-                )}
-              </SettingsSection>
-            </>
-          )}
-          
-          {/* ========== 向量化模型 ========== */}
-          {activeTab === 'embedding' && (
-            <>
-              <div className="flex items-center justify-between">
-                <div>
-                  <h2 className="text-2xl font-bold text-white">向量化模型</h2>
-                  <p className="text-sm text-gray-500 mt-1">选择用于生成文本向量的 Embedding 模型</p>
-                </div>
-                <button
-                  onClick={() => openConfigEditor('embedding')}
-                  className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-xl text-gray-300 hover:text-white transition-colors"
-                >
-                  <Edit3 size={14} />
-                  编辑配置文件
-                </button>
-              </div>
-              
-              {/* 模型选择区域 - 统一三级下拉菜单 */}
-              <SettingsSection
-                title="模型选择"
-                icon={<Sparkles size={18} />}
-                description="选择用于向量化的 Embedding 模型"
-                allowOverflow
-              >
-                <div className="space-y-4">
-                  {/* 三级下拉菜单 */}
-                  <div className="grid grid-cols-3 gap-4">
-                    {/* 第一级：类型（本地/商用） */}
-                    <SelectDropdown
-                      label="模型类型"
-                      value={selectedEmbeddingProviderType}
-                      options={[
-                        { id: 'local', name: '🖥️ 本地模型', description: '免费，需启动服务' },
-                        { id: 'commercial', name: '☁️ 商用 API', description: '付费，稳定可靠' },
-                        { id: 'cloud', name: '☁️ 云端', description: '与商用一致的调用方式' },
-                      ]}
-                      onChange={(v) => {
-                        const nextType = v === 'cloud' ? 'cloud' : v === 'commercial' ? 'commercial' : 'local';
-                        setSelectedEmbeddingProviderType(nextType);
-                        // 切换类型时重置连接状态
-                        setEmbeddingConnectionStatus({ status: 'idle' });
-                        if (nextType === 'local') {
-                          setSelectedEmbeddingCommercialModel('');
-                          if (!selectedEmbeddingLocalMode) {
-                            setSelectedEmbeddingLocalMode('docker');
-                          }
-                        } else {
-                          setSelectedEmbeddingLocalModel('');
-                        }
-                      }}
-                      disabled={embeddingConnectionStatus.status === 'testing'}
-                    />
-                    
-                    {/* 第二级：运行方式（本地）或 API 提供商（商用） */}
-                    {selectedEmbeddingProviderType === 'local' ? (
-                      <SelectDropdown
-                        label="运行方式"
-                        value={selectedEmbeddingLocalMode}
-                        options={localModeOptions}
-                        onChange={(v) => {
-                          setSelectedEmbeddingLocalMode(v);
-                          setSelectedEmbeddingLocalModel('');
-                          // 切换运行方式时重置连接状态
-                          setEmbeddingConnectionStatus({ status: 'idle' });
-                        }}
-                        disabled={embeddingConnectionStatus.status === 'testing'}
-                      />
-                    ) : (
-                      <div className="opacity-50">
-                        <label className="text-xs text-gray-500 mb-1.5 block">API 提供商</label>
-                        <div className="px-3 py-2.5 bg-[#1a1a1a] border border-white/10 rounded-lg text-sm text-gray-400">
-                          由模型决定
-                        </div>
-                      </div>
-                    )}
-                    
-                    {/* 第三级：具体模型 */}
-                    {selectedEmbeddingProviderType === 'local' ? (
-                      <SelectDropdown
-                        label="选择模型"
-                        value={selectedEmbeddingLocalModel}
-                        options={localEmbeddingModelOptions}
-                        onChange={(v) => {
-                          setSelectedEmbeddingLocalModel(v);
-                          handleSelectEmbeddingProvider(v);
-                        }}
-                        placeholder={localEmbeddingModelOptions.length === 0 ? '该方式暂无模型' : '请选择模型'}
-                        disabled={localEmbeddingModelOptions.length === 0 || embeddingConnectionStatus.status === 'testing'}
-                      />
-                    ) : (
-                      <SelectDropdown
-                        label="选择模型"
-                        value={selectedEmbeddingCommercialModel}
-                        options={commercialEmbeddingProviders.map(p => ({
-                          id: p.id,
-                          name: p.name,
-                          description: `${p.description} (维度: ${p.dimension}, ¥${(p.price_per_1k_tokens || 0) * 7}/1K)`
-                        }))}
-                        onChange={(v) => {
-                          setSelectedEmbeddingCommercialModel(v);
-                          if (v) handleSelectEmbeddingProvider(v);
-                        }}
-                        placeholder="请选择商用模型"
-                        disabled={embeddingConnectionStatus.status === 'testing'}
-                      />
-                    )}
-                  </div>
-                  
-                  {/* 当前选择状态和连接测试 */}
-                  <div className="p-4 bg-[#1a1a1a] rounded-xl border border-white/5">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        {/* 当前模型信息 */}
-                        {(() => {
-                          const currentProviderId = selectedEmbeddingProviderType === 'local' ? selectedEmbeddingLocalModel : selectedEmbeddingCommercialModel;
-                          const currentProvider = embeddingProviders.find(p => p.id === currentProviderId);
-                          return currentProviderId ? (
-                          <>
-                            <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                              selectedEmbeddingProviderType === 'local' ? 'bg-green-500/20' : 'bg-purple-500/20'
-                            }`}>
-                              {selectedEmbeddingProviderType === 'local' ? <Server size={20} className="text-green-400" /> : <Zap size={20} className="text-purple-400" />}
-                            </div>
-                            <div>
-                              <p className="text-sm font-medium text-white">
-                                {currentProvider?.name || '未知模型'}
-                                {currentProvider?.dimension && (
-                                  <span className="ml-2 text-xs text-purple-400">维度: {currentProvider.dimension}</span>
-                                )}
-                              </p>
-                              <p className="text-xs text-gray-500">
-                                {selectedEmbeddingProviderType === 'local' ? `本地 · ${selectedEmbeddingLocalMode}` : (selectedEmbeddingProviderType === 'cloud' ? '云端 API' : '商用 API')}
-                                {selectedEmbeddingProviderType === 'local' && (
-                                  <span className="text-green-400 ml-2">免费</span>
-                                )}
-                                {selectedEmbeddingProviderType !== 'local' && (
-                                  <span className="text-purple-400 ml-2">
-                                    ¥{((currentProvider?.price_per_1k_tokens || 0) * 7).toFixed(4)}/1K
-                                  </span>
-                                )}
-                              </p>
-                            </div>
-                          </>
-                        ) : (
-                          <div className="flex items-center gap-2 text-gray-500">
-                            <AlertTriangle size={16} />
-                            <span className="text-sm">请选择一个模型</span>
-                          </div>
-                        );
-                        })()}
-                      </div>
-                      
-                      {/* 连接状态和测试按钮 */}
-                      <div className="flex items-center gap-3">
-                        <div className="flex items-center gap-2">
-                          {embeddingConnectionStatus.status === 'connected' && (
-                            <><CheckCircle2 size={14} className="text-green-400" /><span className="text-xs text-green-400">已连接</span></>
-                          )}
-                          {embeddingConnectionStatus.status === 'failed' && (
-                            <><XCircle size={14} className="text-red-400" /><span className="text-xs text-red-400">{embeddingConnectionStatus.error || '连接失败'}</span></>
-                          )}
-                          {embeddingConnectionStatus.status === 'testing' && (
-                            <><Loader2 size={14} className="text-blue-400 animate-spin" /><span className="text-xs text-blue-400">测试中...</span></>
-                          )}
-                        </div>
-                        <button
-                          onClick={() => {
-                            const providerId = selectedEmbeddingProviderType === 'local' ? selectedEmbeddingLocalModel : selectedEmbeddingCommercialModel;
-                            if (providerId) testEmbeddingConnection();
-                          }}
-                          disabled={(!(selectedEmbeddingProviderType === 'local' ? selectedEmbeddingLocalModel : selectedEmbeddingCommercialModel) || embeddingConnectionStatus.status === 'testing')}
-                          className={`flex items-center gap-1 px-4 py-2 rounded-lg text-white text-xs transition-colors ${
-                            selectedEmbeddingProviderType === 'local' 
-                              ? 'bg-green-600 hover:bg-green-500' 
-                              : 'bg-purple-600 hover:bg-purple-500'
-                          } disabled:bg-gray-700 disabled:cursor-not-allowed`}
-                        >
-                          {embeddingConnectionStatus.status === 'testing' ? (
-                            <Loader2 size={12} className="animate-spin" />
-                          ) : (
-                            <TestTube size={12} />
-                          )}
-                          测试连接
-                        </button>
-                      </div>
-                    </div>
-                    
-                    {/* 本地模型提示 */}
-                    {selectedEmbeddingLocalModel && selectedEmbeddingProviderType === 'local' && (
-                      <div className="mt-3 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
-                        <div className="flex items-start gap-2">
-                          <Info size={14} className="text-yellow-400 mt-0.5 shrink-0" />
-                          <div className="text-xs text-yellow-300/80">
-                            <p className="font-medium text-yellow-400 mb-1">使用本地向量模型前请确保：</p>
-                            <ul className="list-disc list-inside space-y-0.5">
-                              {selectedEmbeddingLocalMode === 'docker' && <li>Docker 容器已启动并运行</li>}
-                              {selectedEmbeddingLocalMode === 'ollama' && <li>Ollama 服务已启动 (ollama serve)</li>}
-                              {selectedEmbeddingLocalMode === 'native' && <li>Python 环境和模型已正确配置</li>}
-                              <li>向量化服务地址可访问</li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </SettingsSection>
-              
-              {/* 向量化参数 */}
-              <SettingsSection
-                title="向量化参数"
-                icon={<Sliders size={18} />}
-                description="调整向量化处理的运行参数"
-                action={
-                  <button
-                    onClick={handleSaveVectorizationConfig}
-                    disabled={!vectorizationHasChanges || isSaving || !vectorizationConfig._loaded}
-                    className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-lg transition-colors ${
-                      vectorizationHasChanges && !isSaving && vectorizationConfig._loaded
-                        ? 'bg-blue-500/20 text-blue-300 hover:bg-blue-500/30'
-                        : 'bg-white/5 text-gray-500 cursor-not-allowed'
-                    }`}
-                  >
-                    <Save size={12} />
-                    保存
-                  </button>
-                }
-              >
-                {!vectorizationConfig._loaded ? (
-                  <div className="flex items-center justify-center py-8 text-gray-500">
-                    <Loader2 size={20} className="animate-spin mr-2" />
-                    <span className="text-sm">加载配置中...</span>
-                  </div>
-                ) : (
-                <>
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="flex items-center justify-between">
-                      <span className="text-sm text-gray-300">批处理大小</span>
-                      <span className="text-xs text-blue-400 bg-blue-500/20 px-2 py-0.5 rounded">
-                        {vectorizationDraft?.batch_size ?? vectorizationConfig.batch_size}
-                      </span>
-                    </label>
-                    <input
-                      type="range"
-                      min="10"
-                      max="200"
-                      step="10"
-                      value={vectorizationDraft?.batch_size ?? vectorizationConfig.batch_size}
-                      onChange={(e) => handleVectorizationDraftChange({ batch_size: parseInt(e.target.value) })}
-                      className="w-full accent-blue-500"
-                    />
-                    <p className="text-xs text-gray-500">每次请求处理的文本数量（向量化数据量大，建议较高值）</p>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label className="flex items-center justify-between">
-                      <span className="text-sm text-gray-300">并发请求数</span>
-                      <span className="text-xs text-blue-400 bg-blue-500/20 px-2 py-0.5 rounded">
-                        {vectorizationDraft?.concurrent_requests ?? vectorizationConfig.concurrent_requests}
-                      </span>
-                    </label>
-                    <input
-                      type="range"
-                      min="1"
-                      max="8"
-                      value={vectorizationDraft?.concurrent_requests ?? vectorizationConfig.concurrent_requests}
-                      onChange={(e) => handleVectorizationDraftChange({ concurrent_requests: parseInt(e.target.value) })}
-                      className="w-full accent-blue-500"
-                    />
-                    <p className="text-xs text-gray-500">同时发送的向量化请求数量</p>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label className="flex items-center justify-between">
-                      <span className="text-sm text-gray-300">最大重试次数</span>
-                      <span className="text-xs text-purple-400 bg-purple-500/20 px-2 py-0.5 rounded">
-                        {vectorizationDraft?.max_retries ?? vectorizationConfig.max_retries}
-                      </span>
-                    </label>
-                    <input
-                      type="range"
-                      min="0"
-                      max="5"
-                      value={vectorizationDraft?.max_retries ?? vectorizationConfig.max_retries}
-                      onChange={(e) => handleVectorizationDraftChange({ max_retries: parseInt(e.target.value) })}
-                      className="w-full accent-purple-500"
-                    />
-                    <p className="text-xs text-gray-500">请求失败时的重试次数</p>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label className="text-sm text-gray-300">重试延迟 (毫秒)</label>
-                    <input
-                      type="number"
-                      min="100"
-                      max="5000"
-                      step="100"
-                      value={vectorizationDraft?.retry_delay ?? vectorizationConfig.retry_delay}
-                      onChange={(e) => handleVectorizationDraftChange({ retry_delay: parseInt(e.target.value) })}
-                      className="w-full px-3 py-2 bg-[#1a1a1a] border border-white/10 rounded-lg text-sm text-white focus:outline-none focus:border-blue-500"
-                    />
-                  </div>
-                </div>
-                <div className="mt-4 flex items-center justify-between text-xs text-gray-500">
-                  <span>修改后点击保存以生效</span>
-                  {vectorizationHasChanges && <span className="text-blue-400">有未保存的更改</span>}
-                </div>
-                </>
-                )}
-              </SettingsSection>
-              
-              {/* 重要提示 */}
-              <div className="p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-xl">
-                <div className="flex items-start gap-3">
-                  <AlertTriangle size={18} className="text-yellow-400 shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-medium text-yellow-400">重要提示</p>
-                    <p className="text-xs text-yellow-300/80 mt-1">
-                      向量化模型与向量数据库的索引引擎必须保持一致！更换模型后需要重新向量化所有已标注内容，否则搜索将无法正常工作。
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="p-4 bg-blue-500/5 border border-blue-500/10 rounded-xl">
-                <div className="flex items-start gap-3">
-                  <Info size={16} className="text-blue-400 shrink-0 mt-0.5" />
-                  <div className="text-xs text-gray-400 space-y-2">
-                    <p><strong className="text-gray-300">配置文件位置：</strong><code className="bg-white/5 px-1.5 py-0.5 rounded text-blue-400">config/embedding_providers.yaml</code></p>
-                    <p><strong className="text-gray-300">注意：</strong>更改向量维度后，需要重新向量化所有已标注的内容</p>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-          
-          {/* ========== 向量数据库 ========== */}
-          {activeTab === 'vectordb' && (
-            <>
-              <div>
-                <h2 className="text-2xl font-bold text-white">向量数据库</h2>
-                <p className="text-sm text-gray-500 mt-1">管理向量存储和检索配置</p>
-              </div>
-              
-              {/* 一致性提示 */}
-              <div className="p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-xl">
-                <div className="flex items-start gap-3">
-                  <AlertTriangle size={18} className="text-yellow-400 shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-medium text-yellow-400">引擎一致性</p>
-                    <p className="text-xs text-yellow-300/80 mt-1">
-                      向量数据库的索引引擎必须与向量化模型匹配。当前使用 ChromaDB + Qwen3-Embedding，请确保向量化时使用相同的模型。
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              <SettingsSection
-                title="数据库配置"
-                icon={<Database size={18} />}
-                description="当前使用 ChromaDB 作为向量数据库"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-4 bg-[#1a1a1a] rounded-xl">
-                    <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center">
-                      <Database size={24} className="text-green-400" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <span className="font-medium text-white">ChromaDB</span>
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-green-500/20 text-green-400">本地</span>
-                      </div>
-                      <p className="text-xs text-gray-400 mt-0.5">开源向量数据库，支持本地持久化存储</p>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label className="text-xs text-gray-500">数据存储路径</label>
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="text"
-                          value={vectorDB.path}
-                          readOnly
-                          className="flex-1 px-3 py-2 bg-[#1a1a1a] border border-white/10 rounded-lg text-sm text-gray-300 focus:outline-none"
-                        />
-                        <button 
-                          onClick={() => handleSelectFolder('vectordb_path')}
-                          className="p-2 bg-white/5 hover:bg-white/10 rounded-lg transition-colors"
-                        >
-                          <FolderOpen size={16} className="text-gray-400" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-xs text-gray-500">集合名称</label>
-                      <input
-                        type="text"
-                        value={vectorDB.collection_name}
-                        readOnly
-                        className="w-full px-3 py-2 bg-[#1a1a1a] border border-white/10 rounded-lg text-sm text-gray-300 focus:outline-none"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </SettingsSection>
-              
-              <SettingsSection
-                title="存储统计"
-                icon={<HardDrive size={18} />}
-              >
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="p-4 bg-[#1a1a1a] rounded-xl text-center">
-                    <div className="text-3xl font-bold text-blue-400">0</div>
-                    <div className="text-xs text-gray-500 mt-1">向量总数</div>
-                  </div>
-                  <div className="p-4 bg-[#1a1a1a] rounded-xl text-center">
-                    <div className="text-3xl font-bold text-green-400">0 MB</div>
-                    <div className="text-xs text-gray-500 mt-1">存储空间</div>
-                  </div>
-                  <div className="p-4 bg-[#1a1a1a] rounded-xl text-center">
-                    <div className="text-3xl font-bold text-purple-400">0</div>
-                    <div className="text-xs text-gray-500 mt-1">影片数量</div>
-                  </div>
-                </div>
-              </SettingsSection>
-            </>
-          )}
-          
-          {/* ========== 提示词与标签配置 ========== */}
-          {activeTab === 'prompt' && (
-            <>
-              <div className="flex items-center justify-between">
-                <div>
-                  <h2 className="text-2xl font-bold text-white">提示词与标签配置</h2>
-                  <p className="text-sm text-gray-500 mt-1">自定义语义标注的提示词模板和混剪标签体系</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => openConfigEditor('prompt')}
-                    className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-xl text-gray-300 hover:text-white transition-colors"
-                  >
-                    <Edit3 size={14} />
-                    编辑提示词
-                  </button>
-                  <button
-                    onClick={() => openConfigEditor('mashup')}
-                    className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-xl text-gray-300 hover:text-white transition-colors"
-                  >
-                    <Tag size={14} />
-                    编辑标签配置
-                  </button>
-                </div>
-              </div>
-              
-              {/* 提示词模板 */}
-              <SettingsSection
-                title="提示词模板"
-                icon={<FileText size={18} />}
-                description="控制 AI 分析台词时的输出格式"
-              >
-                <div className="space-y-4">
-                  {/* 系统提示词 */}
-                  <div 
-                    className="p-4 bg-[#1a1a1a] rounded-xl cursor-pointer hover:bg-[#1f1f1f] transition-colors"
-                    onClick={() => setShowPromptPreview(showPromptPreview === 'system' ? null : 'system')}
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs text-gray-500">系统提示词 (System Prompt)</span>
-                      <button className="text-[10px] px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition-colors">
-                        {showPromptPreview === 'system' ? '收起' : '展开预览'}
-                      </button>
-                    </div>
-                    <p className={`text-sm text-gray-300 ${showPromptPreview === 'system' ? '' : 'line-clamp-3'}`}>
-                      你是资深影视混剪UP主，擅长制作跨作品、无厘头、搞笑向的混剪视频。你的任务是分析台词片段，评估其在脱离原片语境后的混剪潜力。
-
-重点关注：
-1. 台词的通用性 - 能否脱离原语境独立使用
-2. 情绪表达 - 情感强度和类型
-3. 节奏感 - 语速、停顿、韵律
-4. 搞笑潜力 - 误解空间、反差效果
-5. 搭配可能 - 与其他素材的组合潜力
-                    </p>
-                  </div>
-                  
-                  {/* 用户提示词 */}
-                  <div 
-                    className="p-4 bg-[#1a1a1a] rounded-xl cursor-pointer hover:bg-[#1f1f1f] transition-colors"
-                    onClick={() => setShowPromptPreview(showPromptPreview === 'user' ? null : 'user')}
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs text-gray-500">用户提示词模板</span>
-                      <button className="text-[10px] px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 hover:bg-purple-500/30 transition-colors">
-                        {showPromptPreview === 'user' ? '收起' : '展开预览'}
-                      </button>
-                    </div>
-                    <p className={`text-sm text-gray-300 ${showPromptPreview === 'user' ? '' : 'line-clamp-3'}`}>
-                      分析以下台词的混剪创作潜力。请返回 JSON 格式，包含：
-- primary_function: 核心功能标签（如：强行解释、身份反转等）
-- style_effects: 风格效果标签
-- connection_type: 连接方式（如：接反转、接吐槽等）
-- editing_rhythm: 剪辑节奏建议
-- sound_effect: 音效处理建议
-- mashup_score: 混剪潜力评分（1-10）
-- usage_scenarios: 使用场景描述
-
-台词内容：{"{subtitle_text}"}
-                    </p>
-                  </div>
-                </div>
-              </SettingsSection>
-              
-              {/* 混剪标签体系 */}
-              <SettingsSection
-                title="混剪标签体系"
-                icon={<Tag size={18} />}
-                description="自定义用于台词分类的标签库"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2 text-xs text-gray-500">
-                    <Info size={12} />
-                    <span>当前版本: {mashupConfig.version}</span>
-                  </div>
-                  
-                  {tagCategories.map(({ key, label, color }) => (
-                    <div key={key} className="p-4 bg-[#1a1a1a] rounded-xl">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-medium text-white">{label}</span>
-                          <span className={`text-[10px] px-1.5 py-0.5 rounded bg-${color}-500/20 text-${color}-400`}>
-                            {(mashupConfig[key] as string[])?.length || 0} 个
-                          </span>
-                        </div>
-                        <button
-                          onClick={() => setEditingTagCategory(editingTagCategory === key ? null : key)}
-                          className="text-xs text-blue-400 hover:text-blue-300"
-                        >
-                          {editingTagCategory === key ? '完成' : '编辑'}
-                        </button>
-                      </div>
-                      
-                      <div className="flex flex-wrap gap-2">
-                        {(mashupConfig[key] as string[])?.map((tag, idx) => (
-                          <span 
-                            key={idx}
-                            className={`inline-flex items-center gap-1 px-2 py-1 text-xs rounded-lg bg-${color}-500/10 text-${color}-300 border border-${color}-500/20`}
-                          >
-                            {tag}
-                            {editingTagCategory === key && (
-                              <button
-                                onClick={() => handleRemoveTag(key, tag)}
-                                className="ml-1 hover:text-red-400"
-                              >
-                                <X size={10} />
-                              </button>
-                            )}
-                          </span>
-                        ))}
-                        
-                        {editingTagCategory === key && (
-                          <div className="flex items-center gap-1">
-                            <input
-                              type="text"
-                              value={newTag}
-                              onChange={(e) => setNewTag(e.target.value)}
-                              onKeyDown={(e) => e.key === 'Enter' && handleAddTag(key)}
-                              placeholder="新标签..."
-                              className="w-24 px-2 py-1 text-xs bg-[#0d0d0d] border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
-                            />
-                            <button
-                              onClick={() => handleAddTag(key)}
-                              className="p-1 bg-blue-600 hover:bg-blue-500 rounded text-white"
-                            >
-                              <Plus size={12} />
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </SettingsSection>
-              
-              <div className="p-4 bg-blue-500/5 border border-blue-500/10 rounded-xl">
-                <div className="flex items-start gap-3">
-                  <Info size={16} className="text-blue-400 shrink-0 mt-0.5" />
-                  <div className="text-xs text-gray-400 space-y-2">
-                    <p><strong className="text-gray-300">配置文件位置：</strong><code className="bg-white/5 px-1.5 py-0.5 rounded text-blue-400">config/mashup_optimized_config.json</code></p>
-                    <p><strong className="text-gray-300">提示：</strong>标签体系会影响 AI 分析结果的分类，添加或删除标签后下次标注生效</p>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-          
-          {/* ========== 系统设置 ========== */}
-          {activeTab === 'system' && (
-            <>
-              <div>
-                <h2 className="text-2xl font-bold text-white">系统设置</h2>
-                <p className="text-sm text-gray-500 mt-1">应用程序的通用配置</p>
-              </div>
-              
-              <SettingsSection
-                title="存储路径"
-                icon={<FolderOpen size={18} />}
-              >
-                <div className="space-y-4">
-                  {Object.entries(pathConfig).map(([key, value]) => (
-                    <div key={key} className="flex items-center gap-4">
-                      <span className="w-32 text-sm text-gray-400">
-                        {key === 'media_root' && '媒体根目录'}
-                        {key === 'annotations_dir' && '标注目录'}
-                        {key === 'vectors_dir' && '向量目录'}
-                        {key === 'cache_dir' && '缓存目录'}
-                        {key === 'posters_dir' && '海报目录'}
-                      </span>
-                      <input
-                        type="text"
-                        value={value}
-                        readOnly
-                        className="flex-1 px-3 py-2 bg-[#1a1a1a] border border-white/10 rounded-lg text-sm text-gray-300 focus:outline-none"
-                      />
-                      <button 
-                        onClick={() => handleSelectFolder(key)}
-                        className="p-2 bg-white/5 hover:bg-white/10 rounded-lg transition-colors"
-                        title="选择文件夹"
-                      >
-                        <FolderOpen size={16} className="text-gray-400" />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </SettingsSection>
-              
-              <SettingsSection
-                title="应用偏好"
-                icon={<Globe size={18} />}
-              >
-                <div className="space-y-4">
-                  <label className="flex items-center justify-between p-3 bg-[#1a1a1a] rounded-xl cursor-pointer hover:bg-[#1f1f1f] transition-colors">
-                    <div>
-                      <span className="text-sm text-white">自动保存</span>
-                      <p className="text-xs text-gray-500 mt-0.5">自动保存标注进度</p>
-                    </div>
-                    <div className={`w-12 h-6 rounded-full transition-colors ${appSettings.autoSave ? 'bg-blue-500' : 'bg-gray-600'}`}>
-                      <div className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform ${appSettings.autoSave ? 'translate-x-6' : 'translate-x-0.5'} translate-y-0.5`} />
-                    </div>
-                  </label>
-                  
-                  <label className="flex items-center justify-between p-3 bg-[#1a1a1a] rounded-xl cursor-pointer hover:bg-[#1f1f1f] transition-colors">
-                    <div>
-                      <span className="text-sm text-white">删除前确认</span>
-                      <p className="text-xs text-gray-500 mt-0.5">删除影片前显示确认对话框</p>
-                    </div>
-                    <div className={`w-12 h-6 rounded-full transition-colors ${appSettings.confirmBeforeDelete ? 'bg-blue-500' : 'bg-gray-600'}`}>
-                      <div className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform ${appSettings.confirmBeforeDelete ? 'translate-x-6' : 'translate-x-0.5'} translate-y-0.5`} />
-                    </div>
-                  </label>
-                  
-                  <label className="flex items-center justify-between p-3 bg-[#1a1a1a] rounded-xl cursor-pointer hover:bg-[#1f1f1f] transition-colors">
-                    <div>
-                      <span className="text-sm text-white">显示提示</span>
-                      <p className="text-xs text-gray-500 mt-0.5">显示操作提示和帮助信息</p>
-                    </div>
-                    <div className={`w-12 h-6 rounded-full transition-colors ${appSettings.showTips ? 'bg-blue-500' : 'bg-gray-600'}`}>
-                      <div className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform ${appSettings.showTips ? 'translate-x-6' : 'translate-x-0.5'} translate-y-0.5`} />
-                    </div>
-                  </label>
-                </div>
-              </SettingsSection>
-              
-              <SettingsSection
-                title="关于"
-                icon={<Info size={18} />}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20">
-                    CG
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-white">CineGraph-AI</h4>
-                    <p className="text-sm text-gray-400">版本 1.0.0-beta</p>
-                    <p className="text-xs text-gray-500 mt-1">基于语义理解的智能影视混剪工具</p>
-                  </div>
-                </div>
-              </SettingsSection>
-            </>
-          )}
+          {activeTab === 'models' && <ModelManagementTab />}
+          {activeTab === 'ingestion' && <IngestionManagementTab />}
+          {activeTab === 'database' && <DatabaseManagementTab />}
+          {activeTab === 'prompts' && <PromptManagementTab />}
         </div>
-      </main>
-      
-      {/* 配置编辑器模态框 - 增大高度 */}
-      {showConfigEditor && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-8">
-          <div className="bg-[#181818] rounded-2xl border border-white/10 w-full max-w-[1000px] h-[90vh] flex flex-col shadow-2xl">
-            {/* 标题栏 */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 shrink-0">
-              <div className="flex items-center gap-3">
-                {configEditorType === 'llm' && <Cpu size={20} className="text-blue-400" />}
-                {configEditorType === 'embedding' && <Sparkles size={20} className="text-purple-400" />}
-                {configEditorType === 'vectordb' && <Database size={20} className="text-green-400" />}
-                {configEditorType === 'prompt' && <FileText size={20} className="text-orange-400" />}
-                {configEditorType === 'mashup' && <Tag size={20} className="text-pink-400" />}
-                <div>
-                  <h2 className="text-lg font-semibold text-white">
-                    {configEditorType === 'llm' && 'LLM 提供者配置'}
-                    {configEditorType === 'embedding' && 'Embedding 模型配置'}
-                    {configEditorType === 'vectordb' && '向量数据库配置'}
-                    {configEditorType === 'prompt' && '提示词配置'}
-                    {configEditorType === 'mashup' && '混剪标签配置'}
-                  </h2>
-                  <p className="text-xs text-gray-500">
-                    {configEditorType === 'llm' && 'config/llm_providers.yaml'}
-                    {configEditorType === 'embedding' && 'config/llm_providers.yaml (embedding 部分)'}
-                    {configEditorType === 'vectordb' && 'config/llm_providers.yaml (vectordb 部分)'}
-                    {configEditorType === 'prompt' && 'config/prompt_config.json'}
-                    {configEditorType === 'mashup' && 'config/mashup_optimized_config.json'}
-                  </p>
-                </div>
+      </div>
+    </div>
+  );
+}
+
+
+// ==================== Tab 1: 模型管理 ====================
+
+function ModelManagementTab() {
+  const {
+    llmProviders, embeddingProviders, activeLLMProvider, activeEmbeddingProvider,
+    loadLLMProviders, loadEmbeddingProviders,
+    setActiveLLMProvider, setActiveEmbeddingProvider, testLLMConnection,
+    createProvider, updateProvider, deleteProvider, toggleProvider, resetProviderDefaults,
+  } = useSettingsStore();
+
+  const [modelTab, setModelTab] = useState<'llm' | 'embedding'>('llm');
+  const [showEditor, setShowEditor] = useState(false);
+  const [editingProvider, setEditingProvider] = useState<Partial<ModelProvider> | null>(null);
+  const [isNewProvider, setIsNewProvider] = useState(false);
+  const [testResults, setTestResults] = useState<Record<string, 'loading' | 'success' | 'fail'>>({});
+  const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
+  const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
+  const [confirmReset, setConfirmReset] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const providers = modelTab === 'llm' ? llmProviders : embeddingProviders;
+  const activeProviderId = modelTab === 'llm' ? activeLLMProvider : activeEmbeddingProvider;
+
+  const grouped = useMemo(() => ({
+    local: providers.filter(p => p.provider_type === 'local'),
+    commercial: providers.filter(p => p.provider_type === 'commercial'),
+  }), [providers]);
+
+  const handleAdd = () => {
+    setEditingProvider(emptyProvider(modelTab));
+    setIsNewProvider(true);
+    setShowEditor(true);
+  };
+
+  const handleEdit = (p: ModelProvider) => {
+    setEditingProvider({ ...p });
+    setIsNewProvider(false);
+    setShowEditor(true);
+  };
+
+  const handleSave = async () => {
+    if (!editingProvider) return;
+    setLoading(true);
+    try {
+      if (isNewProvider) {
+        await createProvider(editingProvider as any);
+      } else {
+        await updateProvider(editingProvider.id!, editingProvider as any);
+      }
+      setShowEditor(false);
+      setEditingProvider(null);
+      if (modelTab === 'llm') await loadLLMProviders();
+      else await loadEmbeddingProviders();
+    } catch (e: any) {
+      alert('保存失败: ' + (e.message || '未知错误'));
+    }
+    setLoading(false);
+  };
+
+  const handleDelete = async (id: string) => {
+    setLoading(true);
+    try {
+      await deleteProvider(id);
+      setConfirmDelete(null);
+      if (modelTab === 'llm') await loadLLMProviders();
+      else await loadEmbeddingProviders();
+    } catch (e: any) {
+      alert('删除失败: ' + (e.message || '未知错误'));
+    }
+    setLoading(false);
+  };
+
+  const handleTest = async (p: ModelProvider) => {
+    setTestResults(prev => ({ ...prev, [p.id]: 'loading' }));
+    try {
+      const ok = await testLLMConnection(p.id);
+      setTestResults(prev => ({ ...prev, [p.id]: ok ? 'success' : 'fail' }));
+    } catch {
+      setTestResults(prev => ({ ...prev, [p.id]: 'fail' }));
+    }
+  };
+
+  const handleReset = async () => {
+    setLoading(true);
+    try {
+      await resetProviderDefaults();
+      setConfirmReset(false);
+      await loadLLMProviders();
+      await loadEmbeddingProviders();
+    } catch (e: any) {
+      alert('重置失败: ' + (e.message || '未知错误'));
+    }
+    setLoading(false);
+  };
+
+  const toggleExpand = (id: string) => {
+    setExpandedCards(prev => {
+      const s = new Set(prev);
+      if (s.has(id)) s.delete(id); else s.add(id);
+      return s;
+    });
+  };
+
+  const renderCard = (p: ModelProvider) => {
+    const isActive = p.id === activeProviderId;
+    const expanded = expandedCards.has(p.id);
+    const test = testResults[p.id];
+    return (
+      <div
+        key={p.id}
+        className={`rounded-xl border transition-all ${
+          isActive
+            ? 'border-blue-500/60 bg-blue-500/5 shadow-lg shadow-blue-500/10'
+            : p.enabled
+              ? 'border-white/10 bg-white/[0.02] hover:border-white/20'
+              : 'border-white/5 bg-white/[0.01] opacity-50'
+        }`}
+      >
+        {/* 卡片头部 */}
+        <div
+          className="flex items-center gap-3 px-4 py-3 cursor-pointer"
+          onClick={() => toggleExpand(p.id)}
+        >
+          <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
+            isActive ? 'bg-green-400 shadow-green-400/50 shadow-lg' : p.enabled ? 'bg-gray-500' : 'bg-red-500/50'
+          }`} />
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2">
+              <span className="font-medium text-sm truncate">{p.name}</span>
+              {isActive && (
+                <span className="text-[10px] px-1.5 py-0.5 bg-green-500/20 text-green-400 rounded-full flex items-center gap-1">
+                  <Star size={8} /> 当前激活
+                </span>
+              )}
+              {p.is_default && (
+                <span className="text-[10px] px-1.5 py-0.5 bg-gray-500/20 text-gray-400 rounded-full">预置</span>
+              )}
+            </div>
+            <div className="text-xs text-gray-500 truncate mt-0.5">
+              {p.model} · {p.price_info || '无价格信息'}
+            </div>
+          </div>
+          {test === 'loading' && <Loader2 size={14} className="animate-spin text-blue-400" />}
+          {test === 'success' && <CheckCircle2 size={14} className="text-green-400" />}
+          {test === 'fail' && <XCircle size={14} className="text-red-400" />}
+          <ChevronDown size={14} className={`text-gray-500 transition-transform ${expanded ? 'rotate-180' : ''}`} />
+        </div>
+
+        {/* 展开内容 */}
+        {expanded && (
+          <div className="px-4 pb-3 border-t border-white/5 pt-3 space-y-3">
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              <div>
+                <span className="text-gray-500">API 地址</span>
+                <p className="text-gray-300 truncate">{p.base_url}</p>
               </div>
+              <div>
+                <span className="text-gray-500">模型</span>
+                <p className="text-gray-300 truncate">{p.model}</p>
+              </div>
+              {modelTab === 'llm' && (
+                <>
+                  <div>
+                    <span className="text-gray-500">温度</span>
+                    <p className="text-gray-300">{p.temperature}</p>
+                  </div>
+                  <div>
+                    <span className="text-gray-500">最大Token</span>
+                    <p className="text-gray-300">{p.max_tokens}</p>
+                  </div>
+                </>
+              )}
+              {modelTab === 'embedding' && (
+                <>
+                  <div>
+                    <span className="text-gray-500">维度</span>
+                    <p className="text-gray-300">{p.dimension || '自动'}</p>
+                  </div>
+                  <div>
+                    <span className="text-gray-500">API风格</span>
+                    <p className="text-gray-300">{p.api_style}</p>
+                  </div>
+                </>
+              )}
+              <div>
+                <span className="text-gray-500">超时</span>
+                <p className="text-gray-300">{p.timeout}s</p>
+              </div>
+              <div>
+                <span className="text-gray-500">API Key</span>
+                <p className="text-gray-300">{p.api_key || '(无)'}</p>
+              </div>
+            </div>
+            {p.description && <p className="text-xs text-gray-500 italic">{p.description}</p>}
+
+            {/* 操作按钮 */}
+            <div className="flex gap-2 flex-wrap">
               <button
-                onClick={() => setShowConfigEditor(false)}
-                className="p-2 rounded-lg hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+                onClick={(e) => { e.stopPropagation(); handleTest(p); }}
+                className="flex items-center gap-1 px-2.5 py-1.5 text-xs rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition"
               >
-                <X size={18} />
+                <TestTube size={12} /> 测试
               </button>
-            </div>
-            
-            {/* 编辑器 - 占满剩余空间 */}
-            <div className="flex-1 overflow-hidden p-4 min-h-0">
-              <textarea
-                value={configEditorContent}
-                onChange={(e) => setConfigEditorContent(e.target.value)}
-                className="w-full h-full bg-[#0d0d0d] border border-white/10 rounded-xl p-4 text-sm text-gray-200 font-mono resize-none focus:outline-none focus:border-blue-500 custom-scrollbar"
-                spellCheck={false}
-              />
-            </div>
-            
-            {/* 底部 */}
-            <div className="flex items-center justify-between px-6 py-4 border-t border-white/10 bg-[#151515] shrink-0">
-              <p className="text-xs text-gray-500">
-                {(configEditorType === 'llm' || configEditorType === 'embedding' || configEditorType === 'vectordb') && '修改后需要重新加载配置以生效'}
-                {configEditorType === 'prompt' && '提示词配置修改后立即生效'}
-                {configEditorType === 'mashup' && '标签配置修改后下次标注生效'}
-              </p>
-              <div className="flex items-center gap-3">
+              {!isActive && p.enabled && (
                 <button
-                  onClick={() => setShowConfigEditor(false)}
-                  className="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    modelTab === 'llm' ? setActiveLLMProvider(p.id) : setActiveEmbeddingProvider(p.id);
+                  }}
+                  className="flex items-center gap-1 px-2.5 py-1.5 text-xs rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 transition"
                 >
-                  取消
+                  <Zap size={12} /> 激活
                 </button>
+              )}
+              <button
+                onClick={(e) => { e.stopPropagation(); toggleProvider(p.id, !p.enabled); }}
+                className={`flex items-center gap-1 px-2.5 py-1.5 text-xs rounded-lg transition ${
+                  p.enabled
+                    ? 'bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-400'
+                    : 'bg-green-500/10 hover:bg-green-500/20 text-green-400'
+                }`}
+              >
+                {p.enabled ? <><ZapOff size={12} /> 停用</> : <><Zap size={12} /> 启用</>}
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); handleEdit(p); }}
+                className="flex items-center gap-1 px-2.5 py-1.5 text-xs rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition"
+              >
+                <Pencil size={12} /> 编辑
+              </button>
+              {!p.is_default && (
                 <button
-                  onClick={handleSaveConfig}
-                  disabled={isSaving}
-                  className={`flex items-center gap-2 px-4 py-2 text-white text-sm font-medium rounded-xl transition-colors ${
-                    configEditorType === 'llm' || configEditorType === 'embedding' || configEditorType === 'vectordb'
-                      ? 'bg-blue-600 hover:bg-blue-500 disabled:bg-gray-700'
-                      : configEditorType === 'prompt'
-                        ? 'bg-purple-600 hover:bg-purple-500 disabled:bg-gray-700'
-                        : 'bg-green-600 hover:bg-green-500 disabled:bg-gray-700'
-                  }`}
+                  onClick={(e) => { e.stopPropagation(); setConfirmDelete(p.id); }}
+                  className="flex items-center gap-1 px-2.5 py-1.5 text-xs rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 transition"
                 >
-                  {isSaving ? (
-                    <>
-                      <Loader2 size={14} className="animate-spin" />
-                      保存中...
-                    </>
-                  ) : (
-                    <>
-                      <Save size={14} />
-                      保存配置
-                    </>
-                  )}
+                  <Trash2 size={12} /> 删除
                 </button>
-              </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* 删除确认 */}
+        {confirmDelete === p.id && (
+          <div className="px-4 pb-3 border-t border-red-500/20 pt-2 flex items-center gap-3">
+            <AlertTriangle size={14} className="text-red-400 flex-shrink-0" />
+            <span className="text-xs text-red-300">确认删除此模型？</span>
+            <div className="flex-1" />
+            <button
+              onClick={() => handleDelete(p.id)}
+              className="text-xs px-3 py-1 bg-red-600 hover:bg-red-500 text-white rounded-lg transition"
+            >
+              确认
+            </button>
+            <button
+              onClick={() => setConfirmDelete(null)}
+              className="text-xs px-3 py-1 bg-white/5 hover:bg-white/10 text-gray-300 rounded-lg transition"
+            >
+              取消
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  return (
+    <>
+      {/* 页面标题 */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold flex items-center gap-3">
+            <Cpu size={28} className="text-blue-400" /> 模型管理
+          </h2>
+          <p className="text-sm text-gray-500 mt-1">
+            管理 LLM 和 Embedding 模型提供者，所有配置存储在数据库中
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => { loadLLMProviders(); loadEmbeddingProviders(); }}
+            className="flex items-center gap-1.5 px-3 py-2 text-xs rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition"
+          >
+            <RefreshCw size={14} /> 刷新
+          </button>
+          <button
+            onClick={() => setConfirmReset(true)}
+            className="flex items-center gap-1.5 px-3 py-2 text-xs rounded-lg bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 transition"
+          >
+            <RotateCcw size={14} /> 重置默认
+          </button>
+        </div>
+      </div>
+
+      {/* LLM / Embedding Tab 切换 */}
+      <div className="flex gap-1 p-1 bg-white/5 rounded-xl w-fit">
+        <button
+          onClick={() => setModelTab('llm')}
+          className={`px-5 py-2 text-sm rounded-lg transition-all ${
+            modelTab === 'llm' ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/5'
+          }`}
+        >
+          🧠 LLM 大语言模型
+        </button>
+        <button
+          onClick={() => setModelTab('embedding')}
+          className={`px-5 py-2 text-sm rounded-lg transition-all ${
+            modelTab === 'embedding' ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/5'
+          }`}
+        >
+          📐 Embedding 向量模型
+        </button>
+      </div>
+
+      {/* 统计摘要 */}
+      <div className="grid grid-cols-3 gap-3">
+        <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5">
+          <div className="text-2xl font-bold text-white">{providers.length}</div>
+          <div className="text-xs text-gray-500">已配置模型</div>
+        </div>
+        <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5">
+          <div className="text-2xl font-bold text-green-400">{providers.filter(p => p.enabled).length}</div>
+          <div className="text-xs text-gray-500">已启用</div>
+        </div>
+        <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5">
+          <div className="text-2xl font-bold text-blue-400 truncate text-sm">
+            {providers.find(p => p.id === activeProviderId)?.name || '-'}
+          </div>
+          <div className="text-xs text-gray-500">当前激活</div>
+        </div>
+      </div>
+
+      {/* 添加模型按钮 */}
+      <button
+        onClick={handleAdd}
+        className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-dashed border-white/10 hover:border-blue-500/40 bg-white/[0.01] hover:bg-blue-500/5 text-gray-400 hover:text-blue-400 transition-all"
+      >
+        <Plus size={18} />
+        <span className="text-sm">添加{modelTab === 'llm' ? ' LLM ' : ' Embedding '}模型</span>
+      </button>
+
+      {/* 模型列表 */}
+      <div className="space-y-6">
+        {grouped.local.length > 0 && (
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 text-xs text-gray-400 uppercase tracking-wider px-1 py-1">
+              <Server size={12} />
+              <span>本地模型</span>
+              <span className="text-gray-600">({grouped.local.length})</span>
+            </div>
+            <div className="space-y-2">{grouped.local.map(renderCard)}</div>
+          </div>
+        )}
+        {grouped.commercial.length > 0 && (
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 text-xs text-gray-400 uppercase tracking-wider px-1 py-1">
+              <Cloud size={12} />
+              <span>商用 API</span>
+              <span className="text-gray-600">({grouped.commercial.length})</span>
+            </div>
+            <div className="space-y-2">{grouped.commercial.map(renderCard)}</div>
+          </div>
+        )}
+        {providers.length === 0 && (
+          <div className="text-center py-12 text-gray-600">
+            <Cpu size={32} className="mx-auto mb-3 opacity-50" />
+            <p>暂无{modelTab === 'llm' ? 'LLM' : 'Embedding'}模型</p>
+            <p className="text-xs mt-1">点击上方按钮添加模型</p>
+          </div>
+        )}
+      </div>
+
+      {/* 编辑模态框 */}
+      {showEditor && editingProvider && (
+        <ModelEditorModal
+          provider={editingProvider}
+          isNew={isNewProvider}
+          loading={loading}
+          onSave={handleSave}
+          onClose={() => { setShowEditor(false); setEditingProvider(null); }}
+          onChange={setEditingProvider}
+        />
+      )}
+
+      {/* 重置确认弹窗 */}
+      {confirmReset && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setConfirmReset(false)}
+        >
+          <div
+            className="bg-[#1a1a1a] rounded-2xl border border-orange-500/20 shadow-2xl max-w-sm w-full p-6 space-y-4"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-3">
+              <AlertTriangle size={24} className="text-orange-400" />
+              <h3 className="text-lg font-bold">重置为默认配置？</h3>
+            </div>
+            <p className="text-sm text-gray-400">
+              此操作将删除所有自定义模型，恢复为系统默认的模型提供者配置。
+            </p>
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => setConfirmReset(false)}
+                className="px-4 py-2 text-sm rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition"
+              >
+                取消
+              </button>
+              <button
+                onClick={handleReset}
+                disabled={loading}
+                className="px-4 py-2 text-sm rounded-lg bg-orange-600 hover:bg-orange-500 text-white transition flex items-center gap-2"
+              >
+                {loading && <Loader2 size={14} className="animate-spin" />}
+                确认重置
+              </button>
             </div>
           </div>
         </div>
       )}
+    </>
+  );
+}
+
+
+// ==================== 模型编辑弹窗组件 ====================
+
+function ModelEditorModal({
+  provider, isNew, loading, onSave, onClose, onChange,
+}: {
+  provider: Partial<ModelProvider>;
+  isNew: boolean;
+  loading: boolean;
+  onSave: () => void;
+  onClose: () => void;
+  onChange: (p: Partial<ModelProvider>) => void;
+}) {
+  return (
+    <div
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      <div
+        className="bg-[#1a1a1a] rounded-2xl border border-white/10 shadow-2xl max-w-lg w-full max-h-[85vh] overflow-y-auto"
+        onClick={e => e.stopPropagation()}
+      >
+        <div className="p-5 border-b border-white/5">
+          <h3 className="text-lg font-bold">{isNew ? '添加模型' : '编辑模型'}</h3>
+          <p className="text-xs text-gray-500 mt-1">
+            {isNew ? '配置新的模型提供者' : `编辑: ${provider.name}`}
+          </p>
+        </div>
+
+        <div className="p-5 space-y-4">
+          {/* 名称 */}
+          <div>
+            <label className="text-xs text-gray-400 mb-1 block">显示名称 *</label>
+            <input
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+              value={provider.name || ''}
+              onChange={e => onChange({ ...provider, name: e.target.value })}
+              placeholder="例: 我的Ollama模型"
+            />
+          </div>
+
+          {/* 提供者类型 + 本地模式 */}
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="text-xs text-gray-400 mb-1 block">提供者类型</label>
+              <select
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none"
+                value={provider.provider_type || 'local'}
+                onChange={e => {
+                  const t = e.target.value as 'local' | 'commercial';
+                  onChange({
+                    ...provider,
+                    provider_type: t,
+                    local_mode: t === 'local' ? 'ollama' : '',
+                    base_url: t === 'local'
+                      ? (provider.category === 'llm' ? 'http://localhost:11434/v1' : 'http://localhost:11434')
+                      : provider.base_url || '',
+                  });
+                }}
+              >
+                <option value="local">本地部署</option>
+                <option value="commercial">商用API</option>
+              </select>
+            </div>
+            {provider.provider_type === 'local' && (
+              <div>
+                <label className="text-xs text-gray-400 mb-1 block">本地模式</label>
+                <select
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none"
+                  value={provider.local_mode || 'ollama'}
+                  onChange={e => onChange({ ...provider, local_mode: e.target.value })}
+                >
+                  <option value="ollama">Ollama</option>
+                  <option value="docker">Docker</option>
+                </select>
+              </div>
+            )}
+          </div>
+
+          {/* API 地址 */}
+          <div>
+            <label className="text-xs text-gray-400 mb-1 block">API 地址 *</label>
+            <input
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+              value={provider.base_url || ''}
+              onChange={e => onChange({ ...provider, base_url: e.target.value })}
+              placeholder="http://localhost:11434/v1"
+            />
+          </div>
+
+          {/* 模型名称 */}
+          <div>
+            <label className="text-xs text-gray-400 mb-1 block">模型名称 *</label>
+            <input
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+              value={provider.model || ''}
+              onChange={e => onChange({ ...provider, model: e.target.value })}
+              placeholder="qwen3:4b"
+            />
+          </div>
+
+          {/* API Key */}
+          <div>
+            <label className="text-xs text-gray-400 mb-1 block">API Key</label>
+            <input
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+              value={provider.api_key || ''}
+              onChange={e => onChange({ ...provider, api_key: e.target.value })}
+              placeholder="留空或引用环境变量"
+            />
+          </div>
+
+          {/* Embedding 专用参数 */}
+          {provider.category === 'embedding' && (
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="text-xs text-gray-400 mb-1 block">API风格</label>
+                <select
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none"
+                  value={provider.api_style || 'openai'}
+                  onChange={e => onChange({ ...provider, api_style: e.target.value })}
+                >
+                  <option value="openai">OpenAI</option>
+                  <option value="ollama">Ollama</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 mb-1 block">向量维度</label>
+                <input
+                  type="number"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none"
+                  value={provider.dimension || 0}
+                  onChange={e => onChange({ ...provider, dimension: parseInt(e.target.value) || 0 })}
+                  placeholder="0=自动"
+                />
+              </div>
+            </div>
+          )}
+
+          {/* LLM 专用参数 */}
+          {provider.category === 'llm' && (
+            <div className="grid grid-cols-3 gap-3">
+              <div>
+                <label className="text-xs text-gray-400 mb-1 block">最大Token</label>
+                <input
+                  type="number"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none"
+                  value={provider.max_tokens || 2000}
+                  onChange={e => onChange({ ...provider, max_tokens: parseInt(e.target.value) || 2000 })}
+                />
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 mb-1 block">温度</label>
+                <input
+                  type="number"
+                  step="0.1"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none"
+                  value={provider.temperature ?? 0.7}
+                  onChange={e => onChange({ ...provider, temperature: parseFloat(e.target.value) || 0.7 })}
+                />
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 mb-1 block">超时(秒)</label>
+                <input
+                  type="number"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none"
+                  value={provider.timeout || 60}
+                  onChange={e => onChange({ ...provider, timeout: parseInt(e.target.value) || 60 })}
+                />
+              </div>
+            </div>
+          )}
+
+          {/* 描述 */}
+          <div>
+            <label className="text-xs text-gray-400 mb-1 block">描述</label>
+            <textarea
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none resize-none h-16 focus:border-blue-500/50"
+              value={provider.description || ''}
+              onChange={e => onChange({ ...provider, description: e.target.value })}
+              placeholder="模型简介..."
+            />
+          </div>
+
+          {/* 价格信息 */}
+          <div>
+            <label className="text-xs text-gray-400 mb-1 block">价格信息</label>
+            <input
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+              value={provider.price_info || ''}
+              onChange={e => onChange({ ...provider, price_info: e.target.value })}
+              placeholder="如: 免费 / ¥1/百万token"
+            />
+          </div>
+        </div>
+
+        {/* 底部操作 */}
+        <div className="p-5 border-t border-white/5 flex justify-end gap-3">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 text-sm rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition"
+          >
+            取消
+          </button>
+          <button
+            onClick={onSave}
+            disabled={loading || !provider.name || !provider.model || !provider.base_url}
+            className="px-6 py-2 text-sm rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium disabled:opacity-40 disabled:cursor-not-allowed transition flex items-center gap-2"
+          >
+            {loading && <Loader2 size={14} className="animate-spin" />}
+            {isNew ? '添加' : '保存'}
+          </button>
+        </div>
+      </div>
     </div>
+  );
+}
+
+
+// ==================== Tab 2: 入库管理 ====================
+
+function IngestionManagementTab() {
+  const {
+    llmProviders, embeddingProviders,
+    annotationConfig, vectorizationConfig,
+    loadLLMProviders, loadEmbeddingProviders,
+    saveAnnotationConfig, saveVectorizationConfig,
+    testLLMConnection, updateProvider,
+  } = useSettingsStore();
+
+  const [ingestionTab, setIngestionTab] = useState<'annotation' | 'vectorization'>('annotation');
+  const [testResults, setTestResults] = useState<Record<string, 'loading' | 'success' | 'fail'>>({});
+  const [showModelEditor, setShowModelEditor] = useState(false);
+  const [editingProvider, setEditingProvider] = useState<Partial<ModelProvider> | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    loadLLMProviders();
+    loadEmbeddingProviders();
+  }, []);
+
+  // 标注参数草稿
+  const [annotationDraft, setAnnotationDraft] = useState({
+    batch_size: annotationConfig.batch_size,
+    concurrent_requests: annotationConfig.concurrent_requests,
+    max_retries: annotationConfig.max_retries,
+    retry_delay: annotationConfig.retry_delay,
+    save_interval: annotationConfig.save_interval,
+  });
+
+  const [vectorDraft, setVectorDraft] = useState({
+    batch_size: vectorizationConfig.batch_size,
+    concurrent_requests: vectorizationConfig.concurrent_requests,
+    max_retries: vectorizationConfig.max_retries,
+    retry_delay: vectorizationConfig.retry_delay,
+  });
+
+  // 响应store变化
+  useEffect(() => {
+    setAnnotationDraft({
+      batch_size: annotationConfig.batch_size,
+      concurrent_requests: annotationConfig.concurrent_requests,
+      max_retries: annotationConfig.max_retries,
+      retry_delay: annotationConfig.retry_delay,
+      save_interval: annotationConfig.save_interval,
+    });
+  }, [annotationConfig]);
+
+  useEffect(() => {
+    setVectorDraft({
+      batch_size: vectorizationConfig.batch_size,
+      concurrent_requests: vectorizationConfig.concurrent_requests,
+      max_retries: vectorizationConfig.max_retries,
+      retry_delay: vectorizationConfig.retry_delay,
+    });
+  }, [vectorizationConfig]);
+
+  const handleTestModel = async (providerId: string) => {
+    setTestResults(prev => ({ ...prev, [providerId]: 'loading' }));
+    try {
+      const ok = await testLLMConnection(providerId);
+      setTestResults(prev => ({ ...prev, [providerId]: ok ? 'success' : 'fail' }));
+    } catch {
+      setTestResults(prev => ({ ...prev, [providerId]: 'fail' }));
+    }
+  };
+
+  const handleEditModel = (p: ModelProvider) => {
+    setEditingProvider({ ...p });
+    setShowModelEditor(true);
+  };
+
+  const handleSaveAnnotation = async () => {
+    setSaving(true);
+    try { await saveAnnotationConfig(annotationDraft); } catch {}
+    setSaving(false);
+  };
+
+  const handleSaveVector = async () => {
+    setSaving(true);
+    try { await saveVectorizationConfig(vectorDraft); } catch {}
+    setSaving(false);
+  };
+
+  const handleSaveModelEdit = async () => {
+    if (editingProvider?.id) {
+      await updateProvider(editingProvider.id, editingProvider as any);
+      setShowModelEditor(false);
+      loadLLMProviders();
+      loadEmbeddingProviders();
+    }
+  };
+
+  const renderModelList = (models: ModelProvider[]) => (
+    <div className="space-y-3">
+      {models.map(p => (
+        <div
+          key={p.id}
+          className={`flex items-center gap-3 px-4 py-3 rounded-xl border transition-all ${
+            p.is_active
+              ? 'border-green-500/40 bg-green-500/5'
+              : 'border-white/10 bg-white/[0.02] hover:border-white/20'
+          }`}
+        >
+          <div className={`w-2 h-2 rounded-full flex-shrink-0 ${p.is_active ? 'bg-green-400' : 'bg-gray-500'}`} />
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2">
+              <span className="font-medium text-sm">{p.name}</span>
+              {p.is_active && (
+                <span className="text-[10px] px-1.5 py-0.5 bg-green-500/20 text-green-400 rounded-full">激活中</span>
+              )}
+            </div>
+            <div className="text-xs text-gray-500 mt-0.5">
+              {p.model} · {p.category === 'embedding' ? `维度: ${p.dimension || '自动'} · ` : ''}{p.price_info || '-'}
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            {testResults[p.id] === 'loading' && <Loader2 size={14} className="animate-spin text-blue-400" />}
+            {testResults[p.id] === 'success' && <CheckCircle2 size={14} className="text-green-400" />}
+            {testResults[p.id] === 'fail' && <XCircle size={14} className="text-red-400" />}
+            <button
+              onClick={() => handleTestModel(p.id)}
+              className="px-2.5 py-1.5 text-xs rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition flex items-center gap-1"
+              title="测试连接"
+            >
+              <TestTube size={12} /> 测试
+            </button>
+            <button
+              onClick={() => handleEditModel(p)}
+              className="px-2.5 py-1.5 text-xs rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition flex items-center gap-1"
+              title="编辑模型"
+            >
+              <Pencil size={12} /> 编辑
+            </button>
+          </div>
+        </div>
+      ))}
+      {models.length === 0 && (
+        <div className="text-center py-8 text-gray-500 text-sm">
+          暂无启用的模型，请先在「模型管理」中配置
+        </div>
+      )}
+    </div>
+  );
+
+  return (
+    <>
+      {/* 页面标题 */}
+      <div>
+        <h2 className="text-2xl font-bold flex items-center gap-3">
+          <Sliders size={28} className="text-blue-400" /> 入库管理
+        </h2>
+        <p className="text-sm text-gray-500 mt-1">配置语义标注和向量化的模型、参数设定</p>
+      </div>
+
+      {/* Tab 切换 */}
+      <div className="flex gap-1 p-1 bg-white/5 rounded-xl w-fit">
+        <button
+          onClick={() => setIngestionTab('annotation')}
+          className={`px-5 py-2 text-sm rounded-lg transition-all ${
+            ingestionTab === 'annotation' ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/5'
+          }`}
+        >
+          🏷️ 语义标定参数
+        </button>
+        <button
+          onClick={() => setIngestionTab('vectorization')}
+          className={`px-5 py-2 text-sm rounded-lg transition-all ${
+            ingestionTab === 'vectorization' ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/5'
+          }`}
+        >
+          📐 向量化设定
+        </button>
+      </div>
+
+      {/* ===== 语义标定设定 ===== */}
+      {ingestionTab === 'annotation' && (
+        <div className="space-y-6">
+          <SettingsSection
+            title="LLM 模型选择"
+            icon={<Cpu size={18} />}
+            description="选择用于语义标注的大语言模型 — 仅显示已启用的模型"
+          >
+            {renderModelList(llmProviders.filter(p => p.enabled))}
+          </SettingsSection>
+
+          <SettingsSection
+            title="标注参数设置"
+            icon={<Sliders size={18} />}
+            description="调整语义标注的批处理和并发参数"
+            action={
+              <button
+                onClick={handleSaveAnnotation}
+                disabled={saving}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition disabled:opacity-50"
+              >
+                {saving ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />} 保存
+              </button>
+            }
+          >
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="text-xs text-gray-400 mb-1.5 block">批处理大小</label>
+                <input
+                  type="number"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+                  value={annotationDraft.batch_size}
+                  onChange={e => setAnnotationDraft({ ...annotationDraft, batch_size: parseInt(e.target.value) || 10 })}
+                />
+                <p className="text-[10px] text-gray-600 mt-1">每次发送给LLM的台词数量</p>
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 mb-1.5 block">并发请求数</label>
+                <input
+                  type="number"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+                  value={annotationDraft.concurrent_requests}
+                  onChange={e => setAnnotationDraft({ ...annotationDraft, concurrent_requests: parseInt(e.target.value) || 1 })}
+                />
+                <p className="text-[10px] text-gray-600 mt-1">同时进行的请求数</p>
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 mb-1.5 block">最大重试次数</label>
+                <input
+                  type="number"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+                  value={annotationDraft.max_retries}
+                  onChange={e => setAnnotationDraft({ ...annotationDraft, max_retries: parseInt(e.target.value) || 3 })}
+                />
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 mb-1.5 block">重试延迟 (ms)</label>
+                <input
+                  type="number"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+                  value={annotationDraft.retry_delay}
+                  onChange={e => setAnnotationDraft({ ...annotationDraft, retry_delay: parseInt(e.target.value) || 1000 })}
+                />
+              </div>
+              <div className="col-span-2">
+                <label className="text-xs text-gray-400 mb-1.5 block">自动保存间隔</label>
+                <input
+                  type="number"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+                  value={annotationDraft.save_interval}
+                  onChange={e => setAnnotationDraft({ ...annotationDraft, save_interval: parseInt(e.target.value) || 50 })}
+                />
+                <p className="text-[10px] text-gray-600 mt-1">每标注多少条自动保存一次</p>
+              </div>
+            </div>
+          </SettingsSection>
+        </div>
+      )}
+
+      {/* ===== 向量化设定 ===== */}
+      {ingestionTab === 'vectorization' && (
+        <div className="space-y-6">
+          <SettingsSection
+            title="Embedding 模型选择"
+            icon={<Cpu size={18} />}
+            description="选择用于向量化的嵌入模型 — 仅显示已启用的模型"
+          >
+            {renderModelList(embeddingProviders.filter(p => p.enabled))}
+          </SettingsSection>
+
+          <SettingsSection
+            title="向量化参数设置"
+            icon={<Sliders size={18} />}
+            description="调整向量化入库的批处理和并发参数"
+            action={
+              <button
+                onClick={handleSaveVector}
+                disabled={saving}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition disabled:opacity-50"
+              >
+                {saving ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />} 保存
+              </button>
+            }
+          >
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="text-xs text-gray-400 mb-1.5 block">批处理大小</label>
+                <input
+                  type="number"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+                  value={vectorDraft.batch_size}
+                  onChange={e => setVectorDraft({ ...vectorDraft, batch_size: parseInt(e.target.value) || 50 })}
+                />
+                <p className="text-[10px] text-gray-600 mt-1">每批向量化的条数</p>
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 mb-1.5 block">并发请求数</label>
+                <input
+                  type="number"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+                  value={vectorDraft.concurrent_requests}
+                  onChange={e => setVectorDraft({ ...vectorDraft, concurrent_requests: parseInt(e.target.value) || 2 })}
+                />
+                <p className="text-[10px] text-gray-600 mt-1">同时进行的请求数</p>
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 mb-1.5 block">最大重试次数</label>
+                <input
+                  type="number"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+                  value={vectorDraft.max_retries}
+                  onChange={e => setVectorDraft({ ...vectorDraft, max_retries: parseInt(e.target.value) || 3 })}
+                />
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 mb-1.5 block">重试延迟 (ms)</label>
+                <input
+                  type="number"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+                  value={vectorDraft.retry_delay}
+                  onChange={e => setVectorDraft({ ...vectorDraft, retry_delay: parseInt(e.target.value) || 500 })}
+                />
+              </div>
+            </div>
+          </SettingsSection>
+        </div>
+      )}
+
+      {/* 模型编辑弹窗（简化版） */}
+      {showModelEditor && editingProvider && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setShowModelEditor(false)}
+        >
+          <div
+            className="bg-[#1a1a1a] rounded-2xl border border-white/10 shadow-2xl max-w-lg w-full max-h-[85vh] overflow-y-auto"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="p-5 border-b border-white/5">
+              <h3 className="text-lg font-bold">编辑模型参数</h3>
+              <p className="text-xs text-gray-500 mt-1">修改: {editingProvider.name}</p>
+            </div>
+            <div className="p-5 space-y-4">
+              <div>
+                <label className="text-xs text-gray-400 mb-1 block">API 地址</label>
+                <input
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+                  value={editingProvider.base_url || ''}
+                  onChange={e => setEditingProvider({ ...editingProvider, base_url: e.target.value })}
+                />
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 mb-1 block">模型名称</label>
+                <input
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+                  value={editingProvider.model || ''}
+                  onChange={e => setEditingProvider({ ...editingProvider, model: e.target.value })}
+                />
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 mb-1 block">API Key</label>
+                <input
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+                  value={editingProvider.api_key || ''}
+                  onChange={e => setEditingProvider({ ...editingProvider, api_key: e.target.value })}
+                />
+              </div>
+              {editingProvider.category === 'llm' && (
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs text-gray-400 mb-1 block">温度</label>
+                    <input
+                      type="number" step="0.1"
+                      className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none"
+                      value={editingProvider.temperature ?? 0.7}
+                      onChange={e => setEditingProvider({ ...editingProvider, temperature: parseFloat(e.target.value) || 0.7 })}
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs text-gray-400 mb-1 block">超时(秒)</label>
+                    <input
+                      type="number"
+                      className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none"
+                      value={editingProvider.timeout || 60}
+                      onChange={e => setEditingProvider({ ...editingProvider, timeout: parseInt(e.target.value) || 60 })}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="p-5 border-t border-white/5 flex justify-end gap-3">
+              <button
+                onClick={() => setShowModelEditor(false)}
+                className="px-4 py-2 text-sm rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition"
+              >
+                取消
+              </button>
+              <button
+                onClick={handleSaveModelEdit}
+                className="px-6 py-2 text-sm rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium transition"
+              >
+                保存
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+
+// ==================== Tab 3: 数据库管理 ====================
+
+function DatabaseManagementTab() {
+  const { databaseStats, loadDatabaseStats } = useSettingsStore();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => { loadDatabaseStats(); }, []);
+
+  const handleRefresh = async () => {
+    setLoading(true);
+    await loadDatabaseStats();
+    setLoading(false);
+  };
+
+  return (
+    <>
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold flex items-center gap-3">
+            <Database size={28} className="text-blue-400" /> 数据库管理
+          </h2>
+          <p className="text-sm text-gray-500 mt-1">查看数据库统计信息和维护操作</p>
+        </div>
+        <button
+          onClick={handleRefresh}
+          disabled={loading}
+          className="flex items-center gap-1.5 px-3 py-2 text-xs rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition"
+        >
+          <RefreshCw size={14} className={loading ? 'animate-spin' : ''} /> 刷新
+        </button>
+      </div>
+
+      {databaseStats ? (
+        <div className="space-y-6">
+          {/* 数据概览 */}
+          <SettingsSection title="数据概览" icon={<BarChart3 size={18} />} description="数据库核心指标">
+            <div className="grid grid-cols-4 gap-4">
+              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                <div className="text-3xl font-bold text-white">{databaseStats.movies_total}</div>
+                <div className="text-xs text-gray-500 mt-1">影片总数</div>
+              </div>
+              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                <div className="text-3xl font-bold text-green-400">{databaseStats.movies_annotated}</div>
+                <div className="text-xs text-gray-500 mt-1">已标注</div>
+              </div>
+              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                <div className="text-3xl font-bold text-blue-400">{databaseStats.movies_vectorized}</div>
+                <div className="text-xs text-gray-500 mt-1">已向量化</div>
+              </div>
+              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                <div className="text-3xl font-bold text-purple-400">{databaseStats.lines_total}</div>
+                <div className="text-xs text-gray-500 mt-1">台词总数</div>
+              </div>
+            </div>
+          </SettingsSection>
+
+          {/* 详细统计 */}
+          <SettingsSection title="详细统计" icon={<Activity size={18} />}>
+            <div className="space-y-3">
+              {[
+                { label: '已向量化台词', value: `${databaseStats.lines_vectorized} / ${databaseStats.lines_total}` },
+                { label: 'LLM 模型数', value: `${databaseStats.models_llm} (激活: ${databaseStats.models_active_llm})` },
+                { label: 'Embedding 模型数', value: `${databaseStats.models_embedding} (激活: ${databaseStats.models_active_embedding})` },
+                { label: '标签分类', value: `${databaseStats.tag_categories}` },
+                { label: '标签定义', value: `${databaseStats.tag_definitions}` },
+                { label: '数据库大小', value: `${databaseStats.db_size_mb} MB` },
+              ].map((item, i, arr) => (
+                <div key={item.label} className={`flex items-center justify-between py-2 ${i < arr.length - 1 ? 'border-b border-white/5' : ''}`}>
+                  <span className="text-sm text-gray-400">{item.label}</span>
+                  <span className="text-sm text-white">{item.value}</span>
+                </div>
+              ))}
+            </div>
+          </SettingsSection>
+
+          {/* 向量化进度 */}
+          {databaseStats.lines_total > 0 && (
+            <SettingsSection title="向量化进度" icon={<HardDrive size={18} />}>
+              <div>
+                <div className="flex justify-between text-xs text-gray-400 mb-2">
+                  <span>已向量化</span>
+                  <span>{Math.round((databaseStats.lines_vectorized / databaseStats.lines_total) * 100)}%</span>
+                </div>
+                <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-blue-600 to-indigo-500 rounded-full transition-all duration-500"
+                    style={{ width: `${(databaseStats.lines_vectorized / databaseStats.lines_total) * 100}%` }}
+                  />
+                </div>
+              </div>
+            </SettingsSection>
+          )}
+
+          {/* 维护操作 */}
+          <SettingsSection title="数据库维护" icon={<Archive size={18} />} description="数据库管理和维护操作">
+            <div className="grid grid-cols-2 gap-3">
+              <button className="flex items-center gap-2 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 text-gray-300 hover:text-white transition text-sm">
+                <Archive size={16} className="text-blue-400" /> 备份数据库
+              </button>
+              <button className="flex items-center gap-2 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 text-gray-300 hover:text-white transition text-sm">
+                <RefreshCw size={16} className="text-green-400" /> 优化数据库
+              </button>
+              <button className="flex items-center gap-2 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 text-gray-300 hover:text-white transition text-sm">
+                <FolderOpen size={16} className="text-yellow-400" /> 数据导出
+              </button>
+              <button className="flex items-center gap-2 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-red-500/20 text-gray-300 hover:text-red-400 transition text-sm">
+                <Trash2 size={16} className="text-red-400" /> 清理缓存
+              </button>
+            </div>
+          </SettingsSection>
+        </div>
+      ) : (
+        <div className="text-center py-16 text-gray-600">
+          <Loader2 size={32} className="mx-auto mb-4 animate-spin" />
+          <p>加载数据库统计信息...</p>
+        </div>
+      )}
+    </>
+  );
+}
+
+
+// ==================== Tab 4: 提示词管理 ====================
+
+function PromptManagementTab() {
+  const {
+    promptTemplates, tagCategories, tagDefinitions,
+    loadPromptTemplates, loadTagCategories, loadTagDefinitions,
+    createPromptTemplate, updatePromptTemplate, deletePromptTemplate,
+    createTagDefinition, updateTagDefinition, deleteTagDefinition,
+  } = useSettingsStore();
+
+  const [promptTab, setPromptTab] = useState<'tags' | 'annotation' | 'retrieval'>('tags');
+  const [showTemplateEditor, setShowTemplateEditor] = useState(false);
+  const [editingTemplate, setEditingTemplate] = useState<Partial<PromptTemplate> | null>(null);
+  const [isNewTemplate, setIsNewTemplate] = useState(false);
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+  const [showNewTag, setShowNewTag] = useState<string | null>(null);
+  const [newTagForm, setNewTagForm] = useState({ value: '', display_name: '', description: '' });
+  const [confirmDeleteTemplate, setConfirmDeleteTemplate] = useState<string | null>(null);
+
+  useEffect(() => {
+    loadPromptTemplates();
+    loadTagCategories();
+  }, []);
+
+  // 按类型筛选模板
+  const annotationTemplates = promptTemplates.filter(t => t.template_type === 'system' || t.template_type === 'user');
+  const retrievalTemplates = promptTemplates.filter(t => t.template_type === 'retrieval' || t.template_type === 'chat');
+
+  const handleSaveTemplate = async () => {
+    if (!editingTemplate) return;
+    try {
+      if (isNewTemplate) {
+        await createPromptTemplate(editingTemplate as any);
+      } else {
+        await updatePromptTemplate(editingTemplate.id!, editingTemplate as any);
+      }
+      setShowTemplateEditor(false);
+      setEditingTemplate(null);
+      await loadPromptTemplates();
+    } catch (e: any) {
+      alert('保存失败: ' + (e.message || ''));
+    }
+  };
+
+  const handleDeleteTemplate = async (id: string) => {
+    try {
+      await deletePromptTemplate(id);
+      setConfirmDeleteTemplate(null);
+      await loadPromptTemplates();
+    } catch (e: any) {
+      alert('删除失败: ' + (e.message || ''));
+    }
+  };
+
+  const handleAddTag = async (categoryId: string) => {
+    if (!newTagForm.value || !newTagForm.display_name) return;
+    try {
+      await createTagDefinition({ category_id: categoryId, ...newTagForm });
+      setNewTagForm({ value: '', display_name: '', description: '' });
+      setShowNewTag(null);
+      await loadTagDefinitions(categoryId);
+      await loadTagCategories();
+    } catch (e: any) {
+      alert('添加失败: ' + (e.message || ''));
+    }
+  };
+
+  const renderTemplateList = (templates: PromptTemplate[], type: string) => (
+    <div className="space-y-3">
+      {templates.map(t => (
+        <div key={t.id} className="px-4 py-3 rounded-xl border border-white/10 bg-white/[0.02] hover:border-white/20 transition">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-2">
+              <span className="font-medium text-sm">{t.name}</span>
+              <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
+                t.template_type === 'system' ? 'bg-blue-500/20 text-blue-400'
+                  : t.template_type === 'user' ? 'bg-green-500/20 text-green-400'
+                    : t.template_type === 'retrieval' ? 'bg-purple-500/20 text-purple-400'
+                      : 'bg-yellow-500/20 text-yellow-400'
+              }`}>
+                {t.template_type === 'system' ? '系统' : t.template_type === 'user' ? '用户' : t.template_type === 'retrieval' ? '检索' : '对话'}
+              </span>
+              <span className="text-[10px] px-1.5 py-0.5 bg-gray-500/20 text-gray-400 rounded-full">v{t.version}</span>
+              {t.is_active && <span className="text-[10px] px-1.5 py-0.5 bg-green-500/20 text-green-400 rounded-full">激活</span>}
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => { setEditingTemplate({ ...t }); setIsNewTemplate(false); setShowTemplateEditor(true); }}
+                className="px-2 py-1 text-xs rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition"
+              >
+                <Pencil size={12} />
+              </button>
+              {confirmDeleteTemplate === t.id ? (
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={() => handleDeleteTemplate(t.id)}
+                    className="px-2 py-1 text-xs rounded-lg bg-red-600 hover:bg-red-500 text-white transition"
+                  >
+                    确认
+                  </button>
+                  <button
+                    onClick={() => setConfirmDeleteTemplate(null)}
+                    className="px-2 py-1 text-xs rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 transition"
+                  >
+                    取消
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={() => setConfirmDeleteTemplate(t.id)}
+                  className="px-2 py-1 text-xs rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 transition"
+                >
+                  <Trash2 size={12} />
+                </button>
+              )}
+            </div>
+          </div>
+          {t.description && <p className="text-xs text-gray-500 mb-2">{t.description}</p>}
+          <pre className="text-xs text-gray-400 bg-black/30 rounded-lg p-3 overflow-x-auto max-h-24 overflow-y-auto whitespace-pre-wrap">
+            {t.prompt_text?.substring(0, 300)}{(t.prompt_text?.length || 0) > 300 ? '...' : ''}
+          </pre>
+          {t.variables && (
+            <div className="mt-2 flex items-center gap-1 text-[10px] text-gray-600">
+              <span>变量:</span>
+              {t.variables.split(',').map(v => (
+                <span key={v.trim()} className="px-1.5 py-0.5 bg-white/5 rounded">{`{{${v.trim()}}}`}</span>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+      {templates.length === 0 && (
+        <div className="text-center py-8 text-gray-500 text-sm">暂无模板，点击右上角添加</div>
+      )}
+    </div>
+  );
+
+  return (
+    <>
+      {/* 页面标题 */}
+      <div>
+        <h2 className="text-2xl font-bold flex items-center gap-3">
+          <BookOpen size={28} className="text-blue-400" /> 提示词管理
+        </h2>
+        <p className="text-sm text-gray-500 mt-1">管理语义标签、标注提示词和检索对话模板</p>
+      </div>
+
+      {/* Tab 切换 */}
+      <div className="flex gap-1 p-1 bg-white/5 rounded-xl w-fit">
+        <button
+          onClick={() => setPromptTab('tags')}
+          className={`px-5 py-2 text-sm rounded-lg transition-all ${
+            promptTab === 'tags' ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/5'
+          }`}
+        >
+          🏷️ 语义标签
+        </button>
+        <button
+          onClick={() => setPromptTab('annotation')}
+          className={`px-5 py-2 text-sm rounded-lg transition-all ${
+            promptTab === 'annotation' ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/5'
+          }`}
+        >
+          ✍️ 标注提示词
+        </button>
+        <button
+          onClick={() => setPromptTab('retrieval')}
+          className={`px-5 py-2 text-sm rounded-lg transition-all ${
+            promptTab === 'retrieval' ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/5'
+          }`}
+        >
+          💬 检索对话模板
+        </button>
+      </div>
+
+      {/* ===== 语义标签管理 ===== */}
+      {promptTab === 'tags' && (
+        <div className="space-y-4">
+          <div className="flex items-center justify-between px-1">
+            <p className="text-xs text-gray-500">管理语义标注中使用的标签分类和标签定义</p>
+            <button
+              onClick={() => { loadTagCategories(); }}
+              className="flex items-center gap-1 px-2 py-1 text-xs rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 transition"
+            >
+              <RefreshCw size={12} /> 刷新
+            </button>
+          </div>
+
+          {tagCategories.length > 0 ? tagCategories.map(cat => (
+            <div key={cat.id} className="rounded-xl border border-white/5 bg-[#151515] overflow-hidden">
+              {/* 分类头部 */}
+              <div
+                className="flex items-center gap-3 px-5 py-3 cursor-pointer hover:bg-white/[0.02] transition"
+                onClick={() => {
+                  if (expandedCategory === cat.id) {
+                    setExpandedCategory(null);
+                  } else {
+                    setExpandedCategory(cat.id);
+                    if (!tagDefinitions[cat.id]) loadTagDefinitions(cat.id);
+                  }
+                }}
+              >
+                <div className="flex items-center gap-2 flex-1">
+                  <Tag size={14} className="text-blue-400" />
+                  <span className="font-medium text-sm">{cat.name}</span>
+                  <span className="text-xs text-gray-600">· 第{cat.layer}层</span>
+                  {cat.is_required && (
+                    <span className="text-[10px] px-1.5 py-0.5 bg-red-500/20 text-red-400 rounded-full">必填</span>
+                  )}
+                  {cat.is_multi_select && (
+                    <span className="text-[10px] px-1.5 py-0.5 bg-blue-500/20 text-blue-400 rounded-full">多选</span>
+                  )}
+                  <span className="text-[10px] px-1.5 py-0.5 bg-gray-500/20 text-gray-400 rounded-full">
+                    {cat.tag_count || 0} 个标签
+                  </span>
+                </div>
+                <ChevronDown
+                  size={14}
+                  className={`text-gray-500 transition-transform ${expandedCategory === cat.id ? 'rotate-180' : ''}`}
+                />
+              </div>
+
+              {/* 展开的标签列表 */}
+              {expandedCategory === cat.id && (
+                <div className="px-5 pb-4 border-t border-white/5 pt-3">
+                  {cat.description && <p className="text-xs text-gray-500 mb-3">{cat.description}</p>}
+
+                  {/* 标签列表 */}
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {(tagDefinitions[cat.id] || []).map(tag => (
+                      <div
+                        key={tag.id}
+                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs transition ${
+                          tag.is_active
+                            ? 'bg-blue-500/10 text-blue-300 border border-blue-500/20'
+                            : 'bg-white/5 text-gray-500 border border-white/5 line-through'
+                        }`}
+                      >
+                        <span title={tag.description || tag.value}>{tag.display_name}</span>
+                        {tag.is_builtin && <span className="text-[9px] text-gray-600">内置</span>}
+                        <button
+                          onClick={async () => {
+                            await updateTagDefinition(tag.id, { is_active: !tag.is_active });
+                            loadTagDefinitions(cat.id);
+                          }}
+                          className="ml-1 hover:text-yellow-400 transition"
+                          title={tag.is_active ? '禁用' : '启用'}
+                        >
+                          {tag.is_active ? <X size={10} /> : <Check size={10} />}
+                        </button>
+                        {!tag.is_builtin && (
+                          <button
+                            onClick={async () => {
+                              await deleteTagDefinition(tag.id);
+                              loadTagDefinitions(cat.id);
+                              loadTagCategories();
+                            }}
+                            className="hover:text-red-400 transition"
+                            title="删除"
+                          >
+                            <Trash2 size={10} />
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                    {(tagDefinitions[cat.id] || []).length === 0 && (
+                      <span className="text-xs text-gray-600">加载中...</span>
+                    )}
+                  </div>
+
+                  {/* 添加新标签 */}
+                  {showNewTag === cat.id ? (
+                    <div className="flex gap-2 items-end">
+                      <div className="flex-1">
+                        <label className="text-[10px] text-gray-500 mb-0.5 block">值 (英文)</label>
+                        <input
+                          className="w-full bg-white/5 border border-white/10 rounded px-2 py-1 text-xs outline-none focus:border-blue-500/50"
+                          value={newTagForm.value}
+                          onChange={e => setNewTagForm({ ...newTagForm, value: e.target.value })}
+                          placeholder="english_key"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <label className="text-[10px] text-gray-500 mb-0.5 block">显示名</label>
+                        <input
+                          className="w-full bg-white/5 border border-white/10 rounded px-2 py-1 text-xs outline-none focus:border-blue-500/50"
+                          value={newTagForm.display_name}
+                          onChange={e => setNewTagForm({ ...newTagForm, display_name: e.target.value })}
+                          placeholder="中文名"
+                        />
+                      </div>
+                      <button
+                        onClick={() => handleAddTag(cat.id)}
+                        disabled={!newTagForm.value || !newTagForm.display_name}
+                        className="px-3 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-500 transition disabled:opacity-40"
+                      >
+                        添加
+                      </button>
+                      <button
+                        onClick={() => { setShowNewTag(null); setNewTagForm({ value: '', display_name: '', description: '' }); }}
+                        className="px-2 py-1 text-xs bg-white/5 text-gray-400 rounded hover:bg-white/10 transition"
+                      >
+                        取消
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => setShowNewTag(cat.id)}
+                      className="flex items-center gap-1 text-xs text-gray-500 hover:text-blue-400 transition"
+                    >
+                      <Plus size={12} /> 添加标签
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+          )) : (
+            <div className="text-center py-12 text-gray-600">
+              <Tag size={32} className="mx-auto mb-3 opacity-50" />
+              <p>暂无标签分类</p>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ===== 标注提示词 ===== */}
+      {promptTab === 'annotation' && (
+        <SettingsSection
+          title="标注提示词模板"
+          icon={<MessageSquare size={18} />}
+          description="语义标注时与LLM交互使用的系统提示词和用户模板"
+          action={
+            <button
+              onClick={() => {
+                setEditingTemplate({ template_type: 'system', name: '', prompt_text: '', version: '1.0.0', description: '' });
+                setIsNewTemplate(true);
+                setShowTemplateEditor(true);
+              }}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition"
+            >
+              <Plus size={12} /> 新建模板
+            </button>
+          }
+        >
+          {renderTemplateList(annotationTemplates, 'annotation')}
+        </SettingsSection>
+      )}
+
+      {/* ===== 检索对话提示词 ===== */}
+      {promptTab === 'retrieval' && (
+        <SettingsSection
+          title="检索对话模板"
+          icon={<MessageSquare size={18} />}
+          description="与LLM对话检索时使用的提示词模板"
+          action={
+            <button
+              onClick={() => {
+                setEditingTemplate({ template_type: 'retrieval', name: '', prompt_text: '', version: '1.0.0', description: '' });
+                setIsNewTemplate(true);
+                setShowTemplateEditor(true);
+              }}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition"
+            >
+              <Plus size={12} /> 新建模板
+            </button>
+          }
+        >
+          {renderTemplateList(retrievalTemplates, 'retrieval')}
+        </SettingsSection>
+      )}
+
+      {/* 模板编辑弹窗 */}
+      {showTemplateEditor && editingTemplate && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setShowTemplateEditor(false)}
+        >
+          <div
+            className="bg-[#1a1a1a] rounded-2xl border border-white/10 shadow-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="p-5 border-b border-white/5">
+              <h3 className="text-lg font-bold">{isNewTemplate ? '新建提示词模板' : '编辑提示词模板'}</h3>
+            </div>
+            <div className="p-5 space-y-4">
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="text-xs text-gray-400 mb-1 block">模板名称 *</label>
+                  <input
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+                    value={editingTemplate.name || ''}
+                    onChange={e => setEditingTemplate({ ...editingTemplate, name: e.target.value })}
+                    placeholder="输入模板名称"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-400 mb-1 block">模板类型</label>
+                  <select
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none"
+                    value={editingTemplate.template_type || 'system'}
+                    onChange={e => setEditingTemplate({ ...editingTemplate, template_type: e.target.value as any })}
+                  >
+                    <option value="system">系统提示词</option>
+                    <option value="user">用户模板</option>
+                    <option value="retrieval">检索模板</option>
+                    <option value="chat">对话模板</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 mb-1 block">描述</label>
+                <input
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+                  value={editingTemplate.description || ''}
+                  onChange={e => setEditingTemplate({ ...editingTemplate, description: e.target.value })}
+                  placeholder="简要描述模板用途"
+                />
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 mb-1 block">提示词内容 *</label>
+                <textarea
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none resize-none h-48 focus:border-blue-500/50 font-mono"
+                  value={editingTemplate.prompt_text || ''}
+                  onChange={e => setEditingTemplate({ ...editingTemplate, prompt_text: e.target.value })}
+                  placeholder={'输入提示词内容...\n支持变量: {{line_text}}, {{character_name}}, {{movie_title}} 等'}
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="text-xs text-gray-400 mb-1 block">变量列表</label>
+                  <input
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+                    value={editingTemplate.variables || ''}
+                    onChange={e => setEditingTemplate({ ...editingTemplate, variables: e.target.value })}
+                    placeholder="如: line_text,character_name"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-400 mb-1 block">版本</label>
+                  <input
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500/50"
+                    value={editingTemplate.version || '1.0.0'}
+                    onChange={e => setEditingTemplate({ ...editingTemplate, version: e.target.value })}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="p-5 border-t border-white/5 flex justify-end gap-3">
+              <button
+                onClick={() => { setShowTemplateEditor(false); setEditingTemplate(null); }}
+                className="px-4 py-2 text-sm rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition"
+              >
+                取消
+              </button>
+              <button
+                onClick={handleSaveTemplate}
+                disabled={!editingTemplate.name || !editingTemplate.prompt_text}
+                className="px-6 py-2 text-sm rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium disabled:opacity-40 disabled:cursor-not-allowed transition"
+              >
+                保存
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

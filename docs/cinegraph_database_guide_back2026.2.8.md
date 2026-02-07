@@ -34,7 +34,7 @@ sqlite3 cinegraph.db ".schema lines"
 
 ## 数据库架构概览
 
-### 九大模块，36个表
+### 九大模块，35个表
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -62,14 +62,13 @@ sqlite3 cinegraph.db ".schema lines"
 │  6️⃣ 无限画布                                                                  │
 │     projects, canvas_nodes, canvas_edges, sequences, sequence_items          │
 │                                                                              │
-│  7️⃣ LLM集成与模型管理                                                         │
-│     model_providers, ingestion_profiles                                      │
+│  7️⃣ LLM集成                                                                  │
+│     llm_model_configs, annotation_strategies, annotation_prompt_templates    │
 │     llm_chat_sessions, llm_chat_messages, semantic_matches, creative_paths  │
 │                                                                              │
-│  8️⃣ 标注与提示词配置                                                           │
-│     annotation_strategies, annotation_prompt_templates, annotation_examples  │
+│  8️⃣ 配置体系                                                                  │
 │     tag_categories, tag_definitions, tag_connection_rules                    │
-│     tag_hierarchy, tag_constraints, tag_localization, culture_specific_tags  │
+│     annotation_examples                                                      │
 │                                                                              │
 │  9️⃣ 日志统计                                                                  │
 │     operation_logs, usage_stats                                              │
@@ -288,56 +287,20 @@ sqlite3 cinegraph.db ".schema lines"
 
 ---
 
-### 7. LLM集成与入库配置
+### 7. LLM集成表
 
-#### `model_providers` - 模型提供者配置（统一管理LLM和Embedding）
+#### `llm_model_configs` - LLM模型配置
 | 字段 | 类型 | 说明 |
 |------|------|------|
-| id | TEXT PRIMARY KEY | 模型ID，如"ollama_qwen3_4b" |
-| name | TEXT | 显示名称 |
-| category | TEXT | 用途:llm/embedding |
-| provider_type | TEXT | 类型:local/commercial |
-| local_mode | TEXT | 本地模式:ollama/docker/空 |
+| id | TEXT PRIMARY KEY | 模型ID |
+| provider_type | TEXT | openai/ollama/azure/... |
 | base_url | TEXT | API地址 |
-| model | TEXT | 模型名称 |
-| api_key | TEXT | 密钥（支持${ENV}引用） |
-| max_tokens | INTEGER | 最大token数 |
+| api_key | TEXT | 密钥（加密） |
+| model_name | TEXT | 模型名称 |
 | temperature | REAL | 温度参数 |
-| timeout | INTEGER | 超时秒数 |
-| dimension | INTEGER | 向量维度（Embedding专用） |
-| api_style | TEXT | API风格:openai/ollama |
-| description | TEXT | 描述 |
-| price_info | TEXT | 价格信息 |
-| is_active | BOOLEAN | 是否为当前激活 |
-| is_default | BOOLEAN | 是否为系统预置 |
-| enabled | BOOLEAN | 是否启用 |
-| sort_order | INTEGER | 排序权重 |
-| extra_config | TEXT(JSON) | 扩展配置 |
-
-> 💡 向后兼容：系统提供 `llm_model_configs` 视图，映射到 `model_providers` 表的 LLM 类别记录
-
-#### `ingestion_profiles` - 入库配置（语义标注 & 向量化参数）
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| id | TEXT PRIMARY KEY | 配置ID |
-| name | TEXT | 配置名称 |
-| profile_type | TEXT | annotation/vectorization |
-| model_provider_id | TEXT | 关联的模型提供者 |
-| batch_size | INTEGER | 批处理大小 |
-| concurrent_requests | INTEGER | 并发请求数 |
-| max_retries | INTEGER | 最大重试次数 |
-| retry_delay | INTEGER | 重试延迟(ms) |
-| timeout | INTEGER | 超时时间(s) |
-| save_interval | INTEGER | 保存间隔(标注专用) |
-| annotation_depth | TEXT | 标注深度:full/quick/custom |
-| included_tag_categories | TEXT(JSON) | 启用的标签类别 |
-| chunk_overlap | INTEGER | 向量块重叠(向量化专用) |
-| normalize_embeddings | BOOLEAN | 是否归一化向量 |
-| is_default | BOOLEAN | 是否为默认配置 |
-| is_active | BOOLEAN | 是否启用 |
-| extra_config | TEXT(JSON) | 扩展配置 |
-
-> 💡 `ingestion_profiles` 通过 `model_provider_id` 关联 `model_providers` 表，用户可在入库管理界面选择不同模型和参数组合
+| max_tokens | INTEGER | 最大token数 |
+| supported_tasks | TEXT(JSON) | 支持的任务类型 |
+| is_default | BOOLEAN | 是否默认 |
 
 #### `llm_chat_sessions` + `llm_chat_messages` - 对话记录
 | 字段 | 类型 | 说明 |
@@ -378,8 +341,6 @@ sqlite3 cinegraph.db ".schema lines"
 | is_editable | BOOLEAN | 是否可编辑 |
 | is_required | BOOLEAN | 是否必填 |
 
-> 包含13个类别：sentence_type, emotion, tone, character_type, scene_type, speech_style, context_dye, subtext_type, social_function, dramatic_function, power_dynamic, metaphor_category, semantic_field
-
 #### `tag_definitions` - 标签定义（可编辑）
 | 字段 | 类型 | 说明 |
 |------|------|------|
@@ -391,10 +352,6 @@ sqlite3 cinegraph.db ".schema lines"
 | can_lead_to | TEXT(JSON) | 前可接标签 |
 | llm_hints | TEXT | LLM识别提示 |
 | example_phrases | TEXT(JSON) | 示例短语 |
-| importance_score | REAL | 标签重要性 0-1 |
-| rarity_score | REAL | 稀有度 0-1 |
-| cultural_context | TEXT | 文化背景提示 |
-| genre_specificity | TEXT | 类型适用性 |
 | is_builtin | BOOLEAN | 是否内置 |
 
 #### `tag_connection_rules` - 标签衔接规则
@@ -402,42 +359,8 @@ sqlite3 cinegraph.db ".schema lines"
 |------|------|------|
 | from_tag_id | TEXT | 源标签 |
 | to_tag_id | TEXT | 目标标签 |
-| connection_type | TEXT | continuation/contrast/escalation/cause_effect/correlation/character_typical |
+| connection_type | TEXT | continuation/contrast/escalation/shift |
 | weight | REAL | 权重 0-1 |
-
-> 包含30条规则：句型衔接、句型→情绪因果、情绪关联、角色典型行为、场景→情绪、戏剧功能、权力动态
-
-#### `tag_hierarchy` - 标签层级关系（新增）
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| parent_tag_id | TEXT | 父标签ID |
-| child_tag_id | TEXT | 子标签ID |
-| relation_type | TEXT | is_a/part_of/related_to |
-| weight | REAL | 关系权重 |
-
-#### `tag_constraints` - 标签约束规则（新增）
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| category_id | TEXT | 标签类别 |
-| constraint_type | TEXT | mutual_exclusive/requires/excludes/co_occurs |
-| tag_ids | TEXT(JSON) | 涉及的标签ID数组 |
-| constraint_message | TEXT | 约束说明 |
-
-#### `tag_localization` - 标签多语言（新增）
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| tag_id | TEXT | 标签ID |
-| language_code | TEXT | 语言代码(zh-CN/en-US/ja-JP) |
-| display_name | TEXT | 本地化名称 |
-| cultural_note | TEXT | 文化差异说明 |
-
-#### `culture_specific_tags` - 文化特定标签（新增）
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| tag_id | TEXT | 关联标签 |
-| culture_code | TEXT | 文化代码 |
-| specific_meaning | TEXT | 特定含义 |
-| example_lines | TEXT(JSON) | 示例台词 |
 
 ---
 
@@ -519,13 +442,8 @@ sqlite3 cinegraph.db ".schema lines"
 │       └──► (*) characters                                           │        │
 │                                                                      │        │
 │  tag_categories (1) ──► (*) tag_definitions ──► (*) tag_connection_│rules    │
-│       │                        │                                     │        │
-│       │                        ├──► (*) tag_hierarchy (parent/child) │        │
-│       │                        ├──► (*) tag_localization             │        │
-│       │                        └──► (*) culture_specific_tags        │        │
-│       └──► (*) tag_constraints                                       │        │
 │                                                                      │        │
-│  model_providers ──► annotation_strategies ──► annotation_prompt_   │templates │
+│  llm_model_configs ──► annotation_strategies ──► annotation_prompt_│templates │
 │                                                    │                 │        │
 │                                                    └──► annotation_│examples   │
 │                                                                              │
@@ -551,10 +469,6 @@ sqlite3 cinegraph.db ".schema lines"
 | sequences | sequence_items | 1:N | sequence_id | CASCADE |
 | llm_chat_sessions | llm_chat_messages | 1:N | session_id | CASCADE |
 | tag_categories | tag_definitions | 1:N | category_id | CASCADE |
-| tag_categories | tag_constraints | 1:N | category_id | CASCADE |
-| tag_definitions | tag_hierarchy | 1:N | parent_tag_id | CASCADE |
-| tag_definitions | tag_localization | 1:N | tag_id | CASCADE |
-| tag_definitions | culture_specific_tags | 1:N | tag_id | CASCADE |
 
 ---
 
@@ -563,34 +477,22 @@ sqlite3 cinegraph.db ".schema lines"
 ### 1. 配置LLM模型
 
 ```sql
--- 查看所有模型提供者
-SELECT id, name, category, provider_type, model, is_active, enabled 
-FROM model_providers ORDER BY category, sort_order;
-
--- 查看当前激活的LLM
-SELECT * FROM model_providers WHERE category = 'llm' AND is_active = 1;
-
--- 查看当前激活的Embedding
-SELECT * FROM model_providers WHERE category = 'embedding' AND is_active = 1;
+-- 查看所有模型
+SELECT id, provider_name, model_name, is_default FROM llm_model_configs;
 
 -- 添加新模型
-INSERT INTO model_providers (
-    id, name, category, provider_type, local_mode,
-    base_url, model, max_tokens, temperature, timeout,
-    description, price_info, is_default, sort_order
+INSERT INTO llm_model_configs (
+    id, provider_type, provider_name, base_url, model_name,
+    temperature, max_tokens, supported_tasks
 ) VALUES (
-    'my-ollama', '我的本地模型', 'llm', 'local', 'ollama',
-    'http://localhost:11434/v1', 'qwen2.5:14b',
-    2000, 0.7, 120,
-    '通过Ollama运行的本地模型', '免费', 0, 100
+    'my-ollama', 'ollama', '我的本地模型',
+    'http://localhost:11434', 'qwen2.5:14b',
+    0.7, 2000, '["annotation", "chat"]'
 );
 
--- 激活指定模型
-UPDATE model_providers SET is_active = 0 WHERE category = 'llm';
-UPDATE model_providers SET is_active = 1 WHERE id = 'my-ollama';
-
--- 向后兼容查询（通过视图）
-SELECT * FROM llm_model_configs;
+-- 设为默认
+UPDATE llm_model_configs SET is_default = 0;
+UPDATE llm_model_configs SET is_default = 1 WHERE id = 'my-ollama';
 ```
 
 ### 2. 编辑标签体系
@@ -744,21 +646,18 @@ ORDER BY m.overall_score DESC;
 
 | 类别 | 数量 |
 |------|------|
-| 总表数 | 39个（含4个新增标签表） |
-| 核心模块 | 10个 |
-| 配置表 | 14个（完全可编辑） |
-| 索引数 | 65+ |
-| 视图 | 1个（llm_model_configs兼容视图） |
+| 总表数 | 35个 |
+| 核心模块 | 9个 |
+| 配置表 | 10个（完全可编辑） |
+| 索引数 | 60+ |
 
 ### 核心特性
 
-1. **可编辑标签体系** - 通过 `tag_categories` + `tag_definitions` 管理，含13类标签、70+标签定义
-2. **标签层级与约束** - `tag_hierarchy` 支持父子关系，`tag_constraints` 支持互斥/依赖规则
-3. **标签国际化** - `tag_localization` 支持多语言，`culture_specific_tags` 支持文化特定含义
-4. **统一模型管理** - 通过 `model_providers` 统一管理LLM和Embedding，支持本地/云端/商用API
-5. **提示词模板化** - 通过 `annotation_prompt_templates` 管理
-6. **完整对话记录** - `llm_chat_sessions` + `llm_chat_messages`
-7. **语义关联追踪** - `semantic_matches` 记录匹配过程
+1. **可编辑标签体系** - 通过 `tag_categories` + `tag_definitions` 管理
+2. **LLM模型自由切换** - 通过 `llm_model_configs` 配置
+3. **提示词模板化** - 通过 `annotation_prompt_templates` 管理
+4. **完整对话记录** - `llm_chat_sessions` + `llm_chat_messages`
+5. **语义关联追踪** - `semantic_matches` 记录匹配过程
 
 ### 文件清单
 
@@ -769,6 +668,5 @@ ORDER BY m.overall_score DESC;
 
 ---
 
-*文档版本: 2.0.0*  
-*最后更新: 2025-06-28*  
-*变更: model_providers替代llm_model_configs, 新增tag_hierarchy/tag_constraints/tag_localization/culture_specific_tags*
+*文档版本: 1.0.0*  
+*最后更新: 2026-02-06*

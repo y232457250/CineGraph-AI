@@ -3,43 +3,41 @@
  * 设置模块类型定义
  */
 
-// ==================== LLM 模型配置 ====================
+// ==================== 模型提供者统一类型（数据库驱动） ====================
 
-export interface LLMProvider {
+export interface ModelProvider {
   id: string;
   name: string;
-  type: 'local' | 'commercial';
-  local_mode?: 'ollama' | 'docker' | 'native';
+  category: 'llm' | 'embedding';
+  provider_type: 'local' | 'commercial';
+  local_mode: string;  // 'ollama' | 'docker' | ''
   base_url: string;
   model: string;
-  api_key?: string;
+  api_key: string;      // 脱敏后的 API Key
   max_tokens: number;
   temperature: number;
   timeout: number;
+  dimension: number;     // Embedding 专用
+  api_style: string;     // 'openai' | 'ollama'
   description: string;
+  price_info: string;
   is_active: boolean;
-  price_per_1k_tokens?: number;
+  is_default: boolean;
+  sort_order: number;
+  enabled: boolean;
+  extra_config: Record<string, any>;
+  created_at: string | null;
+  updated_at: string | null;
 }
+
+// 兼容旧类型（向后兼容）
+export type LLMProvider = ModelProvider;
+export type EmbeddingProvider = ModelProvider;
 
 export interface LLMConnectionStatus {
   status: 'idle' | 'testing' | 'connected' | 'failed';
   error?: string;
   latency?: number;
-}
-
-// ==================== Embedding 模型配置 ====================
-
-export interface EmbeddingProvider {
-  id: string;
-  name: string;
-  type: 'local' | 'commercial';
-  local_mode?: 'ollama' | 'docker' | 'native';
-  base_url: string;
-  model: string;
-  dimension: number;
-  description: string;
-  is_active: boolean;
-  price_per_1k_tokens?: number;
 }
 
 // ==================== 向量数据库配置 ====================
@@ -69,6 +67,99 @@ export interface VectorizationConfig {
   retry_delay: number;
   concurrent_requests: number;
   _loaded?: boolean;
+}
+
+// ==================== 入库配置（数据库驱动） ====================
+
+export interface IngestionProfile {
+  id: string;
+  name: string;
+  description: string;
+  profile_type: 'annotation' | 'vectorization';
+  model_provider_id: string | null;
+  batch_size: number;
+  concurrent_requests: number;
+  max_retries: number;
+  retry_delay: number;
+  timeout: number;
+  save_interval: number;
+  annotation_depth: string;
+  included_tag_categories: string[];
+  chunk_overlap: number;
+  normalize_embeddings: boolean;
+  is_default: boolean;
+  is_active: boolean;
+  extra_config: Record<string, any>;
+  created_at: string | null;
+  updated_at: string | null;
+}
+
+// ==================== 提示词模板 ====================
+
+export interface PromptTemplate {
+  id: string;
+  strategy_id: string | null;
+  template_type: 'system' | 'user' | 'retrieval' | 'chat';
+  name: string;
+  description: string;
+  prompt_text: string;
+  variables: string | null;
+  output_schema: string | null;
+  compatible_models: string | null;
+  version: string;
+  is_active: boolean;
+  created_at: string | null;
+  updated_at: string | null;
+}
+
+// ==================== 标签分类与定义 ====================
+
+export interface TagCategory {
+  id: string;
+  name: string;
+  description: string;
+  layer: number;
+  icon: string | null;
+  color: string | null;
+  is_editable: boolean;
+  is_required: boolean;
+  is_multi_select: boolean;
+  sort_order: number;
+  is_active: boolean;
+  tag_count?: number;
+}
+
+export interface TagDefinition {
+  id: string;
+  category_id: string;
+  value: string;
+  display_name: string;
+  description: string;
+  color: string | null;
+  llm_hints: string | null;
+  example_phrases: string | null;
+  is_builtin: boolean;
+  is_active: boolean;
+  sort_order: number;
+  usage_count: number;
+}
+
+// ==================== 数据库统计 ====================
+
+export interface DatabaseStats {
+  movies_total: number;
+  movies_annotated: number;
+  movies_vectorized: number;
+  lines_total: number;
+  lines_vectorized: number;
+  models_llm: number;
+  models_embedding: number;
+  models_active_llm: number;
+  models_active_embedding: number;
+  tag_categories: number;
+  tag_definitions: number;
+  db_size_bytes: number;
+  db_size_mb: number;
 }
 
 // ==================== 提示词配置 ====================

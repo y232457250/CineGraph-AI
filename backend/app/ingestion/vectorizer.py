@@ -99,16 +99,52 @@ class EmbeddingProvider:
 
 
 class EmbeddingManager:
-    """Embedding管理器"""
+    """Embedding管理器 - 优先从数据库读取，回退到YAML"""
     
     def __init__(self, config_path: Path = EMBEDDING_CONFIG_PATH):
         self.config_path = config_path
         self.providers: Dict[str, Dict] = {}
         self.active_provider: str = ""
+        self._use_db = False
         self._load_config()
     
     def _load_config(self):
-        """加载配置"""
+        """加载配置 - 优先数据库，回退YAML"""
+        try:
+            self._load_from_db()
+            if self.providers:
+                self._use_db = True
+                return
+        except Exception as e:
+            print(f"⚠️ 从数据库加载Embedding配置失败，回退到YAML: {e}")
+        
+        self._load_from_yaml()
+    
+    def _load_from_db(self):
+        """从数据库加载配置"""
+        from app.core.model_provider_service import get_model_provider_service
+        service = get_model_provider_service()
+        
+        providers_list = service.list_providers(category='embedding')
+        if not providers_list:
+            return
+        
+        self.providers = {}
+        for p in providers_list:
+            provider_id = p['id']
+            config = service.get_provider_config(provider_id)
+            if config:
+                self.providers[provider_id] = config
+                if p.get('is_active'):
+                    self.active_provider = provider_id
+        
+        if not self.active_provider and self.providers:
+            self.active_provider = next(iter(self.providers))
+        
+        print(f"✅ Embedding配置从数据库加载成功，当前使用: {self.active_provider} ({len(self.providers)} 个提供者)")
+    
+    def _load_from_yaml(self):
+        """从YAML文件加载配置（回退方案）"""
         if not self.config_path.exists():
             self._use_default_config()
             return
@@ -119,12 +155,11 @@ class EmbeddingManager:
             
             self.active_provider = config.get("active_provider", "local_qwen_embedding")
             
-            # 加载embedding提供者
             for key, value in config.items():
                 if isinstance(value, dict) and "base_url" in value:
                     self.providers[key] = value
             
-            print(f"✅ Embedding配置加载成功，当前使用: {self.active_provider}")
+            print(f"✅ Embedding配置从YAML加载成功，当前使用: {self.active_provider}")
         except Exception as e:
             print(f"⚠️ Embedding配置加载失败: {e}")
             self._use_default_config()

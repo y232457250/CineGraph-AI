@@ -50,9 +50,10 @@ interface Episode {
 interface LLMProvider {
   id: string;
   name: string;
-  type: 'local' | 'commercial';
+  provider_type: 'local' | 'commercial';
   description: string;
   is_active: boolean;
+  [key: string]: any;  // 允许额外字段（ModelProvider 兼容）
 }
 
 // ==================== 工具组件 ====================
@@ -2321,11 +2322,11 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                     {selectedProvider ? (
                       <div className="flex items-center gap-3 p-3 bg-[#1a1a1a] rounded-lg border border-white/10">
                         <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                          llmProviders.find(p => p.id === selectedProvider)?.type === 'local' 
+                          llmProviders.find(p => p.id === selectedProvider)?.provider_type === 'local' 
                             ? 'bg-green-500/20' 
                             : 'bg-purple-500/20'
                         }`}>
-                          {llmProviders.find(p => p.id === selectedProvider)?.type === 'local' 
+                          {llmProviders.find(p => p.id === selectedProvider)?.provider_type === 'local' 
                             ? <Cpu size={20} className="text-green-400" />
                             : <Zap size={20} className="text-purple-400" />
                           }
@@ -2335,7 +2336,7 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                             {llmProviders.find(p => p.id === selectedProvider)?.name || selectedProvider}
                           </p>
                           <p className="text-xs text-gray-500">
-                            {llmProviders.find(p => p.id === selectedProvider)?.type === 'local' 
+                            {llmProviders.find(p => p.id === selectedProvider)?.provider_type === 'local' 
                               ? '本地模型 · 免费' 
                               : '商用API · 付费'
                             }
@@ -2814,11 +2815,11 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                     {embeddingProvider ? (
                       <div className="flex items-center gap-3 p-3 bg-[#1a1a1a] rounded-lg border border-white/10">
                         <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                          embeddingProvider.type === 'local' 
+                          embeddingProvider.provider_type === 'local' 
                             ? 'bg-green-500/20' 
                             : 'bg-purple-500/20'
                         }`}>
-                          {embeddingProvider.type === 'local' 
+                          {embeddingProvider.provider_type === 'local' 
                             ? <HardDrive size={20} className="text-green-400" />
                             : <Zap size={20} className="text-purple-400" />
                           }
@@ -2828,7 +2829,7 @@ export default function ResourcePanel({ mediaPath, movieList, handleSelectFolder
                             {embeddingProvider.name}
                           </p>
                           <p className="text-xs text-gray-500">
-                            {embeddingProvider.type === 'local' 
+                            {embeddingProvider.provider_type === 'local' 
                               ? '本地模型 · 免费' 
                               : '商用API · 付费'
                             }

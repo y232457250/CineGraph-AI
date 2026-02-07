@@ -856,6 +856,231 @@ class LineStyle(Base):
     description = Column(Text)
 
 
+class ModelProvider(Base):
+    """模型提供者配置表 - 统一管理 LLM 和 Embedding 模型
+    
+    支持:
+    - 本地 Ollama 模型（含云端模型）
+    - 商用 API（DeepSeek、阿里云、OpenAI、硅基流动等）
+    - 用户自定义添加的任意 OpenAI 兼容 API
+    """
+    __tablename__ = 'model_providers'
+    
+    id = Column(String(100), primary_key=True)  # 唯一标识符，如 "ollama_qwen3_4b"
+    name = Column(String(200), nullable=False)   # 显示名称
+    
+    # 模型用途: llm / embedding
+    category = Column(String(20), nullable=False, index=True)  # "llm" 或 "embedding"
+    
+    # 提供者类型: local / commercial
+    provider_type = Column(String(20), nullable=False, default='local')
+    
+    # 本地模式: ollama / docker / 空(商用API)
+    local_mode = Column(String(20), default='')
+    
+    # API 配置
+    base_url = Column(String(500), nullable=False)
+    model = Column(String(200), nullable=False)   # 模型名称/ID
+    api_key = Column(String(500), default='')      # API Key（可为空，或环境变量引用 ${VAR}）
+    
+    # 模型参数
+    max_tokens = Column(Integer, default=2000)
+    temperature = Column(Float, default=0.7)
+    timeout = Column(Integer, default=60)
+    
+    # Embedding 专用
+    dimension = Column(Integer, default=0)        # 向量维度（0=自动检测）
+    api_style = Column(String(20), default='openai')  # openai / ollama
+    
+    # 元信息
+    description = Column(Text, default='')
+    price_info = Column(String(200), default='')   # 价格描述，如 "¥1/百万token"
+    is_active = Column(Boolean, default=False, index=True)  # 是否为当前激活的提供者
+    is_default = Column(Boolean, default=False)    # 是否为系统预置（用户不可删除）
+    sort_order = Column(Integer, default=0)        # 排序权重
+    enabled = Column(Boolean, default=True)        # 是否启用
+    
+    # 扩展配置（JSON格式，存储额外参数）
+    extra_config = Column(Text, default='{}')
+    
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    __table_args__ = (
+        Index('idx_provider_category_active', 'category', 'is_active'),
+    )
+    
+    def to_dict(self) -> Dict:
+        """转换为字典"""
+        extra = {}
+        if self.extra_config:
+            try:
+                extra = json.loads(self.extra_config)
+            except:
+                pass
+        
+        return {
+            'id': self.id,
+            'name': self.name,
+            'category': self.category,
+            'provider_type': self.provider_type,
+            'local_mode': self.local_mode or '',
+            'base_url': self.base_url,
+            'model': self.model,
+            'api_key': self._mask_api_key(),
+            'max_tokens': self.max_tokens,
+            'temperature': self.temperature,
+            'timeout': self.timeout,
+            'dimension': self.dimension,
+            'api_style': self.api_style or 'openai',
+            'description': self.description or '',
+            'price_info': self.price_info or '',
+            'is_active': self.is_active,
+            'is_default': self.is_default,
+            'sort_order': self.sort_order,
+            'enabled': self.enabled,
+            'extra_config': extra,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None,
+        }
+    
+    def to_provider_config(self) -> Dict:
+        """转换为 Provider 可用的配置字典（含完整 API Key）"""
+        import os
+        api_key = self.api_key or ''
+        if api_key.startswith('${') and api_key.endswith('}'):
+            env_var = api_key[2:-1]
+            api_key = os.environ.get(env_var, '')
+        
+        extra = {}
+        if self.extra_config:
+            try:
+                extra = json.loads(self.extra_config)
+            except:
+                pass
+        
+        return {
+            'name': self.name,
+            'type': self.provider_type,
+            'local_mode': self.local_mode or '',
+            'base_url': self.base_url,
+            'model': self.model,
+            'api_key': api_key,
+            'max_tokens': self.max_tokens,
+            'temperature': self.temperature,
+            'timeout': self.timeout,
+            'dimension': self.dimension,
+            'api_style': self.api_style or 'openai',
+            'description': self.description or '',
+            **extra,
+        }
+    
+    def _mask_api_key(self) -> str:
+        """隐藏 API Key"""
+        if not self.api_key:
+            return ''
+        if self.api_key.startswith('${'):
+            return self.api_key  # 环境变量引用直接返回
+        if len(self.api_key) > 8:
+            return self.api_key[:4] + '****' + self.api_key[-4:]
+        return '****'
+
+
+# ==================== 增强标签体系表 ====================
+
+class TagHierarchy(Base):
+    """标签层级关系表 - 父子/关联标签"""
+    __tablename__ = 'tag_hierarchy'
+    
+    parent_tag_id = Column(String(100), primary_key=True)
+    child_tag_id = Column(String(100), primary_key=True)
+    relation_type = Column(String(20), default='is_a')  # is_a / part_of / related_to
+    weight = Column(Float, default=1.0)
+    
+    def to_dict(self) -> Dict:
+        return {
+            'parent_tag_id': self.parent_tag_id,
+            'child_tag_id': self.child_tag_id,
+            'relation_type': self.relation_type,
+            'weight': self.weight,
+        }
+
+
+class TagConstraint(Base):
+    """标签约束规则表 - 互斥/依赖/共现"""
+    __tablename__ = 'tag_constraints'
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    category_id = Column(String(100), nullable=False, index=True)
+    constraint_type = Column(String(30), nullable=False)  # mutual_exclusive / requires / excludes / co_occurs
+    tag_ids = Column(Text, nullable=False)  # JSON 数组
+    constraint_message = Column(Text)
+    is_active = Column(Boolean, default=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    
+    def to_dict(self) -> Dict:
+        tag_ids_list = []
+        if self.tag_ids:
+            try:
+                tag_ids_list = json.loads(self.tag_ids)
+            except:
+                pass
+        return {
+            'id': self.id,
+            'category_id': self.category_id,
+            'constraint_type': self.constraint_type,
+            'tag_ids': tag_ids_list,
+            'constraint_message': self.constraint_message,
+            'is_active': self.is_active,
+        }
+
+
+class TagLocalization(Base):
+    """标签本地化/多语言表"""
+    __tablename__ = 'tag_localization'
+    
+    tag_id = Column(String(100), primary_key=True)
+    language_code = Column(String(10), primary_key=True)  # zh-CN / en-US / ja-JP
+    display_name = Column(String(200), nullable=False)
+    description = Column(Text)
+    cultural_note = Column(Text)  # 文化差异说明
+    
+    def to_dict(self) -> Dict:
+        return {
+            'tag_id': self.tag_id,
+            'language_code': self.language_code,
+            'display_name': self.display_name,
+            'description': self.description,
+            'cultural_note': self.cultural_note,
+        }
+
+
+class CultureSpecificTag(Base):
+    """文化特定标签表"""
+    __tablename__ = 'culture_specific_tags'
+    
+    id = Column(String(100), primary_key=True)
+    tag_id = Column(String(100), nullable=False, index=True)
+    culture_code = Column(String(10), nullable=False, index=True)  # zh-CN / en-US / ja-JP
+    specific_meaning = Column(Text)
+    example_lines = Column(Text)  # JSON: 示例台词
+    
+    def to_dict(self) -> Dict:
+        examples = []
+        if self.example_lines:
+            try:
+                examples = json.loads(self.example_lines)
+            except:
+                pass
+        return {
+            'id': self.id,
+            'tag_id': self.tag_id,
+            'culture_code': self.culture_code,
+            'specific_meaning': self.specific_meaning,
+            'example_lines': examples,
+        }
+
+
 class SystemConfig(Base):
     """系统配置表"""
     __tablename__ = 'system_config'
@@ -917,6 +1142,12 @@ class DatabaseManager:
             existing = session.query(SystemConfig).filter_by(key='db_version').first()
             if existing:
                 print(f"✅ 数据库已存在，版本: {existing.value}")
+                # 确保新表也被创建（增量迁移）
+                Base.metadata.create_all(self._engine)
+                # 确保模型提供者表有数据
+                provider_count = session.query(ModelProvider).count()
+                if provider_count == 0:
+                    self._init_default_model_providers(session)
                 return
             
             # 初始化版本号
@@ -942,7 +1173,197 @@ class DatabaseManager:
                 session.commit()
                 print(f"✅ 标签初始化完成")
             
+            # 初始化默认模型提供者
+            self._init_default_model_providers(session)
+            
             print(f"✅ 数据库初始化完成: {self.db_path}")
+            
+        except Exception as e:
+            session.rollback()
+            print(f"❌ 数据库初始化失败: {e}")
+            raise
+        finally:
+            session.close()
+    
+    def _init_default_model_providers(self, session):
+        """初始化默认的模型提供者配置"""
+        default_providers = [
+            # ==================== LLM 提供者 ====================
+            # --- 本地 Ollama ---
+            ModelProvider(
+                id='ollama_qwen3_4b', name='Qwen3:4B (本地Ollama)',
+                category='llm', provider_type='local', local_mode='ollama',
+                base_url='http://localhost:11434/v1', model='qwen3:4b',
+                max_tokens=2000, temperature=0.7, timeout=120,
+                description='通过Ollama运行的本地Qwen3 4B模型，免费使用',
+                price_info='免费', is_active=True, is_default=True, sort_order=10,
+            ),
+            ModelProvider(
+                id='ollama_qwen3_8b', name='Qwen3:8B (本地Ollama)',
+                category='llm', provider_type='local', local_mode='ollama',
+                base_url='http://localhost:11434/v1', model='qwen3:8b',
+                max_tokens=4000, temperature=0.7, timeout=180,
+                description='本地Qwen3 8B，标注质量更好但速度稍慢',
+                price_info='免费', is_default=True, sort_order=11,
+            ),
+            # --- Ollama 云模型 ---
+            ModelProvider(
+                id='ollama_cloud_qwen3_235b', name='Qwen3-VL:235B (Ollama云)',
+                category='llm', provider_type='local', local_mode='ollama',
+                base_url='http://localhost:11434/v1', model='qwen3-vl:235b-cloud',
+                max_tokens=4000, temperature=0.7, timeout=120,
+                description='Ollama云端Qwen3 VL 235B，免费但有配额限制',
+                price_info='免费(有配额)', is_default=True, sort_order=20,
+            ),
+            ModelProvider(
+                id='ollama_cloud_deepseek_v3', name='DeepSeek-V3.1:671B (Ollama云)',
+                category='llm', provider_type='local', local_mode='ollama',
+                base_url='http://localhost:11434/v1', model='deepseek-v3.1:671b-cloud',
+                max_tokens=4000, temperature=0.7, timeout=120,
+                description='Ollama云端DeepSeek V3.1，免费但有配额限制',
+                price_info='免费(有配额)', is_default=True, sort_order=21,
+            ),
+            ModelProvider(
+                id='ollama_cloud_qwen3_coder', name='Qwen3-Coder:480B (Ollama云)',
+                category='llm', provider_type='local', local_mode='ollama',
+                base_url='http://localhost:11434/v1', model='qwen3-coder:480b-cloud',
+                max_tokens=4000, temperature=0.7, timeout=120,
+                description='Ollama云端Qwen3 Coder 480B',
+                price_info='免费(有配额)', is_default=True, sort_order=22,
+            ),
+            # --- 商用 API ---
+            ModelProvider(
+                id='deepseek_chat', name='DeepSeek V3',
+                category='llm', provider_type='commercial', local_mode='',
+                base_url='https://api.deepseek.com/v1', model='deepseek-chat',
+                api_key='${DEEPSEEK_API_KEY}',
+                max_tokens=4000, temperature=0.7, timeout=30,
+                description='DeepSeek V3，中文效果极佳，性价比最高的商用模型',
+                price_info='¥1/百万token(输入) ¥2/百万token(输出)',
+                is_default=True, sort_order=30,
+            ),
+            ModelProvider(
+                id='aliyun_qwen_turbo', name='通义千问Turbo',
+                category='llm', provider_type='commercial', local_mode='',
+                base_url='https://dashscope.aliyuncs.com/compatible-mode/v1',
+                model='qwen-turbo-latest', api_key='${DASHSCOPE_API_KEY}',
+                max_tokens=4000, temperature=0.7, timeout=30,
+                description='阿里云通义千问Turbo，速度快价格低',
+                price_info='¥0.3/百万token(输入) ¥0.6/百万token(输出)',
+                is_default=True, sort_order=31,
+            ),
+            ModelProvider(
+                id='aliyun_qwen_max', name='通义千问Max',
+                category='llm', provider_type='commercial', local_mode='',
+                base_url='https://dashscope.aliyuncs.com/compatible-mode/v1',
+                model='qwen-max', api_key='${DASHSCOPE_API_KEY}',
+                max_tokens=4000, temperature=0.7, timeout=60,
+                description='阿里云通义千问Max，效果最好',
+                price_info='¥2/百万token(输入) ¥6/百万token(输出)',
+                is_default=True, sort_order=32,
+            ),
+            ModelProvider(
+                id='siliconflow_qwen3_8b', name='Qwen3-8B (硅基流动)',
+                category='llm', provider_type='commercial', local_mode='',
+                base_url='https://api.siliconflow.cn/v1',
+                model='Qwen/Qwen3-8B', api_key='${SILICONFLOW_API_KEY}',
+                max_tokens=4000, temperature=0.7, timeout=30,
+                description='硅基流动免费Qwen3-8B，注册送额度',
+                price_info='免费(有额度)',
+                is_default=True, sort_order=33,
+            ),
+            ModelProvider(
+                id='openai_gpt4o_mini', name='GPT-4o-mini',
+                category='llm', provider_type='commercial', local_mode='',
+                base_url='https://api.openai.com/v1', model='gpt-4o-mini',
+                api_key='${OPENAI_API_KEY}',
+                max_tokens=4000, temperature=0.7, timeout=30,
+                description='OpenAI GPT-4o-mini，性价比之选',
+                price_info='$0.15/百万token(输入) $0.6/百万token(输出)',
+                is_default=True, sort_order=40,
+            ),
+            ModelProvider(
+                id='zhipu_glm4', name='智谱GLM-4',
+                category='llm', provider_type='commercial', local_mode='',
+                base_url='https://open.bigmodel.cn/api/paas/v4',
+                model='glm-4', api_key='${ZHIPU_API_KEY}',
+                max_tokens=4000, temperature=0.7, timeout=30,
+                description='智谱GLM-4，国产大模型',
+                price_info='¥0.1/千token',
+                is_default=True, sort_order=41,
+            ),
+            ModelProvider(
+                id='volcengine_doubao', name='豆包1.5 Pro',
+                category='llm', provider_type='commercial', local_mode='',
+                base_url='https://ark.cn-beijing.volces.com/api/v3',
+                model='doubao-1-5-pro-32k', api_key='${VOLCENGINE_API_KEY}',
+                max_tokens=4000, temperature=0.7, timeout=30,
+                description='火山引擎豆包1.5 Pro',
+                price_info='¥0.8/百万token(输入) ¥2/百万token(输出)',
+                is_default=True, sort_order=42,
+            ),
+            
+            # ==================== Embedding 提供者 ====================
+            # --- 本地 Ollama ---
+            ModelProvider(
+                id='ollama_qwen3_embedding', name='Qwen3-Embedding:4B (本地Ollama)',
+                category='embedding', provider_type='local', local_mode='ollama',
+                base_url='http://localhost:11434', model='qwen3-embedding:4b-fp16',
+                timeout=60, api_style='ollama',
+                description='通过Ollama运行的本地Embedding模型',
+                price_info='免费', is_active=True, is_default=True, sort_order=10,
+            ),
+            # --- 商用 API ---
+            ModelProvider(
+                id='siliconflow_bge_m3', name='BGE-M3 (硅基流动)',
+                category='embedding', provider_type='commercial', local_mode='',
+                base_url='https://api.siliconflow.cn/v1',
+                model='BAAI/bge-m3', api_key='${SILICONFLOW_API_KEY}',
+                dimension=1024, timeout=30, api_style='openai',
+                description='硅基流动免费BGE-M3，中文效果极佳',
+                price_info='免费',
+                is_default=True, sort_order=20,
+            ),
+            ModelProvider(
+                id='aliyun_embedding_v3', name='text-embedding-v3 (阿里云)',
+                category='embedding', provider_type='commercial', local_mode='',
+                base_url='https://dashscope.aliyuncs.com/compatible-mode/v1',
+                model='text-embedding-v3', api_key='${DASHSCOPE_API_KEY}',
+                dimension=1024, timeout=30, api_style='openai',
+                description='阿里云通用文本Embedding V3',
+                price_info='¥0.0007/千token',
+                is_default=True, sort_order=21,
+            ),
+            ModelProvider(
+                id='openai_embedding_small', name='text-embedding-3-small (OpenAI)',
+                category='embedding', provider_type='commercial', local_mode='',
+                base_url='https://api.openai.com/v1',
+                model='text-embedding-3-small', api_key='${OPENAI_API_KEY}',
+                dimension=1536, timeout=30, api_style='openai',
+                description='OpenAI Embedding Small',
+                price_info='$0.02/百万token',
+                is_default=True, sort_order=30,
+            ),
+            ModelProvider(
+                id='volcengine_embedding', name='Doubao-Embedding (火山引擎)',
+                category='embedding', provider_type='commercial', local_mode='',
+                base_url='https://ark.cn-beijing.volces.com/api/v3',
+                model='doubao-embedding', api_key='${VOLCENGINE_API_KEY}',
+                dimension=2048, timeout=30, api_style='openai',
+                description='火山引擎豆包Embedding',
+                price_info='¥0.0005/千token',
+                is_default=True, sort_order=31,
+            ),
+        ]
+        
+        try:
+            for provider in default_providers:
+                existing = session.query(ModelProvider).filter_by(id=provider.id).first()
+                if not existing:
+                    session.add(provider)
+            
+            session.commit()
+            print(f"✅ 默认模型提供者初始化完成 ({len(default_providers)} 个)")
             
         except Exception as e:
             session.rollback()
