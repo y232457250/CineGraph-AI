@@ -17,17 +17,39 @@
 
 ## 快速开始
 
+### 数据库位置说明
+
+项目中有两个数据库文件，用途不同：
+
+| 路径 | 用途 | 说明 |
+|------|------|------|
+| `data/cinegraph.db` | 开发/测试用 | 项目根目录下的空数据库模板，仅包含标签定义等配置数据 |
+| `backend/data/cinegraph.db` | **生产环境用** | 后端实际使用的数据库，包含影片、台词等实际业务数据 |
+
+> **重要**: 您的实际数据（影片、台词）存储在 `backend/data/cinegraph.db` 中。初始化新环境时，只需初始化后端数据库即可。
+
 ### 创建数据库
 
 ```bash
-sqlite3 cinegraph.db < cinegraph_database_schema.sql
+# 初始化根目录数据库（仅标签配置）
+sqlite3 data/cinegraph.db < docs/cinegraph_database_schema.sql
+
+# 初始化后端数据库（生产环境）
+cd backend
+python scripts/init_database.py
 ```
 
 ### 验证安装
 
 ```bash
-sqlite3 cinegraph.db ".tables"
-sqlite3 cinegraph.db ".schema lines"
+# 查看所有表
+sqlite3 data/cinegraph.db ".tables"
+
+# 查看表结构
+sqlite3 data/cinegraph.db ".schema lines"
+
+# 查看标签定义数量
+sqlite3 data/cinegraph.db "SELECT category_id, COUNT(*) FROM tag_definitions GROUP BY category_id"
 ```
 
 ---
@@ -405,7 +427,7 @@ sqlite3 cinegraph.db ".schema lines"
 | connection_type | TEXT | continuation/contrast/escalation/cause_effect/correlation/character_typical |
 | weight | REAL | 权重 0-1 |
 
-> 包含30条规则：句型衔接、句型→情绪因果、情绪关联、角色典型行为、场景→情绪、戏剧功能、权力动态
+> 包含55+条规则：句型衔接、句型→情绪因果、情绪关联、角色典型行为、语气→情绪、语境→潜台词、社交功能→潜台词、语义场→隐喻、场景→情绪、戏剧功能、权力动态
 
 #### `tag_hierarchy` - 标签层级关系（新增）
 | 字段 | 类型 | 说明 |
@@ -448,10 +470,15 @@ sqlite3 cinegraph.db ".schema lines"
 |------|------|------|
 | id | TEXT PRIMARY KEY | 策略ID |
 | name | TEXT | 策略名称 |
-| annotation_depth | TEXT | full/standard/quick |
+| annotation_depth | TEXT | deep/standard/quick |
 | included_tag_categories | TEXT(JSON) | 包含的标签类别 |
 | llm_model_id | TEXT | 使用的模型 |
 | batch_size | INTEGER | 批处理大小 |
+
+> 预设三种策略：
+> - **quick（快速标注）**：仅 sentence_type/emotion/tone，batch_size=50
+> - **standard（标准标注）**：基础+潜台词共8类，batch_size=20（默认）
+> - **deep（深度标注）**：全13类标签，batch_size=10
 
 #### `annotation_prompt_templates` - 提示词模板
 | 字段 | 类型 | 说明 |
@@ -562,6 +589,36 @@ sqlite3 cinegraph.db ".schema lines"
 
 ### 1. 配置LLM模型
 
+#### 预设模型列表
+
+数据库已预置 **30个LLM模型** 和 **12个Embedding模型**：
+
+**LLM模型分类：**
+
+| 类别 | 数量 | 模型 |
+|------|------|------|
+| **Ollama本地** | 10 | Qwen3:4B/8B, Qwen2.5:7B/14B/32B, Llama3.1:8B/70B, DeepSeek-Coder:33B, Phi-4, Gemma2:9B |
+| **Ollama云端** | 2 | DeepSeek-V3.1:671B, Qwen3-VL:235B |
+| **DeepSeek** | 3 | DeepSeek-V3, DeepSeek-V2, DeepSeek-Coder-V2 |
+| **阿里云** | 3 | 通义千问Turbo/Plus/Max |
+| **硅基流动** | 4 | Qwen3-8B, Qwen2.5-72B, DeepSeek-V2.5, Thoughtful-Star |
+| **OpenAI** | 3 | GPT-4o, GPT-4o-mini, GPT-3.5-Turbo |
+| **Moonshot** | 2 | Kimi-K1, Kimi-Lite |
+| **智谱AI** | 2 | GLM-4, GLM-4-Flash |
+| **百度** | 2 | ERNIE-Bot-4, ERNIE-Speed |
+
+**Embedding模型分类：**
+
+| 类别 | 数量 | 模型 |
+|------|------|------|
+| **Ollama本地** | 4 | Qwen3-Embed, Nomic-Embed, MXBAI-Embed, BGE-Large |
+| **硅基流动** | 3 | BGE-M3, BGE-Large-ZH, BCE-Embedding |
+| **阿里云** | 2 | text-embedding-v3, text-embedding-v2 |
+| **OpenAI** | 2 | text-embedding-3-small, text-embedding-3-large |
+| **百度** | 1 | Embedding-V1 |
+
+#### 常用SQL命令
+
 ```sql
 -- 查看所有模型提供者
 SELECT id, name, category, provider_type, model, is_active, enabled 
@@ -577,12 +634,12 @@ SELECT * FROM model_providers WHERE category = 'embedding' AND is_active = 1;
 INSERT INTO model_providers (
     id, name, category, provider_type, local_mode,
     base_url, model, max_tokens, temperature, timeout,
-    description, price_info, is_default, sort_order
+    description, price_info, is_default, sort_order, enabled
 ) VALUES (
     'my-ollama', '我的本地模型', 'llm', 'local', 'ollama',
     'http://localhost:11434/v1', 'qwen2.5:14b',
     2000, 0.7, 120,
-    '通过Ollama运行的本地模型', '免费', 0, 100
+    '通过Ollama运行的本地模型', '免费', 0, 100, 1
 );
 
 -- 激活指定模型
@@ -749,13 +806,16 @@ ORDER BY m.overall_score DESC;
 | 配置表 | 14个（完全可编辑） |
 | 索引数 | 65+ |
 | 视图 | 1个（llm_model_configs兼容视图） |
+| 预置LLM模型 | 30个 |
+| 预置Embedding模型 | 12个 |
+| 标签定义 | 131个 |
 
 ### 核心特性
 
-1. **可编辑标签体系** - 通过 `tag_categories` + `tag_definitions` 管理，含13类标签、70+标签定义
+1. **可编辑标签体系** - 通过 `tag_categories` + `tag_definitions` 管理，含13类标签、131个标签定义
 2. **标签层级与约束** - `tag_hierarchy` 支持父子关系，`tag_constraints` 支持互斥/依赖规则
 3. **标签国际化** - `tag_localization` 支持多语言，`culture_specific_tags` 支持文化特定含义
-4. **统一模型管理** - 通过 `model_providers` 统一管理LLM和Embedding，支持本地/云端/商用API
+4. **统一模型管理** - 通过 `model_providers` 统一管理LLM(11个)和Embedding(5个)，支持本地/云端/商用API，预置模型可删除（每类至少保留1个），支持一键重置
 5. **提示词模板化** - 通过 `annotation_prompt_templates` 管理
 6. **完整对话记录** - `llm_chat_sessions` + `llm_chat_messages`
 7. **语义关联追踪** - `semantic_matches` 记录匹配过程
@@ -769,6 +829,6 @@ ORDER BY m.overall_score DESC;
 
 ---
 
-*文档版本: 2.0.0*  
-*最后更新: 2025-06-28*  
-*变更: model_providers替代llm_model_configs, 新增tag_hierarchy/tag_constraints/tag_localization/culture_specific_tags*
+*文档版本: 2.1.0*  
+*最后更新: 2026-02-08*  
+*变更: 补全所有13类tag_definitions默认数据(tone/character_type/context_dye/subtext_type/social_function/semantic_field)，新增deep标注策略，扩充tag_connection_rules/tag_hierarchy/tag_constraints/tag_localization/culture_specific_tags默认数据*

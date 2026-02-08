@@ -69,13 +69,14 @@ def init_database():
         
         # 分类显示表
         categories = {
-            '系统/配置': ['system_config', 'app_settings', 'tag_categories', 'tag_definitions', 'tag_connection_rules'],
+            '系统/配置': ['system_config', 'app_settings', 'app_settings'],
+            '标签体系': ['tag_categories', 'tag_definitions', 'tag_connection_rules', 'tag_hierarchy', 'tag_constraints', 'tag_localization', 'culture_specific_tags'],
             '用户': ['users', 'user_sessions'],
             '影片': ['movies', 'episodes'],
             '语义标注': ['lines', 'characters', 'vectorization_queue'],
             '搜索': ['search_history'],
             '画布': ['projects', 'canvas_nodes', 'canvas_edges', 'sequences', 'sequence_items'],
-            'LLM': ['llm_model_configs', 'llm_chat_sessions', 'llm_chat_messages', 'semantic_matches', 'creative_paths', 'annotation_strategies', 'annotation_prompt_templates', 'annotation_examples'],
+            'LLM/模型': ['model_providers', 'llm_model_configs', 'ingestion_profiles', 'llm_chat_sessions', 'llm_chat_messages', 'semantic_matches', 'creative_paths', 'annotation_strategies', 'annotation_prompt_templates', 'annotation_examples'],
             '日志': ['operation_logs', 'usage_stats']
         }
         

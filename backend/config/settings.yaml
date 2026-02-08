@@ -1,10 +1,12 @@
 annotation:
   _loaded: true
   batch_size: 15
-  concurrent_requests: 1
+  concurrent_requests: 4
   max_retries: 3
+  message: 设置已保存
   retry_delay: 1000
   save_interval: 5
+  success: true
 app:
   auto_save: true
   confirm_before_delete: true
@@ -21,3 +23,9 @@ vector_db:
   collection_name: cinegraph_subtitles
   path: data/chroma_db
   type: chroma
+vectorization:
+  _loaded: true
+  batch_size: 50
+  concurrent_requests: 3
+  max_retries: 3
+  retry_delay: 500

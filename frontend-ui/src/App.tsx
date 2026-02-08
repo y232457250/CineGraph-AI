@@ -7,7 +7,7 @@ import PropertyPanel from './PropertyPanel';
 import '@xyflow/react/dist/style.css';
 import { Search, LayoutDashboard, Settings, Database } from 'lucide-react';
 import ResourcePanel from './ResourcePanel';
-import SettingsPanel from './SettingsPanel';
+import SettingsPanel from './settings';
 import { open } from '@tauri-apps/plugin-dialog';
 
 

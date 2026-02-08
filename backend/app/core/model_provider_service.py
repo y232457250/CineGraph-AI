@@ -258,7 +258,7 @@ class ModelProviderService:
     
     def delete_provider(self, provider_id: str) -> bool:
         """
-        删除模型提供者（系统预置的不可删除）
+        删除模型提供者（每个类别至少保留1个模型）
         
         Args:
             provider_id: 提供者ID
@@ -271,8 +271,23 @@ class ModelProviderService:
             provider = session.query(ModelProvider).filter_by(id=provider_id).first()
             if not provider:
                 return False
-            if provider.is_default:
-                raise ValueError("系统预置的模型不可删除，但可以禁用")
+            
+            # 检查该类别是否至少还有1个其他模型
+            same_category_count = session.query(ModelProvider).filter_by(
+                category=provider.category
+            ).count()
+            if same_category_count <= 1:
+                raise ValueError(f"每个类别至少需要保留1个模型，当前 {provider.category} 类别仅剩1个")
+            
+            # 如果删除的是活跃模型，自动切换到同类别其他模型
+            if provider.is_active:
+                alt = session.query(ModelProvider).filter(
+                    ModelProvider.category == provider.category,
+                    ModelProvider.id != provider_id,
+                    ModelProvider.enabled == True
+                ).first()
+                if alt:
+                    alt.is_active = True
             
             session.delete(provider)
             session.commit()

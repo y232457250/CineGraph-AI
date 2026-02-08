@@ -159,7 +159,7 @@ async def update_provider(provider_id: str, request: ProviderUpdateRequest):
 
 @router.delete("/{provider_id}")
 async def delete_provider(provider_id: str):
-    """删除模型提供者（系统预置的不可删除）"""
+    """删除模型提供者（每个类别至少保留1个）"""
     service = get_model_provider_service()
     try:
         success = service.delete_provider(provider_id)

@@ -231,6 +231,7 @@ async def list_tag_categories():
             cat_dict['tag_count'] = count
             cat_dict['is_editable'] = bool(cat_dict.get('is_editable', 1))
             cat_dict['is_required'] = bool(cat_dict.get('is_required', 0))
+            cat_dict['is_multi_select'] = bool(cat_dict.get('is_multi_select', 0))
             cat_dict['is_active'] = bool(cat_dict.get('is_active', 1))
             result.append(cat_dict)
         
